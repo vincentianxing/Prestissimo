@@ -1,0 +1,1 @@
+<%= Redcarpet::Markdown.new(Redcarpet::Render::HTML, underline: true, highlight: true, lax_spacing: true).render(params[:professor][:content].gsub(/[<>]/, '<' => '&lt;', '>' => '&gt;')).html_safe %>

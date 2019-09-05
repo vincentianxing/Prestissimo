@@ -1,0 +1,20 @@
+<div> Hello, </div>
+
+<p>
+The following fields have been updated for <%= "#{@course.dept} #{@course.cnum}: #{@course.short_title} (crn #{@course.crn})" %>.
+</p>
+
+<div>
+  <ul>
+    <% @fields.each {|info_type, info_data| %>
+      <li><strong><%= info_type %></strong>: <%= info_data %></li>
+    <% } %>
+  </ul>
+</div>
+
+<p>Click <%= link_to "here", "oprestissimo.com#{course_edit_path(semcrn: @course.semcrn)}" %> to see complete information about this course or unsubsribe from future updates.<p/>
+
+<div>-Oprestissimo Team</div>
+
+
+

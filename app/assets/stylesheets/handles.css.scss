@@ -1,0 +1,23 @@
+// Place all the styles related to the Handles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* ------------------- HANDLE SHOW PAGE ------------------------------------- */
+/* class given to link that opens report form */
+.report_handle_link {
+  text-align:center;	
+  display:block;
+  font-size:15px;
+  text-decoration: none;
+  color: $abusiveReportLink !important;
+  &:hover, &:active {
+    color: $abusiveReportLinkHover !important;
+    text-decoration: underline;
+      }
+}
+
+//Handles search on user search page
+
+.handlelookup_table tr {
+  height: 30px;
+}

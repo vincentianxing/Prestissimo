@@ -1,0 +1,42 @@
+<!--
+the hubcourse search page
+-->
+<% provide(:title, 'Departments') %>
+
+<h2 class="hub_h2">Departments</h2>
+
+<p>&nbsp;</p>
+
+<!--
+<%= search_field_tag :input, nil, placeholder: "Search this table", class: "smallspread_inputfield search_tag", id: "filter-input" %>
+-->
+<div id=dept-search-box>
+  <table id="dept-table" class="hub_search">
+    <tbody>
+      <!-- Sorts the courses by prefix and processes them three at a time in order to have 3 rows -->
+      <% @depts.sort_by{|a| a.dept.downcase}.each_slice(3) do |d| %>
+        <tr>
+          <% d.each do |dept| %>
+            <td>
+              <%= link_to dept.dept + "  " + dept.dept_long, dept, id:"dept_link" %>
+            </td>
+          <%end %>
+        </tr>
+      <% end%>
+    </tbody>
+  </table>
+</div>
+
+<% provide :script do %>
+  $("#dept-table").filterTable({
+    callback: function (term, table) {
+      if (term == "") {
+        table.find('tr').removeClass('visible');
+      }
+        else {
+      }
+    },
+  });
+<% end %>
+
+

@@ -1,0 +1,59 @@
+<!--
+Scrollable table for displaying the professor search results
+modeled after the course search results
+-->
+
+
+<!-- only display results... if there are results! -->
+<% if !@professors.nil? %>
+  <h2>Professor Pages</h2>
+  <table id="headers">
+
+    <tr>
+      <th class="name" id="name_header">Name</th>
+      <th class="email">Email</th>
+      <th class="active_link"></th>
+    </tr>
+    <% if !in_mobile_view? && !session[:mobile_view] %>
+    </table>
+  <% end %>
+  <% if !in_mobile_view? && !session[:mobile_view] %>
+    <div id="prof_results_scroller">
+      <table class="results proflookup_table">
+      <% end %>
+      <% @professors.each_with_index do |p, index| %>
+        <% if index % 2 === 0 %>
+          <tr class="even" >
+          <% else %>
+            <tr class="odd">
+            <%end%>
+            <td class="name">
+              <!-- no link if the professor is darkened -->
+              <% if p.status == "dark" %>
+                <%= "#{p.fname} #{p.lname}" %>
+              <% else %>
+                <!-- link to the professor's page -->
+                <%= link_to "#{p.fname} #{p.lname}#{" ("+p.nickname+")" unless p.nickname.blank?}", show_professor_path(fname: p.fname, lname: p.lname), class: "name_link" %>
+              <% end %>
+            </td>
+            <td class="email">
+              <% if p.email %>
+                <%= p.email %>
+              <% else%>
+                <%= content_tag :span, 'No email on record', title: "#{p.fname}.#{p.lname}@oberlin.edu probably works" %>
+              <% end %>
+            </td>
+            <!-- the admin can edit and darken/activate a professor -->
+            <td class="active_link">
+              <% if current_user.admin? %>
+                <!-- toggles the status b/w active and dark -->
+                <%= link_to "Toggle Active", toggle_active_professor_path(fname: p.fname,lname: p.lname), remote: true, class: "ajax_link" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        <% if !in_mobile_view? && !session[:mobile_view] %>
+        </table>
+      </div>
+    <% end %>
+  <% end %>

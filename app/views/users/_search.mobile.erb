@@ -1,0 +1,17 @@
+
+<!--
+Table to display search results (the returned array of users)
+has links to delete users if the current_user is an admin
+the current user is not in the result array
+-->
+
+<% if !(@usrresults.nil?) %>
+  <div data-role="collapsible" id="user_collapsible" class="ui-alt-icon">
+    <h2>User Profiles</h2>
+    <ul data-role="listview" id="user_list">
+      <% @usrresults.each do |r| %>
+        <li><%= link_to r.fname + ' ' +r.lname, user_path(r.email.split('@')[0]) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

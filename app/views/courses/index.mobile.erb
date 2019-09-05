@@ -1,0 +1,110 @@
+<%= provide(:title, 'Search') %>
+
+<% #load_cart indicated whether we need to redirect to the course page when a user selects the 'load' button on their cart %>
+<% @load_cart = true %>
+
+<!-- DISCLAIMER MESSAGE goes here -->
+
+<!-- MESSAGE OF THE DAY -->
+
+    <% if cookies[:motd].nil? || motd_cookie_expired? %>      
+      <div id="motd_container" class="ui-alt-icon" data-role="collapsible" data-mini="true" data-collapsed="false">
+    <% else %>
+      <div id="motd_container" class="ui-alt-icon" data-role="collapsible" data-mini="true" data-collapsed="true">
+    <% end %>  
+      <h2>Message of the Day</h2>
+	<div class="motd_message">
+	  <%= motd.value.html_safe %>
+	</div>
+      </div>
+
+<!-- COURSE SEARCH FORM (fields listed below) -->
+<%= form_tag course_search_path, :method => 'get', id: "sf", :remote => true, "name" => "sf", class: "search_form" do %>
+  <div id="search_wrapper">
+
+      <!-- SEARCH FIELDS HERE -->
+      <!-- Search Fields, above the ADVANCE divide -->
+      <div id="search">
+	<!-- cname -->
+	<%= render 'courses/form_partials/name' %>
+	<!-- professor -->
+	<%= render 'courses/form_partials/professor' %>
+	<!-- dept -->
+	<%= render 'courses/form_partials/dept' %>
+	<!-- semester -->
+	<%= render 'courses/form_partials/semester' %>
+        <!-- keyword -->
+        <%= render 'courses/form_partials/keyword' %>
+
+      <!-- More/Less Button -->
+      <div id="adv_wrapper">
+	<div id="adv_link_div"> 
+	  <% if in_mobile_view? %>
+	    <div id="adv_helper">
+            <div class="ui-btn ui-corner-all ui-icon-plus ui-alt-icon ui-btn-icon-left ui-btn-inline" id="adv_button">Advanced options
+	      </div>
+	    </div>
+	  <% else %>
+	    <span id="adv_link">
+	      more
+	    </span>
+	  <% end %>
+	</div>
+      </div>
+
+	<!-- Begin ADVANCED SEARCH Fields -->
+	<div id="adv_wrapper">
+	  <div id="adv_search">
+	    <!-- cd, wr, qp -->
+	    <%= render 'courses/form_partials/proficiencies' %>
+	    <!-- ns, ss, hu -->
+	    <%= render 'courses/form_partials/attributes' %>
+	    <!-- cndp, ddhu -->
+	    <%= render 'courses/form_partials/con_attributes' %>
+            
+            <!-- monday, tuesday, wednesday, thursday, friday, saturday, sunday -->
+	    <%= render 'courses/form_partials/days' %>
+	    <!-- start_hour, start_minute, end_time, end_minute -->
+	    <%= render 'courses/form_partials/time' %>
+            
+            <!-- full course, half course, co-curricular -->
+	    <%= render 'courses/form_partials/full_course' %>
+	    <!-- mod1, mod2, full, special -->
+	    <%= render 'courses/form_partials/modules' %>
+	    <!-- max_credits, min_credits -->
+	    <%= render 'courses/form_partials/credits' %>
+	    <!-- course_comparison, course_level -->
+	    <%= render 'courses/form_partials/level' %>
+	    <!-- crn -->
+	    <%= render 'courses/form_partials/crn' %>
+	    <!-- last changed since 
+	    <%= render 'courses/form_partials/last_changed' %> -->
+	  </div>
+	</div>
+	<!-- End ADVANCED SEARCH Fields -->
+      </div>
+      <!-- End SEARCH Fields -->
+
+      <!-- SUBMIT and RESET buttons -->
+      <div class="submit">
+	<% if current_cart %>
+	  <div style="display: none;">
+	    <%= text_field_tag :cart_id, params[:cart_id], value: current_cart.cartid %> 
+	  </div>
+	<% end %>
+	<%= submit_tag "Search", :id => "course_search", :name => nil %>
+	<% if in_mobile_view? %>
+	  <input type="reset" value="Reset" id="course_reset" class="mobile_reset">
+	<% else %>
+	  <input type="reset" value="Reset" id="mobile_course_reset">
+	<% end %>
+      </div>
+    <% end %>
+    <!-- End SEARCH FORM -->
+  </div>
+
+  <!-- SEARCH STATUS message (in JavaScript, ./search.js.erb) -->
+  <div id="status_bar">
+  </div>
+  <div id="results">
+  </div>

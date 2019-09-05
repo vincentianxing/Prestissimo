@@ -1,0 +1,11 @@
+<!--
+    Displayed after the professor database has been populated from the ldap
+    lists the names of all the new professors in the db
+    -->
+
+<div>
+  <h2>The following professors have been added to the database:</h2>
+  <% @names.each do |name| %>
+  <p><%= name %></p>
+  <% end %>
+</div>

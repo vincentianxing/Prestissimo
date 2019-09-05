@@ -1,0 +1,30 @@
+
+<!--
+The SignIn/SignUp page
+Renders two forms,
+the first to sign into an existing account
+the second to create a new account
+-->
+
+<% provide(:title, 'Sign In') %>
+<div>
+  <%= render 'shared/error_messages' %>
+</div>
+<div id="login_motd_container">
+  <div id="login_motd_bar">
+    <strong>NOTICE:</strong> New login procedure!
+  </div>
+  <div id="login_motd_body">
+    We now are integrated with the college's directory for logins. Use your <strong>OCPass</strong> credentials to sign in. We've deleted your old passwords from our database (don't worry, they were encrypted) but your account and cart will still be there! 
+</div>
+</div>
+<div class="siu_table">
+  <% if !in_mobile_view? %>
+    <%= render 'users/signin' %>
+  <% else %>
+    <%= render 'users/signin' %>
+  <% end %>
+</div>
+<div id="login_info">
+  Sign in with your <strong>ObieID and OCPass password</strong>, i.e. the same credentials you use to access Blackboard. If you are having issues logging in or have forgotten your password, visit <a target="_blank" href="https://ocpass.oberlin.edu">ocpass.oberlin.edu</a> or contact CIT.
+</div>

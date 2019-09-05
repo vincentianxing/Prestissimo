@@ -1,0 +1,11 @@
+
+<% if !@handleresults.nil? %>
+  <div data-role="collapsible" id="handle_collapsible" class="ui-alt-icon">
+    <h2>Commenters</h2>
+    <ul data-role="listview" id="handle_list">
+      <% @handleresults.each do |h| %>
+        <li><%= link_to "#{h.username}", show_handle_path(h.username) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -1,0 +1,485 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* ----------------------- USER FORM STYLING -------------------------------- */
+// Form used in signup and signin page
+
+
+.sign_form {
+  width:100%;
+  vertical-align: top;
+  text-align:center;
+}
+
+#login, #signup {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+
+/* The 'SU_LABEL' class */
+// - used for form labels
+.su_label {
+  font-size:16px;
+  padding-top:3px;
+}
+
+// 'SU_TEXTFIELD' class - used for padding the entry boxes
+.su_textfield {
+  position: relative;
+  padding-top:2px;
+  padding-bottom:5px;
+}
+
+// 'SIU_TABLE' class - used to format the table on the sign in/sign up page
+.siu_table td {
+  width:400px;
+  vertical-align:top;
+}
+.siu_table {
+  vertical-align:top;
+}
+.siu_table tr {
+  vertical-align:top;
+}
+.siu_table table {
+  vertical-align:top;
+}
+
+#login_box {
+  margin-right:auto;
+  margin-left:auto;
+  background-color: $loginBox;
+  text-align: center;
+  border-radius:5px;
+  width:80%;
+  padding:5px;
+}
+
+#signin_submit {
+  text-position: center;
+}
+// This is where changes were made.
+.signin_button, .signup_button  {
+  background-color: $loginButton;
+  margin-bottom: 2px;
+  border-radius: 5px;
+  border:1px solid $loginButtonBorder;
+  display:inline-block;
+  color: $loginButtonText;
+  width: auto;
+  font-size: small;
+  font-weight: 700;
+  padding: 3px;
+  text-decoration:none;
+
+  &:hover {
+    background-color: $loginButtonHover;
+    cursor:pointer;
+}
+&:active {
+  position: relative;
+  top: 1px;
+}
+
+}
+
+#signup_box {
+  margin-right:auto;
+  margin-left:auto;
+  width:80%;
+  text-align: center;
+}
+
+/* ----------------------- SETTINGS PAGE STYLING ---------------------------- */
+#usr_update_form {
+  width: 400px;
+  margin: 0 auto;
+}
+
+//Used for the label above the checkboxes on settings page
+.su_label_header{
+  font-size:13px;
+
+}
+/* Used for settings labels */
+.settings_label {
+  float:left;
+  text-align:right;
+
+}
+
+.checkbox{
+  position: absolute;
+  left: -120px;
+  width:130px;
+  margin-left:60px;
+}
+
+/* ID for outer div, in the change handle form */
+#handle_form_outer {
+  text-align:center;
+}
+
+/* ID for inner handle form div */
+#handle_form_inner, #password_form_inner {
+  width: 380px;
+  margin-left:auto;
+  margin-right:auto;
+  background: $handleEditBox;
+  border-radius:3px;
+  padding: 10px;
+}
+
+/* ID for div surrounding remove account link */
+#rem_account_link {
+  text-align:center;
+  margin:30px;
+}
+
+/* ID of user notes box, on profile settings */
+#user_notes {
+  height:200px;
+}
+
+/* ----- Styling for USERS INDEX - SHOW ALL USERS page --------------------- */
+/*We think that this styling is not used anymore, since there is no users index page */
+/* Div surrounding a single user's information 
+.user_container {
+background:#999;
+width:70%;
+padding:3px;
+border-radius:2px;
+display:block;
+margin:1px;
+a {
+color:#000;
+font-weight:bolder;
+text-decoration:none;
+&:hover, &:active {
+color:$dark_reddish;
+        }
+}
+  &:hover {
+  background:#BBB;
+}
+}
+  /* Styling for EMAIL container 
+  .user_email {
+  display:inline-block;
+  width:12em;
+  padding-left:3px;
+}
+  /* Styling for FULL NAME container 
+  .user_fullname {
+  display:inline-block;
+  width:50%;
+}
+  /* Styling for DELETE link - visible only to admins 
+  .deleteuser_link {
+  display:inline;
+}
+ */
+
+/* -------------------- Styling for USER PROFILE page ----------------------- */
+/* Class for box around entire user profile content */
+.profile {
+  left:260px;
+  min-height:150px;
+}
+
+/* ID for div surrounding user-specified nickname field
+Unused. */
+#profile_nickname {
+}
+
+/* ID for Nickname header, on user profile */
+#usr_nick {
+  margin:0;
+  margin-bottom:3px;
+}
+
+/* ID for div surrounding 'remove user' link */
+#del_user {
+  margin:7px;
+}
+
+/* ID for div surrounding user-specified year field */
+#profile_year {
+  display:inline;
+  padding-right:10px;
+}
+
+/* ID for div surrounding user-specified gender field */
+#profile_gender {
+  display:inline;
+}
+
+/* List containing user's LDAP info */
+#profile_ldap {
+  left:auto;
+  right:auto;
+  width:250px;
+  padding-left:0;
+  float:left;
+  list-style:none;
+  text-align:right;
+  margin-top:37px;
+  padding-top:6px;
+  //background
+  background: $ldapList;
+  border-radius:3px;
+  li {
+    padding-right:20px;
+    padding-bottom:6px;
+    letter-spacing:1px;
+}
+}
+
+/* ID used to color text grey when user has no info */
+#profile_noinfo {
+  color: $noinfoText;
+}
+
+/* Class for div surrounding LDAP info list on user profile */
+#ldap_info {
+  float:left;
+  width:260px;
+}
+
+/* Class used for headers on user profile */
+.profile_info {
+  font-size:20px;
+  letter-spacing:1px;
+  border-radius:3px;
+}
+
+/* IDs given to Gender, Year header text, on user profile */
+#year_header, #gender_header {
+  margin:0;
+  display: inline;
+}
+
+/* IDs for divs surrounding profile gender, year
+Unused. */
+#year_box, #gender_box {
+}
+
+/* ID for div around Profile Info
+Unused. */
+#profile_infobox {
+}
+
+#calendar {
+}
+
+#schedule {
+  clear:both;
+  margin-top:5px;
+}
+
+/* ---------------------- USER SEARCH PAGE STYLING -------------------------- */
+.people_div {
+  float: left;
+  text-align:left;
+  font-family: $labelFont;
+  font-size: 18px;
+  color: $peopleSearchLabel;
+  padding: 0;
+  margin-right: 15px
+}
+
+.people_label {
+  font-weight:bold;
+}
+
+.people_submit {
+  text-align:left;
+  padding-bottom: 10px;
+  border-bottom: 1px dotted $searchFormDivider;
+}
+
+.people_search {
+  text-align:left;
+}
+
+.people_h2 {
+  margin:0;
+  color: $h2color;
+  font-family: $labelFont;
+  font-size: 30px;
+}
+
+.people_h2_subheader {
+  margin-bottom: 15px;
+}
+
+#userlookup_table {
+  padding:0;
+  margin:0;
+  margin-top:7px;
+  border-spacing:0;
+  tr { 
+    margin:0;
+    padding:0;
+        }
+        td {
+          margin:0;
+          padding:0;
+          padding-right:10px;
+          padding-bottom:5px;
+        }
+}
+
+#ultable_labels {
+  font-weight:bold;
+  font-size:16px;
+
+}
+
+.userlookup_div {
+  display:inline-block;
+  padding-right:5px;
+  padding-bottom:10px;
+}
+.userlookup_label {
+  display:inline;
+  font-weight:500;
+  font-size:16px;
+  vertical-align:middle;
+}
+
+#finduser_field {
+  height: auto;
+  width: 140px;
+  padding: 2px;
+  font-size:14px;
+  &:focus {
+    width:142px;
+}
+
+}
+// fixes this field resizing incorrectly in firefox. "hack"
+@-moz-document url-prefix() {
+  #finduser_field:focus {
+    width:140px !important;
+  }
+} 
+
+#userlookup_submit {
+  display:inline-block;
+}
+
+.userlookup_button {
+}
+
+#role_drop {
+}
+
+.userlookup_header tr td, .userlookup_table tr td {
+  width: 30%;
+}
+
+.userlookup_table tr {
+  height: 30px;
+}
+
+#userlookup_scroll {
+  max-height:315px;
+  overflow:auto;
+  padding:0px;
+  margin-bottom: 15px;;
+  border: 2px solid $scrollerBorder;
+}
+
+/* ------------------- USER EDIT PAGE ---------------------- */
+.settings_header {
+  margin-bottom: 20px;
+}
+
+/* ----------------------- FORGOT PASSWORD/RESET PASSWORD ------------------- */
+/* Class for span surrounding labels on forgot/reset pages */
+.fr_label {
+  text-align:right;
+  width:210px;
+  display:inline-block;
+  font-weight:bold;
+  font-size:16px;
+}
+
+/* Class for div surrounding forgot password form fields */
+.forgot_pass {
+  margin-bottom:3px;
+}
+
+.delete_button {
+  background-color: $deleteButton;
+  margin: 5px;
+  border-radius: 5px;
+  border:1px solid $deleteButtonBorder;
+  display:inline-block;
+  color: $deleteButtonText;
+  text-shadow: $deleteButtonShadow 0 0 2px;
+  width: auto;
+  font-size: medium;
+  font-weight: 700;
+  padding: 5px;
+  text-decoration:none;
+
+  &:hover {
+    background-color: $loginButtonHover;
+    cursor:pointer;
+  }
+
+}
+
+#login_info {
+  margin:20px auto 0px auto;
+  width:80%;
+  text-align:justify;
+}
+
+
+#login_motd_container {
+  width:80%;
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom:16px;
+  background-color: $motdBackground;
+  border: $motdBorder solid 2px;
+  border-radius: 5px 5px 0 0;
+  color: $motdText;
+  -moz-box-shadow: $motdShadow 0 0 25px;
+  -webkit-box-shadow: $motdShadow 0 0 25px;
+  box-shadow: $motdShadow 0 0 25px;
+}
+
+#login_motd_bar {
+  position:relative;
+  line-height:1.5;
+  color: $motdBarText;
+  padding-bottom:2px;
+  text-align:center;
+  background-color: $motdBarBackground;
+  border-radius: 2px 2px 0 0;
+  font-family: $labelFont;
+}
+
+div#login_motd_bar a {
+  //float:right;
+  position:absolute;
+  right:0;
+  font-size:smaller;
+  color: $motdBarText;
+  margin-right:3px;
+}
+div#login_motd_bar a:hover {
+  color: $motdBarText;
+}
+
+#login_motd_body {
+  padding:5px;
+  font-family: $labelFont;
+  text-align:justify;
+}

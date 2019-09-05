@@ -1,0 +1,58 @@
+<!-- Page containing helpful links for users -->
+
+<% provide(:title, 'Useful Links') %>
+
+<h1>Useful Links</h1>
+<p>
+Here you will find links to some other pages that might be of assistance to you!
+</p>
+<p>&nbsp;</p>
+<body>
+  <ul class = "help_links">
+    <li>
+    <a href="http://new.oberlin.edu/">
+      <strong>Oberlin College Website</strong></a>
+    <br /><span>Use the College's website to find out more about the school, professors, departments, and more.</span>
+    </li>
+
+    <li>
+    <a href="http://catalog.oberlin.edu/">
+      <strong>Oberlin Course Catalog</a></strong>
+    <br /><span>Official online course catalog for the College and Conservatory.</span>
+    </li>
+
+    <li class = "h_link">
+    <a href="http://presto.oberlin.edu/">
+      <strong>PRESTO</strong></a></br>
+    <span>Find up-to-date course information and other helpful items (must have a T-number to log in). Be aware that it is very difficult to navigate and is not supported in some browers.</span>
+    </li>
+
+    <li class = "h_link">
+    <a href="http://new.oberlin.edu/office/registrar/class-schedules/">
+      <strong>Class Schedules From the Office of the Registrar</strong></a></br>
+    <span>A page with links to the Registrar's official course schedules since the year 2000. May have more information about future semesters than we do.</span>
+    </li>
+
+    <li>
+    <%= link_to "/documents/presto.pdf" do  %>
+      <strong>Guide to PRESTO</strong>
+    <% end %>
+    <br /><span>Some helpful tips for working with PRESTO provided by the registrar.</span>
+    </li>
+
+    <li>
+    <%= link_to "/documents/abbrevs.pdf" do %>
+      <strong>PRESTO Abbreviations</strong>
+    <% end %>
+    <br /><span>PRESTO often uses cryptic abbreviations, and it can be difficult to figure out what it's trying to tell you. Use this sheet from the registrar's office to help you.</span>
+    </li>
+
+   <li >
+    <a href="http://obiemaps.oberlin.edu/">
+      <strong>ObieMAPS</strong></a>
+    <br /><span>Use ObieMAPS to find connections between collections, courses, faculty members, and study away programs at Oberlin College and Conservatory through locations, time periods, themes, and languages.</span>
+  </li>
+
+  <br />
+    For any unanswered questions, please contact us at <a href="mailto:info@oprestissimo.com">info@oprestissimo.com</a>. 
+  </body>

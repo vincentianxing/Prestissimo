@@ -1,0 +1,835 @@
+@import "fonts.scss";
+@import "colors.scss";
+@import "jquery_mobile_ui.css.scss";
+@import "jquery.mobile.icons.min.css.scss";
+
+/*------------------- Header Formatting ---------------------*/
+
+#logo{
+  float:left;
+  padding-top:0;
+  padding-bottom:0;
+  border:0;
+}
+
+#logo_text{
+  border:0;
+  margin:0;
+  padding:0 0 .125em 0;
+  font-size:1.75em;
+  font-family:$logoFont;
+  color:$mobileLogoFont;
+  background-color:$mobileMenuBar;
+}
+
+.logo_image{
+  position:relative;
+  top:.175em;
+  height:30px;
+  weight:30px;
+}
+
+#header_h1{
+  margin:0;
+  padding-top:0;
+  padding-bottom:0;
+}
+
+
+#menu_button{
+  width:2em;
+  height:2em;
+  border:0;
+  background-color:$mobileMenuBar;
+  padding-top:0;
+  padding-bottom:0;
+}
+
+
+#header {
+  background-color:$mobileMenuBar;
+  overflow:hidden;
+  li {
+  list-style:none
+}
+  ul { margin: 0; padding: 0; }
+  border:none;
+}
+#menu_list{
+  .ui-btn:active{
+    background-color:$mobileMenuActiveBackground !important;
+  }
+  li.ui-first-child a{
+    border-top-width:1px!important;
+  }
+  li.ui-last-child a{
+    border-bottom-width:1px!important;
+    border-bottom-color:$mobileMenuBorder !important;
+  }
+  li{
+    display:block;
+    a{    
+      background-color:$mobileMenuBar !important;
+      color:$mobileMenuText;
+      border-color:$mobileMenuBorder !important;
+    }
+  }
+}
+
+#menu_list div.ui-collapsible-content {
+  padding: 0 1em !important;
+  border-bottom:0;
+}
+
+.collapsible-bottom-fix {
+  margin-bottom: -0.5em;
+}
+
+#dept_classes_list, #dept_profs_list{
+  margin-bottom:0;
+}
+
+#dept_profs_div div.ui-collapsible-content,
+#dept_classes_div div.ui-collapsible-content{
+  margin-top:-0.5em;
+  padding-top:0.5em !important;
+}
+
+.ui-slider-bg{
+  background:$mobileSlider}
+
+.ui-btn-inner{
+  background:$mobileButtonBackground;
+  color:$mobileButtonText;
+  font-weight:normal;
+  font-style:normal;
+  text-shadow:none;
+}
+
+#motd_container{
+  margin:0 0 1em 0;
+  box-shadow: 0 0 12px $blue1;
+}
+#motd_container.ui-collapsible-collapsed {
+    box-shadow:none;
+}
+
+.motd_message{
+  padding:.5em 0 .5em 0;
+}
+/*------------------- Global Formatting ---------------------*/
+
+.ui-btn {
+  white-space: nowrap !important;
+}
+
+#whole_page {
+  background:$mobileFooter;
+}
+
+#content{
+  overflow-x:visible;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  background-color: $mobileBackground;
+  a {
+    //text-decoration:none;
+    //color:$mobileMOTDClose;
+  }
+}
+
+.no_bullet_list {
+  list-style:none;
+}
+
+#status_bar{
+  text-align:center;
+  padding:2%;
+}
+
+li {
+  list-style:none;
+}
+
+//background//
+.ui-body-c, .ui-overlay-c{
+  text-shadow:none;
+  background:$lightBlue;
+}
+
+.bar-center-text{
+  text-align:center;
+}
+
+.unindented_list{
+  padding-left:1em;
+}
+
+.titlebar{
+  margin:-.5em -.5em .5em -.5em;
+  border: none;
+  background-color: $mobileTitleBar;
+} 
+
+.custom-corners .ui-bar{
+  -webkit-border-top-left-radius: inherit;
+  border-top-left-radius: inherit;
+  -webkit-border-top-right-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+.custom-corners .ui-body{
+  border-top-width: 0;
+  -webkit-border-bottom-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+  -webkit-border-bottom-right-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+.noborderbar{
+  border-bottom:none;
+}
+
+#classes div{
+  border-color:$mobileButtonBorder !important;
+}
+
+#prof_course_list .ui-last-child .ui-collapsible-content,
+#prof_course_list .ui-last-child.ui-collapsible-collapsed h3 a{
+  border-bottom:none;
+}
+
+.alert{
+  margin:-1em -1em 1em -1em;
+  border: none;
+}
+/*------------------- Course Formatting ---------------------*/
+
+.mobile_fieldset div.ui-controlgroup-controls{
+  width:100%;
+}
+
+.btn_width_half div.ui-radio,
+.btn_width_half div.ui-checkbox{
+  width:50%;
+}
+
+.btn_width_third div.ui-radio,
+.btn_width_third div.ui-checkbox{
+  width:33.3%;
+}
+
+.btn_width_quarter div.ui-radio{
+  width:25%;
+}
+
+.btn_width_seventh div.ui-checkbox{
+  width:14.286%;
+}
+
+.field_box div.ui-radio label,
+.field_box div.ui-checkbox label{
+  text-align:center;
+}
+
+#time_slider_div input[type=number] {
+  display: none;
+}
+
+#time_slider_outer {
+  position: relative;
+}
+
+#time_start_label {
+  position: absolute;
+  top: 20px; 
+  width: 57px;
+}
+
+#time_end_label {
+  position: absolute;
+  top: 20px; 
+  right: 0;
+  left: auto;
+  width: 57px;
+}
+
+#time_slider_div div.ui-rangeslider-sliders {
+  margin: 0 85px;
+}
+
+#adv_search{
+  display:none;
+  padding-bottom:10px;
+}
+
+#adv_link{
+  display:none;
+}
+
+#adv_helper{
+  text-align:center;
+}
+
+.field_group{
+  border:0;
+  padding-bottom:0;
+}
+
+.mobile_fieldset{
+  position:relative;
+}
+/*
+.field_box{
+position:absolute;
+top:0;
+right:0;
+}
+ */
+table{
+  width:40%;
+  border-collapse:collapse;
+  border-spacing:10;
+}
+
+#dept_drop, #semester_drop {
+  font-size: 50px;
+}
+
+#course_search {
+  background-color:none;
+}
+
+#course_reset {
+  background-color:none;
+}
+
+.course_table{
+  width:100%;
+}
+
+.time_center{
+  text-align:center;
+}
+/* ------------------------- Course Search Results ------------------ */
+
+.results {
+  font-size:small;
+  margin-right:-3px;
+  margin-left:2px;
+}
+
+#headers {
+  margin-right:-3px;
+  margin-left:2px;
+  width:80% !important;
+  display:block;
+}
+
+#headers a{
+  text-decoration:none;
+}
+
+/* .enhanced {
+  display:none;
+} */
+
+.chkbox, .enroll, .profic {
+display:none;
+}
+
+.course_collapsible .ui-collapsible-content{
+  border-bottom:none !important;
+}
+
+.ui-collapsible-content .ui-listview a,
+.expanded_course li a{
+    background-color:$mobileCourseLink !important;
+    border-color:$mobileCourseLinkBorder !important;
+}
+
+.course_entry{
+  text-align:center;
+  
+}
+
+
+.desc_spec{
+
+}
+div#content div.desc_spec {
+  
+
+
+
+  a {
+//    font-weight:bold;
+//    color: $mobileDescripTitleFont;
+//    text-decoration: underline;
+  }
+  
+
+
+  .professors, .crn {
+    width: 300;
+    display: block
+  }
+
+  .location,
+  .enrollment,
+  .semester,
+  .section {
+    clear: right;
+    text-align: right;
+  }
+  .semester { clear: none; }
+  .location { margin: 0.5em 0 0.2em; }
+
+  div.crosslist,
+  .module {
+    display: block;
+    margin-top: 1.0em;
+  }
+
+  .enrollment_cur,
+  .enrollment_max,
+  .crosslist,
+  .location,
+  .grading,
+  .proficiencies,
+  .credits {
+    display: block;
+  }
+  
+
+  .course_description, .course_notes {
+    display: block;
+    margin-top: 0.5em;
+  }
+}
+
+.fulltext,
+.fulltext p{
+  white-space: normal !important;
+  text-align: justify;
+}
+
+.ui-listview li p{
+  font-size: 1em !important
+}
+
+
+.cur_enroll{
+  display:block;
+  float: left;
+}
+
+.max_enroll{
+  display:block;
+  float: right;
+}
+
+.nobulletlist{
+  li{
+    overflow:auto;
+    text-overflow:ellipsis;
+  }
+  padding-left:0;
+  margin:0;
+}
+
+.bulletlist{
+  padding-left:1em;  
+  li{
+    list-style-type:disc;
+  }
+}
+.bulletlist2{
+  padding-left:1em;  
+  li{
+    list-style-type:circle;
+  }
+}
+
+/* ------------------------- People Search -------------------------- */
+
+#ultable_labels{
+  font-weight:bold;
+}
+
+#name_header{
+  text-align:left;
+}
+
+/* ------------------------- Hub Course Search ---------------------- */
+
+#hc_courses{
+  p{
+    padding:0;
+    margin:0;
+  }
+  li {
+    padding-bottom:3%;
+  }
+
+}
+
+
+#prof_course_list{
+  margin-top:0;
+  margin-bottom:0;
+  padding-top:0;
+  padding-bottom:0;
+}
+
+/* ------------------------- Comments ------------------------------- */
+
+
+/* Class given to div for entire comment box
+Contains title bar span, as well */
+.comment_area {
+  background-color:$mobileCommentBack;
+  margin-bottom:3px;
+  margin-left:auto;
+  margin-right:auto;
+  border-radius:3px;
+}
+
+/* Class for span containing both handle
+and the edit comment link */
+.handle {
+  display:block;
+  background-color:$mobileCommentHead;
+  font-weight:bold;
+  padding:4px;
+  border-radius:3px 3px 0 0;
+  outline:none;
+}
+
+/* Class used to format timestamp on comments */
+.posted_at {
+  font-weight:normal;
+  font-style:italic;
+  font-size:small;
+}
+
+/* class given to span containing the link to
+edit a comment */
+.edit_comment_link {
+  font-weight:normal;
+  font-size:14px;
+  float:right;
+}
+
+/* class given to paragraph of text stating
+a comment has been edited */
+.edited_comment {
+  padding:0 8px 0 8px;
+  font-size:14px;
+  font-style:italic;
+}
+
+/* class given to body text of comment
+forces word wrapping even when no whitespace present */
+.comment_text {
+  width:95%;
+  margin-left:auto;
+  margin-right:auto;
+  word-wrap:break-word;
+}
+
+/* Class given to div containing all of the voting stuff.
+Determines the position. */
+.vote_div {
+	text-align:right;
+	padding-right:5px;
+	padding-bottom:5px;
+}
+
+/* Class given to div surrounding the up vote arrow and 
+vote count. Forms the white box */
+.upvote_div {
+	margin:0;
+	margin-bottom:3px;
+	padding:2px 4px;
+	background:white;
+	border-radius:3px;
+	display:inline-block;
+}
+
+/* Class given to div surrounding the down vote arrow
+and vote count. Forms the white box */
+.downvote_div {
+	margin:0;
+	margin-bottom:3px;
+	margin-right:3px;
+	border-radius:3px;
+	padding:2px 4px;
+	background:white;
+	display:inline-block;
+}
+
+/* Class given to paragraph surrounding the up vote count */
+.up_text {
+	display:inline;
+	margin:0;
+	padding:0;
+	color:green;
+}
+
+/* Class given to paragraph surrounding the down vote count */
+.down_text {
+	display:inline;
+	margin:0;
+	padding:0;
+	color:red;
+}
+
+/* ID of DIV that makes the red voting triangle */
+#redtri {
+	display:inline-block;
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 10px solid #dc2727;
+	&:hover {
+		border-top:10px solid gray;
+	}
+}
+
+/* ID of DIV that makes the green voting triangle */
+#greentri {
+	display:inline-block;
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid green;
+	&:hover {
+		border-bottom:10px solid gray;
+	}
+}
+
+/* ID of DIV that makes down-facing grey arrows */
+#greytri-down {
+	display:inline-block;
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 10px solid gray;
+	&:hover {
+		border-top:10px solid #dc2727;
+	}
+}
+
+/* ID of DIV that makes up-facing grey arrows */
+#greytri-up {
+	display:inline-block;
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid gray;
+	&:hover {
+		border-bottom:10px solid green;
+	}
+}
+
+.reply {
+	margin-bottom:3px;
+	border-radius:3px;
+}
+
+/* Class for span containing both handle
+		and the edit reply link */
+.reply_handle {
+	display:block;
+	background-color:#ccc;
+	font-weight:bold;
+	padding:4px;
+	border-radius:3px 3px 0 0;
+	outline:none;
+	margin-top:3px;
+	margin-left:10%;
+}
+
+/* Class for span containing the text of the reply */
+.reply_body {
+	background-color:#ddd;
+	display:block;
+	padding:4px;
+	padding-left:8px;
+	padding-right:8px;
+	margin-left:10%;
+	border-radius:0 0 3px 3px;
+}
+
+/* Class given to div containing all of the voting stuff.
+Determines the position. */
+.reply_vote_div {
+	text-align:right;
+}
+
+.add_reply {
+	margin-bottom:3px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/* ID of reply text field */
+#reply_textarea {
+	display:block;
+	height:100px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/* ID of reply label text */
+#reply_label {
+	display:block;
+	margin-top:4px;
+	margin-bottom:1px;
+	color: #820000;
+	font-size: 18px;
+	font-family: Lusitana;
+	font-weight:bold;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/* ID of reply submit tag */
+#reply_submit_box {
+	text-align:right;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/* class of reply to post link, at bottom of each comment */
+.reply_link {
+	float:left;
+	padding:6px 0 0 8px;
+}
+
+#comment_section{
+  padding:.75em 0 1em 0;
+}
+/* ------------------------- Setting Page --------------------------- */
+
+#delete_button{
+  background:#c1272d;
+}
+
+#usr_update_form{
+  margin-top:1em;
+}
+
+.ui-controlgroup-controls{
+  width:100%;
+}
+
+.profile_textinput{
+  padding: 0.22em !important;
+  position:absolute !important;
+  left: 1em;
+  right: 0;
+  margin-right:5.25em !important;
+  background-color:$mobileBodyBackground !important;
+  border-color:$mobileBodyBorder !important;
+}
+
+.hide_btn{
+  position:absolute !important;
+  right:1em;
+}
+
+.horizontal_div{
+  margin-top:0 !important;
+  margin-bottom:1em !important;
+  height:3.5em;
+}
+
+#nickname_label{
+  margin-top:.75em;
+  margin-bottom:.25em;
+}
+
+.info_btn{
+  float:right !important;
+}
+
+/* ------------------------------- HELP PAGES ------------------------------- */
+/* Class for an indented paragraph */
+.indent {
+	margin:0;
+	padding:0;
+	margin-left:1em;
+}
+
+/* Class for lists */
+.help_list{
+  padding:20px;
+  li{
+    padding-bottom:10px;
+  }
+  margin:0;
+}
+
+.help_header{
+  margin:0;
+  font-size: 1.5em;
+}
+
+.help_sub_list{
+  color:#B21522;
+  font-size:large;
+}
+.help_links {
+  padding: 5px;
+  .h_link {
+    padding-bottom:10px;
+    p{
+      margin:0;
+    }
+  }
+  list-style:none;
+}
+
+.help_paragraph{
+  margin-bottom:0
+}
+
+#account_reasons{
+  padding-top:0;
+}
+
+#account_steps{
+  padding-left:30px;
+}
+/* ------------------------- Footer Formatting ---------------------- */
+
+#footer_layout{
+  border:none;
+  background-color:$mobileFooter;
+}
+
+#mobile_change{
+  background-color:$mobileToggle;
+  border:none;
+  margin:1em 0 0 0;
+}
+
+.ui-footer{
+  border-bottom: none !important;
+}
+
+footer p{
+  margin: 1em;
+}
+
+#disclaimer{
+  text-align:justify;
+  font-weight:normal;
+}

@@ -1,0 +1,37 @@
+<!-- display of CREDITS
+- input: text fields
+- fields: min_credits, max_credits
+- displayed as a table, min on top, max on bottom
+-->
+<% if in_mobile_view? %>
+  <div data-role="rangeslider" class="field_group">
+    <legend>Number of Credits:</legend>
+    <%= range_field_tag :min_credits, params[:min_credits], :min => 0, :max => 9, :step=>".5", :value=>"0", "data-highlight" => "true"%>
+    <%= range_field_tag :max_credits, params[:max_credits], :min => 0, :max =>"9", :step=>".5", :value=>"9", "data-highlight" => "true"%>
+  </div>
+
+<% else %>
+  <div class="form" id="credits_div">
+    <span class="label search_label">Number of Credits:</span>
+    <table id="credits_table">
+      <tr>
+	<td>
+	  Min: 
+	</td>
+	<td>
+	  <%= text_field_tag :min_credits, params[:min_credits], :size => 5,
+	    class: "smallspread_inputfield search_tag", id: "mincredits_field" %>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    Max:
+	  </td>
+	  <td>
+	    <%= text_field_tag :max_credits, params[:max_credits], :size => 5,
+	      class: "smallspread_inputfield search_tag", id: "maxcredits_field" %>
+	    </td>
+	  </tr>
+	</table>
+      </div>
+    <% end %>

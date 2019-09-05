@@ -1,0 +1,14 @@
+<div class="form" id="dept_div">
+	<span class="label search_label">Department:</span>
+	
+		<%= form_for(@user, url: update_path(@user.id)) do |f| %>
+			<%= render 'shared/error_messages' %>
+			<% query = [] %>
+
+			        <% Department.all.each do |d| %>
+					                <% query.push( "<option>"+d.dept+"</option>") %>
+						<% end %>
+						
+						<%=f.collection_select :major,  Department.all, :dept, :dept  %>
+					<% end %>
+							</div>

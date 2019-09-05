@@ -1,0 +1,15 @@
+<% @handle = @vals[:handle] %>
+<% @comments = @vals[:comments] %>   
+<% provide(:title, @handle.username) %>
+<div id=report_dialog>
+</div>
+
+<h1><%= @handle.username %></h1>
+
+<div id="comment_section">
+  <div id="comments">
+    <%= render partial: 'comments/index', locals:{commenter:@handle} %>
+  </div>
+</div>
+
+<%= link_to "[report as abusive commenter]", new_report_path(@handle.class.to_s.underscore, @handle.id, current_user.id), remote:true, class: "report_handle_link" %>

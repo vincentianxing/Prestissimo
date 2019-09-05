@@ -1,0 +1,172 @@
+@import "colors.scss";
+@import "fonts.scss";
+
+@media print{
+
+html {
+    margin-left:.1in;
+    margin-right:.5in;
+    width:8.5in;
+    font-family: $paragraphFont;
+    font-size: small;
+}
+
+header {
+  text-align: center;
+  font-size: 15px;
+  position:relative;
+}
+
+.logo, footer, #cart_container, #minimized_cart,
+#links, #motd_container, #sf, 
+.add_to_cart_button, .search_button, 
+#print_button, #print_with_descriptions,
+.descrip,
+#checkbox_info, #obiemaps_logo,
+#hide_items, #header_wrapper,
+.sticky, #header_placeholder, #header_background { display: none; }
+
+h1 {
+  display: block;
+}
+
+/* -------------------- SEARCH RESULTS BOX----------------------------------- */
+
+#status_bar{
+    padding:10px;
+    font-weight: bold;
+    font-size: small;
+    display: none;
+}
+
+#headers {
+    border-radius: 3px 3px 0 0;
+    display: block;
+    width: 100% !important;
+    text-align: left;
+    background-color: $printHeader;
+} 
+
+.crn { width:6%; }
+.dept { width:7%; }
+.cnum { width:6%; }
+.cname {  width:29%;}
+.profes { width:19%; }
+.days_off { width:10%; }
+.time { width:10%; }
+.enroll { width:6%; }
+
+.chkbox {
+    display: none;
+}
+
+#headers{
+	font-weight:700;
+	font-size:small;
+	border:0px solid;
+}
+
+/* Results content box */
+#results_contents {
+  border:1px solid $printBorder;
+  border-radius: 5px 5px 0 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* table holding courses found */
+.results {
+    width: 100%;
+}
+
+th, td {
+    padding:1px;
+    margin:0;
+    border-collapse: collapse;
+}
+
+td {
+  border-top: 1px solid $printBorder !important;
+}
+
+table {
+    border-spacing:0px;
+}
+
+.room {
+  min-width: 47px;
+  max-width: 47px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* proficiency icons */
+img.prof_png {
+  padding:1px;
+  height:32px;
+  width:32px;
+  margin:1px;
+}
+
+/* Center the label things */
+.crn, .dept, .enroll, .profic {
+  text-align:center;
+  span {
+    display:block;
+  }
+}
+
+/* -------------------- DESCRIPTION BOX ----------------------------------- */
+
+/* .descrip {
+    color:black;
+    border-bottom: 1px solid #000000;
+} */
+
+.desc td {
+    padding:20px;
+}
+
+div#content div.desc_spec {
+  margin:0px 8px;
+}
+
+.enrollment,
+.semester,
+.section {
+    clear: right;
+    text-align: right;
+    float: right;
+    display: block;
+    position: relative;
+    top: 2px;
+    padding: 2px;
+}
+  .semester { clear: none; }
+  .location { 
+      margin: 0.5em 0 0.2em; 
+      position: relative;
+      top: -9px;
+  }
+
+.course_description, .course_notes, 
+.enrollment_cur, .enrollment_max,
+.crosslist, .grading, .proficiencies,
+.instructor_consent, .dean_consent,
+.syllabus, .credits,
+div.crosslist, .module, .syllabus,
+.professors, .descrip a { display: none; }
+
+/* -------------- Row-Alternating Colors for Search Results ----------------- */
+/* odd-indexed rows in search results table */
+.odd, .p_odd  	    {
+		    background-color: transparent;
+		    border-bottom: 1px solid $printBorder !important;
+}
+
+/* even-indexed rows in search results table */
+.even, .p_even	     {
+		     background-color: transparent;
+		     border-bottom: 1px solid $printBorder !important;
+}
+}

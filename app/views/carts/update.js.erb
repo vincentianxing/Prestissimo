@@ -1,0 +1,15 @@
+// render the cart display
+$('.courses_updatificator').empty();
+$('.courses_updatificator').html("<%= escape_javascript( render partial: 'carts/courses', locals: {courses: get_courses} ) %> " );
+// make sure the load/clear/mail cart buttons are visible
+$('#maillink_outer').show();
+// make sure the cart doesn't get too big for the window.
+$( "#courses_scroller" ).css({ "max-height": ($(window).height()) * 0.6 - 100});
+
+//Are there too many courses in the cart?
+<% if !@message.nil? %>
+  alert("<%= @message %>");
+  $('#status_bar').text("Add failed.");
+<% else %>
+  $('#status_bar').text("Course Added to Cart");
+<% end %>

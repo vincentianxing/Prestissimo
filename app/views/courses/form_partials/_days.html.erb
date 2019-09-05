@@ -1,0 +1,47 @@
+<!-- display of DAYS OF THE WEEK
+- input: checkboxes
+- fields: monday, tuesday, wednesday, thursday, friday, saturday, sunday
+- displayed as a table
+-->
+
+<% if in_mobile_view? %>
+  <div data-role="fieldcontain" class="field_group"> 
+    <fieldset data-role="controlgroup" data-type="horizontal" class="mobile_fieldset">
+      <legend>Days of the Week:</legend>
+      <div class="field_box">
+        <%= check_box_tag :monday, params[:monday]%>
+        <%= label_tag 'monday', 'M' %>
+        <%= check_box_tag :tuesday, params[:tuesday]%>
+        <%= label_tag 'tuesday', 'T' %>
+        <%= check_box_tag :wednesday, params[:wednesday] %>
+        <%= label_tag 'wednesday', 'W' %>
+        <%= check_box_tag :thursday, params[:thursday]%>
+        <%= label_tag 'thursday','R' %>
+        <%= check_box_tag :friday, params[:friday]%>
+        <%= label_tag 'friday', 'F' %>
+        <%= check_box_tag :saturday, params[:monday] %>
+        <%= label_tag 'saturday', 'S' %>
+        <%= check_box_tag :sunday, params[:sunday]%>
+        <%= label_tag 'sunday', 'U' %>
+      </div>
+    </fieldset>
+  </div>
+
+<% else %>
+  <div class="form" id="days_div" title='Search by day. Selecting more than one day will show only courses that meet on all of the selected days.'>
+    <%= check_box_tag :monday, params[:monday], false, class: "search_tag" %>
+    <label for="monday" id="m_checkbox">M</label>
+    <%= check_box_tag :tuesday, params[:tuesday], false, class: "search_tag" %>
+    <label for="tuesday" id="t_checkbox">T</label>
+    <%= check_box_tag :wednesday, params[:wednesday], false, class: "search_tag" %>
+    <label for="wednesday" id="w_checkbox">W</label>
+    <%= check_box_tag :thursday, params[:thursday], false, class: "search_tag" %>
+    <label for="thursday" id="r_checkbox">R</label>
+    <%= check_box_tag :friday, params[:friday], false, class: "search_tag" %>
+    <label for="friday" id="f_checkbox">F</label>
+    <%= check_box_tag :saturday, params[:saturday], false, class: "search_tag" %>
+    <label for="saturday" id="s_checkbox">S</label>
+    <%= check_box_tag :sunday, params[:sunday], false, class: "search_tag" %>
+    <label for="sunday" id="u_checkbox">U</label>
+  </div>
+<% end %>

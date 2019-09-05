@@ -1,0 +1,34 @@
+<script>
+	$(document).ready(function() {
+		var $report_dialog = $('#report_dialog').dialog({
+			autoOpen: true,
+			title: 'File Report',
+			resizable: false,
+			modal: true,
+			draggable: true,
+			closeText: "X"
+		});
+	});
+</script>
+
+<%= form_for(@report, url: reports_path(@reportable.class.to_s.underscore, @reportable.id, current_user.id), remote: true) do |f| %>
+
+	<div class="report_form">
+		<div class="report_label">
+			<%= f.label :title, "Title"%>
+		</div>
+		<%= f.text_field :title, class: "smallspread_inputfield", id: "report_title" %>
+	</div>
+
+	<div class="report_form">
+		<div class="report_label">
+			<%= f.label :body, "Report" %>
+		</div>
+		<%= f.text_area :body, class: "smallspread_inputfield", id: "report_body" %>
+	</div>
+
+	<hr width="90%">
+	<div class="report_submit">
+		<%= f.submit "Send Report", class: "report_submit_button" %>
+	</div>
+<% end %>

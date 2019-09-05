@@ -1,0 +1,412 @@
+<!-- COURSE RESULTS DISPLAYED AS TABLE -->
+<!-- This is the file that constructs the course results -->
+
+<% unless courses.blank? %>
+  <% if !in_mobile_view? && !session[:mobile_view] && buttons %>
+    <script>
+      // Sticky header scrolling
+      $(function() {
+        // make sure the status bar's position is not strange due to already being sticky
+        $('#status_bar').css({position: 'static'});
+
+        //make sure everything that needs to be sticky is
+        $('#status_bar').addClass("sticky");
+        $('#hide_items').addClass("sticky");
+        $('#add_to_cart_button_top').addClass("sticky");
+        $('#blank_space').addClass("sticky");
+        $('#print_items').addClass("sticky");
+        $('#headers').addClass("sticky");
+
+        //calculate distances from top of page to correctly display headers when they are sticky
+        var statusTop = $('#status_bar').offset().top;
+        var headersBottom = $('#headers').offset().top + $('#headers').height();
+        var placeholderSize = headersBottom - statusTop;
+        $('#header_placeholder').css({top:statusTop, height:placeholderSize});
+
+        //calculate specific initial offsets for each sticky element
+        $('.sticky').each(function() {
+          var stickyTop = $(this).offset().top - statusTop;
+          var stickyLeft = $(this).offset().left ;
+          $(this).css({top:stickyTop, left:stickyLeft, zIndex:'5'});
+        });
+
+        //if already scrolled down on the page to where headers should be sticky, make them so
+        if($(window).scrollTop() > statusTop) {
+          $('.sticky').css({position: 'fixed'});
+          $('#header_placeholder').css({display:'block'});
+          $('#header_background').css({height:placeholderSize});
+        }
+
+        //function that actually keeps the headers at the top of the window when scrolling
+        $(window).scroll(function() {
+          if($(window).scrollTop() > statusTop) {
+            $('.sticky').css({position: 'fixed'});
+            $('#header_placeholder').css({display:'block'});
+            $('#header_background').css({height:placeholderSize});
+            } else {
+            $('.sticky').css({position: 'static'});
+            $('#header_placeholder').css({display:'none'});
+            $('#header_background').css({height:'0px'});
+          }
+        });
+
+        //function to correct the left offsets of elements when the window is resized
+        $(window).resize(function() {
+          $('.sticky').css({position: 'static'});
+          $('.sticky').each(function() {
+          //  var stickyTop = $(this).offset().top - statusTop;
+            var stickyLeft = $(this).offset().left ;
+            $(this).css({/*top:stickyTop,*/ left:stickyLeft, zIndex:'5'});
+          });
+          if($(window).scrollTop() > statusTop) {
+            $('.sticky').css({position: 'fixed'});
+          }
+        });
+      });
+    </script>
+    <% if buttons %>
+    <div id="blank_space" style="clear:both;"></div>
+    <%= submit_tag "Add to Cart", name: nil, id: "add_to_cart_button_top", :class => 'search_button' %>
+
+    <div id="print_items">
+      <%= button_tag "Print", id: "print_button", type: "button", :class => 'search_button' %>
+      <%= check_box "print", "with_descriptions", title: "Check this box to include expanded course descriptions when printing." %>
+      <span class="label" id="checkbox_info">Detailed printout:</span>
+    </div>
+    <div id="hide_items">
+      <%= check_box "hide", "conflicts", title: "Hide courses with conflicts." %>
+      <span class="label" id="hide_conflicts_label">Hide course conflicts:</span>
+    </div>
+
+    <div id="header_placeholder"></div>
+    <div id="header_background"></div>
+  <% end %>
+<% end %>
+  <div id="results_contents">
+    <table id="headers" class="ui-widget">
+
+      <!-- TABLE HEADERS -->
+      <tr>
+        <th class="chkbox optional"></th>
+        <th class="crn optional">CRN</th>
+        <th class="dept">Dept</th>
+        <th class="cnum">No.</th>
+        <th class="cname">Course Name</th>
+        <th class="profes">Instructor</th>
+        <th class="days_off optional">Days</th>
+        <th class="time optional">Time</th>
+        <% if !in_mobile_view? && !session[:mobile_view] %>
+          <th class="room optional">Room</th>
+        <% end %>
+        <th class="enroll optional">Curr<br>Enroll</th>
+        <th class="profic optional">Profic.</th>
+      </tr>
+
+      <!-- If this is a mobile device, we want the headers and the info in the same table -->
+      <% if !in_mobile_view? && !session[:mobile_view]%>
+      </table>
+    <% end %>
+    <!-- SEARCH RESULTS start here -->
+    <div id="results_scroller">
+      <table class="results">
+        <% # ALTERNATE CLASSES FOR COURSE ROWS %>
+        <% # Alternates coloration of results, by means of a counter %>
+        <% counter = 0 %>
+        <% course_continue = false %>
+        <% prev_semcrn = -1 %>
+        <% color = "even course_entry" %>
+        <% show_sems = false %>
+        <% if courses.first.semester != courses.last.semester %>
+          <% show_sems = true %>
+          <% sem = courses.first.semester %>
+          <tr class="sem_row"><td colspan='11'><%= translate_semester(sem) %></td></tr>
+        <% end %>
+
+        <% courses.each do |c| %>
+          <% # check for continuation of previous line, adjust counter %>
+          <% if c.semcrn == prev_semcrn %>
+            <% counter -= 1 %>
+            <% course_continue = true %>
+          <% else %>
+            <% course_continue = false %>
+            <% prev_semcrn = c.semcrn %>
+          <% end %>
+
+          <% if show_sems && c.semester != sem %>
+            <% sem = c.semester %>
+            <tr class="sem_row"><td colspan='11'><%= translate_semester(sem) %></td></tr>
+          <% end %>
+
+          <% if counter % 2 == 0 %>
+            <% if c.descrip.include?("This course conflicts") || (!c.prof_desc.blank? && c.prof_desc.include?("This course conflicts")) %>
+              <% color = "evenconflict course_entry" %>
+            <% else %>
+              <% color = "even course_entry" %>
+            <% end %>
+            <% if c.descrip.include?("This course is already in your cart") || (!c.prof_desc.blank? && c.prof_desc.include?("This course is already in your cart")) %>
+              <% color << ' evenincart' %>
+            <% end %>
+          <% else %>
+            <% if c.descrip.include?("This course conflicts") || (!c.prof_desc.blank? && c.prof_desc.include?("This course conflicts")) %>
+              <% color = "oddconflict course_entry" %>
+            <% else %>
+              <% color = "odd course_entry" %>
+            <% end %>
+            <% if c.descrip.include?("This course is already in your cart") || (!c.prof_desc.blank? && c.prof_desc.include?("This course is already in your cart")) %>
+              <% color << ' oddincart' %>
+            <% end %>
+          <% end %>
+
+          <% # Check to see if we are at or above 80% of seat capacity %>
+          <% unless c.enroll.nil? || c.csize.nil? || c.csize == 0 %>
+            <% if ((1.0*c.enroll)/c.csize) > 0.8 %>
+              <% color << ' full' %>
+            <% end %>
+          <% end %>
+
+          <% # mark the row as being a continuation %>
+          <% if course_continue %>
+            <% color << ' course_continued' %>
+          <% end %>
+
+          <% # row that displays course information %>
+          <tr class="<%=color%>"  id=<%="no_#{counter}" %>>
+            <td class="chkbox optional">
+              <%= check_box_tag "courses[#{c.semcrn}]",c.semcrn if buttons%>
+            </td>
+            <td class="crn optional"><%= c.crn %></td>
+            <td class="dept"><%= c.dept.html_safe %></td>
+            <td class="cnum"><%= c.cnum %></td>
+            <td class="cname"><%= c.short_title.html_safe %></td>
+            <td class="profes">
+              <% if c.professors.size > 0 %>
+                <% c.professors.each do |professor| %>
+                  <%= "#{professor.fname} #{professor.lname}" %>
+                  <% unless c.professors.last == professor %>
+                    <br>
+                  <% end %>	
+                <% end %>
+              <% else %>
+                <%= c.professor %>
+              <% end %>
+            </td>
+            <% if c.status == "cancelled" %>
+              <td colspan="4" class="cancel_message">Cancelled</td>
+            <% elsif c.status == "hidden" %>
+              <td colspan="4" class="cancel_message">Hidden by professor</td>
+            <% else %>
+              <td class="days_off optional"><%= c.days %></td>
+              <% # Displays TIME FIELDs, in 12-hour format %>
+              <% #  - database stores in 24-hour format, with seconds %>
+              <td class="time optional">
+                <% if c.start_time != nil %>
+                  <%= c.start_time.strftime("%I:%M %p") %>
+                <% end %>
+                <% if c.end_time != nil %>
+                  <br>
+                  <%= c.end_time.strftime("%I:%M %p") %>
+                <% end %>
+              </td>
+              <% if !in_mobile_view? && !session[:mobile_view] %>
+                <td class="room optional">
+                  <%= "#{c.building} #{c.room}" %>
+                </td>
+              <% end %>
+              <td class="enroll optional">
+                <span class="cur_enroll"><%= c.enroll %></span>
+                <span class="max_enroll"><%= c.csize %></span>
+              </td>
+            <% end %>
+            <td class="profic optional">
+              <% if c.proficiencies.blank? %>
+                <%= image_tag("none.png", alt: "None", class: "none prof_png") %>
+              <% else %>
+                <% prof_string = c.proficiencies.gsub('-', '').split(',').sort.join('-') %>
+                <%= image_tag("#{prof_string}.png", alt: prof_string, title: prof_string, class: "prof_png") %>
+              <% end %>
+            </td>
+          </tr>
+          <% # Expanding DESCRIPTION field %>
+          <tr class="descrip" <%= "id=desc_#{counter}" %>>
+            <td colspan="11" <%= "class=p_#{color}" %>>
+
+              <div class="desc_spec">
+                <span class="course_id_title"><%= link_to "#{c.dept} #{c.cnum}: #{c.title}".html_safe, hubcourse_path(c.hubcourse.hub_id.gsub(' ', '-')), :target => "_blank" %></span> 
+                <%= link_to(image_tag("obiemaps-logo.png", id: "obiemaps_logo", width: 20, height: 20, title: "Find this course on ObieMaps!"), 
+                            get_link("obiemaps_course", c),  target: "_blank" ) %>
+                <% if !in_mobile_view? && !session[:mobile_view]%>
+                  <span class="section">Section <%= c.section %> - <%= c.format %></span>
+                  <span class="semester"><%= translate_semester(c.semester) %>&nbsp;&nbsp;-&nbsp;&nbsp; </span> 
+                <% else %>
+                  <span class="crn">CRN: <%= c.crn %></span>
+                <% end %>
+              </div>
+
+              <div class="desc_spec">
+                <span class="department"><%= link_to c.dept_long.html_safe, department_path(c.hubcourse.department.dept) %>
+                  <% # Check if syllabus path is nil (upload page was clicked, nothing uploaded) %>
+                  <br />
+                  <% if false # Syllabi not really ready for prime time. %>
+                    <% if !c.syllabus || c.syllabus.path == nil %>
+                      <% if signed_in? %>
+                        <%= link_to "Add Syllabus", new_syllabus_path(c.id) %>
+                      <% end %>
+                    <% else %>
+                      <%= link_to "Syllabus", syllabus_path(c.syllabus.id) %>
+                    <% end %>
+                  <% end %>
+                </span>
+                <span class="professors">Professors: 
+                  <% if c.professors.size > 0 %>
+                    <% c.professors.each do |professor| %>
+                      <% unless c.professors.last == professor %>
+                        <%= link_to "#{professor.fname} #{professor.lname},", show_professor_path(fname: professor.fname, lname: professor.lname) %>
+                      <% else %>
+                        <%= link_to "#{professor.fname} #{professor.lname}", show_professor_path(fname: professor.fname, lname: professor.lname) %>
+                      <% end %>
+                      <%= link_to(image_tag("obiemaps-logo.png", id: "obiemaps_logo", width: 20, height: 20, title: "Find this professor on ObieMaps!"), 
+                      get_link("obiemaps_prof", professor), target: "_blank" ) %>
+                    <% end %>
+                  <% else %>
+                    <%= c.professor %>
+                  <% end %>
+                </span>
+              </div>
+              
+              <% if c.which_desc=="default" ||  c.which_desc=="both" || c.which_desc.nil? %> 
+                <div class="desc_spec course_description first_div">
+                  <% if c.descrip.include?("expanded_course_header") %>
+                    <div class="course_description first_div" id="results_registrar_descrip"><%= c.descrip.html_safe %></div>
+                  <% else %>
+                    <div class="course_description first_div" id="results_registrar_descrip"><span class="expanded_course_header">Registrar Description:</span><p><%= c.descrip.html_safe %></p></div>
+                  <%end%> 
+                  <% unless c.prereqs.blank? %>
+                    <div class="course_description" id="results_registrar_note"><span class="expanded_course_header">Registrar Notes:</span> <%= c.prereqs.html_safe %></div>
+                  <% end %>
+                </div>
+              <% end %>  
+
+              <% if !c.prof_desc.blank? && (c.which_desc=="professor" || c.which_desc=="both") %>
+                <% if c.which_desc=="both" %>
+                  <div class="desc_spec course_description">
+                <% else %>
+                  <div class="desc_spec course_description first_div">
+                <%end %>
+                <% if c.prof_desc.include?("expanded_course_header") %>
+                  <div class="course_description first_div" id="results_prof_descrip"><%= simple_format(c.prof_desc) %></div>
+                <% else %>
+                  <div class="course_description first_div" id="results_prof_descrip"><span class="expanded_course_header">Professor Description:</span><%= simple_format(c.prof_desc) %></div>
+                <% end %>
+                </div>
+              <%end%>  
+
+              <% if c.display_prof_note && !c.prof_note.blank? %>
+                <div class="desc_spec course_description">
+                <div class="course_description" id="results_prof_note"><span class="expanded_course_header">Professor Note:</span> <%= simple_format(c.prof_note) %></div>
+                </div>                
+              <% end %>  
+
+              <% unless c.prereqs.blank? || c.which_desc!="professor" %>
+                <div class="desc_spec course_description">
+                  <div class="course_description" id="results_registrar_note"><span class="expanded_course_header">Registrar Notes:</span> <%= c.prereqs.html_safe %></div>
+                </div>
+              <% end %>
+
+              <div class="desc_spec">
+                <span class="enrollment"><% if c.enroll %><span class="enrollment_cur">Current Enrollment: <%= c.enroll %></span><% end %><% if c.csize %><span class="enrollment_max">Max Enrollment: <%= c.csize %></span><% end %></span>
+                <% unless c.building.blank? && c.room.blank? %>
+                  <span class="location">Room: <%= "#{c.building}  #{c.room}" %></span>
+                <% end %>
+
+                <% if signed_in? && faculty_user?(current_user) %>
+                  <%= link_to "Edit course", course_edit_path(semcrn: c.semcrn), class:"enrollment" %>
+                <% end %>
+
+                <span class="module">Module: <%= c.get_module %></span>
+                <span class="credits">
+                  <% if c.crmax != c.crmin %>
+                    Credits Range: <%= c.crmin %> - <%= c.crmax %>
+                  <% else %>
+                    Credits: <%= c.crmax %>
+                  <% end %>
+                  <% unless c.distributions.blank? %>
+                    (<%= c.distributions %>)
+                  <% end %>
+                  <% unless c.full_course.blank? %>
+                    (<%= c.full_course %>)
+                  <% end %>
+                </span>
+                <% unless c.proficiencies.blank? %>
+                  <span class="proficiencies">Proficiencies: <%= c.proficiencies %></span>
+                <% end %>
+                <span class="grading">
+                  <% if c.p_np %>
+                    Grading: 
+                    <% if c.std_letter %>
+                      Pass/No Pass Available
+                    <% else %>
+                      Pass/No Pass Only
+                    <% end %>
+                  <% end %>
+                </span>
+              </div>
+              <div class="desc_spec consent">
+                <% if c.instruct_consent %>
+                  <span class="instructor_consent">
+                    Consent of the instructor required
+                  </span>
+                <% end %>
+                <% if c.dean_consent %>
+                  <span class="dean_consent">
+                    Consent of the Dean required
+                  </span>
+                <% end %>
+              </div>
+              <div class="desc_spec crosslist">
+                <% unless c.xlist1.blank? %>
+                  <span class="crosslist">Cross list 1: 
+                    <% if Hubcourse.find_by_hub_id(c.xlist1).nil? %>
+                      <%= c.xlist1.html_safe %>
+                    <% else %>
+                      <%= link_to c.xlist1.html_safe, 
+                      hubcourse_path(c.xlist1.gsub(' ','-')) %>
+                    <% end %>
+                  </span>
+                <% end %>
+                <% unless c.xlist2.blank? %>
+                  <span class="crosslist">Cross list 2: 
+                    <% if Hubcourse.find_by_hub_id(c.xlist2).nil? %>
+                      <%= c.xlist2.html_safe %>
+                    <% else %>
+                      <%= link_to c.xlist2.html_safe, 
+                      hubcourse_path(c.xlist2.gsub(' ','-')) %>
+                    <% end %>
+                  </span>
+                <% end %>
+                <% unless c.xlist3.blank? %>
+                  <span class="crosslist">Cross list 3: 
+                    <% if Hubcourse.find_by_hub_id(c.xlist3).nil? %>
+                      <%= c.xlist3.html_safe %>
+                    <% else %>
+                      <%= link_to c.xlist3.html_safe, 
+                      hubcourse_path(c.xlist3.gsub(' ','-')) %>
+                    <% end %>
+                  </span>
+                <% end %>
+              </div>
+              <p>&nbsp;</p>
+              <div class="desc_spec">
+              </div>
+            </td>
+          </tr>
+          <% # after each result, counter increments %>
+          <% counter += 1 %>
+        <% end %>
+        <% @counter = counter %>
+      </table>
+    </div> <!--results scroller-->
+  </div> <!--results container -->
+  <% if !in_mobile_view? && !session[:mobile_view] && buttons %>
+    <%= submit_tag "Add to Cart", name: nil, :class => "search_button" %>
+  <% end %>
+<% end %>

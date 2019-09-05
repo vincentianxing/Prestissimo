@@ -1,0 +1,36 @@
+<!--
+    Form to edit a professor
+    -->
+
+<div>
+<%= form_for @professor, url: update_professor_path, remote: true do |f| %>
+<span class="su_label">
+  <%= f.label :fname, "Name" %>
+</span>
+<div>
+  <!-- They have to suck it up, they should conform to the LDAP
+       (Otherwise, we would repopulate the database with their LDAP profile anyway)
+    -->
+  <p>Contact CIT to change directory information</p>
+</div>
+
+<span class="su_label">
+  <%= f.label :nickname, "Preferred Name" %>
+</span>
+<div class="su_textfield">
+  <%= f.text_field :nickname, value: "#{@professor.nickname}", class: "default_inputfield" %>
+</div>
+
+<span class="su_label">
+  <%= f.label :email, "Preferred Email" %>
+</span>
+<div class="su_textfield">
+  <%= f.text_field :email, value: "#{@professor.email}", class: "default_inputfield" %>
+</div>
+
+<div class="submit">
+  <%= f.submit "Submit Changes" %>
+</div>
+<% end %>
+</div>
+

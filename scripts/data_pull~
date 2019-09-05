@@ -1,0 +1,153 @@
+#!/bin/sh
+
+# Takes the datafile placed in datapull by CIT, checks it in to RCS
+# Does a diff between the 2 most recent checkins and updates the course database
+
+# Where data comes from
+DROPDIR="/home/datadrop"
+#DROPFILE=`ls ${DROPDIR}/oprestissimo_*.lis | tail -1`
+DROPFILE=`ls -t1 ${DROPDIR}/*.lis | head -1`
+#DROPFILE="/tmp/bktest.txt"
+
+if [ $# -gt 0 -a -r "$1" ]
+then
+  DROPFILE="$1"
+fi
+
+# Where it goes to
+PRESTISSIMO_HOME="/srv/httpd/htdocs/prestissimo"
+DESTDIR="${PRESTISSIMO_HOME}/db"
+DESTFILE="${DESTDIR}/courses.txt"
+DIFFOUT="${DESTDIR}/diffout"
+
+# To handle just the enrollments
+ENROLLFILE="${DESTDIR}/enrollment.txt"
+ENROLLOUT="${DESTDIR}/enrollout"
+
+# Controls Rails status and DB selection
+#ENVIRONMENT="development"
+ENVIRONMENT="production"
+
+export RAILS_ENV="${ENVIRONMENT}"
+cd $PRESTISSIMO_HOME
+
+# Test semester
+OLDSEM=`rake db:current_semester`
+if [ $? != 0 ]
+then
+  echo "Failed to get current semester from db"
+  exit 11
+fi
+
+FILESEM=`head -n2 "${DROPFILE}" | tail -n1 | cut -d '|' -f8`
+if [ -z "${FILESEM}" ]
+then
+  echo "No semester found from inputfile"
+  echo "Line was: " `head -n2 "${DROPFILE}" | tail -n1`
+  exit 2
+fi
+FILEYEAR=`echo "${FILESEM}" | cut -c 1-4`
+FILEMONTH=`echo "${FILESEM}" | cut -c 5-6`
+if [ "${FILEMONTH}" = "02" ]
+then
+  NEWSEM="Spring ${FILEYEAR}"
+elif [ "${FILEMONTH}" = "09" ]
+then
+  NEWSEM="Fall ${FILEYEAR}"
+else
+  echo "New Semester: " $NEWSEM
+  exit 3
+fi
+
+# Move file to local dir
+#cp "${DROPFILE}" "${DESTFILE}"
+#cut -d'|' -f1-27,5,5,30- "${DROPFILE}" > "${DESTFILE}" ## UGH, doesn't work with multiple copies of '5'
+sed -n -r  -e 's/^(([^|]*\|){27})(([^|]*\|){2})(.*)/\1QQQ|QQQ|\5/p'  "${DROPFILE}" > "${DESTFILE}"
+cut -d'|' -f5,28,29 "${DROPFILE}" > "${ENROLLFILE}"
+
+# Check in to RCS
+ci -l -m"Auto_Checkin" "${DESTFILE}" 2>&1
+NEWREV=`rlog -h "${DESTFILE}" | grep head: | cut -c 7-`
+if [ -z "${NEWREV}" ]
+then
+  echo "Failed to get new version from RCS checkin of courses"
+  echo "New Version No.: " $NEWREV
+  exit 4
+fi
+
+ci -l -m"Auto_Checkin" "${ENROLLFILE}" 2>&1
+NEWEREV=`rlog -h "${ENROLLFILE}" | grep head: | cut -c 7-`
+if [ -z "${NEWEREV}" ]
+then
+  echo "Failed to get new version from RCS checkin of enrollment"
+  echo "New version No.: " $NEWEREV
+  exit 5
+fi
+
+# Generate diff
+if [ "${OLDSEM}" != "${NEWSEM}" ]
+then
+  # If New Semester
+  echo "New Semester $NEWSEM"
+  sed -e 's/^/> /' "${DESTFILE}" > "${DIFFOUT}"
+  sed -e 's/^/> /' "${ENROLLFILE}" > "${ENROLLOUT}"
+  rake db:current_semester["${NEWSEM}"]
+  if [ $? != 0 ]
+  then
+    echo "Raketask to change current semester from $OLDSEM to $NEWSEM failed"
+    exit 6
+  fi
+else
+  # if old semester
+  echo "Old Semester $OLDSEM"
+  OLDREV=`rake db:courses_revision`
+  rcsdiff -r"${OLDREV}" "${DESTFILE}" 2>&1 | egrep '^[<]' > "${DIFFOUT}"
+  rcsdiff -r"${OLDREV}" "${DESTFILE}" 2>&1 | egrep '^[>]' >> "${DIFFOUT}"
+  # and enrollments too
+  OLDEREV=`rake db:enrollment_revision`
+  rcsdiff -r"${OLDEREV}" "${ENROLLFILE}" 2>&1 | egrep '^[>]' > "${ENROLLOUT}"
+fi
+
+
+# Call the rake task
+echo
+echo "Updating courses"
+echo "================"
+rake db:update_courses["${DIFFOUT}","${ENROLLOUT}"] 
+if [ $? != 0 ]
+then
+  echo "Raketask to update courses from diff files failed"
+  exit 7
+fi
+
+# update associations for departments
+echo
+echo "Building associations"
+echo "================"
+rake db:assign_departments
+if [ $? != 0 ]
+then
+    echo "Raketask to build relationships from departments failed"
+    exit 8
+fi
+
+# Update revision no in db
+echo
+echo "Updating revision numbers"
+echo "================"
+rake db:courses_revision["${NEWREV}"]
+if [ $? != 0 ]
+then
+  echo "Could not change courses revision no. setting in db to: " $NEWREV
+  exit 9
+fi
+
+rake db:enrollment_revision["${NEWEREV}"]
+if [ $? != 0 ]
+then
+  echo "Could not change enrollment revision no. setting in db to: " $NEWEREV
+  exit 10
+fi
+echo "Successfully data_pulled"
+
+# vim: ts=8 sts=2 sw=4 : 

@@ -1,0 +1,27 @@
+<!-- Display of ATTRIBUTES
+			- input: checkbox
+			- fields: ns, ss, hu
+			- displayed as a table
+			-->
+<% if in_mobile_view? %>
+	<div data-role="fieldcontain" class="field_group">
+		<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" class="mobile_fieldset">
+                <legend>Con Attributes:</legend>
+                    <div class="ui-corner-all field_box btn_width_half">
+			<%= check_box_tag :cndp, params[:cndp]%>
+			<%= label_tag 'cndp', 'CNDP' %>
+			<%= check_box_tag :ddhu, params[:ddhu]%>
+                        <%= label_tag 'ddhu', 'DDHU' %>
+                    </div>
+		</fieldset>
+	</div>
+<% else %>
+
+    <div class="form" id="con_attributes_div">
+      <span class="label search_label">Con Attr.:</span>
+      <%= check_box_tag :cndp, params[:cndp], false, class: "search_tag" %>
+      <label for="cndp" id="cndp_checkbox">CNDP</label>
+      <%= check_box_tag :ddhu, params[:ddhu], false, class: "search_tag" %>
+      <label for="ddhu" id="ddhu_checkbox">DDHU</label>
+    </div>
+<% end %>

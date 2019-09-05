@@ -1,0 +1,12 @@
+<!-- Page to display questions past users have had and solutions to errors on the site -->
+
+<% provide(:title, 'Help | Error') %>
+<h1>Error</h1>
+<br>
+<p>You were redirected here because there was an error loading your <strong>My Courses</strong> or <strong>Edit Profile</strong> page. This is often because of differences between your name in the official database and your nickname (e.g. Robert vs Bob). Send us a quick note below and we'll connect your account to your professor pages. When you're done, we'll bring you back to the home page where you can always edit courses by searching for them and clicking on the <strong>Edit Course</strong> button in the bottom right-hand corner of the expanded course information.</p>
+<br>
+<%= form_tag emailer_path, method: "get", class: "q_form" do %>
+	<span class="q_title">Information</span>
+	<%= text_area_tag :message, params[:message], class: "smallspread_inputfield", id: "q_textarea" %>
+	<%= submit_tag "Send Email", name: nil, class: "q_submit search_button" %>
+<% end %>

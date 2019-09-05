@@ -1,0 +1,50 @@
+<!-- Explains how to set up accounts and the features associated with having one -->
+
+<% provide(:title, 'Help | Accounts') %>
+<h1>User Accounts</h1>
+<p>
+If you are a student, faculty member, or employee of Oberlin college, you are entitled to a user account on this website! This help page focuses on how to set up your account, how to change your account settings, and the extra features available to a signed in user.
+</p>
+
+<p>&nbsp;</p>
+<h2>Why Should I Set Up a User Account?</h2>
+<p>As an anonymous user of Prestissimo, you will have access to the course search and the <%= link_to "course cart", help_cart_path %> giving you all the necessary tools to create your own schedule. However, many more helpful features and pages will be unlocked once you create your own account:</p>
+<ul class="help_list" id="account_reasons">
+  <p>&nbsp;</p>
+  <li>Set up a user profile page with information about yourself!</li>
+  <li>View specific professor, department, and class pages.</li>
+  <li>Receive a comment handle and comment on past classes you've taken and professors who've taught you.</li>
+</ul>
+
+<h2 class="help_header">Signing In</h2>
+Whether it's your first time on the site or your hundredth, just follow the directions below!
+<ol id="account_steps">
+  <li>Click the <%=link_to "Sign In", signin_path %> link located under the right side of the site logo.</li>
+  <li>Enter your ObieID e.g. Marvin Krislov's ObieID would be 'mkrislov.'</li>
+  <li>Enter your ObieID password e.g. Marvin Kirslov's would be '*********'.</li>
+  <li>Click "Sign in"</li>
+  <li>Now you're signed in!</li>
+</ol>
+
+<p>&nbsp;</p>
+<h2>For Students and Staff:</h2>
+<h3>Settings</h3>
+<p>The Settings page allows users to modify their account settings and restrict the publicity of their profile information. To find the page click on the settings link in the "Account" dropdown menu at the top of the page. Click the 'update commenter name' button to update your commenter name and the 'save changes' button at the bottom of the page to save the rest of the changes.</p>
+<ul class="help_list">
+  <li>The <strong>Commenter Name</strong> is an automatically generated handle that acts as a username for your comments. To change your handle, just enter in a new title that will continue to preserve your anonymity, and click the Update button. Please read the Site Usage portion of our <%=link_to "Community Guidelines Page", guidelines_path %> to clarify any questions concerning commenter names.</li>
+  <li>The <strong>Profile Page Settings</strong> are as follows:</li>
+  <ul>
+    <li><strong>Nickname:</strong> If given, this will replace the "Profile" title on the top of a User Profile page. </li>
+    <li><strong>Year:</strong> This could be your current year at Oberlin, your graduation year, or the year you first arrived at Oberlin. It is open to interpretation!</li>
+    <li><strong>Profile Info:</strong> This is a box where you may write essentially anything about yourself that fits within Prestissimo's community guidelines.</li>
+    <li>To hide a Profile page field from public view, click the associated checkbox and save.</li>
+  </ul>
+</ul>
+
+<h2>For Professors:</h2>
+<h3>Edit Profile</h3>
+<p>The edit profile page allows you to edit your profile on your professor page; for more information visit the <%= link_to "Professors Help Page", help_professors_path %>. You can provide students with useful information about how to contact you and more!</p></br>
+<p>For any unanswered questions, please contact
+us at 
+<a href="mailto:info@oprestissimo.com">info@oprestissimo.com</a>.
+</p>

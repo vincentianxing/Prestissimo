@@ -1,0 +1,53 @@
+<!-- Hub for all of our help pages -->
+
+<% provide(:title, 'Help') %>
+
+<h1 class="ui-bar ui-bar-a titlebar">Help</h1>
+<div>
+  <ul data-role="listview" class = "ui-alt-icon help_links">
+    <li>
+      <%= link_to help_basics_path do %>
+        Search Help
+      <% end %>
+    </li>
+    <li>
+      <%= link_to help_search_path do %>
+        Search Results Help
+      <% end %>
+    </li>
+    <li>
+      <%= link_to help_accounts_path do %>
+        User Accounts
+      <% end %>
+
+    </li>
+    <li >
+      <%= link_to help_comments_path do %>
+        Commenting
+      <% end %>
+
+    </li>
+    <li >
+      <%= link_to help_hubpages_path do %>
+        Professor, Class, and Department Pages
+      <% end %>
+    </li>
+    <li >
+      <%= link_to guidelines_path do %>
+        Community Guidelines
+      <% end %>
+    </li>
+    <li >
+      <%= link_to help_phone_path do %>
+        Mobile Theme Help
+      <% end %>
+    </li>
+    <li >
+      <%= link_to help_questions_path do %>
+        Questions?
+      <% end %>
+    </li>
+  </ul>
+</div>
+<br>
+<p> For any unanswered questions, please contact us at <a href="mailto:info@oprestissimo.com">info@oprestissimo.com</a>.</p>

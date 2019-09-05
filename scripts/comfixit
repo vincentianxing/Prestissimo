@@ -1,0 +1,95 @@
+#!/bin/sh
+
+# updates to the default revision number or takes in revision number on call
+#  
+
+WEB_DIR=/var/www/htdocs/prestissimo/
+APACHECTL=/etc/rc.d/rc.httpd
+SVNCMD=/usr/bin/svn
+BUNDLE=/usr/local/bin/bundle
+WEBUSER="apache"
+REVNUM="1255"
+# NOTE - if Gemfile is updated, uncomment section below (and modify sudo for apache)
+
+# verify command run as web user
+if [ `whoami` != "$WEBUSER" ]; then
+        echo "Need to be apache to run fixit"
+        exit 1
+fi
+
+# get the revision number
+if [ $# -gt 0 -a ! -z "$1" ]
+then
+  REVNUM="$1"
+fi
+
+# go to apache's svn co
+cd $WEB_DIR
+
+echo "*** Pulling from svn repository..."
+
+echo -n "    Enter OCCS username: "
+read OCCS_USER
+
+# TEMP DISABLE until http is restored - kuperman - 2015-06-01
+# echo -n "    Enter OCCS password: "
+# stty -echo
+# read OCCS_PASSWD
+# stty echo
+# echo
+SVN_SSH="ssh -l $OCCS_USER"
+export SVN_SSH
+OCCS_PASSWD="remove_when_http_reenabled"
+# also reenable it in fixit/comfixit
+
+# update svn checkout
+$SVNCMD up --revision "$REVNUM" --non-interactive --trust-server-cert --no-auth-cache --username "$OCCS_USER" --password "$OCCS_PASSWD"
+if [ $? -ne 0 ]; then
+    echo "svn up failed"
+    exit 2
+fi
+
+### UPDATING Gemfile? Uncomment the following and use visudo to allow apache to run things as root ###
+###     See kuperman if you have questions
+
+## bundle update
+#echo
+#echo "*** Running bundle update..."
+#$BUNDLE update
+#if [ $? -ne 0 ];
+#then
+#    echo "Failed!"
+#    exit 3
+#fi
+
+## DATABASE MIGRATIONS happening? uncomment this section to run any new updates!
+## update database
+#echo
+#echo "*** Updating production database..."
+#$BUNDLE exec rake db:migrate RAILS_ENV="production"
+#if [ $? -ne 0 ]; then
+#    echo "Failed!"
+#    exit 3
+#fi
+
+# deploy
+echo
+echo "*** Precompiling assets..."
+$BUNDLE exec rake assets:precompile
+if [ $? -ne 0 ];
+then
+    echo "Failed!"
+    exit 4
+fi
+
+# restart apache server
+echo
+echo "*** Restarting apache server..."
+sudo $APACHECTL restart
+if [ $? -ne 0 ];
+then
+    echo "Failed!"
+    exit 5
+fi
+
+echo "Successfully fixed it!"

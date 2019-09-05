@@ -1,0 +1,211 @@
+<!--
+Page for professors to edit courses!
+-->
+
+<% provide(:title, "Edit Course") %>
+<% @course=@course_arr.first.first %>
+<h1><%=@course.short_title%> for <%=translate_semester(@course.semester)%></h1>
+<div id='edit_course'>
+  <p>Save your changes at the bottom of the page to update this preview. Don't forget to expand! <br><strong>Note:</strong> if a course is hidden it will only be visible to students if they had it in their carts before it was hidden.</p>
+</div>
+<%= render partial: 'courses/search_results_template', locals:{courses:@course_arr.first,buttons:false} %>
+
+<% unless current_cart.get_courses.include? @course %>
+  <div class="prof_cart_link_div">
+    <% if current_cart && !in_mobile_view? %>
+      <div class="add_to_cart_div">
+        <p><%= link_to "Add to Cart", add_cart_path(current_cart.cartid,@course.semcrn,courses:[@course.semcrn]),method: 'put', remote: true %></p>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div id="edit_course_div">
+
+
+  <%= form_for @course, url: update_course_path(@course.id) do |f| %>
+    <%= render 'shared/error_messages' %>
+
+    <div class="text_input_div">
+      <div id="prof_course_note">
+        <label for="prof_note" class="prof_h2">Professor note</label>
+        <div class="su_textfield_full">
+          <%= f.text_area :prof_note, class: "default_inputfield" %>
+        </div>
+        <div class="course_edit_text">
+          <p>Is there anything you'd like students to know about this course that is not already shown? Add a note to display with the course description. This field is also a great place to put search keywords.</p>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+
+      <div id="prof_course_disp_note">
+        <%= f.label :display_prof_note, "Display professor note in expanded course results" %>
+        <div class="chkbox edit_course_chkbox">
+          <%= f.check_box :display_prof_note %>
+        </div>
+      </div>
+    </div>
+
+    <div class="text_input_div">
+      <div id="prof_course_desc">
+        <label for="prof_desc" class="prof_h2">Professor description</label>
+        <div class="su_textfield_full">
+          <%= f.text_area :prof_desc, class: "default_inputfield" %>
+        </div>
+        <div class="course_edit_text">
+          <p>Do you feel the official course description leaves something to be desired? Use this field to supply a custom description or any additions you have.</p>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+
+    <div class="text_input_div">
+      <div id="registrar_course_desc">
+        <label for="registrar_desc" class="prof_h2">Registrar Description</label>
+        <div class="su_textfield_full">
+          <textarea readonly class="default_inputfield" id="registrar_descrip"><%= @course.descrip %> </textarea>
+        </div>
+        <div class="course_edit_text">
+          <p>This is the current description we have from the registrar's office. You can copy-paste from it to create a new professor description, but you can't edit it.</p>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    
+
+
+    <div id="which_desc_all_div">
+      <%= f.label :which_desc, "Which description do you want to be displayed on the site? Choosing to display the default desciription from the registrar's office will not erase the faculty desciption and you can always come back and display it at any time." %>
+      <div class="form" id="which_desc_div" title="Which description to display.">
+        <% if @course.which_desc == "default" %>
+          <%= radio_button_tag "course[which_desc]", "default", true, class: "search_tag" %>
+        <% else %>
+          <%= radio_button_tag "course[which_desc]", "default", false, class: "search_tag" %>
+        <% end %>
+        <label for="course_which_desc_default" id="default_radio">Default description</label>
+        
+        <% if @course.which_desc == "professor" %>
+          <%= radio_button_tag "course[which_desc]", "professor", true, class: "search_tag" %>
+        <% else %>
+          <%= radio_button_tag "course[which_desc]", "professor", false, class: "search_tag" %>
+        <% end %>
+        <label for="course_which_desc_professor" id="professor_radio">Professor description</label>
+        
+        <% if @course.which_desc == "both" || @course.which_desc.blank? %>
+          <%= radio_button_tag "course[which_desc]", "both", true, class: "search_tag" %>
+        <% else %>
+          <%= radio_button_tag "course[which_desc]", "both", false, class: "search_tag" %>
+        <% end %>
+        <label for="course_which_desc_both" id="both_radio">Both descriptions</label>
+      </div>
+    </div>
+
+    <div id="course_action_all_div">
+      <%= f.label :new_desc_action, "Which description do you want to be displayed if we get a new description from the registrar's office? We will continue to save your description and you can choose to display it at any time."%>
+      <div class="form" id="course_desc_action_div" title="Preferred action upon reveiving a new description from the registrar's office about your course">
+        
+        <% if @course.new_desc_action == "replace" %>
+          <%= radio_button_tag "course[new_desc_action]", "replace", true, class: "search_tag" %>
+        <% else %>
+          <%= radio_button_tag "course[new_desc_action]", "replace", false, class: "search_tag" %>
+        <% end %>
+        <label for="course_new_desc_action_replace" id="note_replace_radio">New description</label>
+        
+        <% if @course.new_desc_action == "keep" %>
+          <%= radio_button_tag "course[new_desc_action]", "keep", true, class: "search_tag" %>
+        <% else %>
+          <%= radio_button_tag "course[new_desc_action]", "keep", false, class: "search_tag" %>
+        <% end %>
+        <label for="course_new_desc_action_keep" id="note_keep_radio">Professor description</label>
+        
+        <% if @course.new_desc_action == "both" || @course.new_desc_action.blank? %>
+          <%= radio_button_tag "course[new_desc_action]", "both", true, class: "search_tag" %>
+        <% else %>
+          <%= radio_button_tag "course[new_desc_action]", "both", false, class: "search_tag" %>
+        <% end %>
+        <label for="course_new_desc_action_both" id="note_both_radio">Both descriptions</label>
+      </div>
+    </div>
+
+    <div id="hide_course">
+      <div class="chkbox edit_course_chkbox">
+        <% if @course.status=="hidden" %>
+          <%= check_box_tag "course[status]","1",true %>
+        <% else %>
+          <%= check_box_tag "course[status]" %>
+        <% end %>
+      </div>
+      <label for="course_status">Hide this course from search results for students. It will still be visible to faculty but marked as "hidden."</label>
+    </div>
+
+    <div id="notify_of_changes">
+      <div class="chkbox edit_course_chkbox">
+        <% if !@course.notify_profs.blank? && @course.notify_profs.include?(current_user.email) %>
+          <%= check_box_tag "course[notify_profs]","1",true %>
+        <% else %>
+          <%= check_box_tag "course[notify_profs]" %>
+        <% end %>
+      </div>
+      <label for="course_notify_profs">Notify me of changes to this course. We will email you if we receive updated information from the registrar's office or another faculty member (excludes enrollment numbers).</label>
+    </div>
+
+  <% unless @course_arr[1].size==1 %>
+    <div class="prof_h2"> Other Sections </div>
+    <div id="other_sections_div">
+      <p> Check all the sections you want to update. Sections that currently have identical information to this section are already checked below. <p>
+    <table id="sections_header">
+      <tr>
+        <td id="checkbox_section"></td> 
+        <td id="crn_section"> CRN </td>
+        <td id="section_num_section"> Section </td>
+        <td id="professor_section"> Professors </td>
+        <td id="days_section"> Days </td>
+        <td id="time_section"> Time </td>
+      </tr>
+    </table>
+    <div id="section_rows_div">
+      <table class="results sections_table">
+        <% i=0 %>
+        <% last_semcrn = @course.semcrn %>
+        <% @course_arr[1].each do |c| %>
+          <% next if last_semcrn==c.semcrn || c.semcrn==@course.semcrn %>
+          <% last_semcrn=c.semcrn %>
+          <% odd_or_even = i%2==0 ? "even" : "odd" %>
+          <tr class=<%=odd_or_even%>>
+          <td id="checkbox_section"> <div class="chkbox edit_course_chkbox">
+          <% if (@course.prof_desc == c.prof_desc && @course.prof_note == c.prof_note && @course.new_desc_action == c.new_desc_action && @course.which_desc == c.which_desc && @course.status == c.status && (!@course.notify_profs.blank? && @course.notify_profs.include?(current_user.email))==(!c.notify_profs.blank? && c.notify_profs.include?(current_user.email)) && @course.recent_edit == c.recent_edit && @course.display_prof_note == c.display_prof_note) %>
+            <%= check_box_tag "sections[#{c.semcrn}]","1", true %>
+          <% else %>
+            <%= check_box_tag "sections[#{c.semcrn}]" %>
+          <% end %>
+          </div> </td>
+          <td id="crn_section"> <%= c.crn %></td>
+          <td id="section_num_section"> <%= "#{c.section} #{c.format}" %></td>
+          <td id="professor_section"> 
+            <% profs="" %>
+            <% c.professors.each do |p| %>
+              <% profs << ", " unless profs.blank? %>
+              <% profs << p.lname %>
+            <% end %>
+            <%= profs %>
+          </td>
+          <td id="days_section"> <%= c.days %></td>
+          <td id="time_section"> <%= "#{c.start_time.strftime("%I:%M")}-#{c.end_time.strftime("%I:%M %p")}" unless c.start_time.blank? || c.end_time.blank? %></td>
+        </tr>
+        <% i+=1 %>
+      <% end %>
+    </table>
+  </div>
+</div>
+  <% end %>
+
+    <div class="edit_course_submit">
+      <%= f.submit "Save changes", class:"search_button", id: "save_changes_button" %>
+    </div>
+
+
+
+  <% end %> 
+</div>
+

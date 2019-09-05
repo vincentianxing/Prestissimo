@@ -1,0 +1,17 @@
+<!-- display of COURSE SIZE
+-->
+<% if in_mobile_view? %>
+  <div data-role="fieldcontain" class="field_group">
+  </div>
+<% else %>
+  <div id="size_slider_wrapper" title="Search by maximum enrollment">
+    <span class="label search_label", id="size_label">Course Size:</span>
+    <%=  label_tag :min_size_range, '', class: "label search_label form" %>
+    <%=  text_field_tag :min_size_range, params[:min_course_size], :readonly => true %>
+    <%=  label_tag :max_size_range, '', class: "label search_label form"  %>
+    <%=  text_field_tag :max_size_range, params[:max_course_size], :readonly => true %>
+    <div id="size_slider"></div>
+    <%= hidden_field_tag :min_course_size %>
+    <%= hidden_field_tag :max_course_size %>
+  </div>
+<% end %>

@@ -1,0 +1,19 @@
+// refresh the comment
+
+var root_comment = <%= @comment.parent_id.nil? %>
+var id = <%= @comment.id.to_s %>;
+id = '#comment' + id;
+if (root_comment) {
+  <% if is_mobile_device? %>
+      $(id).html("<%= escape_javascript( render( partial: 'comments/show', :formats => [:mobile] ) ) %>");
+  <% else %>
+      $(id).html("<%= escape_javascript( render( partial: 'comments/show' ) ) %>");
+  <% end %>
+}
+else {
+  <% if is_mobile_device? %>
+      $(id).html("<%= escape_javascript( render( partial: 'comments/show_reply', :formats => [:mobile], locals: {r: @comment} ) ) %>");
+  <% else %>
+    $(id).html("<%= escape_javascript( render( partial: 'comments/show_reply', locals: {r: @comment} ) ) %>");
+  <% end %>
+}

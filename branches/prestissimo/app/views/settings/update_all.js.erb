@@ -1,0 +1,6 @@
+// inform the admin of the changes made
+<% if is_mobile_device? %>
+  $('#settings_form_div').html("<%= escape_javascript(render(partial: 'update_all', :formats => [:mobile])) %>");
+<% else %>
+  $('#settings_form_div').html("<%= escape_javascript(render partial: 'update_all') %>");
+<% end %>
