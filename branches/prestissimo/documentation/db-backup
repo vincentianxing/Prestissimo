@@ -1,0 +1,12 @@
+HOW-TO Restore the database from backups
+
+About:
+  
+  The database is regularly backedup using cron and mysqldump into db/backups/.
+Should the database be corrupted in some way, it can be rolled back and 
+re-imported from the backups. On a rollback, the specified tables will be dumped
+and then imported from the backup.
+
+Rolling Back to Last Dump:
+  execute 'db/rollback' to dump and import ALL tables
+  execute 'db/rollback [tablename]' to dump and import the specified table

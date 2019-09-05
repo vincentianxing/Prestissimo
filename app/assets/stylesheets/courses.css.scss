@@ -1,0 +1,1174 @@
+// Place all the styles related to the Courses controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/* -------------------- Big main divs holding everything --------------------- */
+
+#search_form_upper_left {
+  width: 200px;
+  height: 168px; 
+  margin: 0;
+  float: left;
+}
+
+#search_form_upper_right {
+  width: 600px;
+  height: 212px;
+  float: right;
+}
+
+#search_form_lower_left {
+ width: 440px; 
+  float: left;
+}
+
+#search_form_lower_right {
+  width: 360px;
+  //height: 134px;
+  float:right;
+}
+
+#credits_label, #time_label, #level_label, #size_label, #enrollment_label {
+  margin-left: 40px;
+}
+
+/* ------------------------- basic SEARCH FORMATTING ------------------------ */
+#sf {
+  margin-bottom:0;
+  position: relative;
+  top: 0;
+  left: 0;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-top:1px dotted $searchFormDivider;
+  border-bottom:1px dotted $searchFormDivider;
+  width: 100%;
+}
+
+#search_pane {
+  position: relative;
+  float: left;
+  left: 0;
+  width: 100%;
+}
+
+#left_search_pane{
+  position: relative;
+  top:0;
+  left: 0;
+  float: left;
+  width:55%;
+}
+
+#right_search_pane{
+  position: relative;
+  top:0;
+  right: 0;
+  float: right;
+  width: 45%;
+}
+
+#dept_text {
+  display: none;
+}
+
+#dept_list {
+  font-size: small;
+  font-family: $labelFont;
+  color: $deptSelectionListFont;
+  margin-left: 0;
+  margin-top: 3px;
+  margin-bottom: 9px;
+  height: 102px;
+  width: 176px;
+  border: 2px solid $deptSelectionListBackground;
+  border-radius: 5px;
+  overflow: auto;
+  padding: 5px 7px;
+  background: $deptSelectionListBackground;
+  span {
+    display: block;
+    text-indent: -3.5em;
+    margin-left: 3.5em;
+  }
+}
+
+.dept_list_elem {
+  padding-bottom: 1px;
+}
+
+.rem_box {
+  color: $removeDeptButton;
+  font-weight: bold;
+  float: left;
+  width: 15px;
+  padding-top: 1px;
+}
+
+/*
+#search_wrapper {
+position:relative;
+//margin-left:auto;
+//margin-right:auto;
+//width:100%;
+top: 0;
+left: 0;
+//padding:2px 20px 0 60px;
+
+}
+ */
+
+/*
+.search_form{
+position: relative;
+top: 0;
+left: 0;
+}
+ */
+
+/*
+#search {
+position:relative;
+//display:inline-block;
+//margin:0;
+//vertical-align:top;
+//padding:10px;
+//padding-top:5px;
+//padding-bottom:5px;
+//width:100%;
+//border-top:1px dotted #a0a0a0;
+//border-bottom:1px dotted #a0a0a0;
+//border-radius:1px;
+top: 0;
+left: 0;
+
+}
+ */
+
+.form {
+  position:relative;
+  // margin-left:auto;
+  //  margin-right:auto;
+  top: 0;
+  //left: 0;
+  //  width:100%;
+  padding-top:2px;
+  padding-bottom:2px;
+  //margin:0;
+}
+
+/* --------------- ADVANCED SEARCH FORMATTING ------------------------------- */
+#adv_wrapper {
+  width:100%;
+}
+
+#adv_search {
+  position:relative;
+  display:none;
+  padding-top:5px;
+  padding-bottom:5px;
+  width:100%;
+}
+
+/* Div surrounding MORE/LESS button */
+#adv_link_div {
+  margin-top:3px;
+  text-align:center;
+}
+
+/* MORE/LESS/SEARCH/RESET Button style */
+#course_reset, #course_search {
+  margin-top: 10px;
+  width: 75px;
+}
+
+#search_form_buffer1{
+  height:10px;
+  width: 98%;
+  border-bottom: dotted 1px $searchFormDivider;
+  margin-bottom: 10px;
+}
+
+#search_form_buffer2{
+  height:30px;
+  margin-top: 160px;
+}
+
+
+/* The 'SUBMIT' id */
+/* - used to surround the search and reset tags */
+.submit {
+  //position: relative;
+  clear:both;
+  padding-top:5px;
+  width:100%;
+  text-align:center;
+}
+
+/* -------------------- MISC FORMATTING ------------------------------------- */
+/* TODO: determine the necessity/proper placement of these */
+
+/* Alters the affect of the SMALL tag */
+.small {
+  height:100px;
+}
+
+/* The 'EXPAND' class */
+.expand {
+  height:260px;
+}
+
+/* The 'LABEL' class */
+.label {
+  font-weight:bolder;
+  float:left;
+  width:auto;
+  text-align:left;
+  clear:left;
+  height:auto;
+  margin-right:5px;
+  margin-top:5px;
+  margin-bottom:6px;
+  color: $searchFormLabelText;
+  font-family: $labelFont;
+  font-size: 12px;
+}
+
+.search_tag{
+  float:left;
+}
+
+/* TABLE formatting */
+table {
+  padding:0px;
+  margin:0px;
+  border-collapse:collapse;
+  border-style:none;
+}
+
+/* The table holding the header row */
+#headers {
+  margin:0px;
+  padding:0px;
+  width:800px;
+}
+
+#headers th {
+  vertical-align:bottom;
+}
+
+#headers th.enroll {
+  text-align:center;
+  }
+
+  #status_bar{
+    color:$statusBar;
+    height:15px;
+    padding:10px 10px 10px 0;
+    font-weight: bold;
+    font-size: small;
+}
+
+#header_placeholder {
+  width:100%;
+  display:none;
+}
+
+#header_background {
+  width:800px;
+  top:0px;
+  position:fixed;
+  background-color: $contentBackground;
+  z-index:1;
+}
+
+/* -------------------- SEARCH RESULTS -------------------------------------- */
+
+
+#add_to_cart_button_top {
+  margin-bottom: 10px;
+  float: left;
+  margin-right: 10px;
+}
+
+#hide_items,
+#hide_conflicts, 
+#hide_conflicts_label {
+  float: right;
+  #hide_items {
+    clear: both;
+}
+#hide_conflicts {
+  margin-right: 54px;
+  margin-top: 5px;
+}
+}
+
+#hide_items {
+  float: left;
+}
+
+#print_items {
+  float:right;
+}
+
+#print_button {
+  margin-left: 5px;
+  float:right;
+  width: auto;
+}
+
+#print_with_descriptions {
+  float:right;
+  margin-top:5px;
+  margin-right:4px;
+}
+
+#checkbox_info {
+  float:right;
+}
+
+#obiemaps_logo {
+  vertical-align:bottom;
+}
+
+#headers{
+  background: $searchResultsHeaderBackground;
+  border-radius:5px 5px 0 0;
+  color: $searchResultsHeaderText;
+  font-weight:700;
+  font-size:small;
+
+}
+
+/* the scrollable div holding the courses found in search */
+#results_scroller {
+  //max-height:500px;
+  overflow:auto;
+  border:2px solid $searchResultsBorder;
+  padding:0px;
+  margin:0px;
+}
+
+#results_contents {
+  border-radius: 5px 5px 0 0;
+  margin-bottom: 10px;
+}
+
+/* table holding courses found */
+.results {
+  width:100%;
+  background: $searchResultsBackground;
+}
+
+#cart_header_bar {
+  width: 100%;
+  margin-top: 4px;
+}  
+
+#cart_cname {
+  padding-left: 17px;
+}
+
+#cart_cnum {
+  padding-left: 9px;
+}
+
+th, td {
+  padding:2px;
+  margin:0;
+  border-collapse:collapse;
+  border-width:0px;
+  border-style:none;
+  font-size:small;
+}
+
+/* proficiency icons */
+img.prof_png {
+  padding:1px;
+  height:32px;
+  width:32px;
+  margin:1px;
+}
+
+#cart .courses_scroller {
+  max-height: 500px;
+  overflow:auto;
+}
+
+/* styling for courses with less than 20% seats open */
+#results_scroller, #cart {
+  tr {
+}
+tr.full {
+  td.chkbox, td.car_inf.cnum {
+}
+td.car_inf.cnum {
+  padding-left:4px;
+  background-position:-2px 0;
+}
+td.enroll span.cur_enroll {
+  font-weight:bold;
+  color: $currentEnrollText;
+
+}
+}
+.cancel_message {
+  font-family: monospace;
+  font-size: larger;
+  font-weight: bold;
+  text-align: center;
+}
+}
+
+.expanded_course_header{
+  display:block;
+  margin-top:7px;
+  font-size:1.1em;
+  font-weight:bold;
+  font-style:italic;
+  color:$expandedCourseHeader;
+}
+
+
+
+/* DESCRIPTION styling, in search results */
+.descrip {
+  background-color: $courseDescripBackground;
+  color: $courseDescripText;
+  display:none;
+  div a {
+    color: $resultsLink !important;
+    text-decoration: underline !important;
+    &:hover {
+      color: $resultsLinkHover !important;
+    }
+  }
+}
+
+.desc td {
+  padding:20px;
+}
+
+div#content div.desc_spec, {
+  clear: both;
+
+  margin:4px 6px;
+  padding:0;
+
+  //outline: thin solid yellow;
+
+  a {
+    font-weight:bold;
+    color: $courseTitle;
+    text-decoration: underline;
+}
+a:hover {
+  color: $courseTitleHover;
+}
+
+
+.professors {
+  width: 300;
+  display: block;
+  float: right;
+}
+.syllabus {
+  float: left;
+  text-align: left;
+  display: block;
+}
+.location,
+.enrollment,
+.semester,
+.section {
+  clear: right;
+  text-align: right;
+  float: right;
+  display: block;
+}
+.semester { clear: none; }
+.location { margin: 0.5em 0 0.2em; }
+
+
+div.crosslist,
+.module {
+  display: block;
+  margin-top: 1.0em;
+}
+
+.enrollment_cur,
+.enrollment_max,
+.crosslist,
+.location,
+.grading,
+.proficiencies,
+.instructor_consent,
+.dean_consent,
+.syllabus,
+.credits {
+  display: block;
+}
+
+
+.course_description, .course_notes {
+  display: block;
+}
+
+
+}
+
+.spl_left {
+  width:50%;
+}
+
+.spl_right {
+  width:50%;
+  float:right;
+}
+
+.course_in_cart,
+.course_conflict {
+  font-size:larger;
+  color: $courseConflictText;
+  font-weight:bold;
+  margin:0;
+  padding:0;
+}
+
+.chkbox { width:18px; }
+.crn { width:36px; }
+.dept { width:41px; }
+.cnum { width:30px; }
+.cname {  width:210px;}
+.profes { width:150px; }
+.days_off { width:60px; }
+.enroll { width:50px; }
+.time { width:68px; }
+.room { min-width:47px; max-width:47px; text-align:center; overflow:hidden; text-overflow:ellipsis;}
+
+#cname_div {
+  margin-left: 9px;
+  margin-right: 9px;
+  width: 235px;
+  display: inline-block;
+  float: left;
+}
+
+.enroll, .profic {
+  text-align:center;
+  span {
+    display:block;
+}
+}
+
+
+.selected {
+  color: $courseTitleSelected;
+  font-weight:bold;
+}
+
+/* -------------- Row-Alternating Colors for Search Results ----------------- */
+/* odd-indexed rows in search results table */
+.oddconflict,
+.odd		{
+  background-color: $oddIndexedRows;
+}
+
+/* even-indexed rows in search results table */
+.evenconflict,
+.even		{
+  background-color: $evenIndexedRows;
+}
+
+.even:hover,
+.odd:hover,
+.evenincart:hover,
+.oddincart:hover,
+.evenconflict:hover,
+.oddconflict:hover,
+tr.hovered,
+tr.selected	{
+  background-color: $selectedRows;
+  color: $courseTitleSelected;
+  a {
+    color: $resultsLink !important;
+    &:hover {
+      color: $resultsLinkHover !important;
+    }
+  }
+  td.profic img {
+    background-color: $selectedRows;
+    }
+    td.profic img.none {
+      background-color:transparent;
+    }
+}
+
+.oddconflict, .evenconflict, .conflict_continued {
+  color: $conflictTitle;
+}
+
+.oddconflict, .evenconflict {
+  .days_off, .time {
+    color: $conflictTime;
+}
+}
+
+.oddconflict		{
+  //	background-color:#FF9479;
+
+}
+.evenconflict {
+  //background-color:#FF6449;
+
+}
+
+.oddincart		{
+  background-color: $oddInCartBackground;
+}
+.evenincart {
+  background-color: $evenInCartBackground;
+}
+
+
+// Styling for rows that are continued from previous line
+#results tr.course_continued {
+  border-top: none;
+}
+
+/* --------- UNIQUE IDs for COURSE SEARCH FORM ------------------------------ */
+
+#time_sliderdiv_wrapper{
+  //margin-left:auto;
+  //margin-right:auto;
+  //text-align: left;
+  width: 300px;
+  height: 40px;
+  float: right;
+  //position: relative;
+}
+
+#time_sliderdiv{
+  width: 80%;
+  margin: 5px auto 0 auto;
+}
+
+#credit_slider_wrapper{
+  position: relative;
+  height: 40px;
+  width: 300px;
+  margin: 0;
+  float: left;
+}
+#credit_sliderdiv {
+  width: 80%;
+  margin: 5px auto 0 auto;
+}
+
+#min_credit_range, #max_credit_range {
+  height:auto;
+  font-size:12px;
+  width:23px;
+  border: 0;
+  font-weight: bold;
+  background: transparent;
+  color: $creditRangeText;
+  font-family: $labelFont;
+  margin-top: 4px;
+}
+
+#max_credit_range {
+  width: 37px;
+}
+
+#start_time_range, #end_time_range {
+  height:auto;
+  margin-top: 4px;
+  font-size:12px;
+  width:50px;
+  border: 0;
+  font-weight:bold;
+  background: transparent;
+  font-family: $labelFont;
+  color: $timeRangeText;
+  display: inline-block;
+}
+
+#end_time_range{
+  width:75px;
+}
+
+#level_slider_wrapper {
+  float: left;
+  width: 300px;
+  height: 40px; 
+}
+
+#level_slider {
+  //float: right;
+  width: 80%;
+  margin: 5px auto 0 auto;
+}
+
+#enrollment_slider_wrapper {
+  float: left;
+  width: 300px;
+  height: 40px; 
+}
+
+#enrollment_slider {
+  //float: right;
+  width: 80%;
+  margin: 5px auto 0 auto;
+}
+
+#size_slider_wrapper {
+  float: left;
+  width: 300px;
+  height: 40px; 
+}
+
+#size_slider {
+  //float: right;
+  width: 80%;
+  margin: 5px auto 0 auto;
+}
+
+#min_level_range, #max_level_range, #min_size_range, #max_size_range, #min_enrollment_range, #max_enrollment_range {
+  height:auto;
+  font-size:12px;
+  border: 0;
+  font-weight: bold;
+  background: transparent;
+  color: $levelRangeText;
+  font-family: $labelFont;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+#min_level_range, #min_size_range, #min_enrollment_range {
+  width:28px;
+}
+
+#max_level_range, #max_size_range, #max_enrollment_range {
+  width: 52px;
+}
+
+#mincredits_field {
+  height:auto;
+  font-size:12px;
+  width:auto;
+}
+
+
+#maxcredits_field {
+  font-size:12px;
+  width:auto;
+}
+
+#crn_field {
+  font-size:14px;
+  width: 115px;
+}
+
+#cname_field {
+  font-size:14px;
+  float: left;
+  vertical-align:top;
+  width: 137px;
+  margin-top: 0px;
+}
+
+#professor_field {
+  font-size:14px;
+  width: 98px;
+  float: left;
+  vertical-align:top;
+  margin-top:0px;
+}
+
+
+#days_div{
+  text-align:center;
+  float: right;
+  width: 296px;
+  height: 27px;
+  padding-top: 13px;
+  padding-right: 4px;
+  margin: 0;
+  margin-bottom: 1px;
+}
+
+#m_checkbox,
+#t_checkbox,
+#w_checkbox,
+#r_checkbox,
+#f_checkbox,
+#s_checkbox,
+#u_checkbox
+{
+  font-size: small;
+  font-family: $labelFont;
+  width: auto;
+  padding: 0 6px;
+  display: inline-block;
+
+}
+
+#cd_checkbox,
+#wr_checkbox,
+#qfr_checkbox,
+#ns_checkbox,
+#ss_checkbox,
+#hu_checkbox,
+{
+  font-size: small;
+  font-family: $labelFont;
+  width: 142px;
+  display: inline-block;
+}
+
+#default_radio,
+#professor_radio,
+#both_radio,
+#note_replace_radio,
+#note_keep_radio,
+#note_both_radio,
+#mod1_radio,
+#mod2_radio,
+#full_radio,
+#spec_radio,
+#fc_radio,
+#hc_radio,
+#cc_radio,
+#all_terms_radio,
+#any_terms_radio
+{
+  font-size: small;
+  font-family: $labelFont;
+  display: inline-block;
+}
+
+#mod1_radio, #mod2_radio, #full_radio, #spec_radio {
+  width: 85px;
+}
+
+#fc_radio, #hc_radio, #cc_radio {
+  width: 114px;
+}
+
+#dotw_table td {
+  text-align:center;
+  padding:0;
+  margin:0;
+}
+
+#modules_div{
+  text-align: right;
+  width: 356px;
+  margin-top: 12px;
+}
+#modules_table{
+  float: left;
+}
+
+#modules_table td {
+  text-align:center;
+  padding:0;
+  padding-right:5px;
+  margin:0;
+}
+
+#proficiencies_div {
+  //margin-left: auto;
+  //margin-right: auto;
+  float: left;
+  width: 433px;
+  margin-top:12px;
+  margin-bottom: 10px;
+}
+
+#wr_profic_div {
+  margin-right: 11px;
+  margin-top: 1px;
+  float: right;
+}
+
+#attributes_div {
+  padding-top: 0;
+}
+
+
+#con_attributes_div {
+  float:left;
+  margin-top: 1px;
+  //width: 290px;
+}
+
+#full_course_div {
+  width: 356px;
+  text-align: right;
+  padding-top: 0;
+}
+
+#proficiencies_table td {
+  text-align:center;
+  padding:0;
+  padding-right:5px;
+  margin:0;
+}
+
+#attributes_table td {
+  text-align:center;
+  padding:0;
+  padding-right:5px;
+  margin:0;
+}
+
+#credits_table td, #credits_table tr {
+  text-align:center;
+  padding:0;
+  margin:0;
+}
+#dept_drop {
+  outline:none;
+  //background-color:#ededed;
+  width:117px;
+  height: 23px;
+  border-radius:5px;
+  border:1px solid $dropDownBorder;
+}
+
+#courselevel_drop,
+#coursenumber_drop,
+#semester_drop,
+#time_drop,
+#date_div select {
+  //background-color:#ededed;
+  border-radius:5px;
+  border:1px solid $dropDownBorder;
+  outline:none;
+  height: 23px;
+  float: left;
+}
+
+#semester_drop {
+  width: 101px;
+}
+
+#semester_div {
+//  width: 166px;
+  display: inline-block;
+  float: right;
+}
+
+#date_div .separator {
+  //position:relative;
+  //top:3px;
+  //left:-2px;
+  float: left;
+}
+
+#which_desc_div,
+#course_desc_action_div,
+#semester_div,
+#professor_div,
+#cname_div,
+#modules_div,
+#full_course_div,
+#con_attributes_div{
+  margin-bottom: 6px;
+}
+
+#dept_div,
+#crn_div{
+  margin-bottom: 2px;
+}
+
+#credit_slider_wrapper,
+#time_sliderdiv_wrapper,
+#level_slider_wrapper {
+  margin-bottom: 3px;
+}
+
+#dept_div{
+  display: inline-block;
+  //width: 57%;
+}
+
+#professor_div {
+  // position: absolute;
+  //right: -86px;
+  //top: 0;
+  margin-right:7px;
+  width: 174px;
+  display: inline-block;
+  float: left;
+}
+
+#keyword_div {
+  float: left;
+  margin-top: 3px;
+  margin-bottom: 5px;
+  margin-left: 8px;
+  width: 590px;
+}
+
+#keyword_field {
+  font-size: 14px;
+  width: 288px;
+}
+
+#keyword_buttons_div {
+  float: right;
+  margin-right: 2px;
+  top: -1px;
+}
+
+#all_key_radio, #any_key_radio {
+  font-size: 11px;
+}
+
+.highlight {
+  color: $highlightText;
+  background-color: $highlightBackground;
+}
+// Message of the Day
+
+#motd_container {
+  margin-bottom:16px;
+  background-color: $motdBackground;
+  border: $motdBorder solid 2px;
+  border-radius: 5px 5px 0 0;
+  color: $motdText;
+  -moz-box-shadow: $motdShadow 0 0 25px;
+  -webkit-box-shadow: $motdShadow 0 0 25px;
+  box-shadow: $motdShadow 0 0 25px;
+}
+
+#motd_bar {
+  position:relative;
+  line-height:1.5;
+  color: $motdBarText;
+  padding-bottom:2px;
+  text-align:center;
+  background-color: $motdBarBackground;
+  border-radius: 2px 2px 0 0;
+  font-family: $labelFont;
+}
+
+div#motd_bar a {
+  //float:right;
+  position:absolute;
+  right:0;
+  font-size:smaller;
+  color: $motdBarText;
+  margin-right:3px;
+}
+div#motd_bar a:hover {
+  color: $motdBarText;
+}
+
+.motd {
+  padding:5px;
+  font-family: $labelFont;
+}
+
+/*---------------------------- Course Edit Page -----------------------------*/
+
+#course_desc_action_div {
+  text-align:center;
+  width:auto;
+  margin-top: 3px;
+}
+
+#which_desc_div {
+  text-align: center;
+  width: auto;
+  margin-top: 3px
+}
+.text_input_div,
+#hide_course,
+#notify_of_changes,
+#course_action_all_div,
+#which_desc_all_div{
+  margin-bottom:15px;
+  text-align:justify;
+}
+
+#notify_of_changes{
+  margin-left:18px;
+  text-indent:-18px;
+}
+
+#edit_course{
+  padding:20px 10px 10px 10px;
+}
+
+.prof_cart_link_div{
+  text-align:center;
+  margin-bottom:10px;
+}
+
+.edit_course_chkbox{
+  float: left;
+  position: relative;
+  top: -2px
+}
+
+.course_edit_text{
+  padding-top:10px;
+  float: right;
+  width: 216px;
+}
+
+#registrar_descrip{
+  width:560px;
+  height:150px;
+  background-color:$disabledTextfieldBackground;
+  color: $disabledTextfieldText;
+  border-color:$disabledTextfieldBorder;
+}
+
+#sections_header{
+  margin: 10px auto 0px auto;
+}
+
+#section_rows_div{
+  width:500px;
+  border:2px solid $searchResultsBorder;
+  margin: 0px auto 20px auto;
+}
+
+
+#sections_header{
+  width:504px;
+  background: $searchResultsHeaderBackground;
+  border-radius:5px 5px 0 0;
+  color: $searchResultsHeaderText;
+  font-weight:700;
+  font-size:small;
+}
+
+#checkbox_section{
+  width:5%;
+}
+
+#time_section{
+  width:28%;
+}
+
+#crn_section{
+  width:10%;
+}
+
+#professor_section,
+#section_num_section{
+  width:23%;
+}
+
+#days_section{
+  width:11%;
+}

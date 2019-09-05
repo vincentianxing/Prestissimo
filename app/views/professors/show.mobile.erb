@@ -1,0 +1,102 @@
+<% @professor = @vals[:professor] %>
+<% @comments = @vals[:comments] %>
+<% @hubcourses = @vals[:hubcourses] %>
+
+<% if @professor.nickname.blank? %>
+  <% provide(:title, @professor.fname + " " + @professor.lname) %>
+<% else %>
+  <% provide(:title, @professor.nickname + " " + @professor.lname) %>
+<% end %>
+
+<!-- PROFESSOR PROFILE PAGE -->
+
+<!-- header contains professor's full name -->
+<h1 class="ui-bar ui-bar-a titlebar">
+  <% if @professor.nickname.blank? %>
+    <% name = @professor.fname  + " " + @professor.lname %>
+  <% else %>
+    <% name = @professor.nickname  + " " + @professor.lname %>
+  <% end %>
+  <% if @professor.status =="dark" %>
+    <% name << " (inactive)" %>
+  <% end %>
+  <%= name %>
+</h1>
+
+<div id="profile">
+
+  <% unless @professor.email.blank? && @professor.phone.blank? && @professor.office.blank? && @professor.contact.blank? %>
+    <div class="prof_h2 ui-corner-all custom-corners" id="contact">
+      <div class="ui-bar ui-bar-a">
+        <h2>Contact</h2>
+      </div>
+      <div class="ui-body ui-body-a">
+        <% unless @professor.url.blank? %>
+          <div id="prof_url_div">
+            <%= render partial: 'professors/url', locals: { url: @professor.url } %>
+          </div>
+        <% end %>
+        <%= content_tag(:p, ("Email: " + link_to(@professor.email, "mailto:"+@professor.email)).html_safe, class: "prof_contact") unless @professor.email.blank? %>
+        <%= content_tag(:p, "Phone: " + @professor.phone, class: "prof_contact") unless @professor.phone.blank? %>
+        <%= content_tag(:p, "Office: " + @professor.office, class: "prof_contact") unless @professor.office.blank? %>
+        <%= content_tag(:p, CGI::escapeHTML(@professor.contact).gsub(/\r\n/, "</br>").html_safe, class: "prof_contact") unless @professor.contact.blank? %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @professor.content.blank? %>
+    <div class="ui-body"></div>
+  <% else %>
+    <div class="ui-body" id="prof_more_info_div">
+      <%= content_tag(:p, Redcarpet::Markdown.new(Redcarpet::Render::HTML, underline: true, highlight: true, lax_spacing: true).render(@professor.content.gsub(/[<>]/, '<' => '&lt;', '>' => '&gt;')).html_safe, class: "prof_more_info")  %>
+    </div>
+  <% end %>
+
+  <!-- Listing of courses this professor teaches -->
+  <div class="prof_h2 ui-corner-all custom-corners ui-alt-icon" id="classes">
+    <div class="ui-bar ui-bar-a noborderbar"><h2>Classes</h2></div>
+    <div class="ui-body ui-body-a" data-role="collapsibleset" data-inset="false" id="prof_course_list">
+      <% @hubcourses.each do |h,courses| %>
+        <div data-role="collapsible">
+          <% last = courses.first %>
+          <% next if last.nil? %>
+          <h3><%= last.dept+" "+last.cnum+" "+last.short_title %></h3>
+          <ul data-role="listview" >
+            <li><%= link_to "Course Page", hubcourse_path(h.hub_id.gsub(' ','-')) %> </li>
+            <li><p class="fulltext"><%= last.descrip %></p></li>
+            <% sem_arr = [] %>
+            <% courses.each do |c| %>
+              <% sem_arr<<translate_semester(c.semester) unless sem_arr.include?(translate_semester(c.semester)) %>
+            <% end %>
+            <li>Past Semesters:
+            <ul>
+              <% sem_arr.each do |s| %> 
+                <li><%= s %></li>
+              <% end %>
+            </ul>
+            </li>
+          </ul>
+        </div>
+      <% end %>    
+    </div>
+  </div>
+
+  <% unless @professor.root_comments.size==0 && signed_in? && faculty_user?(current_user) %>
+    <div id="dept_comments_div" data-role="collapsible" data-content-theme="false" class="ui-alt-icon">
+      <h2 id='comment_title' class="dept_h2">Comments</h2>
+
+      <!-- Comments appear below. Uses comment partials -->
+      <div id="comment_section">
+        <div id="comments">
+          <%= render partial: 'comments/index', locals: {commentable: @professor} %>
+        </div>
+        <!-- comment submission form -->
+        <% if current_user.role == "Student" %>
+          <div id="comment_form">
+            <%= render partial: 'comments/form', locals: {commentable: @professor} %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

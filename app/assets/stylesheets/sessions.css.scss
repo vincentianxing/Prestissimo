@@ -1,0 +1,61 @@
+// Place all the styles related to the Sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* split this into two divs in order to have get the large outline
+ * to work with rounded corners. */
+#disclaimer_container {
+  outline: 2000px solid $disclaimerBackground;
+  z-index: 90;
+  position:absolute;
+}
+#hide_corner_box {
+    position: absolute;
+    width: 780px;
+    z-index: 100;
+
+    background-color: $disclaimerBox;
+    color: $disclaimerText;
+    text-align: justify;
+    padding: 10px;
+    font-size: 20px;
+    font-family: $labelFont;
+
+    // large outline to hide the page
+    outline: 2000px solid $disclaimerBackground;
+    border: 5px solid $disclaimerBorder;
+    
+    border-radius:          20px;
+
+    p {
+        padding: 10px;
+    }
+
+    a {
+        text-decoration: underline;
+        color: $disclaimerLink;
+        &:hover {
+          color: $disclaimerLinkHover;
+        }
+    }
+}
+
+#xclose {
+  position: absolute;
+  text-decoration: none !important;
+  font-size: 2em;
+  top: 20px;
+  right: 30px;
+  font-weight: bold;
+}
+
+#dclose {
+    text-align: right;
+}
+
+#dtitle {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+

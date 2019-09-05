@@ -1,0 +1,19 @@
+
+<!--
+The SignIn/SignUp page
+Renders two forms,
+the first to sign into an existing account
+the second to create a new account
+-->
+
+<% provide(:title, 'Sign In') %>
+<div>
+<%= render 'shared/error_messages' %>
+</div>
+<div class="siu_table">
+<% if !in_mobile_view? %>
+  <%= render 'users/signin' %>
+<% else %>
+  <%= render 'users/signin' %>
+<% end %>
+</div>

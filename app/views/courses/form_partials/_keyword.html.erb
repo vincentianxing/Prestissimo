@@ -1,0 +1,16 @@
+<!-- display of KEYWORD
+- input: text field
+- field: keyword
+- uses standard text input display
+-->
+<div class="form" id="keyword_div" title='Keyword search of course descriptions, titles, departments, crosslistings, and prerequisites.'>
+  <span class="label search_label">Keyword Search:</span>
+  <%= text_field_tag :keyword, params[:keyword], class: "smallspread_inputfield search_tag", id: "keyword_field" %>
+  <div class="form" id="keyword_buttons_div">
+    <%= radio_button_tag "key_button", "all", true, class: "search_tag" %>
+    <label for="key_button_all" id="all_key_radio">Match all terms</label>
+    <%= radio_button_tag "key_button", "any", false, class: "search_tag" %>
+    <label for="key_button_any" id="any_key_radio">Match any terms</label>
+  </div>
+</div>
+

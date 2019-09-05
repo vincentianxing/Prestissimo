@@ -1,0 +1,121 @@
+<!-- Builds a cart table for the user
+One table is made for the headers, 
+a second for the courses themselves that is intended to be scrollable
+-->
+
+<% courses = @cart_courses if @cart_courses %>
+<% # checks the cartMin cookie to see if the cart should be displayed %>
+<div id="cart_container" xmlns="http://www.w3.org/1999/html" style="display: <%= cookies[:cartMin].nil? ? "block" : "none"%>;">
+  <div id="cart">
+    <!-- Bolded Field Headers: Course number & name -->
+    <div id="cart_header">
+      <table class="headers" id="cart_header_bar">
+        <tr>
+          <th class="cart_header_label" id="cart_cnum">No.</th>
+          <th class="cart_header_label" id="cart_cname">Course Name</th>
+          <th><span id="minimize_cart" title="Minimize Cart" class="ui-icon ui-icon-triangle-1-s"></span></th>
+          <!-- empty table header for remove links -->
+          <th></th>
+        </tr>
+      </table>
+    </div>
+
+    <!-- This is the bit containing courses. -->
+    <div class="courses_updatificator">
+      <%= render partial: 'carts/courses', locals: {courses: get_courses} %>
+    </div>
+
+    <!-- End of cart container -->
+
+    <!-- Email Cart link: activates Email Dialog, below -->
+    <div id="maillink_outer" style="display: <%= courses.blank? ? "none" : "block"%>;">
+      <span id="mail_cart_link" class="cart_action_link">Email Cart</span>
+      <% if @load_cart #this gets set in courses index page -- true when on the home (courses/index) page, false otherwise %>
+        <%= link_to "Load Cart", search_cart_path(current_cart.cartid), remote: true, :class => "cart_action_link" , :id => "load_cart"%>
+      <% else %>
+        <%# link to homepage when not already on it. javascript uses a cookie to know it needs to load the cart once it gets there. %>
+        <%= link_to "Load Cart", root_path , :class => "cart_action_link" , :id => "load_cart"%>
+      <% end %>
+      <%= button_to "Clear Cart", clear_cart_path(current_cart.cartid), method: 'put', remote: true, :class => "cart_action_link" %>
+      <!-- Clearing the cart!-->
+      <%= link_to "Download as .csv", cart_path(current_cart.cartid, :format => :csv), :target => "_blank", :id => "cart_csv_link" %>
+    </div>
+  </div>
+
+  <!--
+  The INFO BOX
+  this div contains extra info about the courses (intended to be hidden initially)
+  -->
+  <!--
+  <% unless courses.nil? %>
+    <% if courses.size > 0 %>
+      <div id="info_box">
+
+        <% courses.each do |c| %>
+          <!-- Listing of relevant course info, in a smaller, separate box 
+          <div class="info cart_course" <%= "id=#{c.semcrn}" %>>
+            <div>
+              <%= link_to c.hubcourse.hub_id, hubcourse_path(c.hubcourse.hub_id.gsub(' ', '-')), :class => "prof_cart_link" %>
+              <span id="cart_crn"><span class="cart_label">CRN:</span> <%= c.crn %></span>
+            </div>
+            <% c.professors.each do |p| %>
+              <div>
+                <%= link_to "#{p.fname} #{p.lname}", show_professor_path(fname: p.fname, lname: p.lname), :class => "prof_cart_link" %>
+              </div>
+            <% end %>
+            <!-- Mod is only displayed when it is not full 
+            <% unless c.mods == 3 %>
+              <div><span class="cart_label">Module:</span> <%= translate_mod(c.mods) %></div>
+            <% end %>
+            <div id="cart_cred">
+              <% if c.crmax != c.crmin %>
+                <%= c.crmin %> - <%= c.crmax %> Hours
+              <% else %>
+                <%= c.crmax %> Hours
+              <% end %>
+              <% unless c.distributions.blank? %>
+                <br>
+                (<%= c.distributions %>)
+              <% end %>
+            </div>
+            <!-- Display proficiencies in cart dropdowns 
+            <% if c.proficiencies.blank? %>
+              <%= image_tag("none.png", alt: "None", class: "cart_prof_png") %>
+            <% else %>
+              <% prof_string = c.proficiencies.gsub('-','').split(',').sort.join('-') %>
+              <%= image_tag("#{prof_string}.png", alt: prof_string, title: prof_string, class: "cart_prof_png") %>
+            <% end %>
+            <div class="cleaner">
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  -->
+</div>
+
+<!-- Email Cart Dialog -->
+<div id="cart_mailer_dialog" style="display: none;">
+  <%=  form_tag mail_to_cart_path(current_cart.cartid), :method => 'get', :remote => true do %>
+    <div class="dialog_form">
+      <% if current_user %>
+        <span class="dialog_label">Enter email address:</span>
+        <span class="dialog_label"> (leave blank to send to <%=  current_user.email %>)</span>
+      <% else %>
+        <span class="dialog_label">Enter email address: </span>
+      <% end %>
+      <%= text_field_tag :email, params[:email], :class => "smallspread_inputfield" %>
+    </div>
+    <% params[:sender] = "#{current_user.fname} #{current_user.lname}" if current_user %>
+    <div class="dialog_submit">
+      <%= submit_tag "Send Email", :name => nil, :class => "dialog_submit_button", :id => "cart_mailer_button", :onclick => "$('#cart_mailer_dialog').dialog('close')" %>
+    </div>
+  <% end %>
+</div>
+
+<% # checks the cartMin cookie to see if the minimized cart should be displayed %>
+<div id="minimized_cart" title="Maximize Cart" style="display: <%= cookies[:cartMin].nil? ? "none" : "block"%>;">
+  <p>Course Cart
+  <span id="cart_icon" class="ui-icon ui-icon-cart"></span></p>
+</div>

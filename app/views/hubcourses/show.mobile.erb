@@ -1,0 +1,72 @@
+<!--
+The page to display the course hub
+will show its courses, comments, and professors
+-->
+<% @hubcourse = @vals[:hubcourse] %>
+<% @comments = @vals[:comments] %>
+<% @courses = @vals[:courses] %>
+<% @professors = @vals[:professors] %>
+
+<% provide(:title, @hubcourse.hub_id) %>
+
+<h1 id="hc_h1" class="ui-bar ui-bar-a titlebar">
+  <%= @courses.first.dept+" "+@courses.first.cnum.to_s %>
+  <%= @courses.first.title %>
+</h1>
+
+<div class="ui-corner-all custom-corners">
+  <div class="ui-bar ui-bar-a">
+    <h2>Recent Description:</h2>
+  </div>
+  <div class="ui-body ui-body-a">
+    <%= simple_format(@courses.first.descrip) %>
+  </div>
+</div>
+<%= link_to @hubcourse.department.dept_long, department_path(@hubcourse.department.dept), :class=> "ui-btn ui-corner-all ui-icon-carat-r ui-btn-icon-right ui-alt-icon" %>
+
+<div id="hc_profs" data-role="collapsible" class="ui-alt-icon">
+  <h2 class="hc_h2" id="desc_h2">Past Professors</h2>
+  <ul data-role="listview">
+    <% @professors.each do |p| %>
+      <% if !(p.nil?) && !(p.lname.include?("Staff")) %>
+	<li><%= link_to "#{p.fname} #{p.lname}", show_professor_path(fname:p.fname, lname:p.lname), class: "name_link" %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+
+<div id="hc_courses" data-role="collapsible" class="ui-alt-icon">
+<h2 class="hc_h2" id="courses_h2">Past Courses</h2>
+  <ul data-role="listview">
+    <% @courses.each do |c| %>
+      <% unless c.status == "cancelled" %>
+	<li>
+	<p><%= translate_semester(c.semester) %></p>
+	<p><%= c.short_title %></p>
+	<p>Taught By: <%= c.professor %></p>
+	<% if current_cart && !in_mobile_view? %>
+	  <p><%= link_to "Add to Cart", add_cart_path(current_cart.cartid,c.semcrn), method: 'put', remote: true %></p>
+	<% end %>
+	</li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+<% unless @hubcourse.root_comments.size==0 && signed_in? && faculty_user?(current_user) %>
+  <div id="dept_comments_div" data-role="collapsible" data-content-theme="false" class="ui-alt-icon">
+    <h2 id='comment_title' class="dept_h2">Comments</h2>
+
+    <!-- Comments appear below. Uses comment partials -->
+    <div id="comment_section">
+      <div id="comments">
+        <%= render partial: 'comments/index', locals: {commentable: @hubcourse} %>
+      </div>
+      <!-- comment submission form -->
+      <% if current_user.role == "Student" %>
+        <div id="comment_form">
+          <%= render partial: 'comments/form', locals: {commentable: @hubcourse} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

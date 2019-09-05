@@ -1,0 +1,30 @@
+<!-- Explains the commenting system of the site -->
+
+<% provide(:title, 'Help | Comments') %>
+<h1>Comments</h1>
+<p>
+As a signed in user of Prestissimo, you have the ability to share your opinion about classes, departments, and even professors! Read on to learn more about the process of commenting on Prestissimo. 
+</p>
+
+<h2>What Can I Comment On?</h2>
+<p>A comment can be written on any of the <%= link_to "pages unlocked by signing in", help_hubpages_path %>: class pages, department pages, or professor pages. To post a comment, simply visit one of these pages, scroll to the bottom, and either write your own comment or reply to another comment! Your comment will be displayed, along with the date and time you wrote it and your comment handle, which is randomly assigned when you sign up for an account. Visit the
+<% if current_user %>
+  <%= link_to "Settings Page", settings_path(current_user) %> 
+<% else %>
+  <%= link_to "Settings Page", help_accounts_path %>
+<% end %>
+to change your handle.</p>
+
+<h2>Why Should I Comment on Anything?</h2>
+<p>The main purpose of comments on Prestissimo should be to aid fellow students. Leave your opinions on past classes taken and professors who've taught you to give new students a reference point on which they can base decisions about which courses to take.</p>
+
+<h2>Voting on Comments</h2>
+<p>Each comment has two numbers in the bottom right corner associated with it, representing upvotes (the green number) and downvotes (the red number). You may give one vote to any one comment. If you feel that a comment is very helpful, give it an upvote! If you feel it is quite unhelpful, downvote it! However, be careful about downvoting too much: <i>once a comment has been down voted 5 times, it will be hidden automatically!</i> Try to post helpful comments to get as many up votes as possible!</p>
+
+<h2>Reporting Abusive Comments</h2>
+<p>If you come upon a comment that is altogether offensive or going against the ideals set down in our <%= link_to "Community Guidlines", guidelines_path %>, you may report it to the site administrators. Simply click "Report" and fill in the fields that pop-up. An email will be sent to an administrator, and the situation will be dealt with. Reporting is very powerful! Too many reports on a single user will result in suspension of that user from the site. Only report on comments if absolutely necessary!</p>
+
+For any unanswered questions, please contact
+us at 
+<a href="mailto:info@oprestissimo.com">info@oprestissimo.com</a>.
+

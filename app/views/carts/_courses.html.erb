@@ -1,0 +1,129 @@
+<% courses = @cart_courses if @cart_courses %>
+<% unless courses.nil? %>
+  <% if courses.size > 0 %>
+    <div id="courses_scroller">
+      <table class="courses">
+        <% nums = Array.new %>
+
+        <!-- For gradient row backgrounds:
+        counter is used to determine even/odd row
+        color alternates using this counter
+        -->
+        <% color = "even cart_course" %>
+        <% semester = courses.first.semester %>
+        <% # semcredits keeps track of the total credits for each semester as the table is built %>
+        <% semcredits = 0 %>
+        <% # sems keeps track of how many semesters are in the cart. used to determine if the total credits for the final semester need to be displayed %>
+        <% sems = 0 %>
+        <% unless semester == courses.last.semester %>
+          <tr class="sem_row"><td colspan='3'><%= translate_semester(semester) %></td></tr>
+        <% end %>
+        <% counter = 0 %>
+        <% courses.each do |c| %>
+
+          <% if c.semester != semester %>
+            <% sems += 1 %>
+            <tr class="sem_creds"><td colspan='3'><%= "#{1.0*semcredits} credits"%></td></tr>
+            <% semcredits = 0 %>
+            <% semester = c.semester %>
+            <tr class="sem_row"><td colspan='3'><%= translate_semester(semester) %></td></tr>
+          <% end %>
+
+          <% if counter % 2 == 0 %>
+            <% color = "even cart_course" %>
+          <% else %>
+            <% color = "odd cart_course" %>
+          <% end %>
+          <% unless c.enroll.nil? || c.csize.nil? || c.csize == 0 %>
+            <% if ((1.0*c.enroll)/c.csize) > 0.8 %>
+              <% color << ' full' %>
+            <% end %>
+          <% end %>
+
+          <!-- display the course info -->
+          <% if !nums.include? c.semcrn %>
+            <% counter += 1 %>
+            <% nums << c.semcrn %>
+            <% semcredits += c.crmax %>
+            <tr class="<%=color%>" id=<%="#{c.semcrn}_entry" %>>
+              <td class="car_inf cnum"><%= "#{c.dept} #{c.cnum}" %></td>
+              <% if c.status == 'cancelled' %>
+                <td class="car_inf cname">CANCELLED</td>
+              <% elsif c.status == 'hidden' %>
+                <td class="car_inf cname">HIDDEN</td>
+              <% else %>
+                <td class="car_inf cname"><%= c.short_title %></td>
+              <% end %>
+              <!-- this link removes the course from the list via ajax -->
+              <td>
+                <span id="rem_link">
+                  <%= link_to image_tag('delete_button_91002E.png', height: '14', width: '14', style:"display:block;"), remove_cart_path(current_cart.cartid, c.semcrn), method: 'put', remote: true %>
+                </span>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+        <% unless sems == 0 %>
+          <tr class="sem_creds"><td colspan='3'><%= "#{1.0*semcredits} credits"%></td></tr>
+        <% end %>
+      </table>
+
+      <!-- info boxes for extra info about courses -->
+      <div id="info_box">
+        <% courses.each do |c| %>
+          <!-- listing of relevant course info, in a smaller, separate box -->
+          <div class="info cart_course" <%= "id=#{c.semcrn}" %>>
+            <div>
+              <%= link_to c.hubcourse.hub_id, hubcourse_path(c.hubcourse.hub_id.gsub(' ','-')), :class => "prof_cart_link" %>
+              <span id="cart_crn"><span class="cart_label">CRN:</span> <%= c.crn %></span>
+            </div>
+            <% c.professors.each do |p| %>
+              <div>
+                <%= link_to "#{p.fname} #{p.lname}", show_professor_path(fname: p.fname, lname: p.lname), :class => "prof_cart_link" %>
+              </div>
+            <% end %>
+            <!-- mod is only displayed when it is not full -->
+            <% unless c.mods == 3 %>
+              <div id="cart_mod"><span class="cart_label">Module:</span> <%= translate_mod(c.mods) %></div>
+            <% end %>
+            <!-- display proficiencies in cart dropdowns -->
+            <% if c.proficiencies.blank? %>
+              <%= image_tag("none.png", alt: "None", class: "cart_prof_png") %>
+            <% else %>
+              <% prof_string = c.proficiencies.gsub('-','').split(',').sort.join('-') %>
+              <%= image_tag("#{prof_string}.png", alt: prof_string, title: prof_string, class: "cart_prof_png") %>
+            <% end %>
+            <div id="cart_cred">
+              <% if c.crmax != c.crmin %>
+                <%= c.crmin %> - <%- c.crmax %> Hours
+              <% else %>
+                <%= c.crmax %> Hours
+              <% end %>
+              <% unless c.distributions.blank? %>
+                <br>
+                (<%= c.distributions %>)
+              <% end %>
+            </div>
+            <div id="cart_time">
+              <% if c.start_time != nil && c.end_time != nil%>
+                <span class="cart_label"></span>
+                <%= c.days %>, from 
+                <%= c.start_time.strftime("%I:%M %p") %> to
+                <%= c.end_time.strftime("%I:%M %p") %>
+              <% end%>
+            </div>
+            <div class="cleaner">
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div id="total_credits">
+      Total # of credits: <%= current_cart.total_credits.to_f %>
+    </div>
+  <% else %>
+    <p style="margin-top: 10px; margin-bottom: 10px;"> There are no courses in your cart.</p>
+  <% end %>
+<% else %>
+  <p style="margin-top: 10px; margin-bottom: 10px;"> There are no courses in your cart.</p>
+<% end %>

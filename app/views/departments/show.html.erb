@@ -1,0 +1,72 @@
+<% provide(:title, @department.dept) %>
+<h1><%= @department.dept_long %></h1>
+<p><%= link_to "Click here to visit the #{@department.dept_long} page in the Course Catalog", getUrl(@department.dept), :target => "_blank" %><br>&nbsp;</p>
+
+<!-- Lists the CLASSES associated with this department -->
+<h2 id='class_title' class="dept_h2">Classes:</h2>
+<h2 id='prof_title' class="dept_h2">Professors:</h2>
+<div class='clear'></div>
+<div id="dept_classes">
+
+  <table>
+    <% @department.hubcourses.sort_by{ |hc| hc.cnum }.each do |hc| %>
+      <% c = hc.courses.first %>
+      <tr>
+	<td class='dept'><%= c.dept + "  " + c.cnum.to_s %></td>
+	<td class='name'><%= link_to c.short_title, hubcourse_path(hc.hub_id.gsub(' ', '-')) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<!-- Lists the PROFESSORS associated with this department -->
+<div id="dept_profs">
+
+  <table>
+    <% @department.professors.uniq.sort_by{|name| name.lname}.each do |p| %>
+      <% link_to_str = p.status=="active" ? "#{p.fname} #{p.lname} (#{p.status})" : "#{p.fname} #{p.lname}" %>
+      <tr><td><%= link_to link_to_str, show_professor_path(fname: p.fname, lname: p.lname), class: "name_link" %></td></tr>
+    <% end %>
+  </table>
+</div>
+<div class='clear'></div>
+
+<!-- Script to add a parameter to the csv link based on the enrollment checkbox below it -->
+<script>
+  $(document).ready(function() {
+    $("#dept_csv_check").change(function() {
+      if($(this).is(":checked")) {
+        $("#dept_csv_link a").attr('href', function(i, h) {
+          return h + (h.indexOf('?') != -1 ? "" : "?enroll=1");
+        });
+      }
+      else {
+        $("#dept_csv_link a").attr('href', function(i, h) {
+          var temp = h.split('?');
+          return "" + (h.indexOf('?') == -1 ? h : temp[0]);
+        });
+      }
+    });
+  });
+</script>
+<div id="dept_csv_link">
+  <p>
+  <%= link_to "Download detailed information on all courses the #{@department.dept_long} department has taught since fall 2009", params.merge(:format => :csv), :target => "_blank" %>
+  <br>
+  <%= check_box_tag 'dept_csv_check', 1, false %>
+  Include courses with 0 enrollment
+  </p>
+</div>
+
+<!-- Comments appear below. Uses comment partials -->
+<div id="comment_section">
+  <div id="comments">
+    <%= render partial: 'comments/index', locals: {commentable: @department} %>
+  </div>
+  <!-- comment submission form -->
+  <% if current_user.role == "Student" %>
+    <div id="comment_form">
+      <%= render partial: 'comments/form', locals: {commentable: @department} %>
+    </div>
+  <% end %>
+</div>

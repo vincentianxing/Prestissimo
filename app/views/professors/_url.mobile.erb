@@ -1,0 +1,6 @@
+<!-- partial to render a professor's homepage url as a link -->
+
+<% absolute_url = "" %>
+<% absolute_url = "http://" unless url =~/(http:\/\/)|(https:\/\/)/  %> 
+<% absolute_url << url %>
+<%= content_tag(:span, "Website: #{ link_to(url, absolute_url, :target => "_blank")}".html_safe, class: "prof_url") %>

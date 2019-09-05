@@ -1,0 +1,52 @@
+<% provide(:title, @department.dept) %>
+<h1 class="ui-bar ui-bar-a titlebar"><%= @department.dept_long %></h1>
+
+<!-- Lists the CLASSES associated with this department -->
+<div id="dept_classes_div" data-role="collapsible" class="ui-alt-icon">
+  <h2 id='class_title' class="dept_h2">Classes</h2>
+  <div class="collapsible-bottom-fix">
+    <form class="ui-filterable">
+      <input id="filter-classes" data-type="search">
+    </form>
+    <ul id="dept_classes_list" data-role="listview" data-filter="true" data-input="#filter-classes">
+      <% @department.hubcourses.sort_by{ |hc| hc.cnum }.each do |hc| %>
+        <% c = hc.courses.first %>
+        <li><%= link_to "#{c.dept} #{c.cnum.to_s} #{c.short_title}", hubcourse_path(hc.hub_id.gsub(' ', '-')) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- Lists the PROFESSORS associated with this department -->
+<div id="dept_profs_div" data-role="collapsible" class="ui-alt-icon">
+  <h2 id='prof_title' class="dept_h2">Professors</h2>
+  <div class="collapsible-bottom-fix">
+    <form class="ui-filterable">
+      <input id="filter-profs" data-type="search">
+    </form>
+    <ul id="dept_profs_list" data-role="listview" data-filter="true" data-input="#filter-profs">
+      <% @department.professors.uniq.sort_by{|name| name.lname}.each do |p| %>
+        <li><%= link_to "#{p.fname} #{p.lname}", show_professor_path(p.fname, lname: p.lname), class: "name_link" %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<% unless @department.root_comments.size==0 && signed_in? && faculty_user?(current_user) %>
+  <div id="dept_comments_div" data-role="collapsible" data-content-theme="false" class="ui-alt-icon">
+    <h2 id='comment_title' class="dept_h2">Comments</h2>
+
+    <!-- Comments appear below. Uses comment partials -->
+    <div class="collapsible-bottom-fix" id="comment_section">
+      <div id="comments">
+        <%= render partial: 'comments/index', locals: {commentable: @department} %>
+      </div>
+      <!-- comment submission form -->
+      <% if current_user.role == "Student" %>
+        <div id="comment_form">
+          <%= render partial: 'comments/form', locals: {commentable: @department} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

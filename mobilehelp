@@ -1,0 +1,45 @@
+#!/bin/sh
+
+#This UNIX tool looks at all the html views, creates their mobile counterpart if it does not exist,
+#and updates the counterpart otherwise.
+#If the mobile file exists, but the html does it, it will svn delete the mobile file.
+
+FILES=`find -name '*.html.erb' | sed -e 'sqhtmlqmobileqg' | sed -e '/layouts/d' | sed -e '/cart/d'`
+MOBILE=`find -name '*.mobile.erb'` 
+NEW=0
+CHANGED=0
+DELETED=0
+
+#Copy, update, and/or add
+for each in $FILES ; do
+	ORIG=`echo $each | sed -e 'sqmobileqhtmlqg'`
+	if [ -f "$each" ] ; then
+		DIFF=`diff $each $ORIG`
+		if [ "$DIFF" ] ; then
+			CHANGED=`expr $CHANGED + 1`
+		fi
+	else
+		NEW=`expr $NEW + 1`
+	fi
+	cp $ORIG $each
+	#Add any new mobile files to svn
+	MESSAGE=$((svn add $each) 2>&1)
+	MESSAGE=`echo $MESSAGE | sed -e '/already under version control/d'`
+	if [ "$MESSAGE" ] ; then
+		echo $MESSAGE
+	fi
+done
+
+#Delete mobile files whose html counterpart no longer exists
+for each in $MOBILE ; do
+	HTML=`echo $each | sed -e 'sqmobileqhtmlqg'`
+	if [ ! -f "$HTML" ] ; then
+		DELETED=`expr $DELETED + 1`
+		svn delete $each;
+	fi
+done
+
+echo $NEW "mobile files were created"
+echo $CHANGED "mobile files were updated"
+echo $DELETED "mobile files deleted"
+exit 1

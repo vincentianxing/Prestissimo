@@ -1,0 +1,267 @@
+		       @@@@@@@@@@@@@@@@@@@@@@@
+		       @ ################### @
+		       @ # *************** # @
+		       @ # * PRESTISSIMO * # @
+		       @ # *************** # @
+		       @ ################### @
+		       @@@@@@@@@@@@@@@@@@@@@@@
+
+
+Welcome to Prestissimo's source code! Any useful and/or relevant
+information about Prestissimo can be found below. If you think of
+more things to add, please do feel free to add them.
+
+Table of Contents
+-----------------
+
+1. New to Ruby on Rails?
+2. New to SVN?
+3. Connecting to Prestissimo/rails server
+4. How many servers is Prestissimo on anyways?
+5. How do I figure out what the heck is going on here??
+6. Procedure for making changes to the website
+7. The Database
+
+
+
+************************************************************************************
+
+
+1. New to Ruby on Rails?
+------------------------
+
+If you have no idea what any of these files do/mean, you are probably new to
+rails. You should do this tutorial:
+
+http://ruby.railstutorial.org/ruby-on-rails-tutorial-book
+
+It is quite comprehensive and will teach you (most) everything you will need to
+know to work on Prestissimo. 
+
+You will need to have at least a cursory understanding of Ruby--I recommend
+Why's Poignant Guide to Ruby (google it). It's a little verbose, but it's a fun read.
+Just doing the first couple chapters will give you a good enough idea of things.
+
+You will need to know some html, css, and javascript/jquery. Good tutorials for
+all of these can be found on www.w3schools.com
+
+
+*************************************************************************************
+
+
+2. New to SVN?
+--------------
+
+Subversion (SVN) is the version control system that Prestissimo uses. If
+you are new to SVN but not new to version control, it's not too different
+from git, although some of the commands are different syntactically.
+
+If you are new to version control, you should read up on it. The rails
+tutorial above uses git, and is a good example of how version control
+should be used (although Prestissimo uses significantly fewer branches).
+Find some short svn tutorials and read the wikipedia page for source control.
+
+Just keep in mind that whenever you make changes to Prestissimo, you'll want
+to commit them. Update first, make changes, then commit. Commit early, commit often.
+AND WRITE GOOD COMMIT MESSAGES. 
+
+More logistics: 
+    -The SVN server is located at: https://occs.cs.oberlin.edu/svn/prestissimo/prestissimo
+    -To check out a copy you can just type 
+    $ svn co https://occs.cs.oberlin.edu/svn/prestissimo/prestissimo
+    -You can run $ svn info to get more information
+
+SVN can be very frustrating sometimes (it often spits out very cryptic messages and
+doesn't do what you want it to do), so have patience and stick with it.
+
+If you have any questions, ask Ben Kuperman--he knows everything about SVN.
+
+
+*************************************************************************************
+
+
+3. How many servers is Prestissimo on anyways?
+----------------------------------------------
+
+Prestissimo lives in three locations:
+    -oprestissimo.com
+    -oprestissimo.info
+    -Your Home Directory (on oprestissimo.info)
+
+oprestissimo.com is the production server. The files for the real Prestissimo, the
+files that are running the whole shebang, are located in:
+/srv/httpd/htdocs/prestissimo
+DON'T TOUCH THEM. EVER. When you need to make changes to the production website, there
+is a script that will do everything without any human intervention. Read more about this
+in section 6, "Procedure for making changes to the website".
+
+oprestissimo.info is the development server. Most of the time you will be
+logged into this server. This is also a public website, but no one knows about
+it (https://oprestissimo.info).  You should be testing any changes you make
+with the oprestissimo.info server.  A copy of prestissimo is also located on
+this server at: /srv/httpd/htdocs/prestissimo
+
+Your Home Directory (on oprestissimo.info): there should be a copy of prestissimo in your
+home directory. If there isn't, you can check one out (see above section). ALL THE CHANGES YOU
+EVER MAKE TO THE WEBSITE WILL HAPPEN HERE. There are scipts that will automatically
+push your changes to the development server and later the production server.
+
+
+4. Connecting to Prestissimo/rails server
+-----------------------------------------
+
+If you have been reading up on Ruby on Rails, you know about $ rails server.
+This is what you'll be using to view your changes in your home directory
+version of prestissimo as you are making them. 
+Some things to keep in mind: 
+    -you might have to try a couple different ports before you get a free one
+    -Oberlin blocks ports that aren't between 3000-4000, so use something like 3005
+    -To see your rails server, navigate to http://oprestissimo.info:3005 (note that
+    you DO NOT connect with https).
+
+    Connecting from outside the cs lab:
+
+    -If you want to work on Prestissimo remotely, you have to set up port forwarding
+    because outside of the cs lab, ports 3000-4000 are blocked by Oberlin's firewall.
+    Port forwarding is simple though, just follow these steps/enter these commands:
+    1. $ ssh -L 3012:oprestissimo.info:3005 username@occs.cs.oberlin.edu
+    Leave this session open in its own window.
+    2. Now, from a different terminal window, ssh again to occs and then
+    oprestissimo.info (you have to be on occs first to connect to either
+    Prestissimo server)
+    3. $ rails server -p 3005
+    4. To view your site, you can navigate to http://localhost:3012
+
+    Pretty cool, huh?
+
+
+*************************************************************************************
+
+
+5. How do I figure out what the heck is going on here??
+-------------------------------------------------------
+
+The answer is simple: DOCUMENTATION.
+
+Documentation is a very important part of any large piece of software. VERY IMPORTANT.
+As you are learning how Prestissimo works, refer to its documentation to gain a better
+understanding. As you add new things, add new documentation. 
+
+a. Where is Prestissimo's documentation?
+    To find Prestissimo's documentation, you can navigate to
+    oprestissimo.info/app/index.html. This takes you to the pretty browser
+    based interface for exploring Prestissimo's soure code. You should find
+    lots of useful information about all the controllers, models, helpers and
+    libraries.
+
+b. When should I write more documentation?
+    If you add any new controllers, models, or helpers or add new methods to an
+    existing controller/model/helper, you should write a sentence or two about
+    what it does, what parameters it takes in, what it returns, where is the
+    method being called, what views correspond to which controllers, etc.
+   
+c. How do I write more documentation?
+    The documentation is all written using rdoc style comments. Here is a short guide
+    to writing the documentation:
+    http://rdoc.rubyforge.org/RDoc/Markup.html
+    Think of it as javadocs.
+
+    To recompile the documentation, you simply type:
+    $ rake doc:app
+
+    This reparses all of the docs and rebuilds the nice html pages in 
+    oprestissimo.info/app/index.html
+
+    Recompile your docs often and make sure they look the way they should look--
+    rdoc sometimes doesn't do what you want it to do.
+
+NOTE: You might have noticed that the html documentation files are not under version
+control. Don't put then under version control, since the whole directory
+gets deleted and recreated when you recompile, and, as a result, SVN freaks out.
+When you are pushing your changes to the dev and then production servers, the scripts
+will automatically recompile the documentation.
+
+
+*************************************************************************************
+
+
+6. Procedure for making changes to the website
+----------------------------------------------
+
+Okay, so you've made some changes in your home directory Prestissimo and you think
+they're ready to get pushed up. Follow these steps to proceed:
+
+0. DOCUMENT THE CHANGES THAT YOU HAVE MADE. Read more about this in the previous
+section.
+
+1. Don't forget to update the help pages with information about the changes you've made!
+
+2. Make sure you have committed all of your changes to the SVN repository. Make
+sure SVN doesn't think you've modified any of the database files (especially
+courses.txt), only ruby on rails files. If it is necessary to modify the
+database files (files contained in db/), be very very careful and make sure you
+fully understand all of the scripts that update the database.
+
+3. On oprestissimo.info, run $ sudo ./scripts/fixit
+You can read the script to see what it does, but basically it does an svn update
+of the files in the main oprestissimo.info website.
+
+4. Once you are happy with the way oprestissimo.info is working, and you've decided
+that it's time to update the production server, you can proceed to the next steps.
+
+5. ssh to the oprestissimo.com server
+
+6. back up the database by cd'ing into db and running $ sudo ./dump_db
+
+7. open up the file scripts/comfixit
+
+8. change REVNUM to be the svn revision number of the version you are pushing.
+This will probably just be the most recent version if you are updating, but
+make note of what the version number was before you changed it in case you have
+to rollback to a previous working version of the website.
+
+9. You are now ready to run $ sudo ./comfixit
+The oprestissimo.com website should now have your changes on it.
+If things go awry, there are READMEs that will tell you how to roll back the database
+in the doc directory, and you can also change the REVNUM to the one it was before
+and rerun comfixit.
+
+
+*************************************************************************************
+
+
+7. The Database
+---------------
+
+a. About the database
+    The database, as you can probably guess, holds information about all the courses,
+    users, carts, comments, and much more. There are various READMEs in the doc/ directory
+    that will explain more about the structure of the database and how to update or 
+    rollback the database. 
+
+b. Examining the database by hand
+    The database is a MySql database. If you need to log in to the database, you can do
+    so by typing:
+    $ sudo mysql -u busystudent
+    It will then prompt you for a password. If you need the password, ask Ben Kuperman.
+    The username is busystudent.
+
+c. Updating the courses in the database
+    The courses in the database get updated with the scripts/data_pull script. Basically,
+    we get a file from CIT, which goes into /home/datadump. data_pull checks the time
+    stamp on this file to see if we have received a new one, and if so, it creates a file
+    called courses.txt (btw, don't ever manually edit this file, it could wreak havoc on
+    the database). That file then gets parsed and fed into the database. To gain a better
+    understanding of what happens, read through the script. 
+
+
+d. Backing up the database 
+    There are helpful READMEs in the /doc directory that explain more about the database.
+
+e. Who should we contact in CIT if we have problems?
+    As of now, our contact with CIT is Joe Barrile, who is the person who actually 
+    generates the file. Then, Jane Zuzek sends it over to us. Millie Modic is Joe's 
+    supervisor, and Millie's supervisor is Liz Clerkin. 
+
+
+*************************************************************************************

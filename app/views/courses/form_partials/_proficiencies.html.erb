@@ -1,0 +1,37 @@
+<!-- display of PROFICIENCIES
+- input: checkboxes
+- fields: cd, wr, qp
+- uses a table to display boxes and labels, standard format
+-->
+<% if in_mobile_view? %>
+  <div data-role="fieldcontain" class="field_group">
+    <fieldset data-role="controlgroup" data-type="horizontal" class="mobile_fieldset">
+      <legend>Proficiencies:</legend>
+      <div class="field_box">
+        <%= check_box_tag :cd, params[:cd]%>
+        <%= label_tag 'cd', 'CD' %>
+        <%= check_box_tag :wr, params[:wr]%>
+        <%= label_tag 'wr', 'WR' %>
+        <%= check_box_tag :qfr, params[:qfr]%>
+        <%= label_tag 'qfr', 'QFR' %>
+      </div>
+    </fieldset>
+  </div>
+<% else %>
+  <div class="form" id="proficiencies_div" title='Search by proficiency. Selecting more than one box will return classes that offer all of the selected proficiencies.'>
+    <%= check_box_tag :cd, params[:cd], false, class: "search_tag" %>
+    <label for="cd" id="cd_checkbox">Cultural Diversity</label>
+    <%= check_box_tag :qfr, params[:qfr], false, class: "search_tag" %>
+    <label for="qfr" id="qfr_checkbox">Quant.&amp;Form. Reas.</label>
+    <%= check_box_tag :wr, params[:wr], false, class: "search_tag" %>
+    <label for="wr" id="wr_checkbox">Writing Proficiency</label>
+  </div>
+  <div class="form" id="wr_profic_div" style="display:none">
+    <%= radio_button_tag "profic", "wint", false, class: "search_tag" %>
+    <label for="profic_wint" id="wint_radio">WInt</label>
+    <%= radio_button_tag "profic", "wadv", false, class: "search_tag" %>
+    <label for="profic_wadv" id="wadv_radio">WAdv</label>
+    <%= radio_button_tag "profic", "any", false, class: "search_tag" %>
+    <label for="profic_any" id="any_radio">Any</label>
+  </div>
+<% end %>

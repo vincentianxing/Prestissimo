@@ -1,0 +1,15 @@
+A report has been filed on Prestissimo.
+
+User:
+<%= @sender.fname %> <%= @sender.lname %>
+<%= @sender.email %>
+
+Content:
+
+<%= @report.title %>
+<%= @report.body %>
+
+Please address this issue through the administrator page, preferrably before <%= (Time.now + 2.days).in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M %P, %m/%d/%Y") %>
+
+Love,
+your friendly automated mailer

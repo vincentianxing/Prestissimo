@@ -1,0 +1,65 @@
+<!--
+The User profile page
+displays name, email, info, etc
+-->
+
+<% provide(:title, @user.email) %>
+
+<%# Header with nickname according to preferences %>
+
+<h1 class="ui-bar ui-bar-a titlebar">
+  <% if @user.nickname.blank? || @user.privacy_prefs.include?("nonnickname") %>
+    <%= @user.fname  + " " + @user.lname %>
+  <% else %>
+    <%= @user.nickname  + " " + @user.lname %>
+  <% end %>
+</h1>
+
+<div id="user_profile" class="ui-alt-icon">
+  <%# Displays user info if they have any according to preferences %>
+  <% if !@user.notes.blank? && ((signed_in? && current_user == @user) || !@user.privacy_prefs.include?("noinfo")) %>
+    <!--div class="ui-body ui-body-a" id="profile_infobox"-->
+    <div class="ui-body" id="user_more_info_div">
+    <%= simple_format(@user.notes) %>
+  </div>
+  <% end %>
+
+  <%# Displays email, role, year, majors %>
+  <ul data-role="listview" data-inset="true">
+   
+    <li><%= @user.email %></li>
+    <li><%= @user.role %></li>
+    
+    <% if !@user.year.blank? && (current_user == @user || !@user.privacy_prefs.include?("noyear")) %>
+      <li>Year: <%= @user.year %></li>
+    <% end %>
+    
+    <% if @user.major %>
+        <% if (@user.second_major && (current_user == @user || !@user.privacy_prefs.include?("secondmajor"))) %>
+          <li><%= link_to "Major: #{@user.major}", department_path(@user.major) %></li>
+          <li><%= link_to "Major: #{@user.second_major}", department_path(@user.second_major) %></li>
+        <% else %>
+          <li><%= link_to "Major: #{@user.major}", department_path(@user.major) %></li>
+        <% end %> 
+    <% end %>    
+  
+  </ul>
+
+
+  <%# Displays link to edit the profile, report or delete user depending on permissions %>
+  <% if signed_in? %>  
+    <ul data-role="listview" data-inset="true">
+      <% if @user == current_user %>
+        <li><%= link_to "Edit your profile", settings_path(current_user.email.split('@')[0]) %></li>
+      <% end %>
+
+      <li><%= link_to "Report Abusive User", new_report_path(@user.class.to_s.underscore, @user.id, current_user.id), remote:true %></li>
+      
+      <% if current_user.admin? && !(current_user?(@user)) %>
+        <li><%=link_to "Delete this user!", delete_user_path(@user.id), method: :delete, data: {confirm: "You sure?" }%></li>
+      <% end %>
+    
+    </ul>
+  <% end %>
+
+</div>

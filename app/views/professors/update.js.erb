@@ -1,0 +1,5 @@
+
+<%= logger.debug "professor updated: " + @professor.fname + " " + @professor.lname %>;
+
+$('#status_bar').html('<%= "#{@professor.fname} #{@professor.lname} updated" %>');
+$('#'+professor_id+'_edit_area').html("");

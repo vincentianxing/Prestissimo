@@ -1,0 +1,43 @@
+<% provide(:title, @department.dept) %>
+<h1><%= @department.dept_long %></h1>
+
+<!-- Lists the CLASSES associated with this department -->
+<h2 id='class_title' class="dept_h2">Classes:</h2>
+<h2 id='prof_title' class="dept_h2">Professors:</h2>
+<div class='clear'></div>
+<div id="dept_classes">
+
+  <table>
+    <% @department.hubcourses.sort_by{ |hc| hc.cnum }.each do |hc| %>
+      <% c = hc.courses.first %>
+      <tr>
+	<td class='dept'><%= c.dept + "  " + c.cnum.to_s %></td>
+	<td class='name'><%= link_to c.short_title, hubcourse_path(hc.id) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<!-- Lists the PROFESSORS associated with this department -->
+<div id="dept_profs">
+
+  <table>
+    <% @department.professors.uniq.each do |p| %>
+      <tr><td><%= link_to "#{p.fname} #{p.lname}", show_professor_path(p.id), class: "name_link" %></td></tr>
+    <% end %>
+  </table>
+</div>
+<div class='clear'></div>
+
+<!-- Comments appear below. Uses comment partials -->
+<div id="comment_section">
+  <div id="comments">
+    <%= render partial: 'comments/index', locals: {commentable: @department} %>
+  </div>
+  <!-- comment submission form -->
+  <% if current_user.role == "Student" %>
+    <div id="comment_form">
+      <%= render partial: 'comments/form', locals: {commentable: @department} %>
+    </div>
+  <% end %>
+</div>

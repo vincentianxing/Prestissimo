@@ -1,0 +1,103 @@
+<html>
+	<body>
+		<p>
+		A recent upgrade to the Banner system has broken the feed into Oprestissimo, and as CIT has asked us to cease development on the software, it will no longer work as intended.  For more information, please contact <a href="mailto:info@oprestissimo.com">info@oprestissimo.com</a>.  We would like to thank all of the student developers that have worked in this project throughout the years, it could not have been possible without your hard work.</p>
+	<p>In the future, please use Banner Self Service to find courses 
+	for Spring 2019. A link to the course search can be found using the 'Browse Schedule of Classes' task in 
+	<a href="http://oberview.oberlin.edu">OberView</a></p>
+
+	<h1>About Oprestissimo</h1>
+
+	<p>
+	Prestissimo was conceived after a particularly frustrating hour and a half spent searching 
+	for classes worth 3 credits of social science that also fulfilled the writing proficiency requirement. 
+	After undergoing the tedious process of looking through the entire course catalog manually, 
+	it became apparent that there needed to be something faster than Presto.
+	</p>
+	<p>&nbsp;</p>
+	<p>
+	Intended as a supplement to Presto, Prestissimo allows you to search through all of Oberlin's 
+	courses with a finer level of control over such search criteria as graduation proficiencies,
+	days and times, departments, professors, and more.
+	</p>
+	<p>&nbsp;</p>
+	<h1>Credits</h1>
+	<p>
+	Prestissimo was originally created as a Winter Term project during the balmy winter of 2012
+	with the invaluable help and dedication of all of the following lovely people:
+	</p>
+	<ul>
+		  </br>
+		    <li><strong>Liz Bennett - 2013</strong>, our amazing project leader</li>
+		      <li><strong>Jacob Chae - 2015</strong></li>
+		        <li><strong>Luke Lovett - 2013</strong></li>
+			  <li><strong>Abby Marsh - 2013</strong></li>
+			    <li><strong>Lily Pratt - 2014</strong></li>
+			      <li><strong>Jack Ratner - 2014</strong></li>
+			        <li><strong>Whit Schorn - 2013</strong></li>
+				  <li><strong>Ben Kuperman</strong> - Faculty sponsor extraordinaire</li>
+				    </br>
+			    </ul>
+
+			    <p>The following students continued working on Prestissimo, adding new features and functionality:</p>
+			    <ul>
+				      </br>
+				        <li>Summer 2015:
+					  <ul>
+						      </br>
+						          <li><strong>Meghan McCreary - 2016</strong></li>
+							      <li><strong>Cole Peppis - 2016</strong></li>
+							          <li><strong>Sage Vouse - 2019</strong></li>
+								      </br>
+								        </ul></li>
+									  <li>Summer 2014:
+									    <ul>
+										        </br>
+											    <li><strong>Elizabeth Bentivegna - 2015</strong></li>
+											        <li><strong>Cole Peppis - 2016</strong></li>
+												    </br>
+												      </ul></li>
+
+												        <li>Winter Term 2014:
+													  <ul>
+														      </br>
+														          <li><strong>Andrew Amis - 2017</strong></li>
+															      <li><strong>Shiying Zheng - 2016</strong></li>
+															          </br>
+																    </ul></li>    
+
+																      <li>Summer 2013:
+																        <ul>
+																		    </br>
+																		        <li><strong>Lily Pratt - 2014</strong></li>
+																			    <li><strong>Oren Shoham - 2014</strong></li>
+																			        </br>
+																				  </ul></li>
+																				    <li>Winter Term 2013:
+																				      <ul>
+																					          </br>
+																						      <li><strong>Liz Bennett</strong></li>
+																						          <li><strong>Meg Davis - 2014</strong></li>
+																							      <li><strong>Cameron Druecker - 2015</strong></li>
+																							          <li><strong>Jacob Chae - 2015</strong></li>
+																								      <li><strong>Erik Larson - 2015</strong></li>
+																								          </br>
+																									    </ul></li>
+
+
+																									      <li>Summer 2012:<ul>
+																										          </br>
+																											      <li><strong>Abby Marsh</strong></li>
+																											          <li><strong>Jack Ratner</strong></li>
+																												      <li><strong>Richard Townsend - 2013</strong></li>
+																												          </br>
+																													    </ul></li>
+																												    </ul>
+
+																												    <p> Thanks must be given to the awesome Oberlin CS department for their support and encouragement along with <strong>Chris Mohler</strong> who kindly offered to host Prestissimo.</p>
+	
+
+
+</body>
+
+</html>	

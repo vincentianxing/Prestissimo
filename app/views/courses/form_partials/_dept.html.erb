@@ -1,0 +1,60 @@
+<!-- display of DEPARTMENT
+- input: drop down menu
+- fields: dept
+- displayed as a large drop down menu, listing all departments,
+- selecting a dept adds it to a viewable list and to a hidden read-only textarea,
+- the user can remove from the list by clicking,
+- the textarea is what's used for the query
+-->
+
+<script>
+  <!-- Adds dept to list and textarea -->
+  function add_dept() {
+    if( document.getElementById('dept_list').innerHTML === "No departments selected" ) {
+      $("#dept_list").text("");
+    };
+    var selector = document.getElementById('dept_drop').value+"<br />";
+    var short = selector.substring(0,4);
+    var rem_arg = "rem_dept('"+short+"')";
+    var selector_span =  "<span id='remove_"+short+"' class='dept_list_elem' name=dept style='cursor:pointer;' onClick="+rem_arg+">"+selector+"</span>";
+    var remover_image = "<img src='/assets/delete_button_91002E.png' height='11' width='11'>";
+    var remover = "<span class = 'rem_box' id='remove_"+short+"' style='cursor:pointer;' onClick="+rem_arg+">"+remover_image +" </span>";
+    if(short.substring(0,1) != "<" && $("#dept_text").val().indexOf(short) < 0) {
+      $("#dept_list").append(remover, selector_span);
+      $("#dept_text").removeAttr("readonly");
+      $("#dept_text").text($("#dept_text").val()+short+" ");
+      $("#dept_text").attr("readonly", "readonly");
+    };
+    $("#dept_drop").val("");
+  };
+
+
+  <!-- Super jenk way to remove depts from list and textarea -->
+  function rem_dept(dept) {
+    var to_rem = "#remove_"+dept;
+    var text = $("#dept_text").val();
+    var text_rem = text.replace(dept+" ", "");
+    $(to_rem).remove();
+    $(to_rem).remove();
+    $("#dept_text").removeAttr("readonly");
+    $("#dept_text").text(text_rem);
+    $("#dept_text").attr("readonly", "readonly");
+    if( document.getElementById('dept_list').innerHTML === "" ) {
+      $("#dept_list").text("No departments selected");
+    };
+  };
+</script>
+
+<div class="form" id="dept_div" title='Search by department. Selecting multiple departments will display all courses from each selected department.'>
+  <span class="label search_label">Department:</span>
+  <% query = "<option></option>" %>
+  <% Department.all.sort_by{|name| name.dept}.each do |d| %>
+    <% query << "<option title='"+ d.dept_long+"'>" +d.dept+ " - " +d.dept_long+ "</option>" %>
+  <% end %>
+
+  <%=select_tag nil, query.html_safe, { class: "search_tag", id: "dept_drop", :onChange => "add_dept()" } %>
+  <br /><br />
+  <p id='dept_list'>No departments selected</p>
+  <%= text_area_tag :dept, params[:dept], id: "dept_text", readonly: "readonly" %>
+</div>
+

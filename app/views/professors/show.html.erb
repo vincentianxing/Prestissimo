@@ -1,0 +1,145 @@
+<% @professor = @vals[:professor] %>
+<% @comments = @vals[:comments] %>
+<% @hubcourses = @vals[:hubcourses] %>
+
+<% if @professor.nickname.blank? %>
+  <% provide(:title, @professor.fname + " " + @professor.lname) %>
+<% else %>
+  <% provide(:title, @professor.nickname + " " + @professor.lname) %>
+<% end %>
+
+<!-- PROFESSOR PROFILE PAGE -->
+
+
+<div id="profile">
+  <!-- header contains professor's full name -->
+  <h1>
+    <% if @professor.nickname.blank? %>
+      <% name = @professor.fname  + " " + @professor.lname %>
+    <% else %>
+      <% name = @professor.nickname  + " " + @professor.lname %>
+    <% end %>
+    <% if @professor.status =="dark" %>
+      <% name << " (inactive)" %>
+    <% end %>
+    <% if faculty_user?(current_user) && @professor == current_professor %>
+      <%= "#{name} #{link_to '[edit]', edit_professor_path(fname: current_user.fname, lname: current_user.lname)}".html_safe %>
+    <% else %>
+      <%= name %>
+    <% end %>
+  </h1>
+
+  <% unless @professor.url.blank? %>
+    <div id="prof_url_div">
+      <%= render partial: 'professors/url', locals: { url: @professor.url } %>
+    </div>
+  <% end %>
+
+  <% unless @professor.email.blank? && @professor.phone.blank? && @professor.office.blank? && @professor.contact.blank? %>
+    <div id="prof_contact_div">
+      <h2 class="prof_h2" id="contact">Contact:</h2>
+      <%= content_tag(:p, ("Email: " + link_to(@professor.email, "mailto:"+@professor.email)).html_safe, class: "prof_contact") unless @professor.email.blank? %>
+      <%= content_tag(:p, "Phone: " + @professor.phone, class: "prof_contact") unless @professor.phone.blank? %>
+      <%= content_tag(:p, "Office: " + @professor.office, class: "prof_contact") unless @professor.office.blank? %>
+      <%= content_tag(:p, CGI::escapeHTML(@professor.contact).gsub(/\r\n/, "</br>").html_safe, class: "prof_contact") unless @professor.contact.blank? %>
+    </div>
+  <% end %>
+
+  <div id="prof_more_info_div">
+    <%= content_tag(:p, Redcarpet::Markdown.new(Redcarpet::Render::HTML, underline: true, highlight: true, lax_spacing: true).render(@professor.content.gsub(/[<>]/, '<' => '&lt;', '>' => '&gt;')).html_safe, class: "prof_more_info") unless @professor.content.blank? %>
+  </div>
+
+  <!-- Listing of courses this professor teaches -->
+  <h2 class="prof_h2">Classes:</h2>
+  <p id="expand_info">Click a row for more information!</p>
+  <div id="prof_classes">
+    <table id="headers">
+      <tr> 
+        <th class='dept_prof'>Department</th>
+        <th class='cnum_prof'>No.</th>
+        <th class='cname_prof'>Course Name</th>
+        <th class='recent_sem_prof'>Most Recent Semester Taught</th>
+      </tr>
+    </table>
+  <div id="prof_classes_results">
+    <table class="results">
+      <% i = 0 %>
+      <% @hubcourses.each do |(h,courses)| %>
+        <% c = courses.first %>
+        <% next if c.nil? %>
+        <% if i % 2 == 0 %>
+          <tr class='course_entry even' <%= "id=no_#{i}" %>>
+        <% else %>
+          <tr class='course_entry odd' <%= "id=no_#{i}" %>>
+        <% end %>
+          <td class='dept_prof'><%= link_to c.dept, department_path(c.dept) %></td>
+          <td class='cnum_prof'><%= c.cnum.to_s %></td>
+          <td class='cname_prof'><%= link_to c.short_title, hubcourse_path(h.hub_id.gsub(' ', '-')) %></td>
+          <td class='recent_sem_prof'><%= translate_semester(c.semester) %></td>
+
+        <tr class="descrip" <%= "id=desc_#{i}" %>>
+          <td colspan="4">
+            <div class="prof_class_title_div">
+              <%= link_to c.title.html_safe, hubcourse_path(h.hub_id.gsub(' ', '-')) %>
+            </div>
+            <div class="prof_class_descrip_div">
+              <%= c.descrip.html_safe %>
+            </div>
+            <div class="prof_class_semesters_div">
+              All semesters that Prof. <%=@professor.lname.capitalize%> has taught this course. (click a semester to add that course to your cart)
+              <ul>
+                <% courses.each do |course| %>
+                  <%=content_tag(:li, "#{link_to Course.text_semester(course.semester), add_cart_path(current_cart.cartid,course.semcrn, courses:[course.semcrn]), method: 'put', remote: true}".html_safe) %>
+                <% end %>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <% i += 1 %>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<!-- Script to add a parameter to the csv link based on the enrollment checkbox below it -->
+<script>
+  $(document).ready(function() {
+    $("#prof_csv_check").change(function() {
+      if($(this).is(":checked")) {
+        $("#prof_csv_link a").attr('href', function(i, h) {
+          return h + (h.indexOf('?') != -1 ? "" : "?enroll=1");
+        });
+      }
+      else {
+        $("#prof_csv_link a").attr('href', function(i, h) {
+          var temp = h.split('?');
+          return "" + (h.indexOf('?') == -1 ? h : temp[0]);
+        });
+      }
+    });
+  });
+</script>
+<div id="prof_csv_link">
+  <p>
+  <%= link_to "Download detailed information on all courses Prof. #{@professor.lname.capitalize} has taught since fall 2009", params.merge(:format => :csv), :target => "_blank" %>
+  <br>
+  <%= check_box_tag 'prof_csv_check', 1, false %>
+  Include courses with 0 enrollment
+  </p>
+  </p>
+</div>
+
+  <!-- All comments on this professor -->
+  <div id="comment_section">
+    <!-- existing comments -->
+    <div id="comments">
+      <%= render partial: 'comments/index', locals: {commentable: @professor} %>
+    </div>
+    <!-- comment submission form -->
+    <% if current_user.role == "Student" %>
+      <div id="comment_form">
+        <%= render partial: 'comments/form', locals: {commentable: @professor} %>
+      </div>
+    <% end %>
+  </div>
+</div>

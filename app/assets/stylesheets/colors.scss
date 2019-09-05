@@ -1,0 +1,287 @@
+//colors for our site!
+
+//NO GRADIENTS D:<
+
+
+//$tan1: #FDECC8;
+//$tan2: #FDD38E;
+//$yellow1: #FFF3B7;
+//$red1: #C72D19;
+//$red2: #DD352D;
+//$darkRed1: #820000;
+//$darkRed2: #AB0000;
+//$offWhite1: #FDFCED;
+$black: black;
+$white: white;
+$green: green;
+$lightGreen1: #bbddbb;
+$lightGreen2: #99bb99;
+$zoidberg: #FFA189;
+$gray0: #F1F1F1;
+$gray1: #DDD;
+$gray2: #BBB;
+$gray3: #828282;
+$gray4: #666666;
+//$reddishGray1: #b77f7f;
+$blue1: #8AD;
+$blue2: #68B;
+$blue3: #45a;
+$red: #91002E;
+$lightBlue: #f0f2ff;
+
+$link: $blue3;
+$linkHover: $red;
+$abusiveReportLink: $gray4;
+$abusiveReportLinkHover: $red;
+$failureAlertBackground: $zoidberg;
+
+//admin.css.scss = EMPTY
+
+//carts.css.scss
+$cartBackground: $gray3;
+$cartShadow: $gray4;
+$cartHeader: $red;
+$cartHeaderText: $white;
+$cartSemesterBackground: $black;
+$cartSemesterText: $white;
+$cartSemCreditsBackground: $red;
+$cartSemCreditsText: $white;
+$removeButton: $black;
+$removeButtonHover: $red;
+$cartButtonBorder: $gray4;
+$cartButtonBackground: $gray2;
+$cartButtonText: $white;
+$cartButtonTextShadow: $gray4;
+$cartButtonBackgroundHover: $gray4;
+$cartButtonTextHover: $white;
+$cartButtonBackgroundActive: $red;
+$cartButtonBorderActive: $red;
+$cartPopdownBackground: $gray1;
+$cartCSVLink: $lightBlue;
+$cartCSVLinkHover: $white;
+
+//comments.css.scss
+$commentBackground: $gray1;
+$commentHeaderBackground: $gray2;
+$voteBox: $white;
+$upvoteCountText: $green;
+$downvoteCountText: $red;
+$upvoteTriangle: $green;
+$downvoteTriangle: $red;
+$voteTriangleHover: $gray2;
+$voteTriangleClick: $gray2;
+$replyHeaderBackground: $gray2;
+$replyBackground: $gray1;
+$replyLabelText: $red;
+
+//courses.css.scss
+$searchFormDivider: $gray2;
+$removeDeptButton: $red;
+$searchButtonBackground: $gray2;
+$searchButtonBorder: $gray3;
+$searchButtonText: $white;
+$searchButtonTextShadow: $gray4;
+$searchButtonHoverBackground: $gray3;
+$searchButtonActiveBackground: $red;
+$searchButtonActiveBorder: $red;
+$searchFormLabelText: $black;
+$statusBar: $red;
+$searchResultsHeaderBackground: $red;
+$searchResultsHeaderText: $white;
+$searchResultsBorder: $red;
+$searchResultsBackground: $gray3;
+$currentEnrollText: red;
+$courseDescripText: $white;
+$courseDescripBackground: $gray3;
+$courseTitle: $lightBlue;
+$courseTitleHover: $white;
+$resultsLink: $lightBlue;
+$resultsLinkHover: $white;
+$courseConflictText: $red;
+$courseTitleSelected: $white;
+$oddIndexedRows: $gray2;
+$evenIndexedRows: $gray1;
+$selectedRows: $gray4;
+$conflictTitle: $gray4;
+$conflictTime: red;
+$oddInCartBackground: $lightGreen2;
+$evenInCartBackground: $lightGreen1;
+$creditRangeText: $black;
+$timeRangeText: $black;
+$levelRangeText: $black;
+$dropDownBorder: $gray2;
+$motdBackground: $gray2;
+$motdBorder: $gray3;
+$motdBarText: $white;
+$motdText: $black;
+$motdBarBackground: $gray3;
+$motdShadow: $blue3;
+$deptSelectionListBackground: $gray2;
+$deptSelectionListFont: $black;
+$highlightText: $black;
+$highlightBackground: $white;
+$disabledTextfieldBackground: $gray0;
+$disabledTextfieldBorder: $gray2;
+$disabledTextfieldText: $gray4;
+$expandedCourseHeader: $red;
+
+//departments.css.scss
+$deptBoxBackground: $gray1;
+
+//errors.css.scss
+$errorsDialogueText: $gray4;
+$errorsHeader: $red;
+$errorsMessageBorder: $gray4;
+
+//global.css.scss
+$backdrop: $red;
+$contentBorder: $gray3;
+$contentBackground: $lightBlue;
+$wrapperShadow: $gray4;
+$logoBackground: $gray3;
+$logoText: $red;
+$h1color: $red;
+$h2color: $red;
+$h3color: $red;
+$lineColor: $gray2;
+$menuBackground: $gray3;
+$menuShadow: $gray3;
+$menuLink: $white;
+$menuLinkHover: $red;
+$menuLinkHoverBackground: $gray2;
+$menuLinkHoverText: $red;
+$textFieldBorder: $gray2;
+$textFieldFocus: $red;
+
+//hubcourses.css.scss
+$deptLink: $gray2;
+$filterLabel: $black;
+$deptTableBackground: $gray1;
+$hcPastClassesBackground: $gray1;
+$hcPastProfsBackground: $gray1;
+
+//jquery-ui
+$uiWidgetBorder: $gray1;
+$uiWidgetContentText: $black;
+$uiWidgetContentBackground: $gray1;
+$uiWidgetHeaderBackground: $red;
+$uiWidgetHeaderText: $white;
+$uiButtonBackground: $gray2;
+$uiButtonHoverBackground: $gray3;
+$uiButtonSelectBackground: $red;
+$uiButtonText: $black;
+$uiButtonHoverText: $white;
+$uiButtonSelectText: $white;
+$uiButtonTextShadow: none;
+$uiButtonBorder: $gray3;
+$uiButtonSelectBorder: $red;
+$uiSliderBar: $gray2;
+$uiSliderBarBorder: $lightBlue;
+$uiSliderBarRange: $red;
+$uiWidgetOverlay: $gray3;
+
+//report.css.scss
+$reportButtonBorder: $gray3;
+$reportButtonText: $white;
+$reportButtonBackground: $gray2;
+$reportButtonHover: $gray3;
+$reportButtonHoverText: $white;
+$reportTextBorder: $gray1;
+$reportSuccessText: $red;
+
+//sessions.css.scss
+$disclaimerBox: $lightBlue;
+$disclaimerText: $black;
+$disclaimerBackground: $red;
+$disclaimerBorder: $gray4;
+$disclaimerLink: $blue3;
+$disclaimerLinkHover: $red;
+
+//settings.css.scss
+$questionsHeader: $red;
+$helpSubList: $black;
+
+//users.css.scss
+$loginBox: $gray1;
+$loginButtonBorder: $gray3;
+$loginButton: $gray2;
+$loginButtonHover: $gray3;
+$loginButtonText: $white;
+$handleEditBox: $gray1;
+$ldapList: $gray1; //box containing user info from ldap account
+$noinfoText: $gray3;
+$peopleSearchLabel: $red;
+$scrollerBorder: $red;
+$deleteButtonBorder: $gray3;
+$deleteButton: $gray2;
+$deleteButtonHover: $gray3;
+$deleteButtonText: $white;
+$deleteButtonShadow: $gray3;
+
+//professors.css.scss
+$profContactBackground: $gray1;
+$profClassesBorder: $red;
+$profTestUrlBackground: $blue1;
+$profTestUrlBorder: $blue2;
+$profTestUrlText: $black;
+$profTestUrlTextHover: $white;
+$profContactContainerBackground: $gray1;
+$profTableBorder: $red;
+
+//jquery-week-calendar.css.scss
+$wcBackground: $gray1;
+$wcHeaderBackground: $gray2;
+$wcTimeDivider: $gray2;
+$wcDayDivider: $gray2;
+$wcTimeText: $black;
+$wcEventColor: $blue1;
+$wcText: $black;
+
+//print.css.scss (styling for printing the schedule)
+$printWcHeaderBackground: $gray2;
+$printWcHeaderBorder: $gray2;
+$printWcTimeDivider: $gray2;
+$printWcTimeText: $black;
+$printWcEventColor: $gray2;
+$printWcEventBorder: $gray2;
+$printWcText: $black;
+
+//print_collapsed.css.scss
+$printHeader: $gray1;
+$printBorder: $gray1;
+$printLinkFont: $black;
+
+//mobile.css.scss
+$mobileButtonText: $black;
+$mobileButtonBackground: $gray1;
+$mobileButtonBorder: $gray2;
+$mobileButtonTextDown: $black;
+$mobileButtonBackgroundDown: $gray2;
+$mobileButtonBorderDown: $gray2;
+$mobileButtonTextActive: $white;
+$mobileButtonBackgroundActive: $red;
+$mobileButtonBorderActive: $red;
+$mobileSlider: $red;
+$mobileMOTD: $gray3;
+$mobileMOTDClose: $red;
+$mobileCommentBack: $gray2;
+$mobileCommentHead: $gray1;
+$mobileBackground: $white;
+$mobileTitleBar: $gray2;
+$mobileMenuBar: $gray3;
+$mobileSectionTitles: $gray1;
+$mobileLogoFont: $red;
+$mobileBorder: $gray3;
+$mobileBodyBackground: $white;
+$mobileBodyTextColor:$black;
+$mobileBodyBorder:$gray1;
+$mobileBarBorder:$gray1;
+$mobileBarTextColor:$black;
+$mobileFocus:$red;
+$mobileMenuText:$white;
+$mobileMenuActiveBackground:$gray4;
+$mobileMenuBorder:$gray4;
+$mobileFooter:$gray3;
+$mobileToggle:$gray2;
+$mobileCourseLink:$gray0;
+$mobileCourseLinkBorder:$gray1;

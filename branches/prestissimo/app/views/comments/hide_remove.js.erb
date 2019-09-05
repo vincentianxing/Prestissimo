@@ -1,0 +1,25 @@
+var hidden_id = <%= @comment.id.to_s %>;
+hidden_id = '#comment' + hidden_id;
+var root = <%= @comment.parent_id.blank? %>; 
+var removed = <%= @comment.status == "removed" %>;
+// display as root comment if not reply 
+if (removed) {
+  $(hidden_id).html("");
+}
+else {
+  if (root) { 
+    <% if is_mobile_device? %>
+	$(hidden_id).html("<%= escape_javascript( render( partial: 'show', :formats => [:mobile] ) ) %>");
+    <% else %>
+      $(hidden_id).html("<%= escape_javascript( render( partial: 'show' ) ) %>");
+    <% end %>
+  }
+  // otherwise, display as reply
+  else {
+    <% if is_mobile_device? %>
+	$(hidden_id).html("<%= escape_javascript( render partial: 'show_reply', :formats => [:mobile], locals: {r: @comment}) %>");
+    <% else %>
+      $(hidden_id).html("<%= escape_javascript( render partial: 'show_reply', locals: {r: @comment}) %>");
+    <% end %>
+  }	
+}

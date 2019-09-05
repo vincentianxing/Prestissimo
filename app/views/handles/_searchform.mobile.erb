@@ -1,0 +1,15 @@
+<h2 class="people_h2">Search Commenters</h2>
+
+<%= form_tag handle_search_path, :method => 'get', remote: true do %>
+<div class="people_div">
+  <span class="people_label">User Name:</span>
+	<%= text_field_tag :username, params[:username], class: "default_inputfield", id: "finduser_field" %>
+	<br \>
+  <span class="people_label">All Commenters:</span>
+  <%= check_box_tag :all, params[:all] %>
+  <div class="people_submit">
+    <%= submit_tag "Search", :name => nil %>
+    <input type="reset" value="Reset">
+  </div>
+</div>
+<% end %>

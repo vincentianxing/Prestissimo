@@ -1,0 +1,56 @@
+<header>
+<% if !current_user.nil? %>
+<%= link_to(image_tag("new_prestissimo_logo.png", alt: "Prestissimo is faster than Presto", class: "logo", width: 800, height: 140, id: "logo"), root_path ) %>
+<% else %>
+<%= link_to(image_tag("prestissimo_lightsoff.png", alt: "Log in!", class: "logo",	width: 800, height: 140, id: "logo"), signin_path ) %>
+<% end %>
+<% if signed_in? %>
+<div id="links">
+  <ul>
+    <li><%= link_to "About", about_path %></li>
+    <li class="dd_menus"><%= link_to "Help", help_path %>
+    <ul>
+      <li><%= link_to "Overview", help_path %></li>
+      <li><%= link_to "Basic Search", help_basics_path %></li>
+      <li><%= link_to "Advanced Search", help_advanced_path %></li>
+      <li><%= link_to "Search Results", help_search_path %></li>
+      <li><%= link_to "Course Cart", help_cart_path %></li>
+      <li><%= link_to "User Accounts", help_accounts_path %></li>
+      <li><%= link_to "Commenting", help_comments_path %></li>
+      <li><%= link_to "Professor, Class, and Dept. Pages", help_hubpages_path %></li>
+      <li><%= link_to "Community Guidelines", guidelines_path %></li>
+      <li><%= link_to "Mobile Theme", help_mobile_path %></li>
+      <li><%= link_to "Questions?", help_questions_path %></li>
+    </ul>
+    </li>
+    <li class="dd_menus"><%= link_to "Search", root_path %>
+    <ul>
+      <li><%= link_to "Courses", root_path %></li>
+      <li><%= link_to "People", users_path %></li>
+      <li><%= link_to "Departments", hubcourses_path %></li>
+    </ul>
+    </li>
+    <li class="dd_menus"><%= link_to "Account", current_user %>
+    <ul>
+      <li><%= link_to "Profile", current_user %></li>
+      <li><%= link_to "Settings", settings_path(current_user) %></li>
+      <li><%= link_to "Sign Out", signout_path, method: "delete" %></li>
+    </ul>
+    </li>
+    <% if current_user && current_user.admin? %>
+    <li><%= link_to "Admin", admin_page_path %></li>
+    <% end %>
+    <li><%= link_to "Home", root_path %></li>
+  </ul>
+</div>
+<% else %>
+<div id="signedout_links">
+  <ul>
+    <li><%= link_to "About", about_path %></li>
+    <li><%= link_to "Help", help_path %></li>
+    <li><%= link_to "Sign In", signin_path %></li>
+    <li><%= link_to "Home", root_path %></li>
+  </ul>
+</div>
+<% end %>
+</header>

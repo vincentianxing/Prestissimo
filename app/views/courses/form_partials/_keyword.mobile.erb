@@ -1,0 +1,18 @@
+<!-- display of KEYWORD
+- input: text field
+- field: keyword
+- uses standard text input display
+-->
+<div data-role="fieldcontain" class="field_group">
+    <Legend>Keyword Search:</legend>
+  <%= text_field_tag :keyword, params[:keyword], class: "smallspread_inputfield search_tag", id: "keyword_field" %>
+  <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" class="mobile_fieldset">
+    <div class="ui-corner-all field_box btn_width_half"> 
+      <%= radio_button_tag "key_button", "all", true, class: "search_tag" %>
+      <label for="key_button_all" id="all_key_radio">Match all terms</label>
+      <%= radio_button_tag "key_button", "any", false, class: "search_tag" %>
+      <label for="key_button_any" id="any_key_radio">Match any terms</label>
+    </div>
+  </fieldset>
+</div>
+

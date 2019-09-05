@@ -1,0 +1,24 @@
+<!-- Display of ATTRIBUTES
+			- input: checkbox
+			- fields: ns, ss, hu
+			- displayed as a table
+			-->
+<% if in_mobile_view? %>
+	<div data-role="fieldcontain" class="field_group">
+		<fieldset data-role="controlgroup" data-type="horizontal">
+			<legend>Con Attributes:</legend>
+			<%= check_box_tag :cndp, params[:cndp]%>
+			<%= label_tag 'cndp', 'CNDP' %>
+			<%= check_box_tag :ddhu, params[:ddhu]%>
+			<%= label_tag 'ddhu', 'DDHU' %>
+		</fieldset>
+	</div>
+<% else %>
+    <div class="form" id="con_attributes_div" title='Search by conservatory course attribute. CNDP denotes conservatory courses that count as Arts & Humanities courses.' + '\nDDHU denotes conservatory courses that count as Arts & Humanities courses for the Double Degree program.'>
+      <span class="label search_label">Con. Attribute:</span>
+      <%= check_box_tag :cndp, params[:cndp], false, class: "search_tag" %>
+      <label for="cndp" id="cndp_checkbox">CNDP</label>
+      <%= check_box_tag :ddhu, params[:ddhu], false, class: "search_tag" %>
+      <label for="ddhu" id="ddhu_checkbox">DDHU</label>
+    </div>
+<% end %>

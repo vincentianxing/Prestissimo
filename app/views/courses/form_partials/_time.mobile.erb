@@ -1,0 +1,121 @@
+<!-- display of TIME
+- input: drop down menus
+- fields: start_hour, start_minute, end_hour, end_minute
+- drop down menus displayed to simulate standard time notation
+-->
+
+<% if in_mobile_view? %>
+  <div id="time_slider_outer">
+    <div id="time_slider_div" data-role="rangeslider" class="field_group">
+      <legend>Time:</legend>
+      <%= range_field_tag :start_time_range, params[:start_time_range], :min => 420, :max => 1320, :step=>"5", :value=>"420", "data-highlight" => "true"%>
+      <%= range_field_tag :end_time_range, params[:end_time_range], :min => 420, :max =>"1320", :step=>"5", :value=>"1320", "data-highlight" => "true"%>
+    </div>
+    <input type="text" data-role="none" id="time_start_label" class="ui-shadow-inset ui-body-inherit ui-corner-all ui-slider-input" value="7:00am" disabled />
+    <input type="text" data-role="none" id="time_end_label" class="ui-shadow-inset ui-body-inherit ui-corner-all ui-slider-input" value="10:00pm" disabled />
+    <div id="time_input_div">
+      <%= hidden_field_tag :start_hour %>
+      <%= hidden_field_tag :start_minute %>
+      <%= hidden_field_tag :end_hour %>
+      <%= hidden_field_tag :end_minute %>
+    </div>
+  </div>
+<% else %>
+  <div class="form" id="start_div">
+  <span class="label search_label">Start After:</span>
+  <%= select_tag :start_hour,
+    "<option></option>
+  <option>00</option>
+  <option>01</option>
+  <option>02</option>
+  <option>03</option>
+  <option>04</option>
+  <option>05</option>
+  <option>06</option>
+  <option>07</option>
+  <option>08</option>
+  <option>09</option>
+  <option>10</option>
+  <option>11</option>
+  <option>12</option>
+  <option>13</option>
+  <option>14</option>
+  <option>15</option>
+  <option>16</option>
+  <option>17</option>
+  <option>18</option>
+  <option>19</option>
+  <option>20</option>
+  <option>21</option>
+  <option>22</option>
+  <option>23</option>".html_safe,
+    class: "search_tag",
+      id: "time_drop" %>:
+      <%= select_tag :start_minute,
+      "<option></option>
+  <option>00</option>
+  <option>05</option>
+  <option>10</option>
+  <option>15</option>
+  <option>20</option>
+  <option>25</option>
+  <option>30</option>
+  <option>35</option>
+  <option>40</option>
+  <option>45</option>
+  <option>50</option>
+  <option>55</option>".html_safe,
+    class: "search_tag",
+      id: "time_drop"
+    %>
+    </div>
+    <div class="form" id="end_div">
+    <span class="label search_label">End Before:</span>
+    <%= select_tag :end_hour,
+      "<option></option>
+    <option>00</option>
+    <option>01</option>
+    <option>02</option>
+    <option>03</option>
+    <option>04</option>
+    <option>05</option>
+    <option>06</option>
+    <option>07</option>
+    <option>08</option>
+    <option>09</option>
+    <option>10</option>
+    <option>11</option>
+    <option>12</option>
+    <option>13</option>
+    <option>14</option>
+    <option>15</option>
+    <option>16</option>
+    <option>17</option>
+    <option>18</option>
+    <option>19</option>
+    <option>20</option>
+    <option>21</option>
+    <option>22</option>
+    <option>23</option>".html_safe,
+      class: "search_tag",
+        id: "time_drop"
+        %>:
+        <%= select_tag :end_minute,
+        "<option></option>
+        <option>00</option>
+        <option>05</option>
+        <option>10</option>
+        <option>15</option>
+        <option>20</option>
+        <option>25</option>
+        <option>30</option>
+        <option>35</option>
+        <option>40</option>
+        <option>45</option>
+        <option>50</option>
+        <option>55</option>".html_safe,
+          class: "search_tag",
+            id: "time_drop"
+          %>
+          </div>
+        <% end %>

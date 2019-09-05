@@ -1,0 +1,11 @@
+<!-- Form to add search results to cart -->
+<% if current_cart %>
+	<%= form_tag(cart_path(current_cart.cartid), method: 'put', id: 'cart_add_form', remote: true) do %>
+	  <%= render partial: 'courses/search_results_template', locals: {courses: @courses} %>
+	<% end %>
+<% else %>
+
+	<%= form_tag(carts_path, :method => 'post', id: 'cart_add_form', remote: true) do %>
+	  <%= render partial: 'courses/search_results_template', locals: {courses: @courses} %>
+	<% end %>
+<% end %>

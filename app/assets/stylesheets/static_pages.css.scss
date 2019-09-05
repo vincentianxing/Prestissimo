@@ -1,0 +1,74 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#basics {
+	display: list-item;
+}
+
+/* -------------- SEND QUESTION EMAIL FORM ---------------------------------- */
+/* Class for form itself */
+.q_form {
+	text-align:center;
+}
+
+/* Class for field label text */
+.q_title {
+	display:block;
+	color: $questionsHeader;
+	font-family: $labelFont;
+	font-size:1.5em;
+}
+
+/* ID for message entry box */
+#q_textarea {
+	width:400px;
+	height:200px;
+}
+
+/* Class for form submit button */
+.q_submit {
+	display:block;
+	margin:5px auto;
+}
+
+/* ------------------------------- HELP PAGES ------------------------------- */
+/* Class for an indented paragraph */
+.indent {
+	margin:0;
+	padding:0;
+	margin-left:30px;
+}
+
+/* Class for lists */
+.help_list{
+  padding:20px;
+  li{
+    padding-bottom:10px;
+  }
+  margin:0;
+}
+
+.help_header{
+  margin:0;
+}
+
+.help_links {
+  padding: 0 40px;
+  li{
+    padding-bottom:10px;
+  }
+  list-style:none;
+}
+
+.help_paragraph{
+  margin-bottom:0
+}
+
+#account_reasons{
+  padding-top:0;
+}
+
+#account_steps{
+  padding-left:30px;
+}

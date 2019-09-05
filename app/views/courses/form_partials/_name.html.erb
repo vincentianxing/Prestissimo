@@ -1,0 +1,9 @@
+<!-- display of COURSE NAME
+- input: text field
+- field: cname
+- uses standard text input display
+-->
+<div class="form" id="cname_div" title='Search for course name by keyword.'>
+  <span class="label search_label">Course Name:</span>
+  <%= text_field_tag :cname, params[:cname], class: "smallspread_inputfield search_tag", id: "cname_field" %>
+</div>

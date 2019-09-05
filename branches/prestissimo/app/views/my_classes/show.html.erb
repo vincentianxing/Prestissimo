@@ -1,0 +1,13 @@
+<h1>Cart</h1>
+<%if current_cart && @cart_courses.size > 0%>
+    <p> We have a cart! </p>
+    <%= link_to "Load Cart", search_my_classes_path(current_cart.cartid), remote: true, class: "cart_action_link" %> 
+    <!-- link_to "Load Cart", search_my_class_path(current_cart.cartid), remote: true, class: "cart_action_link" --> 
+
+    <!-- SEARCH RESULTS (rendered in JavaScript, html in ./_search.html.erb) -->
+    <div id="results">
+    </div>
+<% else %>
+    <p>You have no courses in your cart. Add some courses!</p>
+<% end %>
+

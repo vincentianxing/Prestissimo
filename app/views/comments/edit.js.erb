@@ -1,0 +1,8 @@
+// load the comment edit form into the edit div
+var id = <%= @comment.id.to_s %>;
+id = '#comment' + id;
+<% if is_mobile_device? %>
+  $(id).html("<%= escape_javascript( render(partial: 'edit', :formats => [:mobile])) %>");
+<% else %>
+  $(id).html("<%= escape_javascript( render(partial: 'edit')) %>");
+<% end %>

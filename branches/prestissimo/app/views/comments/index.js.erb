@@ -1,0 +1,8 @@
+// display the comments partial
+<% if is_mobile_device? %>
+  $('#comments').html("<%= escape_javascript(render(partial: 'index', :formats => [:mobile])) %>");
+<% else %>
+  $('#comments').html("<%= escape_javascript(render(partial: 'index')) %>");
+<% end %>
+
+$('#comment_textarea').attr('value','');

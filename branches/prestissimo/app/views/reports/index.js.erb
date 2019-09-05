@@ -1,0 +1,5 @@
+<% if is_mobile_device? %>
+  $('#report_index').html("<%= escape_javascript( render(partial: 'index', :formats => [:mobile]) ) %>");
+<% else %>
+  $('#report_index').html("<%= escape_javascript( render partial: 'index' ) %>");
+<% end %>

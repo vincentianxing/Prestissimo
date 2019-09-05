@@ -1,0 +1,45 @@
+<!-- Describes the basic functionality of oprestissmo's course search -->
+
+<% provide(:title, 'Help | Basics') %>
+<h1>Search Help</h1>
+
+<p>The Prestissimo course search offers a lot of functionality, but perhaps all of those search fields can be a little overwhelming. Have no fear! In our series of Search Help articles, we aim to explain how each field works - hopefully we can clear up some confusion!</p>
+
+<p>&nbsp;</p>
+<h2>Search</h2>
+
+<ul id="basics_list" class="help_list">
+  <li>The <strong>Department</strong> selector returns courses being offered by the specified department. If more than one department is selected, the search will return courses that are listed in at least one of the selected departments. All courses are displayed, including Private Readings and Honors listings.</li>
+  <li>The <strong>Course Name</strong> field filters courses by their titles. Search results will have titles that match or contain the query. For example, searching either "Principles" or "Principles of Computer Science" will return the course "Principles of Computer Science."</li>
+  <li>The <strong>Professor</strong> field returns courses being taught by a professor whose name matches or contains the search phrase.</li>
+  <li>The <strong>Semester</strong> selector determines which course catalog to search. The most recently available catalog is the top option.<br/>
+  <strong>Note:</strong> Most course catalogs become available midway through the preceding semester, and Prestissimo updates to the new catalog at this time. Check to make sure you are searching the preferred semester!</li>
+  <li>The <strong>Keyword</strong> search field performs a keyword search of course descriptions, titles, departments, crosslistings, and prerequisites. Entering multiple search terms will return courses that match either all of the terms or any of the terms depending on which you have selected. To search for specific phrases surround queries with single or double quotes.</li>
+  <li>The <strong>Credits</strong> slider filters results by credit amount, inclusive.</li>
+  <li>The <strong>Course Level</strong> slider limits results to the specified course level range, inclusive.</li> 
+  <li>The <strong>Course Meeting Time</strong> slider filters results by the times during which classes meet, inclusive.</li>
+  <li>The <strong>Course Size</strong> slider filters results by the maximum enrollment, inclusive.</li>
+  <li>The <strong>Course Enrollment</strong> slider filters results by the number of students enrolled, according to our most recent data, inclusive.
+  <p class="indent">
+  <br /><strong>NOTE:</strong> prestissimo does not have as up to date data as PRESTO. We get new data every few hours during add/drop and less frequently during the rest of the year. Our database was last updated on <%= courses_last_updated.to_time.in_time_zone.strftime("%B %d, %Y at %I:%M %p") %>
+  </li>
+  <li>The <strong>Days</strong> boxes restrict results to courses offered on the selected days. Checking a day will show all courses that occur on that day. Selecting more than one day will only return courses that occur on every day selected.</li>
+  <li>The <strong>CRN</strong> field searches for courses by CRN. When this field is not blank, all other fields are skipped since there will only be one course with a given CRN. Search terms in the Keyword field will still be highlighted.</li>  
+  <li>The <strong>Natural Science, Social Science, and Humanities</strong> boxes restrict results to classes that are in the specified division of the college. If one division is checked, courses in that division will be shown. Selecting multiple boxes will only return courses that are associated with all of the selected divisions.
+  <li>The <strong>Proficiencies</strong> boxes filter classes by which requirement the classes fulfill. Checking one box will return classes that offer credit for that proficiency, and checking more than one box will return classes that offer all of the selected proficiencies. For example, if both Cultural Diversity and Writing Proficiency are checked, only courses that give both Cultural Diversity and Writing Proficiency will be returned.</li>
+  <li>The <strong>Conservatory Attributes</strong> boxes restrict results to classes that have the specified Conservatory attribute. <strong>CNDP</strong> denotes Conservatory courses which count as Arts &amp; Humanities courses. <strong>DDHU</strong> denotes Conservatory courses which count as Arts &amp; Humanities courses for the Double Degree Program.</li>
+  <li>The <strong>Full Course, Half Course, and Co-curricular</strong> boxes filters results by number of credits as specified by the new degree requirements.</li>
+  <li>The <strong>Modules</strong> boxes filter courses by the module of the semester in which they are offered.
+  <p class="indent">
+  <br /><strong>Full:</strong> the course runs for the entirety of the semester.
+  <br /><strong>1st Module:</strong> the course runs from the start of the semester until the week of Fall/Spring Break.
+  <br /><strong>2nd Module:</strong> the course runs from the week of Fall/Spring break until the end of the semester.
+  <br /><strong>Special:</strong> a class with various, often irregular meeting times.
+  </p>
+  </li>
+</ul>
+
+For any unanswered questions, please contact
+us at 
+<a href="mailto:info@oprestissimo.com">info@oprestissimo.com</a>.
+

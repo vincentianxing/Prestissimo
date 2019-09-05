@@ -1,0 +1,242 @@
+//Mobile javascript
+<% if in_mobile_view? || session[:mobile_view] %>
+// Renders the course results partial and controls the description expands
+//////////////////////////////////////////////////////////////////////////
+
+// Ajax function to load SEARCH RESULTS onto the page
+<% logger.debug "The session variable is #{session[:mobile_view]}" %>
+  <% logger.debug "The session variable is #{session[:mobile_view]}" %>
+	$('#results').html("<%= escape_javascript(render(partial: 'search', :formats => [:mobile])) %>");
+	$('.optional').addClass('enhanced');
+
+// Set the STATUS message
+//var course_count = <%= @courses.size() %>;
+<% @counter ||= 0 %>
+var course_count = <%= @counter %>;
+var status_string = "";
+
+// If no results, status reflects that
+if (course_count == 0) {
+    status_string = "No course results found.";
+}
+// Otherwise, list number of results (and properly pluralize!)
+else {
+    status_string = course_count + (course_count == 1 ? " result " : " results ") + "found. Click a course to expand details.";
+}
+
+// Display the message
+$('#status_bar').text(status_string);
+
+$('.course_collapsible').collapsible();
+$('.expanded_course').listview();
+
+///////////////////////////////////////////////////////////////////////
+// Not in mobile view
+//////////////////////////////////////////////////////////////////////
+<% else %>
+
+// Renders the course results partial and controls the description expands
+////////////////////////////////////////////////////////////////////
+
+// Ajax function to load SEARCH RESULTS onto the page
+<% logger.debug "The session variable is #{session[:mobile_view]}" %>
+<% if in_mobile_view? || session[:mobile_view] %>
+  <% logger.debug "The session variable is #{session[:mobile_view]}" %>
+	$('#results').html("<%= escape_javascript(render(partial: 'search', :formats => [:mobile])) %>");
+	$('.optional').addClass('enhanced');
+<% else %>
+  $('#results').html("<%= escape_javascript(render(partial: 'courses/search')) %>");
+<% end %>
+
+// Set the STATUS message
+//var course_count = <%= @courses.size() %>;
+<% @counter ||= 0 %>
+var course_count = <%= @counter %>;
+var status_string = "";
+
+// If no results, status reflects that
+if (course_count == 0) {
+    status_string = "No course results found.";
+}
+// Otherwise, list number of results (and properly pluralize!)
+else {
+    status_string = course_count + (course_count == 1 ? " result " : " results ") + "found. Click a course to expand details.";
+}
+
+// Display the message
+$('#status_bar').text(status_string);
+
+// -- Print functions -----------------------------------------------
+$('link[href*="print_expanded"]').prop("disabled", false); 
+$('link[href*="print_expanded"]').prop("disabled", true);
+$('link[href*="print_collapsed"]').prop("disabled", true);
+$('link[href*="print_collapsed"]').prop("disabled", false);
+
+// Prevents a bug where the print css stylesheets don't disable/enable properly. Mad janky.
+$('#print_button').hover(function() { 
+  $('link[href*="print_expanded"]').prop("disabled", false); 
+  $('link[href*="print_expanded"]').prop("disabled", true);
+  $('link[href*="print_collapsed"]').prop("disabled", true);
+  $('link[href*="print_collapsed"]').prop("disabled", false);
+});
+
+// Print button prints course search results using either an expanded
+// or collapsed print stylesheet depending on whether check box is checked.
+$('#print_button').click(function() {
+
+
+  if (course_count == 0) {
+    alert("No course results to print!");
+  }
+  else {
+    // Remove the styling that's messing up the printing style
+    $('.descrip').removeAttr("style");
+
+    $('link[href*="print.css"]').prop("disabled", true);
+    if ($("#print_with_descriptions").is(':checked')) {
+      $('link[href*="print_collapsed"]').prop("disabled", true);
+      $('link[href*="print_expanded"]').prop("disabled", false);
+      window.print();
+      $('link[href*="print_expanded"]').prop("disabled", true);
+      $('link[href*="print_collapsed"]').prop("disabled", false);
+    }
+    else if (!$("#print_with_descriptions").is(':checked')) {
+      $('link[href*="print_collapsed"]').prop("disabled", false);
+      $('link[href*="print_expanded"]').prop("disabled", true);
+      window.print();
+      $('link[href*="print_expanded"]').prop("disabled", false);
+      $('link[href*="print_collapsed"]').prop("disabled", true);
+    }
+    else {
+      window.print();
+    }
+    $('link[href*="print.css"]').prop("disabled", false);
+
+    // Add the styling back in
+    if ($('.selected').length) {
+      var number = $('.selected').attr('id').split("_")[1];
+      $('#desc_'+number).attr('style', 'display:table-row');
+    }
+
+  }
+});
+
+// Remove duplicate course descriptions info (leaves just the last one)
+$("#results tr.course_continued").prev("tr.descrip").each(function(index) {
+  conflict_messages = $(this).find("span.course_conflict");
+
+  // skip over the next item (should be a course_continued) to the next description
+  my_description = $(this).next("tr.course_continued").next("tr.descrip").find("div.first_div div.first_div");
+
+  // add the old messages to the next description block
+  conflict_messages.each(function() {
+    my_description.prepend( '<br>\n' );
+    my_description.prepend( $(this) );
+  });
+
+  my_location = $(this).next("tr.course_continued").next("tr.descrip").find("span.location");
+  oldHTML = my_location.html();
+  my_location.html($(this).find("span.location").html() + '<br>' + oldHTML);
+
+  // and now remove this description block
+  $(this).remove();
+  
+});
+
+$("tr.evenconflict td.crn, tr.oddconflict td.crn").each(function(index) { 
+  my_crn = $(this).text(); 
+  $("tr.course_entry:has(td.crn:contains("+my_crn+"))").each(function() {
+    $(this).addClass("conflict_continued");
+  });
+});
+
+// Clear out fields that are duplicated in the previous line (same crn)
+$("#results tr.course_continued td.chkbox").children().remove();
+$("#results tr.course_continued td.crn").text('');
+$("#results tr.course_continued td.dept").text('');
+$("#results tr.course_continued td.cnum").text('');
+$("#results tr.course_continued td.cname").text('');
+$("#results tr.course_continued td.profes").text('');
+$("#results tr.course_continued td.enroll").html('');
+$("#results tr.course_continued td.profic").children().remove();
+
+// turn id into class name and store for easy retrieval
+$("#results tr.course_entry").each(function(index) {
+  $(this).addClass($(this).attr("id"));
+  $(this).attr("course_master_id", $(this).attr("id"));
+});
+
+// remove id from continued courses so that we only have one
+$("#results tr.course_continued").each(function(index) {
+  $(this).removeAttr("id");
+});
+
+// Delete uneeded rows for cancelled courses
+$('tr.course_continued td.cancel_message').parent().remove();
+
+// add click handler to all <td> in courses table other than checkbox and description row
+var table_rows = 'tr.course_entry td:not(.chkbox)';
+
+// Make it so that related rows all display hover behavior
+$(table_rows).hover(function() {
+
+    // currently 'hovered' is the same as 'selected', but we'll use a diff name for future fun
+    $('.'+$(this).parent().attr('course_master_id')).toggleClass('hovered');
+
+});
+
+$(table_rows).click(function() {
+    // get the number of the desc to show/hide
+    var num = $(this).parent().attr('course_master_id').split('_')[1];
+
+    // show/hide the desc
+    $('#desc_'+num).toggle('fast');
+
+    // hilight/unhilight clicked class row (and relevant neighbors)
+    $('.'+$(this).parent().attr('course_master_id')).toggleClass('selected');
+});
+
+// -- add some floating title text to selected courses ------------------------
+function isBlank(str) { return ( typeof str === 'undefined' || 0 === str.length || /^\s*$/.test(str)); }
+
+jQuery.fn.add_title_text = function(new_text) {
+  return this.each( function(index){
+    // grab the old text
+    var new_title = $(this).prop('title');
+
+    // add some newlines if needed
+    if ( ! isBlank(new_title) ) {
+      new_title += "\n\n"; 
+    }
+
+    // add the new text and save it back
+    new_title += new_text;
+    $(this).prop('title', new_title);
+  });
+}
+
+// Near capacity courses
+$( 'tr.full td.chkbox, ' +
+   'tr.full td.enroll' ).add_title_text("This class is at or above 80% of capacity");
+// Course conflicts
+$( 'tr.evenconflict td.days_off, ' +
+   'tr.evenconflict td.time, '    +
+   'tr.oddconflict td.days_off, ' +
+   'tr.oddconflict td.time' ).add_title_text("This class meeting conflicts with something in your cart\n(click to see more information)");
+// Already in the cart
+$( 'tr.evenincart.course_entry td, ' +
+   'tr.oddincart.course_entry  td'      ).add_title_text("This class is already in your cart");
+
+// -- Hide courses functions ----------------------------------------
+$('#hide_conflicts:checkbox').change(function(e) {
+  i_am_checked = $(this).prop('checked');
+  if (i_am_checked) {
+    $('.conflict_continued').hide('fast').removeClass('hovered').removeClass('selected');
+    $('.course_description span.course_conflict').closest('tr.descrip').hide('fast');
+  } else {
+    $('.conflict_continued').show('fast');
+    //$('.course_description span.course_conflict').closest('tr.descrip').show('fast');
+  }
+});
+
+<% end %>
