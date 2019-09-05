@@ -16,6 +16,8 @@ gem 'jquery-ui-themes'
 gem 'utf8-cleaner'
 gem 'redcarpet'
 
+gem 'test-unit', '~> 3.0' # Added for rails console
+
 
 gem 'net-ldap'
 
