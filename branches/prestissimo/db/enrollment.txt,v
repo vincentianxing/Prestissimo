@@ -1,0 +1,25 @@
+head	1.1;
+access;
+symbols;
+locks
+	apache:1.1; strict;
+comment	@# @;
+
+
+1.1
+date	2012.07.27.20.10.53;	author apache;	state Exp;
+branches;
+next	;
+
+
+desc
+@Enrollment info from courses.txt
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@

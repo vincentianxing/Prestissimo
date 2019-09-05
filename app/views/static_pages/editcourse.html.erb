@@ -1,0 +1,53 @@
+<!-- Explains how to use the course cart -->
+
+<% provide(:title, 'Help | Editing Courses') %>
+<h1>Editing Courses</h1>
+<p>
+All faculty members can now add or change information about their courses to better communicate with students. Learn about the tools you can use to edit your courses below. 
+</p>
+
+<p>&nbsp;</p>
+<h2>My Courses</h2>
+<p>All professors now have a <strong><%= link_to "My Courses", professor_courses_path(:fname=>current_user.fname, :lname=>current_user.lname) if signed_in? && faculty_user?(current_user) %><%= "My Courses" unless signed_in? && faculty_user?(current_user) %></strong> page that can be found in the <strong>Account</strong> drop-down menu. This page offers easy edit access to the courses you are teaching and the courses offered by your department(s) this semester, as well as every course in your cart. You can also edit any course from any semester from the home page. To do this, just search the course as normal and click the <strong>Edit course</strong> link under the enrollment numbers in the expanded course description.</p>   
+
+<p>&nbsp;</p>
+<h2>The Edit Courses Page</h2>
+<p>
+On an <strong>Edit Course</strong> page, you can add and update information about a course. This page begins with a preview of the course, as it looks in the search results, that can be updated by clicking the <strong>Save Changes</strong> button at the bottom of the page. Under the course preview is an <strong>Add to Cart</strong> link so you can save the course to your cart and your <strong><%= link_to "My Courses", professor_courses_path(:fname=>current_user.fname, :lname=>current_user.lname) if signed_in? && faculty_user?(current_user) %><%= "My Courses" unless signed_in? && faculty_user?(current_user) %></strong> page for later.</p>
+</p>
+
+  <p>&nbsp;</p>
+  <h3>Note</h3>
+  <p>If there is anything you'd like students to know about the course that is not already shown, then use the <strong>Course Note</strong> field to add a note to display with the course description. This field is also a great place to put search keywords. If you want the note to be visible to students, then make sure to click the check box next to <strong>Display note in search results</strong>. Even if the note is hidden, any words put in the note will still be searchable with the keyword search.</p>
+
+<p>&nbsp;</p>
+<h3>Description</h3>
+<p>
+If you feel the official course description leaves something to be desired, then you can use the <strong>Course Description</strong> field to provide your own. Below the text box, there are two sets of buttons which control the description. The first set allows you to choose what description you want to be displayed on the site. The second allows you to choose what you wish to be displayed if we get a new description from the registrar's office. Choosing to display one of the two descriptions will not erase the other, and you can return to edit the descriptions at any time.</p>
+<p>
+Directly below the text area for your description, there is a read-only text area that contains the current description we have from the registrar. Since it is read-only, you can't edit it but you can copy and paste from it or use it as inspiration for your custom description.</p>
+
+<p>&nbsp;</p>
+<h3>Hiding a Course</h3>
+<p>
+The <strong>Hide this course...</strong> checkbox lets you to hide the course from students' searches. The course will be visible to faculty, but marked as <strong>hidden</strong>. If a course is already in a student's cart when it is hidden it will stay in the cart, but it will be marked as hidden similarly to when a course is cancelled.   
+</p>
+
+<p>&nbsp;</p>
+<h3>Email Notifications</h3>
+<p>
+The <strong>Notify me of changes...</strong> checkbox allows you to subscribe to changes to the course. Throughout the day we check if the course has been updated, either by information from the registrar's office or another faculty member, and will let you know what changed. If nothing changed, you won't receive an email! You can unsubscribe at any time by unchecking this box and saving your changes.  
+</p>
+
+<p>&nbsp;</p>
+<h3>Other Sections</h3>
+<p>
+At the bottom of the edit page, all other sections of the course will be displayed with their CRN, section number, format, and meeting time. Select any other sections you want to change in this table. They will update when you click the <strong>Save Changes</strong> button. Sections whose editable fields are currently identical will be checked automatically.
+
+</p>
+
+<div style="margin-top:25px">
+For any unanswered questions, please contact
+us at 
+<a href="mailto:info@oprestissimo.com">info@oprestissimo.com</a>.
+</div>

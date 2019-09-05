@@ -1,0 +1,102 @@
+<!--
+The page to display the course hub
+will show its courses, comments, and professors
+-->
+<% @hubcourse = @vals[:hubcourse] %>
+<% @comments = @vals[:comments] %>
+<% @courses = @vals[:courses] %>
+<% @professors = @vals[:professors] %>
+
+<% provide(:title, @hubcourse.hub_id) %>
+
+<div id="profile">
+  <h1 id="hc_h1">
+    <%= @courses.first.dept+" "+@courses.first.cnum.to_s %>
+    <span class="hc_dept"><%= link_to @hubcourse.department.dept_long, department_path(@hubcourse.department.dept) %></span>
+  </h1>
+  <h2 class="hc_h2">
+    <%= @courses.first.title %>
+  </h2>
+</div>
+
+<h2 class="hc_h2" id="desc_h2">Past Professors:</h2>
+<div id="hc_profs">
+  <ul>
+    <% @professors.each do |p| %>
+      <% if !(p.nil?) && !(p.lname.include?("Staff")) %>
+          <li><%= link_to "#{p.fname} #{p.lname}", show_professor_path(fname: p.fname, lname: p.lname), class: "name_link" %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+
+<h2 class="hc_h2" id="desc_h2">Recent Description:</h2>
+<div id="hc_desc">
+  <%= simple_format(@courses.first.descrip) %>
+</div>
+
+<h2 class="hc_h2" id="courses_h2">Past Courses:</h2>
+<div id="hc_courses">
+  <ul>
+    <% @courses.each do |c| %>
+      <% unless c.status == "cancelled" || (c.status == "hidden" && (!signed_in? || !faculty_user?(current_user))) %>
+	<li>
+	<p><%= translate_semester(c.semester) %></p>
+	<p><%= c.short_title %></p>
+	<p>Taught By: <%= c.professor %></p>
+	<% if current_cart && !in_mobile_view? %>
+	  <p><%= link_to "Add to Cart", add_cart_path(current_cart.cartid,c.semcrn, courses:[c.semcrn]), method: 'put', remote: true %></p>
+	<% end %>
+  <p>
+    <% if false # Syllabuses not really ready for prime time %>
+      <% if !c.syllabus || c.syllabus.path == nil %>
+        <%= link_to "Add Syllabus", new_syllabus_path(c.id) %>
+      <% else %>
+        <%= link_to "Syllabus", syllabus_path(c.syllabus.id) %>
+      <% end %>
+    <% end %>
+	</p>
+	</li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+
+<!-- Script to add a parameter to the csv link based on the enrollment checkbox below it -->
+<script>
+  $(document).ready(function() {
+    $("#hub_csv_check").change(function() {
+      if($(this).is(":checked")) {
+        $("#hub_csv_link a").attr('href', function(i, h) {
+          return h + (h.indexOf('?') != -1 ? "" : "?enroll=1");
+        });
+      }
+      else {
+        $("#hub_csv_link a").attr('href', function(i, h) {
+          var temp = h.split('?');
+          return "" + (h.indexOf('?') == -1 ? h : temp[0]);
+        });
+      }
+    });
+  });
+</script>
+<div id="hub_csv_link">
+  <p>
+  <%= link_to "Download detailed information on each time #{@courses.first.title} has been offered since fall 2009", params.merge(:format => :csv, :enroll => "1"), :target => "_blank" %>
+  <br>
+  <%= check_box_tag 'hub_csv_check', 1, true %>
+  Include courses with 0 enrollment
+  </p>
+</div>
+
+<div id="comment_section">
+  <div id="comments">
+    <%= render partial: 'comments/index', locals: {commentable: @hubcourse} %>
+  </div>
+  <!-- comment submission form -->
+  <% if current_user.role == "Student" %>
+    <div id="comment_form">
+      <%= render partial: 'comments/form', locals: {commentable: @hubcourse} %>
+    </div>
+  <% end %>
+</div>

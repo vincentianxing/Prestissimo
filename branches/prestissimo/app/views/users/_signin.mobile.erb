@@ -1,0 +1,44 @@
+
+<!--
+    Sign in form for a user
+    uses a form_for to create a session (sessions#create)
+    -->
+
+<h1>Log In</h1>
+<div class="sign_form">
+  <div id="login_box">
+    <%= form_for(:session, url: sessions_path) do |f| %>
+    <span class="su_label">
+      <%= f.label :email, "Oberlin Email" %>
+    </span>
+    <div class="su_textfield">
+      <% if @obie_email %> 
+	<%= f.text_field :email, value: @obie_email, class: "inputfield_alt1" %>
+      <% else %>
+	<%= f.text_field :email, class: "inputfield_alt1" %>
+      <% end %>
+    </div>
+
+    <span class="su_label">
+      <%= f.label :password %>
+    </span>
+    <div class="su_textfield">
+      <%= f.password_field :password, class: "inputfield_alt1" %>
+    </div>
+
+    <div id="signin_submit">
+	    <% if cookies[:cart] %>
+		    <%= f.submit "Sign in", data: { confirm: "If you sign in now, the displayed course cart will be merged with any courses you have previously saved. Continue?"} %>
+	    <% else %>
+		    <%= f.submit "Sign in" %>
+	    <% end %>
+    </div>
+    <% end %>
+    <!-- Path for user to receive password update email -->
+    <%= link_to "Forgot Password", forgot_pass_path %>
+    <% if current_cart %>
+	    <%= link_to "Empty Cart", cart_path(current_cart.cartid), method: 'delete', remote: true, id: 'remove_cart_link' %>
+    <% end %>
+  </div>
+</div>
+

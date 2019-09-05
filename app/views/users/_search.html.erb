@@ -1,0 +1,43 @@
+
+<!--
+Table to display search results (the returned array of users)
+has links to delete users if the current_user is an admin
+the current user is not in the result array
+-->
+
+<% if !(@usrresults.nil?) %>
+  <h2>User Profiles</h2>
+  <table class="userlookup_header" id="headers">
+    <tr id="ultable_labels">
+      <td>Name</td>
+      <td>Email</td>
+      <td>Role</td>
+      <% if current_user.admin? %>
+        <td>Delete</td>
+      <% end %>
+    </tr>
+  </table>
+  <div id="userlookup_scroll">
+  <table class="results userlookup_table">
+    <% @usrresults.each_with_index do |r, index| %>
+        <% if index % 2 === 0 %>
+          <tr class="even" >
+            <% else %>
+          <tr class="odd" >
+          <% end %>
+          <td><%= link_to r.fname + ' ' +r.lname, user_path(r.email.split('@')[0]) %></td>
+          <td><%= r.email %></td>
+          <td><%= r.role %></td>
+          <!-- admin can see/click delete link -->
+          <% if current_user.admin? %>
+            <td>
+              <%=
+                link_to "delete", delete_user_path(r.id), method: :delete, data: {confirm: "You sure?" }
+              %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </div>
+  </table>
+<% end %>

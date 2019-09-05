@@ -1,0 +1,20 @@
+<h2 class="people_h2">Search People</h2>
+
+<!-- SEARCH FORM: contains keyword search, role drop down -->
+<%= form_tag user_search_path, :controller => 'users', :action => 'search', :method => 'get', remote: true, class: 'search_form' do %>
+  <p class="people_h2_subheader">Search for students, faculty, or commenter handles.</p>
+  <div class="people_div">
+    <span class="people_label">Find Someone:</span>
+    <%= search_field_tag :person, params[:person], class: "default_inputfield", id: "finduser_field" %>
+  </div>
+
+  <div class="people_submit">
+    <%= submit_tag "Search", :name => nil, class: "search_button" %>
+    <% if in_mobile_view? %>
+      <input type="reset" value="Reset" class="mobile_reset">
+    <% else %>
+      <!-- <input type="reset" value="Reset">-->
+    <% end %>
+  </div>
+
+<% end %>

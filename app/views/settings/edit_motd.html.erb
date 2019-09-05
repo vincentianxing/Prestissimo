@@ -1,0 +1,45 @@
+<div id="motd">
+
+  <div id="motd_container">
+    <div id="motd_bar">
+      <span>Old Message of the Day</span>
+    </div>
+    <div class="motd">
+      <%= motd.html_safe %>
+      <p><br>
+      <% if signed_in? && faculty_user?(current_user) %>
+        <strong>Professors:</strong> We added new features just for you! You can now add information to your courses. <%= link_to "Click here", help_editcourse_path %> to read more or visit your <%= link_to "My Courses", professor_courses_path(:fname=>current_user.fname, :lname=>current_user.lname) %> page, which can also be accessed under the Account drop down menu.
+      <% elsif signed_in? %>
+        We added new features just for professors. They can now add information to their courses. Be sure to let your professors know! 
+      <% else %>
+        <strong>Professors:</strong> We added new features just for you! You can now add information to your courses. Login to learn more!
+      <% end %>    
+      </p>
+    </div>
+  </div>
+
+  <div id="newmotd">Set new message of the day:</div>
+  <%= form_tag set_motd_settings_path, method: 'put' do %>
+    <%= text_area_tag :motd, params[:motd], value: @motd, class: "default_inputfield", id: "motd_field" %>
+    <%= submit_tag "Set MOTD",class:"search_button",id:"set_motd" %>
+  <% end %>
+
+  <div id="motd_container">
+    <div id="motd_bar">
+      <span>Preview</span>
+    </div>
+    <div class="motd">
+      <p id="motd_preview"></p>
+      <p><br>
+      <% if signed_in? && faculty_user?(current_user) %>
+        <strong>Professors:</strong> We added new features just for you! You can now add information to your courses. <%= link_to "Click here", help_editcourse_path %> to read more or visit your <%= link_to "My Courses", professor_courses_path(:fname=>current_user.fname, :lname=>current_user.lname) %> page, which can also be accessed under the Account drop down menu.
+      <% elsif signed_in? %>
+        We added new features just for professors. They can now add information to their courses. Be sure to let your professors know! 
+      <% else %>
+        <strong>Professors:</strong> We added new features just for you! You can now add information to your courses. Login to learn more!
+      <% end %>    
+      </p>
+    </div>
+  </div>
+
+</div>

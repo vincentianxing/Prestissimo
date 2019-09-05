@@ -1,0 +1,7 @@
+// close the dialog
+$('#report_dialog').dialog('close');
+var result_message = 'Successfully filed report';
+<% if @message %>;
+	result_message = "<%= @message %>";
+<% end %>;
+alert(result_message);

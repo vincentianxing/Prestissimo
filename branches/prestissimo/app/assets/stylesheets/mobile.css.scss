@@ -1,0 +1,543 @@
+/*------------------- Header Formatting ---------------------*/
+
+#logo{
+  width:70%;
+  float:left;
+}
+
+#menu_button{
+  float:right;
+  right:5px;
+}
+
+#header {
+  overflow:visible;
+  h1{
+    display:none;
+}
+li {
+  list-style:none;
+}
+ul { margin: 0; padding: 0; }
+}
+
+#menu_list{
+  li{
+    display:block;
+}
+display:none;
+position:absolute;
+z-index:500;
+width:100%;
+}
+
+#dept_menu_list{
+  li{
+    display:block
+}
+display:none;
+width:100%;
+margin:-15px;
+}
+
+/*------------------- Global Formatting ---------------------*/
+
+#content{
+  overflow-x:visible;
+  a {
+    text-decoration:none;
+    color:#B70000;
+  }
+}
+
+.no_bullet_list {
+  list-style:none;
+}
+
+#status_bar{
+  text-align:center;
+  padding:2%;
+}
+
+li {
+  list-style:none;
+}
+
+.ui-body-c, .ui-overlay-c{
+  text-shadow:none;
+}
+
+/*------------------- Course Formatting ---------------------*/
+
+
+
+#hide_search_box{
+  display:none;
+}
+
+#search_help{
+  display:none;
+}
+
+#adv_search{
+  display:none;
+}
+
+#adv_link{
+  display:none;
+}
+
+#adv_helper{
+  margin:0 auto;
+  text-align:center;
+}
+
+.field_group{
+  border:0;
+  padding-bottom:0;
+}
+
+.mobile_fieldset{
+  position:relative;
+}
+/*
+.field_box{
+position:absolute;
+top:0;
+right:0;
+}
+ */
+table{
+  width:100%;
+}
+
+/* ------------------------- Course Search Results ------------------ */
+
+#headers a{
+  text-decoration:none;
+}
+
+.enhanced {
+  display:none;
+}
+
+.course_entry{
+  text-align:center;
+}
+
+.descrip {
+  background-color:#820000;
+  color:white;
+  display:none;
+}
+
+.desc_spec{
+  display:block;
+  margin:0 1%;
+  padding:0;
+}
+div#content div.desc_spec {
+  clear: both;
+
+  margin:4px 6px;
+  padding:0;
+
+  //outline: thin solid yellow;
+
+  a {
+    font-weight:bold;
+    color: #eeb52e;
+    text-decoration: underline; 
+  }
+  a:hover {
+    color:#ffd57E;
+  }
+
+
+  .professors, .crn {
+    width: 300;
+    display: block;
+    float: right;
+  }
+
+  .location,
+  .enrollment,
+  .semester,
+  .section {
+    clear: right;
+    text-align: right;
+    float: right;
+    display: block;
+  }
+  .semester { clear: none; }
+  .location { margin: 0.5em 0 0.2em; }
+
+  div.crosslist,
+  .module {
+    display: block;
+    margin-top: 1.0em;
+  }
+
+  .enrollment_cur,
+  .enrollment_max,
+  .crosslist,
+  .location,
+  .grading,
+  .proficiencies,
+  .credits {
+    display: block;
+  }
+  
+
+  .course_description, .course_notes {
+    display: block;
+    margin-top: 0.5em;
+  }
+
+
+}
+/* odd-indexed rows in search results table */
+.odd		{
+  background-color:#eeeeee;
+  background: -moz-linear-gradient(top, #EEEEEE, #DDDDDD);	/* firefox */
+  background: -webkit-gradient(linear, left top, left bottom,	/* chromium, safari */
+  from(#EEEEEE), to(#DDDDDD));
+  background: -ms-linear-gradient(top, #EEEEEE, #DDDDDD);	/* IE */
+  border-bottom: 1px #bbbbbb solid !important;
+}
+
+/* even-indexed rows in search results table */
+.even		{
+  background-color:#cccccc;
+  background: -moz-linear-gradient(top, #CCCCCC, #BBBBBB);	/* firefox */
+  background: -webkit-gradient(linear, left top, left bottom,	/* chromium, safari */
+  from(#CCCCCC), to(#BBBBBB));
+  background: -ms-linear-gradient(top, #CCCCCC, #BBBBBB);	/* IE */
+  border-bottom: 1px #bbbbbb solid !important;
+}
+
+/* ------------------------- People Search -------------------------- */
+
+#ultable_labels{
+  font-weight:bold;
+}
+
+#name_header{
+  text-align:left;
+}
+
+/* ------------------------- Hub Course Search ---------------------- */
+
+#hc_courses{
+  p{
+    padding:0;
+    margin:0;
+  }
+  li {
+    padding-bottom:3%;
+  }
+
+}
+
+/* ------------------------- Comments ------------------------------- */
+
+
+/* Class given to div for entire comment box
+Contains title bar span, as well */
+.comment_area {
+  background-color:#ddd;
+  margin-bottom:3px;
+  margin-left:auto;
+  margin-right:auto;
+  border-radius:3px;
+}
+
+/* Class for span containing both handle
+and the edit comment link */
+.handle {
+  display:block;
+  background-color:#ccc;
+  font-weight:bold;
+  padding:4px;
+  border-radius:3px 3px 0 0;
+  outline:none;
+}
+
+/* Class used to format timestamp on comments */
+.posted_at {
+  font-weight:normal;
+  font-style:italic;
+  font-size:small;
+}
+
+/* class given to span containing the link to
+edit a comment */
+.edit_comment_link {
+  font-weight:normal;
+  font-size:14px;
+  float:right;
+}
+
+/* class given to paragraph of text stating
+a comment has been edited */
+.edited_comment {
+  padding:0 8px 0 8px;
+  font-size:14px;
+  font-style:italic;
+}
+
+/* class given to body text of comment
+forces word wrapping even when no whitespace present */
+.comment_text {
+  width:95%;
+  margin-left:auto;
+  margin-right:auto;
+  word-wrap:break-word;
+}
+
+/* Class given to div containing all of the voting stuff.
+Determines the position. */
+.vote_div {
+	text-align:right;
+	padding-right:5px;
+	padding-bottom:5px;
+}
+
+/* Class given to div surrounding the up vote arrow and 
+vote count. Forms the white box */
+.upvote_div {
+	margin:0;
+	margin-bottom:3px;
+	padding:2px 4px;
+	background:white;
+	border-radius:3px;
+	display:inline-block;
+}
+
+/* Class given to div surrounding the down vote arrow
+and vote count. Forms the white box */
+.downvote_div {
+	margin:0;
+	margin-bottom:3px;
+	margin-right:3px;
+	border-radius:3px;
+	padding:2px 4px;
+	background:white;
+	display:inline-block;
+}
+
+/* Class given to paragraph surrounding the up vote count */
+.up_text {
+	display:inline;
+	margin:0;
+	padding:0;
+	color:green;
+}
+
+/* Class given to paragraph surrounding the down vote count */
+.down_text {
+	display:inline;
+	margin:0;
+	padding:0;
+	color:red;
+}
+
+/* ID of DIV that makes the red voting triangle */
+#redtri {
+	display:inline-block;
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 10px solid #dc2727;
+	&:hover {
+		border-top:10px solid gray;
+	}
+}
+
+/* ID of DIV that makes the green voting triangle */
+#greentri {
+	display:inline-block;
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid green;
+	&:hover {
+		border-bottom:10px solid gray;
+	}
+}
+
+/* ID of DIV that makes down-facing grey arrows */
+#greytri-down {
+	display:inline-block;
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 10px solid gray;
+	&:hover {
+		border-top:10px solid #dc2727;
+	}
+}
+
+/* ID of DIV that makes up-facing grey arrows */
+#greytri-up {
+	display:inline-block;
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid gray;
+	&:hover {
+		border-bottom:10px solid green;
+	}
+}
+
+.reply {
+	margin-bottom:3px;
+	border-radius:3px;
+}
+
+/* Class for span containing both handle
+		and the edit reply link */
+.reply_handle {
+	display:block;
+	background-color:#ccc;
+	font-weight:bold;
+	padding:4px;
+	border-radius:3px 3px 0 0;
+	outline:none;
+	margin-top:3px;
+	margin-left:92px;
+}
+
+/* Class for span containing the text of the reply */
+.reply_body {
+	background-color:#ddd;
+	display:block;
+	padding:4px;
+	padding-left:8px;
+	padding-right:8px;
+	margin-left:92px;
+	border-radius:0 0 3px 3px;
+}
+
+/* Class given to div containing all of the voting stuff.
+Determines the position. */
+.reply_vote_div {
+	text-align:right;
+}
+
+.add_reply {
+	margin-bottom:3px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/* ID of reply text field */
+#reply_textarea {
+	display:block;
+	height:100px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/* ID of reply label text */
+#reply_label {
+	display:block;
+	margin-top:4px;
+	margin-bottom:1px;
+	color: #820000;
+	font-size: 18px;
+	font-family: Lusitana;
+	font-weight:bold;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/* ID of reply submit tag */
+#reply_submit_box {
+	text-align:right;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/* class of reply to post link, at bottom of each comment */
+.reply_link {
+	float:left;
+	padding:6px 0 0 8px;
+}
+
+/* ------------------------- Setting Page --------------------------- */
+
+#delete_button{
+  background:#c1272d;
+}
+
+#usr_update_form .settings_inputfield{
+  margin-left:20%;
+  width:auto;
+}
+
+.settings_inputfield#settings_info{
+  bottom:0;
+  width:64%;
+}
+
+/* ------------------------------- HELP PAGES ------------------------------- */
+/* Class for an indented paragraph */
+.indent {
+	margin:0;
+	padding:0;
+	margin-left:30px;
+}
+
+/* Class for lists */
+.help_list{
+  padding:20px;
+  li{
+    padding-bottom:10px;
+  }
+  margin:0;
+}
+
+.help_header{
+  margin:0;
+}
+
+.help_sub_list{
+  color:#B21522;
+  font-size:large;
+}
+.help_links {
+  li{
+    padding-bottom:10px;
+  }
+  list-style:none;
+}
+
+.help_paragraph{
+  margin-bottom:0
+}
+
+#account_reasons{
+  padding-top:0;
+}
+
+#account_steps{
+  padding-left:30px;
+}
+/* ------------------------- Footer Formatting ---------------------- */
+
+.ui-footer .ui-btn{
+  margin: 2% 0 2% -15px;
+  border:0;
+  }
+  #labeldiv{
+    display:inline;
+}
+
+footer p{
+  margin: 1%;
+}

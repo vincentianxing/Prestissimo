@@ -1,0 +1,16 @@
+<!-- display of DEPARTMENT
+- input: drop down menu
+- fields: dept
+- displayed as a large drop down menu, listing all departments
+- does not currently search for multiple departments
+-->
+<div class="form ui-alt-icon" id="dept_div">
+     <label for="dept" class="label search_label">Department:</label>
+<!--	<span class="label search_label">Department:</span> -->
+	<% query = "<option></option>" %>
+	<% Department.all.sort_by{|name| name.dept}.each do |d| %>
+    <% query << "<option value='#{d.dept}'>#{d.dept}: #{d.dept_long}</option>" %>
+	<% end %>
+
+	<%=select_tag :dept, query.html_safe,	class: "search_tag", id: "dept_drop" %>
+</div>

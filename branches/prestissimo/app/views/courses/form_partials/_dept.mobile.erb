@@ -1,0 +1,14 @@
+<!-- display of DEPARTMENT
+- input: drop down menu
+- fields: dept
+- displayed as a large drop down menu, listing all departments
+-->
+<div class="form" id="dept_div">
+	<span class="label search_label">Department:</span>
+	<% query = "<option></option>" %>
+	<% Department.all.each do |d| %>
+		<% query << "<option>"+d.dept+"</option>" %>
+	<% end %>
+
+	<%=select_tag :dept, query.html_safe,	class: "search_tag", id: "dept_drop" %>
+</div>

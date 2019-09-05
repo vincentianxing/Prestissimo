@@ -1,0 +1,34 @@
+<!-- display of MODULE
+- input: radiobuttons
+- fields: mod1, mod2, full, special
+- displayed in standard checkbox format
+-->
+<%if in_mobile_view? %>
+  <div data-role="fieldcontain" class="field_group">
+    <fieldset data-role="controlgroup" data-type="horizontal">
+      <legend>Module:</legend>
+      <%= radio_button_tag :mod1, params[:mod1]%>
+      <%= label_tag 'mod1', '1st' %>
+      <%= radio_button_tag :mod2, params[:mod2]%>
+      <%= label_tag 'mod2', '2nd' %>
+      <%= radio_button_tag :full, params[:full]%>
+      <%= label_tag 'full'%>
+      <%= radio_button_tag :special, params[:special]%>
+      <%= label_tag 'special' %>
+    </fieldset>
+  </div>
+<% else %>
+  <!-- <span class="label search_label">Module:</span>-->
+  <div class="form" id="modules_div" title="<%="Search by course length.\nFirst module runs from the start of the semester until the week of break.\nSecond module runs from the week of break until the end of the semester.\nSpecial indicates a class with various meeting times.\nAll other classes are full semester classes."%>">
+    <%= radio_button_tag :module, "mod1", false, class: "search_tag" %>
+    <label for="module_mod1" id="mod1_radio">1st Module</label>
+    <%= radio_button_tag :module, "mod2", false, class: "search_tag" %>
+    <label for="module_mod2" id="mod2_radio">2nd Module</label>
+    <%= radio_button_tag :module, "full", false, class: "search_tag" %>
+    <label for="module_full" id="full_radio">Full Sem.</label>
+    <%= radio_button_tag :module, "togg", false, class: "search_tag" %>
+    <label for="module_togg" id="togg_radio" style="display:none">toggle</label>
+    <%= radio_button_tag :module, "spec", false, class: "search_tag" %>
+    <label for="module_spec" id="spec_radio">Special</label>
+  </div>
+<% end %>

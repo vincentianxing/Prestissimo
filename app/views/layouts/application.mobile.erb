@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/favicon.ico" rel="shortcut icon" />
+    <%= stylesheet_link_tag "mobile.css" %>
+    <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:900' rel='stylesheet' type='text/css'>
+    <%= javascript_include_tag "mobile/application_mobile" %>
+
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div data-role="page" id="whole_page" data-ajax="false">
+      <%= render 'layouts/header' %>
+      <div data-role="content" id="content">
+	<% flash.each do |key, value| %>
+	<div class="ui-bar ui-bar-a alert alert-<%= key %>"><%= value.html_safe %></div>
+	<% end %>
+	<%= yield %>
+        <div id="push"></div>
+      </div>
+      <%= render 'layouts/footer' %>
+    </div>
+  </body>
+</html>

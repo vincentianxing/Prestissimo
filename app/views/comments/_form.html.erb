@@ -1,0 +1,12 @@
+<% if current_user.status == 'active' %>
+<div id="comment_message_area"></div>
+<div id="comment_form">
+	<%= form_for(:comment, :url => comments_path(commentable.class.to_s.underscore, commentable.id.to_s), remote: true) do |f| %>
+		<%= f.label :body, "Comment", id: "comment_label" %>
+		<%= f.text_area :body, class: "default_inputfield", id: "comment_textarea" %>
+		<div id="comment_submit_box">
+			<%= f.submit "Submit", :name => nil, id: "submit_comment", class: "search_button" %>
+		</div>
+	<% end %>
+</div>
+<% end %>

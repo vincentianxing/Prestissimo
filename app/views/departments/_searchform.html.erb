@@ -1,0 +1,23 @@
+<h2 class="hub_h2">Departments</h2>
+<% if in_mobile_view? %>
+	<span id="dept_menu_button" data-role="button" data-theme="b" data-icon="arrow-d" data-iconpos="right">Department Page Links</span>
+	<ul data-role="menu">
+		<li class="no_bullet_list">
+		<ul  id="dept_menu_list" data-role="listview" data-inset="true">
+		<% else %>
+			<div id="dept_outer">
+				<div id="dept_inner">
+
+					<ul>
+					<% end %>
+					<% @depts.sort_by{|name| name.dept}.each do |d| %>
+						<li><%= link_to d.dept, department_path(d.dept), class: "name_link" %></li>
+					<% end %>
+				</ul>
+				<% if in_mobile_view? %>
+					</li>
+				</ul>
+			<% else %>
+			</div>
+		</div>
+	<% end %>

@@ -1,0 +1,16 @@
+<h2 class="hub_h2">Search Professors</h2>
+
+<!-- SEARCH FORM: contains keyword search -->
+<%= form_tag professor_search_path, method: 'get', id: "sf", remote: true do %>
+
+  <div class="hub_div">
+    <div class="hub_label">Professor Name:</div>
+    <%= text_field_tag :name, params[:name], class: "default_inputfield", id: "prof_field" %>
+  </div>
+
+  <div class="hub_search_submit">
+    <%= submit_tag "Search", name: nil, class: "hub_search_button" %>
+    <input type="reset" value="Reset", class: "hub_search_button">
+  </div>
+
+<% end %>

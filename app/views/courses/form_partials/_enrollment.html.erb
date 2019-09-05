@@ -1,0 +1,18 @@
+<!-- display of COURSE SIZE
+-->
+<% if in_mobile_view? %>
+  <div data-role="fieldcontain" class="field_group">
+  </div>
+<% else %>
+  <div id="enrollment_slider_wrapper" title="<%="Search for courses by number of people enrolled. NOTE: Our data is not as up to date as PRESTO. Our data was last updated on: #{courses_last_updated.to_time.in_time_zone.strftime("%B %d, %Y at %I:%M %p")}" %>">
+    <span class="label search_label", id="enrollment_label">Course Enrollment:</span>
+    <%=  label_tag :min_enrollment_range, '', class: "label search_label form" %>
+    <%=  text_field_tag :min_enrollment_range, params[:min_course_enrollment], :readonly => true %>
+    <%=  label_tag :max_enrollment_range, '', class: "label search_label form"  %>
+    <%=  text_field_tag :max_enrollment_range, params[:max_course_enrollment], :readonly => true %>
+    <div id="enrollment_slider"></div>
+    <%= hidden_field_tag :min_course_enrollment %>
+    <%= hidden_field_tag :max_course_enrollment %>
+  </div>
+
+<% end %>

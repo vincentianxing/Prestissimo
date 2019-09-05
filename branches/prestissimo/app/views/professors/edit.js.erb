@@ -1,0 +1,15 @@
+
+// render the edit partial in the relevant box
+
+<% logger.debug "ADDING TO ELEMENT: \##{@professor.id}_edit_area" %>;
+var professor_id = <%= @professor.id.to_s %>;
+//$('#status_bar').text('#'+professor_id+'_edit_area');
+<% if is_mobile_device? %>
+  $('#'+professor_id+'_edit_area').html("<%= escape_javascript(render(partial: 'edit', :formats => [:mobile])) %>");
+<% else %>
+  $('#'+professor_id+'_edit_area').html("<%= escape_javascript(render(partial: 'edit')) %>");
+<% end %>
+$('#status_bar').text("Displaying edit form");
+
+
+    

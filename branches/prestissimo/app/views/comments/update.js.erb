@@ -1,0 +1,18 @@
+// render the updated comment where the old one was
+var id = <%= @comment.id.to_s %>;
+id = '#comment' + id;
+var is_reply = <%= !@comment.parent_id.nil? %>
+if (is_reply) {
+  <% if is_mobile_device? %>
+      $(id).html("<%= escape_javascript( render( partial: 'show_reply', :formats => [:mobile], locals: {r: @comment} ) ) %>");
+  <% else %>
+    $(id).html("<%= escape_javascript( render( partial: 'show_reply', locals: {r: @comment} ) ) %>");
+  <% end %>
+}
+else {
+  <% if is_mobile_device? %>
+      $(id).html("<%= escape_javascript( render( partial: 'show', :formats => [:mobile] ) ) %>");
+  <% else %>
+    $(id).html("<%= escape_javascript( render( partial: 'show' ) ) %>");
+  <% end %>
+}

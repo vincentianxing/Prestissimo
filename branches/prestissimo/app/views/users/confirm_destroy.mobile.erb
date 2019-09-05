@@ -1,0 +1,20 @@
+<!--
+    Page with form for a user to remove their account
+    requires the user's password to work
+-->
+<% provide(:title, "Remove Account") %>
+<h1>Delete Your Account</h1>
+
+<p><%= @user.fname %>, if you delete your account, you will lose all your account information, like course lists, profile, comments ... <br />
+You can create a new account anytime.<br />
+Enter your password and click delete to permanently delete your account.</p>
+
+<%= form_tag self_destroy_path(@user.id), :method => 'delete' do %>
+
+	<div style="text-align:center; font-weight:bold;">
+		<span class="del_account_label">Password</span>
+		<%= password_field_tag :password, params[:password], class: "default_inputfield" %>
+		<%= submit_tag "Delete Account", name: nil %>
+	</div>
+
+<% end %>

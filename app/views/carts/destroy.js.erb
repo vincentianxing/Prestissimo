@@ -1,0 +1,4 @@
+// render the cart display
+$('.courses_updatificator').html("<%= escape_javascript( render partial: 'carts/courses', locals: {courses: get_courses} ) %> " );
+$('#remove_cart_link').hide();
+$('#status_bar').text('Cart Removed');

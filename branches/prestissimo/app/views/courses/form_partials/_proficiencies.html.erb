@@ -1,0 +1,51 @@
+<!-- display of PROFICIENCIES
+- input: checkboxes
+- fields: cd, wr, qp
+- uses a table to display boxes and labels, standard format
+-->
+
+<% if in_mobile_view? %>
+  <div data-role="fieldcontain" class="field_group">
+    <fieldset data-role="controlgroup" data-type="horizontal" class="mobile_fieldset">
+      <legend>Proficiencies:</legend>
+      <div class="field_box">
+	<%= check_box_tag :cd, params[:cd]%>
+	<%= label_tag 'cd', 'CD' %>
+	<%= check_box_tag :wr, params[:wr]%>
+	<%= label_tag 'wr', 'WR' %>
+	<%= check_box_tag :qp, params[:qp]%>
+	<%= label_tag 'qp', 'QP' %>
+      </div>
+    </fieldset>
+
+  </div>
+
+<% else %>
+  <div class="form" id="proficiencies_div">
+    <span class="label search_label">Proficiencies:</span>
+    <table id="proficiencies_table">
+      <tr>
+	<td>
+	  CD
+	</td>
+	<td>
+	  WR
+	</td>
+	<td>
+	  QP
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  <%= check_box_tag :cd, params[:cd], false, class: "search_tag" %>
+	</td>
+	<td>
+	  <%= check_box_tag :wr, params[:wr], false, class: "search_tag" %>
+	</td>
+	<td>
+	  <%= check_box_tag :qp, params[:qp], false, class: "search_tag" %>
+	</td>
+      </tr>
+    </table>
+  </div>
+<% end %>

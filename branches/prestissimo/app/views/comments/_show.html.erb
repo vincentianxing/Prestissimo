@@ -1,0 +1,116 @@
+<!-- header bar of comment: contains handle and edit link -->
+<span class="handle">
+	<%= link_to @comment.handle, show_handle_path(@comment.handle) %>
+	<!-- Uses a helper method to convert the time to EST -->
+	<span class="posted_at">
+		posted on <%= translate_time(@comment.created_at) %>
+	</span>
+
+	<!--If current user is an admin, show
+	hide, remove, and edit links -->
+	<% if current_user.admin? %>
+
+		<span class="edit_comment_link">
+			<!-- hide/unhide link -->
+			<% if @comment.status == "hidden" %>
+				<%= link_to "unhide", hide_remove_comment_path(@comment.commentable_type.underscore, @comment.commentable_id.to_s, @comment.id, status: 'hidden'), method: 'put', remote: true %>
+			<% else %>
+				<%= link_to "hide", hide_remove_comment_path(@comment.commentable_type.underscore, @comment.commentable_id.to_s, @comment.id, status: 'hidden'), method: 'put', remote: true %>
+			<% end %>
+			<!-- remove link -->
+			<%= link_to "remove", hide_remove_comment_path(@comment.commentable_type.underscore, @comment.commentable_id.to_s, @comment.id, status: 'removed'), method: 'put', remote: true, data: {confirm: "Comment will no longer display on oprestissimo.com. Are you sure you want to remove the comment?"}  %>
+			<!-- edit link -->
+			<% unless @comment.old %>
+			<%= link_to "edit", edit_comment_path(@comment.commentable_type.underscore, @comment.commentable_id.to_s, @comment.id), remote: true %>
+		<% end %>
+		</span>
+
+		<!-- If current user is the commenter,
+		show edit link -->
+	<% elsif current_handle.username == @comment.handle && !current_handle.is_mute %>
+
+		<%= link_to "edit", edit_comment_path(@comment.commentable_type.underscore, @comment.commentable_id.to_s, @comment.id), remote: true %>
+	<% end %>
+</span>
+
+<!-- Body of comment: this contains the content -->
+<span class="body">
+	<% if @comment.status == "hidden" %>
+		<p class="hidden">This comment has been hidden by a site moderator. <span <%= "id=#{@comment.id}_link class=comm_display_link" %>>Click</span> to show content.</p>
+		<p <%= "id=#{@comment.id}_body style=display:none" %>><%= @comment.body %></p>
+	<% else %>
+		<% if @comment.prev != nil %>
+			<!-- Link to display previous versions of this comment -->
+			<p class="edited_comment">This comment has been edited. <%= link_to "Click here", comment_path(@comment.commentable_type.underscore, @comment.commentable_id.to_s, @comment.id), remote: true %> to see the original comment.</p>
+		<% end %>
+
+		<!-- content -->
+		<p class="comment_text"><%= @comment.body %></p>
+	<% end %>
+
+</span>
+
+<!-- The voting area -->
+<div class="vote_div">
+	<% unless @comment.handle == current_handle.username %>
+	  <span class="reply_link">
+		<% if current_user.role == "Student" && @comment.status != "hidden" && !current_handle.is_mute %> 
+			<%= link_to "reply", reply_form_comment_path(@comment.commentable_type.underscore, @comment.commentable_id.to_s, @comment.id), remote: true %> | 
+		<% end %>
+		<!-- Report link, after reply, at left bottom -->
+		<%= link_to "report abuse", new_report_path(@comment.class.to_s.underscore, @comment.id, current_user.id), remote:true %>
+	      </span>
+	<% end %>
+	<div class="upvote_div">
+		<% if current_user.role == "Student" && !current_handle.is_mute && @comment.handle != current_handle.username %>
+			<% unless @comment.old %>
+				<!-- Check if current user has voted on this comment -->
+				<% if current_handle.voted_on? @comment %>
+					<!-- If they voted up, ... -->
+					<% if current_handle.voted_up_on? @comment %>
+						<!-- Display Greyed out arrow -->
+						<%= link_to "", vote_path(current_handle.id, @comment.id, 0), remote: true, method: 'delete', id: "greytri-up" %>
+
+					<% else %>
+						<!-- Otherwise, display Green arrow -->
+						<%= link_to "", vote_path(current_handle.id, @comment.id, 0), remote: true, method: 'delete', id: "greentri" %>
+					<% end %>
+
+					<!-- If they have not yet voted, show green arrow -->
+				<% else %>
+					<%= link_to "", votes_path(current_handle.id, @comment.id, value: "up"), remote: true, method: 'post', id: "greentri" %>
+				<% end %>
+			<% end %>
+		<% end %>
+
+		<!-- Show number of positive votes -->
+		<p class="up_text"><%= @comment.likes.size %></p>
+	</div>
+
+	<div class="downvote_div">
+		<% if current_user.role == "Student" && !current_handle.is_mute && @comment.handle != current_handle.username %>
+			<% unless @comment.old %>
+				<!-- Check if current user has voted on this comment -->
+				<% if current_handle.voted_on? @comment %>
+					<% if current_handle.voted_down_on? @comment %>
+						<!-- If they voted down, show greyed out down arrow -->
+						<%= link_to "", vote_path(current_handle.id, @comment.id, 0), remote: true, method: 'delete', id: "greytri-down" %>
+
+					<% else %>
+						<!-- Otherwise, show Red arrow -->
+						<%= link_to "", vote_path(current_handle.id, @comment.id, 0), remote: true, method: 'delete', id: "redtri" %>
+					<% end %>
+
+				<% else %>
+					<!-- If they haven't voted, show red arrow -->
+					<%= link_to "", votes_path(current_handle.id, @comment.id, value: "down"), remote: true, method: 'post', id: "redtri" %>
+				<% end %>
+			<% end %>
+		<% end %>
+
+		<!-- Show number of negative votes -->
+		<p class="down_text"><%= @comment.dislikes.size %></p>
+	</div>
+	<div  <%= "id=#{@comment.id}_edit_area class=edit_comment" %>>
+	</div>
+</div>

@@ -1,0 +1,47 @@
+<!-- display of FC, HC, CC
+- input: radiobuttons
+- fields: fc, hc, cc
+- displayed as a table
+-->
+
+<% if in_mobile_view? %>
+<div data-role="fieldcontain" class="field_group">
+  <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" class="mobile_fieldset">
+  <legend>Course Type:</legend>
+  <div class="ui-corner-all field_box btn_width_third">
+      <%= radio_button_tag :fc, "fc", false, class: "search_tag" %>
+      <label for="fc_fc" id="fc_radio">Full</label>
+      <%= radio_button_tag :fc, "hc", false, class: "search_tag" %>
+      <label for="fc_hc" id="hc_radio">Half</label>
+      <%= radio_button_tag :fc, "cc", false, class: "search_tag" %>
+      <label for="fc_cc" id="cc_radio">Co-curricular</label>
+      </div>
+      </fieldset>
+</div>
+<% else %>
+<div class="form" id="full_course_div">
+  <%= radio_button_tag :fc, "fc", false, class: "search_tag" %>
+  <label for="fc_fc" id="fc_radio">Full Course</label>
+  <%= radio_button_tag :fc, "hc", false, class: "search_tag" %>
+  <label for="fc_hc" id="hc_radio">Half Course</label>
+  <%= radio_button_tag :fc, "cc", false, class: "search_tag" %>
+  <label for="fc_cc" id="cc_radio">Co-curricular</label>
+</div>
+<% end %>
+
+<!-- Script to toggle radio buttons
+FIND IN app/assets/javascripts/courses.js
+<script>
+  $('input[name="fc"]').click(function() {
+  var radio_id = "#" + $(this).val() + "_radio";
+
+    var pState = $(radio_id).attr('pState');
+    if(pState=='true'){
+      $(radio_id).removeClass('ui-state-active');
+      $(radio_id).attr('aria-pressed', false);
+    };
+
+    $(radio_id).attr('pState', $(radio_id).attr('aria-pressed'));
+  });
+</script>
+-->

@@ -1,0 +1,12 @@
+Hi <%= @user.fname %>,
+
+You have received this message because a request to reset the password for the account associated
+with your email has been submitted. 
+If you forgot your password and would like to create a new one, click the link below.
+Otherwise, ignore this message and your password will remain unchanged.
+
+Link to reset password:
+<%= "oprestissimo.com/#{@user.nonce}/reset_pass" %>
+
+Always a Pleasure,
+The OPrestissimo Team

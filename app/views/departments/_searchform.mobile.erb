@@ -1,0 +1,11 @@
+<h1 class="ui-bar ui-bar-a titlebar">Departments</h1>
+<% if in_mobile_view? %>
+  <form class="ui-filterable">
+    <input id="filterBasic-input" data-type="search">
+  </form>
+  <ul  id="dept_menu_list" data-role="listview" data-inset="true" data-filter="true" data-input="#filterBasic-input" data-filter-placeholder="Filter Departments" data-filter-theme="a" class="ui-alt-icon">
+    <% @depts.sort_by{|name| name.dept}.each do |d| %>
+      <li><%= link_to "#{d.dept}: #{d.dept_long}", department_path(d.dept), class: "name_link" %></li>
+    <% end %>
+  </ul>
+<% end %>

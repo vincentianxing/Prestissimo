@@ -1,0 +1,48 @@
+<!-- Display of ATTRIBUTES
+			- input: checkbox
+			- fields: ns, ss, hu
+			- displayed as a table
+			-->
+<% if in_mobile_view? %>
+	<div data-role="fieldcontain" class="field_group">
+		<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" class="mobile_fieldset">
+			<legend>Attributes:</legend>
+                        <div class="ui-corner-all field_box btn_width_third">
+                        <%= check_box_tag :ns, params[:ns]%>
+			<%= label_tag 'ns', 'NS' %>
+			<%= check_box_tag :ss, params[:ss]%>
+			<%= label_tag 'ss', 'SS' %>
+			<%= check_box_tag :hu, params[:hu]%>
+                        <%= label_tag 'hu', 'HU' %>
+                        </div>
+		</fieldset>
+	</div>
+<% else %>
+<div class="form" id="attributes_div">
+	<span class="label search_label">Attributes:</span>
+	<table id="attributes_table">
+		<tr>
+			<td>
+				NS
+			</td>
+			<td>
+				SS
+			</td>
+			<td>
+				HU
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= check_box_tag :ns, params[:ns], false, class: "search_tag" %>
+			</td>
+			<td>
+				<%= check_box_tag :ss, params[:ss], false, class: "search_tag" %>
+			</td>
+			<td>
+				<%= check_box_tag :hu, params[:hu], false, class: "search_tag" %>
+			</td>
+		</tr>
+	</table>
+</div>
+<% end %>

@@ -1,0 +1,22 @@
+<!-- The 500 error page -->
+<%= stylesheet_link_tag "errors" %>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<% provide( :title, "Server Error" ) %>
+<div class="dialog">
+  <h1>Oops! Something went wrong... :(
+</h1>
+<div class="emessage">
+  <p>In the meantime, hit the back button or try refreshing the page.</p>
+  <p>We track these errors automatically, 
+    but if the problem persists, feel free to contact us at <a href=mailto:info@oprestissimo.com>info@oprestissimo.com</a>, or try one of the following options:
+  </p>
+
+  <%= button_to("Return to Home Page", root_path) %>
+  <%= button_to("Clear Your Cookies", {action: "clear"}, {onclick: "return confirm('Are you sure? Deleting cookies will sign you out and delete everything in your cart.')", remote: true}) %>
+  <%= button_to "Clear Cart", clear_cart_path(current_cart.cartid), method: 'put', remote: true%>
+  <% if signed_in? %>
+    <%= button_to("Sign Out", signout_path, method: "delete") %>
+  <% end %>
+</div>
+</div>

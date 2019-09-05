@@ -1,0 +1,496 @@
+/*
+LAYOUTS FOR THE ENTIRE PRESTISSIMO SITE
+ */
+
+/* -------------- APPLIES TO ALL CONTENT ON PRESTISSIMO SITE -----------------*/
+/* The full document */
+
+
+* {
+  margin: 0;
+}
+
+html {
+  height:100%;
+  /* Added to implement footer droppage */
+  //padding: 0;
+  //margin: 0;
+}
+
+body {
+  /* Added for footer droppage */
+  margin:0;
+  padding: 0;
+  height:100%;
+
+  background-color: $backdrop;;
+  /* Firefox */
+  //background: -moz-linear-gradient(top, #FF6943, $dark_reddish);
+  /* Chrome, Safari */
+  //background: -webkit-gradient(linear, left top, left bottom,	from(#FF6943), to($dark_reddish));
+  /* IE */
+  //background: -ms-linear-gradient(top, #FF6943, $dark_reddish);	/* IE */
+  //background-repeat:no-repeat;
+  //background-attachment:fixed;
+  font-family: $paragraphFont;
+}
+
+/* Used to keep footer at the bottom */
+#wrapper {
+  min-height: 100%;
+  height: auto !important;
+  margin: 0 auto -121px;
+  background-color: $contentBackground;
+
+  border-left: 5px solid $contentBorder;
+  border-right: 5px solid $contentBorder;
+  width:845px;
+  -moz-box-shadow: $wrapperShadow 0 0 8px;
+  -webkit-box-shadow: $wrapperShadow 0 0 8px;
+  box-shadow: $wrapperShadow 0 0 8px;
+}
+
+/* The page content is centered inside the gradient border */
+#header-wrapper{
+  background-color: $contentBackground;
+  width:835px;
+  margin:0px;
+  margin-left:auto;
+  margin-right:auto;
+  padding: 15px 5px 5px 5px;
+
+  /* IE10 Consumer Preview */
+  //background-image: -ms-linear-gradient(bottom, #FDFCE6 0%, #FFC978 45%);
+
+  /* Mozilla Firefox */
+  //background-image: -moz-linear-gradient(bottom, #FDFCE6 0%, #FFC978 45%);
+
+  /* Opera */
+  //background-image: -o-linear-gradient(bottom, #FDFCE6 0%, #FFC978 45%);
+
+  /* Webkit (Safari/Chrome 10) */
+  //background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #FDFCE6), color-stop(.2, #FFC978));
+
+  /* Webkit (Chrome 11+) */
+  //background-image: -webkit-linear-gradient(bottom, #FDFCE6 0%, #FFC978 45%);
+
+  /* W3C Markup, IE10 Release Preview */
+  //background-image: linear-gradient(to top, #FDFCE6 0%, #FFC978 45%);
+
+  #logo {
+    background-color: $logoBackground;
+    width: 825px;
+    margin-left: -5px;
+    font-size: 110px;
+    font-weight: 900;
+    font-family: $logoFont;
+    padding: 10px;
+    display: block;
+    color: $logoText;
+    .logo_image {
+      float: left;
+    }
+    .logo_text {
+      overflow: hidden;
+    }
+  }
+  a {
+    text-decoration:none;
+  }
+  h1 {
+    color: $h1color;
+    font-family: $labelFont;
+    font-weight:bold;
+  }
+  h2 {
+    color: $h2color;
+    font-family: $labelFont;
+  }
+}
+
+#print_title {
+  display:none;
+}
+
+#content {
+  background-color: $contentBackground;
+  width:800px;
+  padding-bottom: 15px;
+  margin:0px;
+  margin-left:auto;
+  margin-right:auto;
+  min-height: 100%;
+  a {
+    color: $link;
+    text-decoration:none;
+    &:hover, &:active {
+      color: $linkHover;
+      text-decoration:underline;
+            }
+    }
+    h1 {
+      color: $h1color;
+      font-family: $labelFont;
+      font-weight:bold;
+    }
+    h2 {
+      color: $h2color;
+      font-family: $labelFont;
+    }
+  h3 {
+    color: $h3color;
+    font-family: $labelFont;
+    font-style:italic;
+}
+}
+
+hr {
+  border:none;
+  border-top:2px dashed $lineColor;
+}
+
+/* ---------------- FORM SETTINGS ------------------------------------------- */
+/* All forms on the site */
+form {
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* The 'FORM' class */
+/* - used around each individual form field */
+.form {
+}
+
+.search_button {
+  background-color: $searchButtonBackground;
+  border-radius: 5px;
+  border:1px solid $searchButtonBorder;
+  display:inline-block;
+  color: $searchButtonText;
+  text-shadow: $searchButtonTextShadow 0 0 2px;
+  font-size: small;
+  font-weight: 700;
+  padding: 3px;
+  text-decoration:none;
+  &:hover {
+    background-color: $searchButtonHoverBackground;;
+    cursor:pointer;
+  } 
+  &:active {
+//    position: relative;
+    background-color: $searchButtonActiveBackground;
+    border:1px solid $searchButtonActiveBorder;
+    top: 1px;
+  }
+}
+
+/* ------------------------ FOOTER AND HEADER SETTINGS ---------------------- */
+/* Footer */
+
+#push {
+  height: 120px;
+}
+
+footer {
+  margin-left: auto;
+  margin-right: auto;
+  /* added for footer */
+  position: relative;
+  width: 800px;
+  height: 100px;
+  bottom: 0;
+  padding-top: 20px;
+  border-top: 1px dotted $lineColor;
+  small {
+    font-size:10px;
+    text-align:center;
+    a {
+      color: $link;
+      text-decoration: none;
+      &:hover {
+        color: $linkHover;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+/* Header */
+header {
+  text-align: center;
+  font-size: 15px;
+  position:relative;
+  height: 161px;
+  margin-bottom: 11px;
+  /* 'LINKS' div, surrounds header content */
+  #links {
+    width:auto;
+    height: 32px;
+    position: absolute;
+    background-color: $menuBackground;
+    bottom: 3px;
+    right: 88px;
+    font-weight: bold;
+    font-family: $labelFont;
+
+    /* ---- start DROPDOWN LIST FORMATTING ---- */
+    /* appearance of menu, top level */
+    ul {
+      z-index:12;
+      float: right;
+      list-style: none;
+      margin:0;
+      padding:0;
+          }
+          /* appearance of menu items, top level */
+          li {
+            text-align:center;
+            float: right;
+            position:relative;
+            margin:0;
+          }
+          /* appearance of item text, top level */
+          li a {
+            padding:4px 10px;
+            display: block;
+            color: $menuLink;
+          }
+          /* appearance of item text on hover, top level */
+          li > a:hover {
+            color: $menuLinkHover;
+          }
+          /* appearance of menu items when hovered, top level */
+          li:hover {
+            background-color: $menuBackground;
+            border-radius:5px;
+          }
+          /* appearance of top level menu items w/ a sublist, on hover */
+          .dd_menus:hover {
+            border-radius:5px 5px 0 0;
+          }
+          /* appearance of menu items, second level */
+          li li {
+            min-width:100px;
+            white-space:nowrap;
+            float:none;
+            text-align:left;
+          }
+          /* appearance of item text, second level  */
+          li li a {
+          }
+          /* appearance of hovered item text, second level */
+          li li a:hover {
+            text-decoration:none;
+            background-color: $menuLinkHoverBackground;
+            border-radius:5px;
+            padding:4px 10px;
+            color: $menuLinkHoverText !important;
+            //-webkit-transition: background .3s;
+            //-moz-transition: background .3s;
+            //-o-transition: background .3s;
+            //transition: background .3s;
+          }
+          /* appearance of menu, second level (the drop down) */
+          li ul {
+            display:none;
+            position:absolute;
+            top:1em;
+            left:0;
+            background-color: $menuBackground;
+            -moz-box-shadow: $menuShadow 0 0 4px;
+            -webkit-box-shadow: $menuShadow 0 0 4px;
+            box-shadow: $menuShadow 0 0 4px;
+            border-radius:0 5px 5px 5px;
+            top:auto;
+            left:auto;
+          }
+          /* appearance of second level menu when first level is hovered */
+          /* This is how the drop down becomes visible! */
+          li:hover ul { 
+            display:block;
+          }
+          /* ---- end DROPDOWN LIST FORMATTING ---- */
+          /* Links in the header */
+          a {
+            &:hover, &:active {
+              color: $menuLinkHoverText;
+              text-decoration:none;
+                  }
+          }
+  }
+}
+
+/* ----------------------------- ALERT FORMATTING --------------------------- */
+/* Main Class */
+.alert {
+  width:auto;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 10px;
+  margin-botom: 17px;
+}
+
+/* Failure - Red Box */
+.alert-failure {
+  border: 1px solid red;
+  background-color: $failureAlertBackground;
+}
+
+/* Notice (Failure) */
+.alert-notice {
+  border: 1px solid red;
+  background-color: $failureAlertBackground;
+}
+
+/* Success - Green Box */
+.alert-success {
+  border: 1px solid green;
+  background-color: #afffaf;
+}
+
+/* -------------------------- INPUT FIELD STYLING --------------------------- */
+/* Default TEXT FIELD STYLING */
+.default_inputfield {
+  outline:none;
+  border: 1px solid $textFieldBorder;
+  width: 230px;
+  height: auto;
+  font-size:16px;
+  padding:2px;
+  border-radius:5px;
+  margin: 1px;
+  //-moz-box-shadow:inset 2px 2px 10px 2px #EEEEEE;
+  //-webkit-box-shadow:inset 2px 2px 10px 2px #EEE;
+  //box-shadow:inset 2px 2px 10px 2px #EEE;
+}
+/* Default TEXT FIELDs, on focus */
+.default_inputfield:focus {
+  outline:none;
+  border:2px solid $textFieldFocus;
+  border-radius:5px;
+  margin: 0px;
+  //-moz-box-shadow: 1px 1px 10px 2px #FF7552, inset 2px 2px 10px 2px #EEE;;
+  //-webkit-box-shadow: 1px 1px 10px 2px #FF7552, inset 2px 2px 10px 2px #EEE;
+  //box-shadow: 1px 1px 10px 2px #FF7552, inset 2px 2px 10px 2px #EEE;
+}
+
+/* 1st ALTERNATIVE text field style - inset focus */
+.inputfield_alt1 {
+  outline:none;
+  border: 1px solid $textFieldBorder;
+  width: 230px;
+  height: auto;
+  font-size:18px;
+  padding:2px;
+  margin: 1px;
+  border-radius:5px;
+  //-moz-box-shadow:inset 2px 2px 10px 2px #EEEEEE;
+  //-webkit-box-shadow:inset 2px 2px 10px 2px #EEE;
+  //box-shadow:inset 2px 2px 10px 2px #EEE;
+}
+/* FOCUS for 1st ALT text field */
+.inputfield_alt1:focus {
+  outline:none;
+  border:2px solid $textFieldFocus;
+  border-radius:5px;
+  margin: 0px;
+  //-moz-box-shadow: inset 2px 2px 10px 2px #999;
+  //-webkit-box-shadow: inset 2px 2px 10px 2px #999;
+  //box-shadow: inset 2px 2px 10px 2px #999;
+}
+
+/* As default textfield, but with a smaller focus effect */
+.smallspread_inputfield {
+  outline:none;
+  border: 1px solid $textFieldBorder;
+  width: 230px;
+  height: auto;
+  font-size:18px;
+  padding:2px;
+  margin: 1px;
+  border-radius:5px;
+  //-moz-box-shadow:inset 2px 2px 10px 2px #EEEEEE;
+  //-webkit-box-shadow:inset 2px 2px 10px 2px #EEE;
+  //box-shadow:inset 2px 2px 10px 2px #EEE;
+}
+/* Small spread text field, on focus */
+.smallspread_inputfield:focus {
+  outline:none;
+  border:2px solid $textFieldFocus;
+  border-radius:5px;
+  margin: 0px;
+  //-moz-box-shadow: 1px 1px 5px 1px #FF7552, inset 2px 2px 10px 2px #EEE;;
+  //-webkit-box-shadow: 1px 1px 5px 1px #FF7552, inset 2px 2px 10px 2px #EEE;
+  //box-shadow: 1px 1px 5px 1px #FF7552, inset 2px 2px 10px 2px #EEE;
+}
+
+/* Profile Info text box on settings page */
+#default_textarea {
+  width: 300px;
+  height: 250px;
+}
+
+/* textfields with type="search" act differently in safari/chrome/firefox
+ * this should make them more consistent across browsers. */
+input[type="search"] {
+  -webkit-appearance: textfield;
+}
+
+/* Makes textareas (used to make comments) not resizeable */
+textarea {
+  resize:none;
+}
+
+#calendar {
+  margin-bottom: 27px;
+}
+
+/*/* -------------- JQUERY DIALOG STYLING ------------------------------------ */
+//We didn't feel like this was actually affecting anything - dialog box for Email Cart still works fine - so we commented out for now 
+/* JQuery Class - dialog box 
+.ui-dialog {
+padding:4px;
+background:#FFF;
+border:1px solid #BBB;
+border-radius:5px;
+/* Firefox */
+//background: -moz-linear-gradient(top, #FFF, #DDD);
+/* Chrome, Safari */
+//background: -webkit-gradient(linear, left top, left bottom,	from(#FFF), color-stop(0.7,#DDD));
+/* IE */
+//background: -ms-linear-gradient(top, #FFF, #DDD);	/* IE */
+//-moz-box-shadow: 1px 1px 4px #666;
+//-webkit-box-shadow: 1px 1px 4px #666;
+//box-shadow: 1px 1px 4px #666;
+//}
+
+/* JQuery Class - title bar on dialog 
+.ui-dialog-titlebar {
+background:#ee352E;
+border-radius:5px;
+padding:5px;
+border:1px solid #D80700;
+color:#FFF;
+font-weight:700;
+font-size:small;
+/* Firefox */
+//background: -moz-linear-gradient(top, #FF7552, #EE352E);
+/* Chrome, Safari */
+//background: -webkit-gradient(linear, left top, left bottom,	from(#FF7552), to(#EE352E));
+/* IE */
+//background: -ms-linear-gradient(top, #FF7552, #EE352E);
+/* Inner light border */
+//-moz-box-shadow:inset 1px 1px 0px 0px #ffa189;
+//-webkit-box-shadow:inset 1px 1px 0px 0px #ffa189;
+//box-shadow:inset 1px 1px 0px 0px #ffa189;
+//}
+
+/* JQuery class: close tag on dialog 
+.ui-dialog-titlebar-close {
+float:right;
+content:none;
+color:#FFF;
+text-decoration:none;
+&:hover, &:active {
+color:#FFD58B;
+  }
+}*/

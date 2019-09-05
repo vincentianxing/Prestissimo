@@ -1,0 +1,28 @@
+// this file is rendered by the user#search action
+
+
+// Used to create the finished status string message
+<% if @err_msg != nil %>
+  $('#status_bar').text("<%= @err_msg %>");
+<% elsif @usrresults.nil? && @handleresults.nil? && @professors.nil? %>
+  $('#status_bar').text("No results found")
+<% else %>
+  status_string = "Showing results";
+  $('#status_bar').text(status_string);
+  // This bit of JavaScript renders the partial with search results
+  <% if is_mobile_device? %>
+    $('#user_results').html("<%= escape_javascript(render(partial: 'search', :formats => [:mobile])) %>");
+    $('#user_collapsible').collapsible();
+    $('#user_list').listview();
+    $('#handle_results').html("<%= escape_javascript(render(partial: 'handles/search', :formats => [:mobile])) %>");
+    $('#handle_collapsible').collapsible();
+    $('#handle_list').listview();
+    $('#prof_results').html("<%= escape_javascript(render(partial: 'professors/search', :formats => [:mobile])) %>");
+    $('#prof_collapsible').collapsible();
+    $('#prof_list').listview();
+  <% else %>
+    $('#user_results').html("<%= escape_javascript(render(partial: 'search')) %>");
+    $('#handle_results').html("<%= escape_javascript(render(partial: 'handles/search')) %>");
+    $('#prof_results').html("<%= escape_javascript(render(partial: 'professors/search')) %>");
+  <% end %>
+<% end %>

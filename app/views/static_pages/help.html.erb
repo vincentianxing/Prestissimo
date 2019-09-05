@@ -1,0 +1,82 @@
+<!-- Hub for all of our help pages -->
+
+<% provide(:title, 'Help') %>
+
+<h1>Help</h1>
+<p>
+Please click a link to learn more about Prestissimo!
+</p>
+<p>&nbsp;</p>
+<body>
+  <ul class = "help_links">
+    <li class = "h_link">
+      <%= link_to help_basics_path do %>
+        <strong>Search Help</strong></br>
+      <% end %>
+      <span>How to use Prestissimo's course search</span>
+    </li>
+
+    <li>
+      <%= link_to help_search_path do %>
+        <strong>Search Results Help</strong>
+      <% end %>
+      <br />How to interpret course search results
+    </li>
+    <li>
+      <%= link_to help_cart_path do %>
+        <strong>The Course Cart</strong>
+      <% end %>
+      <br />Create a schedule on the fly
+    </li>
+    <li>
+      <%= link_to help_accounts_path do %>
+        <strong>User Accounts</strong>
+      <% end %>
+      <br />Account features and settings
+    </li>
+    <li>
+      <%= link_to help_professors_path do %>
+        <strong>Professor Pages</strong>
+      <% end %>
+      <br />Find out more about your favorite Profs!
+    </li>
+    <li>
+      <%= link_to help_comments_path do %>
+        <strong>Commenting</strong>
+      <% end %>
+      <br />Leave your mark on Prestissimo
+    </li>
+    <li>
+      <%= link_to help_hubpages_path do %>
+        <strong>Class and Department Pages</strong>
+      <% end %>
+      <br />Expand your Prestissimo experience
+    </li>
+    <li>
+      <%= link_to guidelines_path do %>
+        <strong>Community Guidelines</strong>
+      <% end %>
+      <br />Behavior guidelines for our users
+    </li>
+    <li>
+      <%= link_to help_phone_path do %>
+        <strong>Mobile Theme Help</strong>
+      <% end %>
+      <br />Using Prestissimo on Your Phone
+    </li>
+    <li>
+      <%= link_to links_path do %>
+        <strong>Useful Links</strong>
+      <% end %>
+      <br />Other helpful websites
+    </li>
+
+    <li class = "questions">
+      <%= link_to help_questions_path do %>
+        <strong>Questions?</strong></br>
+      <% end %>
+      Need more help? Reporting a bug? Have a critique? Contact us here!
+    </li>
+  </ul>
+  For any unanswered questions, please contact us at <a href="mailto:info@oprestissimo.com">info@oprestissimo.com</a>.
+</body>

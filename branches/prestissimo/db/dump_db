@@ -1,0 +1,36 @@
+#!/bin/sh
+
+DIR=/var/www/htdocs/prestissimo/db/backups
+
+# must be root
+if [ `whoami` != 'root' ]; then
+  echo "dump_db must be run as root"
+  exit 1
+fi
+
+cd $DIR
+
+TABLES=`mysql -ubusystudent -ph@ppyp@nt5++ --database=prestissimo_production -e 'show tables;'`
+echo "${TABLES}"
+
+# create dumpfiles of db that can be read in by mysql for rollbacks
+for table in $TABLES
+do
+  if [ $table = "Tables_in_prestissimo_production" ]
+  then
+    continue
+  else
+    mysqldump -ubusystudent -ph@ppyp@nt5++ --lock-tables=false --add-drop-table prestissimo_production "${table}" > "${table}".sql
+  fi
+done
+
+
+# Make a compressed tar image of these
+TARBALL=`date +"%Y-%m-%d"`.tar.xz
+tar cJf "${TARBALL}" *.sql
+if [ $? -ne 0 ]
+then
+    echo "Error creating backup ${TARBALL}"
+fi
+
+# move tarball to remote machine

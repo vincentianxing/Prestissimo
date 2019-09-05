@@ -1,0 +1,8 @@
+// render the edit form in the correct table row
+var report_row = <%= @report.id %>;
+report_row = "#report"+report_row+"_edit_area";
+<% if is_mobile_device? %>
+  $(report_row).html("<%= escape_javascript( render(partial: 'edit', :formats => [:mobile]) ) %>");
+<% else %>
+  $(report_row).html("<%= escape_javascript( render( partial: 'edit') ) %>");
+<% end %>

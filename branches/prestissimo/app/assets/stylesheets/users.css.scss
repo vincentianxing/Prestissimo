@@ -1,0 +1,347 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* ----------------------- USER FORM STYLING -------------------------------- */
+// Form used in signup and signin page
+
+$reddish: #DD352D;
+$dark_reddish: #820000;
+
+.sign_form {
+	width:100%;
+	vertical-align: top;
+	text-align:center;
+	*zoom: 1;
+}
+
+/* The 'SU_LABEL' class */
+// - used for form labels
+.su_label {
+	font-size:15px;
+	font-weight:100;
+	padding-top:3px;
+}
+
+// 'SU_TEXTFIELD' class - used for padding the entry boxes
+.su_textfield {
+	position: relative;
+	padding-top:2px;
+	padding-bottom:5px;
+}
+
+// 'SIU_TABLE' class - used to format the table on the sign in/sign up page
+.siu_table td {
+	width:400px;
+	vertical-align:top;
+}
+.siu_table {
+	vertical-align:top;
+}
+.siu_table tr {
+	vertical-align:top;
+}
+.siu_table table {
+	vertical-align:top;
+}
+
+#login_box {
+	margin-right:auto;
+	margin-left:auto;
+	background-color:#F2A498;
+	border-radius:5px;
+	width:80%;
+	padding:5px;
+}
+
+#signin_submit {
+	text-align:center;
+}
+
+#signup_box {
+	margin-right:auto;
+	margin-left:auto;
+	width:80%;
+}
+
+/* ----------------------- SETTINGS PAGE STYLING ---------------------------- */
+#usr_update_form {
+	width: 400px;
+	margin: 0 auto;
+}
+
+//Used for the label above the checkboxes on settings page
+.su_label_header{
+	font-size:13px;
+
+}
+/* Used for settings labels */
+.settings_label {
+	float:left;
+	text-align:right;
+
+}
+
+.checkbox{
+	position: absolute;
+	left: -120px;
+	width:130px;
+	//outline:thin solid green;
+	margin-left:60px;
+}
+
+/* ID for outer div, in the change handle form */
+#handle_form_outer {
+	text-align:center;
+}
+
+/* ID for inner handle form div */
+#handle_form_inner {
+	width:50%;
+	margin-left:auto;
+	margin-right:auto;
+	background:#DDD;
+	border-radius:3px;
+	padding:5px 10px 10px 5px;
+}
+
+/* ID for div surrounding remove account link */
+#rem_account_link {
+	text-align:center;
+	margin:30px;
+}
+
+/* ID of user notes box, on profile settings */
+#user_notes {
+	height:200px;
+}
+
+/* ----- Styling for USERS INDEX - SHOW ALL USERS page --------------------- */
+/* Div surrounding a single user's information */
+.user_container {
+	background:#999;
+	width:70%;
+	padding:3px;
+	border-radius:2px;
+	display:block;
+	margin:1px;
+	a {
+		color:#000;
+		font-weight:bolder;
+		text-decoration:none;
+		&:hover, &:active {
+			color:$dark_reddish;
+		}
+	}
+	&:hover {
+		background:#BBB;
+	}
+}
+/* Styling for EMAIL container */
+.user_email {
+	display:inline-block;
+	width:12em;
+	padding-left:3px;
+}
+/* Styling for FULL NAME container */
+.user_fullname {
+	display:inline-block;
+	width:50%;
+}
+/* Styling for DELETE link - visible only to admins */
+.deleteuser_link {
+	display:inline;
+}
+
+/* -------------------- Styling for USER PROFILE page ----------------------- */
+/* Class for box around entire user profile content */
+.profile {
+	position:relative;
+	left:260px;
+	width:500px;
+	min-height:150px;
+}
+
+/* ID for div surrounding user-specified nickname field
+		Unused. */
+#profile_nickname {
+}
+
+/* ID for Nickname header, on user profile */
+#usr_nick {
+	margin:0;
+	margin-bottom:3px;
+}
+
+/* ID for div surrounding 'remove user' link */
+#del_user {
+	margin:7px;
+}
+
+/* ID for div surrounding user-specified year field */
+#profile_year {
+	display:inline;
+	padding-right:10px;
+}
+
+/* ID for div surrounding user-specified gender field */
+#profile_gender {
+	display:inline;
+}
+
+/* List containing user's LDAP info */
+#profile_ldap {
+	position:absolute;
+	left:auto;
+	right:auto;
+	width:250px;
+	padding-left:0;
+	float:left;
+	list-style:none;
+	text-align:right;
+	margin-top:30px;
+	padding-top:6px;
+	//background
+	background:#f2a498;
+	border-radius:3px;
+	li {
+		padding-right:20px;
+		padding-bottom:6px;
+		letter-spacing:1px;
+	}
+}
+
+/* ID used to color text grey when user has no info */
+#profile_noinfo {
+	color:#555;
+}
+
+/* Class for div surrounding LDAP info list on user profile */
+#ldap_info {
+	position:relative;
+}
+
+/* Class used for headers on user profile */
+.profile_info {
+	font-size:20px;
+	letter-spacing:1px;
+	border-radius:3px;
+}
+
+/* IDs given to Gender, Year header text, on user profile */
+#year_header, #gender_header {
+	margin:0;
+	display: inline;
+}
+
+/* IDs for divs surrounding profile gender, year
+			Unused. */
+#year_box, #gender_box {
+}
+
+/* ID for div around Profile Info
+		Unused. */
+#profile_infobox {
+}
+
+/* ---------------------- USER SEARCH PAGE STYLING -------------------------- */
+.people_div {
+	text-align:center;
+	padding: 15px;
+	margin-bottom: 10px;
+}
+
+.people_label {
+	font-weight:bold;
+}
+
+.people_submit {
+	text-align:center;
+}
+
+.people_search {
+	text-align:center;
+}
+
+.people_h2 {
+	padding:0;
+	margin:0;
+	padding:10px;
+	color:#DE352D;
+	font-family:Lusitana;
+	font-size: 30px;
+}
+#userlookup_table {
+		padding:0;
+		margin:0;
+		margin-top:7px;
+		border-spacing:0;
+		tr { 
+			margin:0;
+			padding:0;
+		}
+		td {
+			margin:0;
+			padding:0;
+			padding-right:10px;
+			padding-bottom:5px;
+		}
+}
+
+#ultable_labels {
+	font-weight:bold;
+	font-size:16px;
+
+}
+
+.userlookup_div {
+	display:inline-block;
+	padding-right:5px;
+	padding-bottom:10px;
+}
+.userlookup_label {
+	display:inline;
+	font-weight:500;
+	font-size:16px;
+	vertical-align:middle;
+}
+
+#finduser_field {
+	height:19px;
+	padding:0;
+	padding-right:3px;
+	padding-left:3px;
+	font-size:12px;
+}
+
+#userlookup_submit {
+	display:inline-block;
+}
+
+.userlookup_button {
+}
+
+#role_drop {
+}
+
+#userlookup_scroll {
+	max-height:300px;
+	overflow:auto;
+	padding:0px;
+	margin:0px;
+}
+
+/* ----------------------- FORGOT PASSWORD/RESET PASSWORD ------------------- */
+/* Class for span surrounding labels on forgot/reset pages */
+.fr_label {
+	text-align:right;
+	width:210px;
+	display:inline-block;
+	font-weight:bold;
+	font-size:16px;
+}
+
+/* Class for div surrounding forgot password form fields */
+.forgot_pass {
+	margin-bottom:3px;
+}

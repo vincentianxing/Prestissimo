@@ -1,0 +1,79 @@
+Solutions to various programming/rails/software problems
+--------------------------------------------------------
+
+1. Problem: current_user was nil after the activate action was called so 'admin?' method didn't work
+
+Cause: The activate action changed user attributes and updated the user. Whenever a user record is changed and
+saved, user.remember_token is no longer equivalent to cookies[:remember_token]. Thus,
+  when the 'current_user' method tries to find a user using
+  User.find_by_remember_token(cookies[:remember_token]), no such user exists and current_user is nil.
+
+  Solution: Sign in the user using sign_in after the user's attributes are updated. This must be done
+  WHENEVER the user record is changed in any way. -RT
+
+
+  2. Problem: I was getting sent notification emails that I had changed my password when I changed
+  other non-password settings.
+
+Cause: The email was sent if params[:user][:old_password] != Password.new(user.password_digest)
+  evaluated to true. However, this returns false if the 2 operands are equal...
+
+  Solution: Switch the order of evaluation of the operands i.e.
+  Password.new(user.password_digest) != params[:user][:old_password].
+  This actually returns true when the 2 operands are not equal. I don't know
+  why the functionality changes depending on the order... -RT
+
+  3. Problem: I added a method to UsersHelper, but when I called it in the user controller,
+  I got a NoMethodError.
+
+  Cause: The controller did not have access to the methods in UsersHelper, because they
+  were not included anywhere but in the UsersHelper module.
+
+  Solution: Add 'include UsersHelper' to the application controller. Then all methods
+  declared in the UsersHelper is usable in any other controllers. -RT
+
+  4. Problem: Added actions add_to_cart and display_cart called by ajax form in _search.html.erb. 
+  The action display_cart initially did not get called and once it did, it did not pass 
+  on results to the appropriate js/html files.
+
+  Cause: The resources: users line in routes blocked off using any route that begins '/users'. 
+  The action display_cart does not render a file called '/users/cart'.
+
+  Solution: Since display_cart doesn't need to specify a uri, we could just use '/cart'. 
+  We also had to rename cart.js.erb to display_cart.js.erb for the action to be rendered. -JR
+
+  5. Problem: Help! My rails server is running without me, and I don't know how to shut it down!
+
+  Cause: We don't know :-(
+
+      Solution: Use the command "sudo netstat -lpn | grep :[PORT # HERE]". 
+      You should get a result that looks something like:
+      tcp        0      0 0.0.0.0:[PORT#]            0.0.0.0:*               LISTEN      [PID]/ruby
+
+      Now, the command "kill -9 [PID HERE]" should kill the process. -AM
+
+
+  6. Problem: When working on mobile layout development, we noticed that the version seen on our computers (by changing
+    the user agent to be a mobile OS) was looking fine, but when viewed on actual mobile devices, the content on the
+  page was extremely wide and very tiny as one would expect when viewing the html layout on a mobile device.
+
+  Cause: A <meta> line had been removed from the _header.mobile.erb file which apparently just has to be somewhere within
+  the document to get the jQuery mobile to fill up the page like a mobile app.
+
+  Solution: I put this line in views/layouts/_header.mobile.erb : 
+  "<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">". Restart the rails server
+  and you should be good to go! -RT
+
+  7. Problem: Javascript associated with opening a dialog box when clicking the "Email Cart" button in the course cart
+	and expanding course descriptions for cart contents would not run right after a change to the cart occured until
+	the page was reloaded.
+    Cause: The javascript was targetting elements by their html ids or classes, but these elements did not yet exist
+	in many cases, either because a course was added to an empty cart, or the last course in a cart was removed.
+    Solution: Add the javascript you need to any .js.erb views associated with the cart. That is, I added the JS associated
+	with the "email cart" button and expanding the course description in carts/update.js.erb, carts/destroy.js.erb, etc. -RT
+
+  8. Problem: Append method on string in model doesn't recognize change to be saved to db
+  
+    Cause: The model object didn't recognize that a change had occured on its string object
+
+    Solution: Instead of using append methods, (e.g. {a_string} << "more text"), use assignment (e.g. {a_string} = {a_string} + "more text")

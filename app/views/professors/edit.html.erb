@@ -1,0 +1,109 @@
+<!--
+Page for updating a professor page!
+-->
+
+<% provide(:title, "Update Professor Profile") %>
+
+
+<h1>Update Your Page</h1>
+
+<div id="edit_prof_div">
+  <%= form_for @professor, url: update_professor_path(@professor.id) do |f| %>
+    <%= render 'shared/error_messages' %>
+    <div id="prof_nick">
+      <span class="su_label">
+        <%= f.label :nickname, "Preferred First Name" %>
+      </span>
+      <div class="su_textfield">
+        <%= f.text_field :nickname, class: "default_inputfield" %>
+      </div>
+      <div class="su_small_label" id="prof_name_fine">
+        If left blank, your first name will be displayed as it apppears in the college database system.
+      </div>
+    </div>
+    <div class="su_small_label" id="prof_optional_fine">
+      All below fields are optional. A field will not be displayed on your profile if it is left blank.
+    </div>
+    <div id="prof_contact_container">
+      <div id="prof_site">
+        <span class="su_label">
+          <%= f.label :url, "URL for a link to your homepage" %>
+        </span>
+        <div class="su_textfield_half">
+          <%= f.text_field :url, class: "default_inputfield" %>
+        </div>
+        <div class="su_label no_display" id="prof_test_url"></div>
+      </div>
+      <div id="prof_email">
+        <span class="su_label">
+          <%= f.label :email, "Preferred Contact Email" %>
+        </span>
+        <div class="su_textfield_half">
+          <%= f.text_field :email, class: "default_inputfield" %>
+        </div>
+      </div>
+      <div id="prof_phone">
+        <span class="su_label">
+          <%= f.label :phone, "Preferred Contact Phone" %>
+        </span>
+        <div class="su_textfield_half">
+          <%= f.text_field :phone, class: "default_inputfield" %>
+        </div>
+      </div>
+      <div id="prof_office">
+        <span class="su_label">
+          <%= f.label :office, "Office Room Number or Location" %>
+        </span>
+        <div class="su_textfield_half">
+          <%= f.text_field :office, class: "default_inputfield" %>
+        </div>
+      </div>
+      <div id="prof_contact">
+        <span class="su_label">
+          <%= f.label :contact, "Tell users the best way to get in touch with you. For example, what are your office hours?" %>
+        </span>
+        <div class="su_textfield_full">
+          <%= f.text_area :contact, class: "default_inputfield", rows: 4%>
+        </div>
+      </div>
+    </div>
+    <div id="prof_info">
+      <span class="su_label">
+        <%= f.label :content, "Additional Information" %>
+      </span>
+      <p id="prof_markdown">
+        You can use Markdown formatted text here to do cool things like bold text or lists!
+      </p>
+      <div class="su_textfield_full">
+        <%= f.text_area :content, class: "default_inputfield", rows: 16 %>
+      </div>
+      <div id="prof_info_preview">
+        <%= f.button "Generate Preview", type: "button", class: "search_button", id: "gen_preview" %>
+        <div class="prof_more_info" id="prof_info_preview_text">
+          <%= Redcarpet::Markdown.new(Redcarpet::Render::HTML, underline: true, highlight: true, lax_spacing: true).render(@professor.content.gsub(/[<>]/, '<' => '&lt;', '>' => '&gt;')).html_safe unless @professor.content.blank? %>
+        </div>
+      </div>
+    </div>
+    <%= f.submit "Save Changes", class: "search_button", id: "save_changes_button" %>
+  <% end %>
+  <%= form_for(@professor, url: professor_content_preview_path(fname: @professor.fname, lname: @professor.lname), :remote => true, :method => 'GET', :html => { id: "preview_form" }) do |p| %>
+    <%= p.text_area :content, class: "no_display", id: "preview_content" %>
+    <%= p.submit "P", class: "no_display", id: "p_submit" %>
+  <% end %>
+</div>
+<script>
+  $( '#professor_url' ).change( function() {
+    var url = $( '#professor_url' ).val();
+    if ( url.indexOf("http") != 0) {
+      url = "http://" + url;
+    };
+    $( '#prof_test_url' ).html("<a type=\"button\" target=\"_blank\" href=\"" + url + "\">Click here to test URL link</a>");
+    $( '#prof_test_url' ).removeClass('no_display');
+  });
+  $( '#gen_preview' ).click( function() {
+    var txt;
+    txt=$( '#professor_content' ).val();
+    $( '#preview_content').val(txt);
+    $( '#p_submit' ).trigger('click');
+  });
+</script>

@@ -1,0 +1,30 @@
+<!-- COURSE RESULTS DISPLAYED AS JQUERY MOBILE COLLAPSIBLE SET -->
+
+<%# make sure there are courses and iterate through them %>
+<% if courses.any? %>
+  <% prev_semcrn = -1 %>
+  <% @samecrn_arr = [] %>
+  <% counter = 0 %>
+  <% courses.each do |c| %>
+    <%# collapse all semcrns into one course %>
+    <%# continue iterating until you get a new semcrn %>
+    <%# then deal with all in the array, clear it, and add new course%>
+    <% if c.semcrn == prev_semcrn %>
+      <% @samecrn_arr<<c %>
+      <% next %>
+    <% else %>
+    <% unless c.status=="cancelled" || c.status=="hidden" %>
+      <% counter+=1 %>
+      <%= render partial: 'courses/search_result', locals: {samecrn_arr: @samecrn_arr}, :formats => [:mobile] %>
+    <% end %>
+      <% @samecrn_arr = [c] %>
+      <% prev_semcrn=c.semcrn %>
+    <% end %>
+
+    <%#ends for loop of courses%>
+  <% end  %>
+  <% unless @samecrn_arr[0].status=="cancelled" || @samecrn_arr[0].status=="hidden" %>
+    <%= render partial: 'courses/search_result', locals: {samecrn_arr: @samecrn_arr}, :formats => [:mobile] %>
+  <% end %>  
+  <% @counter = counter %>
+<% end %>
