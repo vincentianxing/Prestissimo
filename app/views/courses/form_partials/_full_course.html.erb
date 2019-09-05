@@ -1,0 +1,49 @@
+<!-- display of FC, HC, CC
+- input: radiobuttons
+- fields: fc, hc, cc
+- displayed as a table
+-->
+
+<% if in_mobile_view? %>
+<div data-role="fieldcontain" class"field_group">
+  <fieldset data-role="controlgroup" data-type"horizontal">
+    <legend>Course Type:</legend>
+    <%= radio_button_tag :fc, params[:fc]%>
+    <%= label_tag 'fc', 'FC' %>
+    <%= radio_button_tag :hc, params[:hc]%>
+    <%= label_tag 'hc', 'HC' %>
+    <%= radio_button_tag :hc, params[:hc]%>
+    <%= label_tag 'hc', 'HC' %>
+    <%= radio_button_tag :cc, params[:cc]%>
+    <%= label_tag 'cc', 'CC' %>
+  </fieldset>
+</div>
+<% else %>
+<div class="form" id="full_course_div" title='Search for full credit, half credit, or co-curricular courses.'>
+  <%= radio_button_tag :fc, "fc", false, class: "search_tag" %>
+  <label for="fc_fc" id="fc_radio">Full Course</label>
+  <%= radio_button_tag :fc, "hc", false, class: "search_tag" %>
+  <label for="fc_hc" id="hc_radio">Half Course</label>
+  <%= radio_button_tag :fc, "togg", false, class: "search_tag" %>
+  <label for="fc_togg" id="to_radio" style="display:none">toggle</label>
+  <%= radio_button_tag :fc, "cc", false, class: "search_tag" %>
+  <label for="fc_cc" id="cc_radio">Co-curricular</label>
+</div>
+<% end %>
+
+<!-- Script to toggle radio buttons
+FIND IN app/assets/javascripts/courses.js
+<script>
+  $('input[name="fc"]').click(function() {
+  var radio_id = "#" + $(this).val() + "_radio";
+
+    var pState = $(radio_id).attr('pState');
+    if(pState=='true'){
+      $(radio_id).removeClass('ui-state-active');
+      $(radio_id).attr('aria-pressed', false);
+    };
+
+    $(radio_id).attr('pState', $(radio_id).attr('aria-pressed'));
+  });
+</script>
+-->

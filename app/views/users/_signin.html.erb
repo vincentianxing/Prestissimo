@@ -1,0 +1,40 @@
+
+<!--
+Sign in form for a user
+uses a form_for to create a session (sessions#create)
+-->
+
+<h1 id="login" >Sign In</h1>
+<div class="sign_form">
+  <div id="login_box">
+    <%= form_for(:session, url: sessions_path) do |f| %>
+      <span class="su_label">
+        <%= f.label :email, "ObieID" %>
+        </br>(ex: mkrislov or mkrislov@oberlin.edu)
+      </span>
+      <div class="su_textfield">
+        <% if @obie_email %> 
+          <%= f.text_field :email, value: @obie_email, class: "inputfield_alt1" %>
+        <% else %>
+          <%= f.text_field :email, class: "inputfield_alt1" %>
+        <% end %>
+      </div>
+
+      <span class="su_label">
+        <%= f.label :password %>
+      </span>
+      <div class="su_textfield">
+        <%= f.password_field :password, class: "inputfield_alt1" %>
+      </div>
+
+      <div id="signin_submit">
+        <% if cookies[:cart] && !(Cart.find_by_cartid(cookies[:cart]).nil?) && !(Cart.find_by_cartid(cookies[:cart]).courses.nil?) %>
+          <%= f.submit "Sign in", data: { confirm: "If you sign in now, the displayed course cart will be merged with any courses you have previously saved. Continue?"} %>
+        <% else %>
+          <%= f.submit "Sign in", :class => "signin_button" %>
+
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

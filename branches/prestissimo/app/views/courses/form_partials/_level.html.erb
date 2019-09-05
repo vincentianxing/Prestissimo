@@ -1,0 +1,59 @@
+<!-- display of COURSE LEVEL
+- input: drop down menus
+- fields: course_comparison, course_level
+- displays two drop down menus, allowing users to specifed number and 
+comparators
+-->
+<% if in_mobile_view? %>
+	<div data-role="fieldcontain" class="field_group">
+		<fieldset data-role="controlgroup" data-type="horizontal">
+			<legend>Course Level:</legend>
+			<%= select_tag :course_comparison,
+				'<option></option>
+				<option value=">=">At or Above</option>
+				<option value="<=">At or Below</option>
+				<option value="=">At</option>'.html_safe
+			%>
+			<%= select_tag :course_level, 
+				'<option></option>
+				<option>000 level</option>
+				<option>100 level</option>
+				<option>200 level</option>
+				<option>300 level</option>
+				<option>400 level</option>
+				<option>500 level</option>
+				<option>600 level</option>
+				<option>700 level</option>
+				<option>800 level</option>
+				<option>900 level</option>'.html_safe
+			%>
+		</fieldset>
+	</div>
+<% else %>
+	<div class="form" id="level_div">
+		<span class="label search_label">Course Level:</span>
+		<%= select_tag :course_comparison,
+			'<option></option>
+		<option value=">=">At or Above</option>
+		<option value="<=">At or Below</option>
+		<option value="=">At</option>'.html_safe,
+		class: "search_tag",
+			id: "courselevel_drop"
+		%>
+		<%= select_tag :course_level, 
+			'<option></option>
+		<option>000 level</option>
+		<option>100 level</option>
+		<option>200 level</option>
+		<option>300 level</option>
+		<option>400 level</option>
+		<option>500 level</option>
+		<option>600 level</option>
+		<option>700 level</option>
+		<option>800 level</option>
+		<option>900 level</option>'.html_safe,
+		class: "search_tag",
+			id: "coursenumber_drop"
+		%>
+	</div>
+<% end %>

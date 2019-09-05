@@ -1,0 +1,32 @@
+<!--
+scrollable table for displaying the course search results
+-->
+<table id="headers">
+
+  <tr>
+    <th class="name" id="name_header">Course</th>
+    <th class="active_link"></th>
+  </tr>
+</table>
+
+<!-- display results -->
+<% if !@hubcourses.nil? %>
+  <div id="hubcourse_results_scroller">
+    <table class="results">
+      <% @hubcourses.each do |h| %>
+	<tr>
+	  <td>
+	    <!-- no link if inactive -->
+	    <!-- link to the hubcourse page -->
+	    <% hubid = h.hub_id.split(' ') %>
+	    <%= link_to hubid[0] + " " + hubid[1] + " - " + h.courses.first.title, hubcourse_path(h.hub_id.gsub(' ','-')), class: "name_link" %>
+	  </td>
+
+	  <td class="active_link">
+	    <!-- put link here when we have action to hide this pages -->
+	  </td>
+	</tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>

@@ -1,0 +1,185 @@
+
+<!-- Builds a cart table for the user
+One table is made for the headers, 
+a second for the courses themselves that is intended to be scrollable
+-->
+<script>
+  $(document).ready(function() {
+    var $mailer_dialog = $('#cart_mailer_dialog').dialog({
+      autoOpen: false,
+      title: 'Email Courses',
+      resizable: false,
+      modal: true,
+      draggable: true,
+      closeText: "X"
+    });
+  });
+</script>
+<script>
+  $(function() {
+    $( "#cart_container" ).draggable();
+  });
+</script>
+
+<% copy = false %>
+<% courses = @cart_courses if @cart_courses %>
+<% unless courses.nil? %>
+  <% nums = Array.new %>
+  <% if courses.size > 0 %>
+    <div id="cart_container">
+      <div id="cart">
+	<!-- Bolded Field Headers: Course number & name -->
+	<div id="cart_header">
+	  <table class="headers">
+	    <tr>
+	      <th class="car_head cnum">No.</th>
+	      <th class="car_head cname">Course Name</th>
+	      <!-- empty table header for remove links -->
+	      <th></th>
+	    </tr>
+	  </table>
+	</div>
+
+	<!-- This is the bit containing courses. -->
+	<div class="courses_scroller">
+	  <table class="courses">
+
+	    <!-- For gradient row backgrounds:
+	    counter is used to determine even/odd row
+	    color alternates using this counter
+	    -->
+	    <% counter = 2 %>
+	    <% color = "'even cart_course'" %>      
+	    <% courses.each do |c| %>
+
+	      <% if counter % 2 == 0 %>
+		<% color = "'even cart_course'" %>
+	      <% else %>
+		<% color = "'odd cart_course'" %>
+	      <% end %>
+
+	      <% counter += 1 %>
+	      <!-- display the course info -->
+	      <% if !nums.include? c.semcrn %>
+		<% nums << c.semcrn %>
+		<tr <%= "class=#{color} id=#{c.semcrn}_entry" %>>
+		  <td class="car_inf cnum"><%= "#{c.dept} #{c.cnum}" %></td>
+		  <td class="car_inf cname"><%= c.short_title %></td>
+		  <!-- this link removes the course from the list via ajax -->
+		  <td>
+		    <span id="rem_link">
+		      <%=
+			link_to "[X]", remove_cart_path(current_cart.id, c.semcrn), method: 'put', remote: true
+		      %>
+		    </span>
+		  </td>
+		</tr>
+	      <% end %>
+	    <% end %>
+	  </table>
+	</div>
+
+	<!-- Email Cart link: activates Email Dialog, below -->
+	<div id="maillink_outer">
+	  <span id="mail_cart_link" class="cart_action_link">Email Cart</span>
+	  <% if current_page?(controller: 'courses') %>
+	      <%= link_to "Load Cart", search_cart_path(current_cart.id), remote: true, class: "cart_action_link" %>
+	  <% end %>
+	</div>
+      </div>
+
+      <!--
+      The INFO BOX
+      this div contains extra info about the courses (intended to be hidden initially)
+      -->
+      <div id="info_box">
+
+	<% courses.each do |c| %>
+	  <!-- Listing of relevant course info, in a smaller, separate box -->
+	  <div class="info cart_course" <%= "id=#{c.semcrn}" %>>
+	    <div>
+	      <%= link_to c.hubcourse.hub_id, hubcourse_path(c.hubcourse.id.gsub(' ', '-')), class: "prof_cart_link" %>
+	      <span id="cart_crn"><span class="cart_label">CRN:</span> <%= c.crn %></span>
+	    </div>
+	    <% c.professors.each do |p| %>
+	      <div>
+		<%= link_to "#{p.fname} #{p.lname}", show_professor_path(fname: p.fname, lname: p.lname), class: "prof_cart_link" %>
+	      </div>
+	    <% end %>
+	    <!-- Mod is only displayed when it is not full -->
+	    <% unless c.mods == 3 %>
+	      <div><span class="cart_label">Module:</span> <%= translate_mod(c.mods) %></div>
+	    <% end %>
+	    <div id="cart_cred">
+	      <% if c.crmax != c.crmin %>
+		<%= c.crmin %> - <%= c.crmax %> Hours
+	      <% else %>
+		<%= c.crmax %> Hours
+	      <% end %>
+	      <% unless c.distributions.blank? %>
+		<br>
+		(<%= c.distributions %>)
+	      <% end %>
+	    </div>
+	    <% unless c.proficiencies.blank? %>
+	      <% if c.proficiencies.include? 'CD' %>
+		<% if c.proficiencies.include? 'WR' %>
+		  <% if c.proficiencies.include? 'QP-H' %>
+		    <%= image_tag("CD-QPH-WR.png", alt: "CD-QPH-WR", title: "CD-QPH-WR", class: "cart_prof_png") %>
+		  <% elsif c.proficiencies.include? 'QP-F' %>
+		    <%= image_tag("CD-QPF-WR.png", alt: "CD-QPF-WR", title: "CD-QPF-WR", class: "cart_prof_png") %>
+		  <% else %>
+		    <%= image_tag("CD-WR.png", alt: "CD-WR", title: "CD-WR", class: "cart_prof_png") %>
+		  <% end %>
+		<% else %>
+		  <% if c.proficiencies.include? 'QP-H' %>
+		    <%= image_tag("CD-QPH.png", alt: "CD-QPH", title: "CD-QPH", class: "cart_prof_png") %>
+		  <% elsif c.proficiencies.include? 'QP-F' %>
+		    <%= image_tag("CD-QPF.png", alt: "CD-QPF", title: "CD-QPF", class: "cart_prof_png") %>
+		  <% else %>
+		    <%= image_tag("CD.png", alt: "CD", title: "CD", class: "cart_prof_png") %>
+		  <% end %>
+		<% end %>
+	      <% else %>
+		<% if c.proficiencies.include? 'WR' %>
+		  <% if c.proficiencies.include? 'QP-H' %>
+		    <%= image_tag("QPH-WR.png", alt: "QPH-WR", title: "QPH-WR", class: "cart_prof_png") %>
+		  <% elsif c.proficiencies.include? 'QP-F' %>
+		    <%= image_tag("QPF-WR.png", alt: "QPF-WR", title: "QPF-WR", class: "cart_prof_png") %>
+		  <% else %>
+		    <%= image_tag("WR.png", alt: "WR", title: "WR", class: "cart_prof_png") %>
+		  <% end %>
+		<% else %>
+		  <% if c.proficiencies.include? 'QP-H' %>
+		    <%= image_tag("QPH.png", alt: "QPH", title: "QPH", class: "cart_prof_png") %>
+		  <% elsif c.proficiencies.include? 'QP-F' %>
+		    <%= image_tag("QPF.png", alt: "QPF", title: "QPF", class: "cart_prof_png") %>
+		  <% else %>
+		    <%= image_tag("none.png", alt: "None", title: "None", class: "cart_prof_png") %>
+		  <% end %>
+		<% end %>
+	      <% end %>
+	    <% end %>
+	    <div class="cleaner">
+	    </div>
+	  </div>
+	<% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Email Cart Dialog -->
+  <div id="cart_mailer_dialog">
+    <%=  form_tag mail_to_cart_path(current_cart.id), method: 'get', remote: true do %>
+      <div class="dialog_form">
+	<span class="dialog_label">Enter email address: </span>
+	<%= text_field_tag :email, params[:email], class: "smallspread_inputfield" %>
+      </div>
+      <% params[:sender] = "#{current_user.fname} #{current_user.lname}" if current_user %>
+      <div class="dialog_submit">
+	<hr width="90%" \>
+	<%= submit_tag "Send Email", name: nil, class: "dialog_submit_button", id: "cart_mailer_button", onclick: "$('#cart_mailer_dialog').dialog('close')" %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

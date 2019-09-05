@@ -1,0 +1,111 @@
+
+<% if samecrn_arr.any? %>
+  <% course = samecrn_arr[0] %> 
+  <div class="course_collapsible ui-alt-icon" data-role="collapsible" data-inset="false" data-mini="false">
+    <h3><ul class="nobulletlist">
+        <li><%="#{course.crn} #{course.dept} #{course.cnum}"%></li>
+        <li><%=course.short_title%></li>
+        <% if course.professors.size > 0 %>
+          <li><%= course.professors.map{|p| "#{p.fname} #{p.lname}"}.join(", ") %></li>
+        <% else %>
+          <li><%= course.professor %></li>
+        <% end %>
+
+        <li>
+        <table class="course_table">
+          <% samecrn_arr.each do |s| %>
+            <tr>
+              <td><%= s.days %></td>
+              <td class="time_center"><%= "#{s.start_time.nil? ? '' : s.start_time.strftime("%I:%M")}#{s.end_time.nil? ? '' : '-'+s.end_time.strftime("%I:%M%p")}" %></td>
+              <td class="room_right"><%= "#{s.building} #{s.room}" %></td>
+            </tr>        
+          <% end %>
+        </table>
+        </li> 
+    </ul></h3>
+    <ul data-role="listview" class="expanded_course">
+      <li id="course_title_first"><%= link_to "#{course.title}", hubcourse_path(course.hubcourse.hub_id.gsub(' ', '-')) %> </li>
+      <li><%= link_to "#{course.dept_long}", department_path(course.dept) %></li>
+      <% if course.professors.size > 0 %>
+        <% course.professors.each do |prof| %>
+          <li><%= link_to "#{prof.fname} #{prof.lname}", show_professor_path(fname: prof.fname, lname: prof.lname) %></li>
+        <%end%>
+      <%end%>
+      
+      <% unless course.which_desc=="professor" || course.descrip.blank? %>
+        <li><p class="fulltext"><%= course.descrip.html_safe %></p></li>
+      <% end %>
+      <% unless course.which_desc=="default" || course.prof_desc.blank? %>
+        <li><p class="fulltext"><strong>Professor Description:</strong><%= simple_format(course.prof_desc,class:"fulltext") %></p></li>
+      <% end %>
+
+      <% unless course.prereqs.blank? %>
+        <li><p class="fulltext"><strong>Notes:</strong><%= course.prereqs.html_safe %><p></li>
+      <% end %>
+
+      <% if course.display_prof_note && !course.prof_note.blank? %>
+        <li><p class="fulltext"><strong>Professor Note:</strong><%= simple_format(course.prof_note,class:"fulltext") %></p></li>
+      <% end %>
+
+      <% if course.enroll || course.csize %>
+        <li><%= course.enroll ? "<p class='cur_enroll'>Enroll. Current: <strong>#{course.enroll}</strong></p>".html_safe : "" %>
+            <%= course.csize ? "<p class='max_enroll'>Enroll. Max: <strong>#{course.csize}</strong></p>".html_safe : "" %>
+        </li>
+      <% end %>
+
+
+      <li>
+        <p class="attributes">Module: <%= course.get_module %></p>
+        <% if course.crmin!=course.crmax %> 
+          <p class="attributes">Credit Range: <%= "#{course.crmin} - #{course.crmax}" %>
+        <% else %>
+          <p class="attributes">Credits: <%= course.crmin %> 
+        <% end %>
+        <%=" (#{course.distributions})" unless course.distributions.blank? %>
+        <%=" (#{course.full_course})" unless course.full_course.blank? %>
+          </p>
+        <%="<p class='attributes'>Proficiencies: #{course.proficiencies}".html_safe unless course.proficiencies.blank? %>
+      </li>
+      
+      <li>
+      <% if course.p_np %>
+        <p class="grading_consent">
+          Grading: 
+          <%= course.std_letter ? "Pass/No Pass Available" : "Pass/No Pass Only" %>
+        </p>
+      <% end %>
+      <%= "<p class='grading_consent'>Consent of the instructor required</p>".html_safe if course.instruct_consent %>  
+      <%= "<p class='grading_consent'>Consent of the Dean required</p>".html_safe if course.dean_consent %>   
+      </li>
+
+      <% unless course.xlist1.blank? %>
+        <li>
+        <% if Hubcourse.find_by_hub_id(course.xlist1).nil? %>
+          <%= course.xlist1.html_safe %>
+        <% else %>
+          <%= link_to course.xlist1.html_safe, hubcourse_path(course.xlist1.gsub(' ','-')) %>
+        <% end %>
+        </li>
+      <% end %>
+      <% unless course.xlist2.blank? %>
+        <li>
+        <% if Hubcourse.find_by_hub_id(course.xlist2).nil? %>
+          <%= course.xlist2.html_safe %>
+        <% else %>
+          <%= link_to course.xlist2.html_safe, hubcourse_path(course.xlist2.gsub(' ','-')) %>
+        <% end %>
+        </li>
+      <% end %>
+      <% unless course.xlist3.blank? %>
+        <li>
+        <% if Hubcourse.find_by_hub_id(course.xlist3).nil? %>
+          <%= course.xlist3.html_safe %>
+        <% else %>
+          <%= link_to course.xlist3.html_safe, hubcourse_path(course.xlist3.gsub(' ','-')) %>
+        <% end %>
+        </li>
+      <% end %>
+    </ul>
+
+  </div>
+<% end %>

@@ -1,0 +1,209 @@
+<% @handle = @vals[:handle] %>
+<% @comments = @vals[:comments] %>   
+<% provide(:title, @handle.username) %>
+<div id=report_dialog>
+</div>
+
+<h1><%= @handle.username %>
+  <% if current_user.status == 'active' %>
+    <%= link_to "[report as abusive commenter]", new_report_path(@handle.class.to_s.underscore, @handle.id, current_user.id), remote:true, class: "report_handle_link" %>
+  <% end %>
+</h1>
+<% if current_user.status == 'active' %>
+  <div id="comment_section">
+    <div id="comments">
+
+      <% if !@comments.nil? %>
+
+	<div id=report_dialog>
+	</div>
+
+	<!-- Iterates through each comment on the object, and displays -->
+	<% @comments.each do |c| %>
+
+	  <% if c.parent_id.nil? %>
+	    <!-- Unique ID div of comment -->
+	    <div <%= "id=comment#{c.id} class=comment_area" %>>
+
+
+	      <!-- Displays the comment header bar
+	      Contains handle, and edit link when applicable -->
+	      <span class="handle">
+		<% case c.commentable_type %>
+		<% when "Professor" %>
+		  <%= link_to c.handle, show_professor_path(c.commentable_id) %>
+		<% when "Hubcourse" %>
+		  <%= link_to c.handle, hubcourse_path(c.commentable_id) %>
+		<% when "Department" %>
+		  <%= link_to c.handle, department_path(c.commentable_id) %>
+		<% end %>
+		<!-- Uses a helper method to convert the time to EST -->
+		<span class="posted_at">
+		  posted on <%= translate_time(c.created_at) %>
+		</span>
+
+		<!--If current user is an admin, show
+		hide, remove, and edit links -->
+		<% if current_user.admin? %>
+
+		  <span class="edit_comment_link">
+		    <!-- hide/unhide link -->
+		    <% if c.status == "hidden" %>
+		      <%= link_to "unhide", hide_remove_comment_path(c.commentable_type.underscore, c.commentable_id.to_s, c.id, status: 'hidden'), method: 'put', remote: true %>
+		    <% else %>
+		      <%= link_to "hide", hide_remove_comment_path(c.commentable_type.underscore, c.commentable_id.to_s, c.id, status: 'hidden'), method: 'put', remote: true %>
+		    <% end %>
+		    <!-- remove link -->
+		    <%= link_to "remove", hide_remove_comment_path(c.commentable_type.underscore, c.commentable_id.to_s, c.id, status: 'removed'), method: 'put', remote: true, data: {confirm: "Comment will no longer display on oprestissimo.com. Are you sure you want to remove the comment?"}  %>
+		    <!-- edit link -->
+		    <%= link_to "edit", edit_comment_path(c.commentable_type.underscore, c.commentable_id.to_s, c.id), remote: true %>
+		  </span>
+
+		  <!-- If current user is the commenter,
+		  show edit link -->
+		<% elsif current_handle.username == c.handle && !current_handle.is_mute %>
+
+		  <%= link_to "edit", edit_comment_path(c.commentable_type.underscore, c.commentable_id.to_s, c.id), remote: true %>
+		<% end %>
+
+	      </span> <!-- End HANDLE span, end of comment title -->
+
+	      <!-- Comment content -->
+	      <span class="body">
+		<!-- Check hidden status, and display as appropriate -->
+		<% if c.status == "hidden" %>
+		  <p class="hidden">This comment has been hidden by a site moderator. <span <%= "id=#{c.id}_link class=comm_display_link" %>>Click</span> to show content.</p>
+		  <p <%= "id=#{c.id}_body style=display:none" %>><%= c.body %></p>
+		<% else %>
+		  <!-- Display edit status: if there is a previous, comment has
+		  been edited. -->
+		  <% if c.prev != nil %>
+		    <p class="edited_comment">This comment has been edited. <%= link_to "Click here", comment_path(c.commentable_type.underscore, c.commentable_id.to_s, c.id), remote: true %> to see the original comment.</p>
+		  <% end %>
+
+		  <!-- Content -->
+		  <p class="comment_text"><%= c.body %></p>
+		<% end %>
+	      </span>
+
+	      <!-- The voting area -->
+	      <div class="vote_div">
+		<% unless c.handle == current_handle.username %>
+		  <!-- Reply link, at left bottom -->
+		  <span class="reply_link">
+		    <!-- Report link, after reply, at left bottom -->
+		    <%= link_to "report abuse", new_report_path(c.class.to_s.underscore, c.id, current_user.id), remote:true %>
+		  </span>
+		<% end %>
+
+		<div class="upvote_div">
+		  <!-- Show number of positive votes -->
+		  <p class="up_text"><%= c.likes.size %></p>
+		</div>
+
+		<div class="downvote_div">
+		  <!-- Show number of negative votes -->
+		  <p class="down_text"><%= c.dislikes.size %></p>
+		</div>
+	      </div>
+	    </div>
+
+	    <!-- REPLIES -->
+	    <div  <%= "id=#{c.id}_edit_area" %>>
+	    </div>
+	    <% if c.has_children? %>
+	      <% c.children.each do |r| %>
+		<!-- Prevents previous versions of comments from being displayed -->
+		<% if !r.old %>
+		  <% if r.status != "removed" %>
+		    <!-- Unique ID div of comment -->
+		    <div <%= "id=comment#{r.id} class=reply" %>>
+		      <!-- Displays the comment header bar
+		      Contains handle, and edit link when applicable -->
+		      <span class="reply_handle">
+			<% case r.commentable_type %>
+			<% when "Professor" %>
+			  <%= link_to r.handle, show_professor_path(r.commentable_id) %>
+			<% when "Hubcourse" %>
+			  <%= link_to r.handle, hubcourse_path(r.commentable_id) %>
+			<% when "Department" %>
+			  <%= link_to r.handle, department_path(r.commentable_id) %>
+			<% end %>
+			<span class="posted_at">
+			  posted on <%= translate_time(r.created_at) %>
+			</span>
+
+			<!--If current user is an admin, show
+			hide, remove, and edit links -->
+			<% if current_user.admin? %>
+
+			  <span class="edit_comment_link">
+			    <!-- hide/unhide link -->
+			    <% if r.status == "hidden" %>
+			      <%= link_to "unhide", hide_remove_comment_path(r.commentable_type.underscore, r.commentable_id.to_s, r.id, status: 'hidden'), method: 'put', remote: true %>
+			    <% else %>
+			      <%= link_to "hide", hide_remove_comment_path(r.commentable_type.underscore, r.commentable_id.to_s, r.id, status: 'hidden'), method: 'put', remote: true %>
+			    <% end %>
+			    <!-- remove link -->
+			    <%= link_to "remove", hide_remove_comment_path(r.commentable_type.underscore, r.commentable_id.to_s, r.id, status: 'removed'), method: 'put', remote: true, data: {confirm: "Comment will no longer display on oprestissimo.com. Are you sure you want to remove the comment?"}  %>
+			    <!-- edit link -->
+			    <%= link_to "edit", edit_comment_path(r.commentable_type.underscore, r.commentable_id.to_s, r.id), remote: true %>
+			  </span>
+
+			  <!-- If current user is the commenter,
+			  show edit link -->
+			<% elsif current_handle.username == r.handle && !current_handle.is_mute %>
+
+			  <%= link_to "edit", edit_comment_path(r.commentable_type.underscore, r.commentable_id.to_s, r.id), remote: true %>
+			<% end %>
+
+		      </span>
+
+		      <!-- Comment content -->
+		      <span class="reply_body">
+			<!-- Check hidden status, and display as appropriate -->
+			<% if r.status == "hidden" %>
+			  <p class="hidden">This comment has been hidden by a site moderator. <span <%= "id=#{r.id}_link class=comm_display_link" %>>Click</span> to show content.</p>
+			  <p <%= "id=#{r.id}_body style=display:none" %>><%= r.body %></p>
+			<% else %>
+			  <!-- Display edit status: if there is a previous, comment has
+			  been edited. -->
+			  <% if r.prev != nil %>
+			    <p class="edited_comment">This comment has been edited. <%= link_to "Click here", comment_path(r.commentable_type.underscore, r.commentable_id.to_s, r.id), remote: true %> to see the original comment.</p>
+			  <% end %>
+
+			  <!-- Content -->
+			  <p><%= r.body %></p>
+			<% end %>
+
+			<!-- The voting area -->
+			<div class="reply_vote_div">
+			  <!-- Report link, after reply, at left bottom -->
+			  <% unless r.handle == current_handle.username %>
+			    <%= link_to "report abuse", new_report_path(r.class.to_s.underscore, r.id, current_user.id), remote:true, class: "reply_link" %>
+			  <% end %>
+			  <div class="upvote_div">
+			    <!-- Show number of positive votes -->
+			    <p class="up_text"><%= r.likes.size %></p>
+			  </div>
+
+			  <div class="downvote_div">
+			    <!-- Show number of negative votes -->
+			    <p class="down_text"><%= r.dislikes.size %></p>
+			  </div>
+			</div>
+
+		      </span>
+		    </div>
+		  <% end %>
+		<% end %>
+	      <% end %>
+	    <% end %>
+	  <% end %>
+	<% end %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <span>Please activate your account or contact the site administrators to see comments.</span>
+<% end %>

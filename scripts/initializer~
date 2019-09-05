@@ -1,0 +1,53 @@
+#!/bin/sh -x   
+
+# Starts up prestissimo db on a new server
+# Run this script after checking out the current version
+# from the repo and configuring apache & sendmail
+
+# Migrates and resets the database
+# Creates settings and master admin in db
+# Rolls back course table files courses.txt and enrollment.txt
+# if dumps of tables exist, load them into db
+# otherwise runs data_pull on each course file in old_files in order
+
+# Course table files
+PRESTISSIMO="/srv/httpd/htdocs/prestissimo"
+COURSES="${PRESTISSIMO}/db/courses.txt"
+COURSESRCS="${PRESTISSIMO}/db/courses.txt,v"
+ENROLL="${PRESTISSIMO}/db/courses.txt"
+ENROLLRCS="${PRESTISSIMO}/db/courses.txt,v"
+
+# course catalog files
+FILES=`ls ${PRESTISSIMO}/scripts/oldfiles/*.lis`
+echo $FILES
+exit 1
+
+# dumpfiles of db
+DUMPFILES="${PRESTISSIMO}/db/dumpfiles/*"
+
+# datapull script
+DATAPULL="${PRESTISSIMO}/scripts/data_pull"
+
+# migrate and reset the db
+rake db:migrate
+rake db:reset
+
+# master admin and settings
+rake db:initialize
+
+# rollback course table files
+svn revert "${COURSES}" "${COURSESRCS}" "${ENROLL}" "${ENROLLRCS}"
+
+# check for dumps
+if [ -d "/change/me/to/the/dump/file/dir" ]
+then
+  # fill this out once we have backups
+  echo > /dev/null
+else
+	echo "here we are $FILES"
+  # data_pull on all course files
+  for f in $FILES
+  do
+   "$DATAPULL" "$f"
+  done
+fi

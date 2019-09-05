@@ -1,0 +1,18 @@
+<!--
+    Page with form for a user to remove their account
+    requires the user's password to work
+-->
+<% provide(:title, "Remove Account") %>
+<h1 class="ui-bar ui-bar-a titlebar">Delete Your Account?<br>:'( y u h8 us?</h1>
+
+<% name = @user.nickname.blank? ? @user.fname : @user.nickname %> 
+<p><%= name %>, if you delete your account, you will lose all your account information, like course lists and profile.
+You can login with your ObieId and password anytime and a new account will be created for you.
+</p>
+
+<%= form_tag self_destroy_path(@user.id), :method => 'delete' do %>
+  <div>
+    <%= submit_tag "Delete Account", name: nil %>
+  </div>
+
+<% end %>

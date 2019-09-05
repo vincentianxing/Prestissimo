@@ -1,0 +1,11 @@
+class DropComments < ActiveRecord::Migration
+  def up
+    drop_table(:comments)
+  end
+
+  def down
+    create_table(:comments) do |t|
+      t.column :content, :text
+    end
+  end
+end

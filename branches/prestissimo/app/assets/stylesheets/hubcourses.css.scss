@@ -1,0 +1,115 @@
+// Place all the styles related to the Hubcourses controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* --------------------------- CLASS/HUBCOURSE SEARCH PAGE ------------------ */
+/* ID for DIV surrounding class search results */
+#hubcourse_results_scroller {
+  height:250px;
+  width:auto;
+  overflow:auto;
+}
+
+/* Class for H2 Subheaders used to show sections */
+.hub_h2 {
+  margin:0;
+  margin-bottom:10px;
+  color:#DE352D;
+  font-family:Lusitana;
+  font-size: 30px;
+}
+
+/* Class used for div surrounding entire search. */
+.hub_search {
+  td {
+    vertical-align:top;
+    padding:5px;
+}
+h2 {
+  text-align:left;
+      }
+}
+
+/* IDs used for columns of table containing classes, profs */
+#hub_class{
+  float:left;
+  margin-left:83px;
+}
+
+.hubsearch_bg {
+}
+
+.hc_dept {
+  float:right;
+}
+
+/* ID used for div containing department links */
+#hub_dept{
+  width:100px;
+  margin-left:500px;
+  margin-top:30px;
+}
+
+/* Class used for div surrounding search field labels */
+.hub_label {
+  display:inline-block;
+  font-weight:bold;
+}
+
+/* Class for div surrounding search fields and labels */
+.hub_div {
+  text-align:left;
+  padding: 5px;
+}
+
+/* Class for div surrounding search & reset buttons */
+.hub_search_submit {
+  padding-top:20px;
+  text-align:center;
+}
+
+/* -------------------- SHOW CLASS PAGE ------------------------------------- */
+/* ID given to the header displaying the course DEPT and NUM */
+#hc_h1 {
+  padding:0;
+  margin:0;
+}
+
+/* Class given to subheaders, used to list class name and show sections */
+.hc_h2 {
+  padding:0;
+  margin:0;
+  margin-left:50px;
+  margin-bottom:30px;
+  color:#DE352D;
+  font-family:Lusitana;
+}
+
+/* ID given to div containing professor names and links */
+#hc_profs {
+  ul {
+    list-style:none;
+      }
+}
+
+/* ID given to div containing past course info */
+#hc_courses {
+  height:200px;
+  overflow:auto;
+  ul {
+    list-style:none;
+      }
+      li {
+	margin-bottom:7px;
+      }
+      p {
+	margin:0;
+	padding:0;
+      }
+}
+
+/* ID given to subheaders used to delineate sections */
+#courses_h2, #professors_h2, #desc_h2 {
+  margin:0;
+  font-size:20px;
+}

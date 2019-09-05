@@ -1,0 +1,24 @@
+<!--
+    Form to send an email with a password change link
+    will not work unless the email specified is associated with a user account
+-->
+<% provide(:title, "Forgot Password") %>
+<h1>Account Email</h1>
+
+<p>
+You've forgotten your password? Have no fear! Just enter your oberlin email address (like mkrislov@oberlin.edu) into the box below, hit Send, and we'll email you with a link to reset your password!
+</p>
+<p>
+Don't forget it again! =(
+</p>
+
+<div>
+	<%= form_tag( send_forgot_mail_path, method: 'get' ) do %>
+		<%= render 'shared/error_messages' %>
+		<span class="fr_label">
+			<%= label_tag :email,  "Account Email" %>
+		</span>
+		<%= text_field_tag :email, params[:email], class: "default_inputfield" %>
+			<%= submit_tag "Send Email" %>
+	<% end %>
+</div>

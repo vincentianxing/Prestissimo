@@ -1,0 +1,62 @@
+<div class="edit_area">
+	<!-- Flashes a message, after form submit, about success of submit -->
+	<span id="message">
+		<%= @message.to_s %>
+	</span>
+
+	<!-- Form to edit a report -->
+	<%= form_tag report_path(@report.reportable_type, @report.reportable_id, @report.user_id, @report.id), method: 'put', remote: true do %>
+
+		<!-- Left column: contains the actual edit form -->
+		<div id="reportform_col">
+			<div id="resolved_box">
+				<span>Resolved ? </span>
+				<%= check_box_tag :resolved, params[:resolved] %>
+			</div>
+
+			<div class="edit_report_label">Actions Taken</div>
+			<%= text_area_tag :response, params[:response], value: @response, class: 'default_inputfield', id: "report_textarea" %>
+			<div class="edit_report_label">Email To Reporter</div>
+			<%= text_area_tag :to_comp, params[:to_comp], value: @to_comp, class: 'default_inputfield', id: "report_textarea" %>
+			<div class="edit_report_label">Email To Reported</div>
+			<%= text_area_tag :to_viol, params[:to_viol], value: @to_viol, class: 'default_inputfield', id: "report_textarea" %>
+		</div>
+
+		<!-- Right column: contains the report info -->
+		<div id="reportinfo_col">
+			<div id="report_body">
+				<span class="report_fields">ID of Reporter:</span>
+				<%= @report.user_id %>
+				<br \>
+				<span class="report_fields">Report Title: </span>
+				<%= @report.title %>
+				<br \>
+				<span class="report_fields">Report Body:</span>
+				<%= @report.body %>
+			</div>
+
+			<span id="show_hist_link">Show Report History</span>
+
+			<span id="show_reportable_link">
+				Show Reported Object
+				<% if @reportable_changed %>
+					<span class="object_changed">The reported <%= @report.reportable_type %> has been changed since the report was filed!</span>
+				<% end %>
+			</span>
+
+			<div id="history_div">
+				<p><%= @report.response %>
+			</div>
+
+			<div id="reportable_div">
+				<p><%= @report.reportable_content %></p>
+			</div>
+
+		</div>
+    <!-- Submit button div -->
+		<div id="editreport_submit">
+			<%= submit_tag "Update Report", name: nil %>
+		</div>
+	<% end %>
+</div>
+

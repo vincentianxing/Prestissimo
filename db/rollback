@@ -1,0 +1,54 @@
+#!/bin/sh
+
+SERVER="info"
+#SERVER="com"
+APACHECTL=/etc/rc.d/rc.httpd
+TMPDIR=/var/www/htdocs/prestissimo/db/tmp
+BACKUPFILE=""
+PRESTISSIMODIR=/var/www/htdocs/prestissimo
+
+if [ $SERVER = "info" ]
+then
+  APACHECTL=/usr/sbin/apachectl
+fi
+
+# must be root
+if [ `whoami` != 'root' ]; then
+  echo "rollback must be run as root"
+  exit 1
+fi
+
+# check for passed parameters
+if [ $# -gt 0 -a ! -z "$1" ]
+then
+  BACKUPFILE=$1
+else
+  echo "Specify a tarball of backups"
+  exit 2
+fi
+
+mkdir $TMPDIR
+
+cd $TMPDIR
+
+# unpack tarball
+tar -xJvf "${BACKUPFILE}"
+BACKUPS=`ls *.sql`
+
+# stop apache
+sudo $APACHECTL stop
+
+# load in tables
+for file in $BACKUPS
+do
+  mysql --user=busystudent --password="h@ppyp@nt5++" prestissimo_production < "${file}"
+done
+
+# start apache
+sudo $APACHECTL start
+
+# remove tmp dir
+cd $PRESTISSIMODIR
+rm -r $TMPDIR
+
+echo "Successfully rolled back db"

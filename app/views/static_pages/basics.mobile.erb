@@ -1,0 +1,89 @@
+<!-- Describes the basic functionality of oprestissmo -->
+
+<% provide(:title, 'Help | Basics') %>
+<h1 class="ui-bar ui-bar-a titlebar">Search Help</h1>
+
+<p>The Prestissimo course search offers a lot of functionality, but perhaps all of those search fields can be a little overwhelming. Have no fear! In our series of Search Help articles, we aim to explain how each field works - hopefully we can clear up some confusion!</p>
+
+<div class="ui-corner-all custom-corners">
+  <div class="ui-bar ui-bar-a">
+    <h2 class="help_header">Basic Search</h2>
+  </div>
+  <div class="ui-body ui-body-a">
+<p>Our basic search consists of the five fields visible when the page first loads. These are Course Name, Professor, Department, Semester, and Keyword Search. Each is explained below.</p>
+<ul id="basics_list" class="help_list">
+  <li>The <strong>Course Name</strong> field filters courses by their titles. Search results will have titles that match or contain the query. For example, searching either "Principles" or "Principles of Computer Science" will return the course "Principles of Computer Science."</li>
+  <li>The <strong>Professor</strong> field returns courses being taught by a professor whose name matches or contains the search phrase.</li>
+  <li>The <strong>Department</strong> selector returns courses being offered by the specified department. All courses are displayed, including Private Readings and Honors listings.</li>
+  <li>The <strong>Semester</strong> selector determines which course catalog to search. The most recently available catalog is the top option.<br/>
+  <strong>Note:</strong> Most course catalogs become available midway through the preceding semester, and Prestissimo updates to the new catalog at this time. Check to make sure you are searching the preferred semester!</li>
+  <li> The <strong>Keyword</strong> search field performs a keyword search of course descriptions, titles, departments, crosslistings, and prerequisites. Entering multiple search terms will return courses that match either all of the terms or any of the terms depending on which you have selected. To search for specific phrases surround queries with single or double quotes.</li> 
+</div>
+</div>
+
+<br>
+
+<div class="ui-corner-all custom-corners">
+  <div class="ui-bar ui-bar-a"
+  <h2 class="help_header">Advanced Search</h2>
+  </div>
+  <div class="ui-body ui-body-a">
+  <p> <strong> Hint: to access the advanced search categories, press the "+" under the "Match any terms" button</strong> <p>
+
+<p>Our advanced search consists of many fields, allowing for a great degree of customizability. If you understand these fields, you can reach a high level of specificity in your course search results! Each field is explained below.</p>
+
+<ul class="help_list">
+  <li>The <strong>Proficiencies</strong> boxes filter classes by which requirement the classes fulfill. Checking one box will return classes that offer credit for that proficiency, and checking more than one box will return classes that offer all of the selected proficiencies. For example, if both CD and WR are checked, only courses that give both CD and WR will be returned.
+	<p class="indent"><i>The abbreviations are:</i>
+	<br /><strong>CD:</strong> Cultural Diversity
+	<br /><strong>WR:</strong> Writing Proficiency
+	<br /><strong>QP:</strong> Quantitive Proficiency
+	</p>
+	</li>
+
+	<li>The <strong>Days</strong> boxes restricts results to courses offered on the selected days. Checking a day will show all courses that occur on that day. Selecting more than one day will only return courses that occur on every day selected.</li>
+
+        <li>The <strong>Course Type</strong> boxes filter results by number of credits as specified by the newish degree requirements</li>
+
+	<li>The <strong>Modules</strong> boxes filter courses by the module of the semester in which they are offered.
+	<p class="indent"><i>The different types of modules are:</i>
+	<br /><strong>First:</strong> the course runs from the start of the semester until the week of Fall/Spring Break.
+	<br /><strong>Second:</strong> the course runs from the week of Fall/Spring break until the end of the semester.
+	<br /><strong>Special:</strong> a class with various, often irregular meeting times.
+	<br />All other classes are <strong>full</strong semester classes.
+	</p>
+	</li>
+
+	<li>The <strong>Attributes</strong> boxes restrict results by the division of the college in which they are offered. If one attribute is checked, courses from that division will be shown. Selecting multiple attributes will only return courses that are associated with all of the selected divisions.
+	<p class="indent"><i>The abbreviations are:</i>
+	<br /><strong>NS:</strong> Natural Sciences
+	<br /><strong>SS:</strong> Social Sciences
+	<br /><strong>HU:</strong> Arts & Humanities
+	</p>
+        </li>
+
+        <li>The <strong>Con Attributes</strong> boxes filter results by conservatory attribute.
+	<p class="indent"><i>The attributes are:</i>
+	<br /><strong>CNDP:</strong> Conservatory classes that give HU credits
+	<br /><strong>DDHU:</strong> Conservatory classes that give HU credits fro the double degree program
+	</p>
+        </li>
+
+	<li>The <strong>Credit</strong> fields limit results to the specified credit range. If the Min field is filled, courses that offer at least that number of credits are shown. If the Max field is filled, courses that offer at most that number of credits are shown. When both fields are filled, results will fall into the specified range, inclusive.</li>
+
+	<li>The <strong>CRN</strong> field searches for courses by Course Registy Number (CRN). When this field is not blank, all other fields are skipped since there will only be one course with a given CRN. Search terms in the Keyword field will still be highlighted.</li>
+
+	<li>The <strong>Start After</strong> field allows you to specify the start time of a course. If a start time is specified and an end time is not, the search will return all of the courses starting exactly at that time.
+	The <strong>End Before</strong> field allows you to specify the end time of a course. If an end time is chosen and a start time is not, the search will return all of the courses ending exactly at that time.
+	<p class="indent">If both start and end times are filled, the search will return courses in that time range, exclusive. For example, if the Start After and End Before fields consist of 14:00 and 16:00, respectively, the results will consist of all classes that start at or after 14:01 and end at or before 15:59.
+	<br /><i>The hour field must be filled when searching!</i> Minutes are optional and assumed to be 00 when not chosen. Minutes cannot be searched without an hour.</p></li>
+
+        <li>The <strong>Course Level</strong> selectors search by course number. The first selector chooses the comparator, and the second chooses level. <strong>Greater Than</strong> finds courses with numbers at least as high as the level, <strong>Less Than</strong> finds courses with numbers at most the selected level, and <strong>Equal To</strong> finds courses with numbers in that level range i.e. "Equal To 100" would return any courses numbered 100-199.
+	<br/>If no comparator is specified, Equal To is assumed. If no number is chosen, this field is not searched.</li>
+</ul>
+</div>
+</div>
+<p>For any unanswered questions, please contact
+us at 
+<a href="mailto:info@oprestissimo.com">info@oprestissimo.com</a>.
+</p>

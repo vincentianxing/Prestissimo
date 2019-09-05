@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= full_title(yield(:title)) %></title>
+  <link href="/favicon.ico" rel="shortcut icon" />
+  <%= javascript_include_tag 'jquery-1.10.2.js' %>
+  <!--  #javascript_include_tag 'jquery-ui-1.10.0.custom.js'  -->
+  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag "print", media: "print" %>
+  <!--<%= stylesheet_link_tag    "print", :media => "print" %> -->
+  <%= stylesheet_link_tag "print_collapsed", media: "print", disabled: true %>
+  <%= stylesheet_link_tag "print_expanded", media: "print", disabled: true %>
+  <%= stylesheet_link_tag 'jquery-ui-1.10.3.custom.css' %>
+
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:900' rel='stylesheet' type='text/css'>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<!--<div id="course_list">-->
+  <% if current_cart && !is_mobile_device? %>
+      <%= render partial: 'carts/show', locals: {courses: get_courses} %>
+  <% end %>
+<!--</div>-->
+<% if !is_mobile_device? %>
+    <% session[:mobile_view] = false %>
+<% end %>
+<div id="wrapper">
+<div id="header-wrapper">
+  <%= render 'layouts/header' %>
+</div>
+  <div id="content">
+    <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value.html_safe %></div>
+    <% end %>
+    <%= yield %>
+  </div>
+  <!-- an empty element in order to push the footer to the bottom of the page -->
+  <div id="push"></div>
+</div>
+<%= render 'layouts/footer' %>
+
+<script>
+  <%= yield :script %>
+</script>
+</body>
+</html>

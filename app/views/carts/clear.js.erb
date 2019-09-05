@@ -1,0 +1,6 @@
+// render the cart display
+$('.courses_updatificator').html("<%= escape_javascript( render partial: 'carts/courses', locals: {courses: get_courses} ) %> " );
+// hide clear/load/email cart buttons
+$('#maillink_outer').hide();
+// update status bar
+$('#status_bar').text("Cart cleared.");

@@ -1,0 +1,329 @@
+// Place all the styles related to the Professors controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* --------------------- PROFESOR SEARCH RESULTS STYLING -------------------- */
+/* Each class sets width of associated field */
+th {
+  text-align:left;
+}
+
+.name {
+  width:35%;
+}
+
+.email {
+  width:35%;
+}
+
+.active_link {
+  width:28%;
+}
+
+/* ----------------- PROFESSOR SEARCH PAGE STYLING -------------------------- */
+/* ID given to div surrounding search form */
+#prof_div {
+  display:inline-block;
+  padding-right:5px;
+  padding-bottom:10px;
+}
+
+/* ID given to search field label */
+#prof_label {
+  display:inline;
+  font-weight:500;
+  font-size:16px;
+  vertical-align:middle;
+}
+
+/* ID given to search field text box */
+#prof_field {
+  height:19px;
+  padding:0;
+  padding-right:3px;
+  padding-left:3px;
+  font-size:12px;
+}
+
+/* ID of div surrounding search submit tag */
+#prof_submit {
+  display:inline-block;
+}
+
+/* ID of div surrounding search results */
+#prof_results_scroller {
+  max-height:315px;
+  overflow:auto;
+  padding:0px;
+  margin-bottom: 15px;
+  border: 2px solid $scrollerBorder;
+}
+
+.proflookup_table tr.odd, .proflookup_table tr.even {
+    height: 30px;
+  }
+
+/* -------------------- PROFESSOR SHOW PAGE STYLING ------------------------- */
+/* Styling for subheaders. used to start page sections */
+.prof_h2 {
+  padding:0;
+  margin:0;
+  color: $h2color;
+  font-family: $labelFont;
+  font-size:20px;
+  display:block;
+}
+
+.prof_h2#contact{
+  display:none;
+}
+
+/* ID of div surrounding classes section. */
+#prof_contact_div {
+  /* classes are displayed as a table */
+  //max-height:400px;
+  //overflow:auto;    since there's nothing below this on the page it doesn't need to be scrolly
+  border-radius:5px;
+  background-color:$profContactBackground;
+  padding:3px;
+  border: $profContactBackground solid 2px;
+  td.dept {
+    width:100px;
+}
+td.name {
+  width:350px;
+}
+td.sem {
+  width:120px;
+}
+td.syl {
+  width: 120px;
+  float: right;
+}
+margin-top:10px;
+margin-bottom:10px;
+}
+
+.cartlink_prof {
+  float:right;
+}
+
+#prof_contact_div {
+  margin: 20px;
+}
+
+#prof_more_info_div {
+  margin-bottom: 10px;
+}
+
+#expand_info {
+  font-size: 12px;
+  margin: 5px 0;
+}
+
+#prof_classes_results {
+  border: 2px solid $profClassesBorder;
+}
+
+.course_entry {
+  height: 30px;
+}
+
+.dept_prof {
+  width: 15%;
+}
+
+.cnum_prof {
+  width: 10%;
+}
+
+.cname_prof {
+  width: 45%;
+}
+
+.recent_sem_prof {
+  width: 30%;
+}
+
+.prof_class_title_div {
+  padding: 10px;
+  width: 55%;
+  float: left;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.prof_class_descrip_div {
+  width: 64%;
+  padding: 5px 5px 7px 5px;
+  float: left;
+  text-align: justify;
+  text-indent: 5px;
+}
+
+.prof_class_semesters_div {
+  float: right;
+  width: 33%;
+  margin-top: -30px;
+  padding-bottom: 7px;
+}
+
+#prof_csv_link {
+  text-align: center;
+  margin: 10px 0px;
+  padding: 7px 5px 5px 5px;
+  border-top: $lineColor dotted 1px;
+  border-bottom: $lineColor dotted 1px;
+}
+
+/* -------------------- PROFESSOR EDIT PAGE STYLING ------------------------- */
+.su_small_label {
+  font-size: 12px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#prof_name_fine {
+  width: 250px;
+}
+
+#prof_optional_fine {
+  width: 600px;
+}
+
+#prof_markdown {
+  font-size: 14px;
+  text-indent: 17px;
+}
+
+.su_textfield_half {
+  //width: 50%;
+  padding: 10px 10px 2px 10px;
+  .default_inputfield {
+    width: 350px;
+  }
+}
+
+.su_textfield_full {
+  width: 560px;
+  float:left;
+  .default_inputfield {
+    width: 100%;
+    height: 150px;
+  //  margin: 11px 5%;
+  //  &:focus {
+    //  margin: 10px 5%;
+  //  }
+  }
+}
+
+#professor_contact {
+  //height: 4.5em;
+  width: 760px;
+  margin: 11px 12px;
+  &:focus {
+    margin: 10px 11px;
+  }
+}
+
+#professor_content {
+  width: 760px;
+  //height: 300px;
+  margin: 11px 17px;
+  &:focus {
+    margin: 10px 16px;
+  }
+}
+
+#prof_nick {
+  text-align: center;
+  margin: 20px 0;
+
+}
+
+#prof_email, #prof_office {
+  float: right;
+  height: 85px;
+}
+
+#prof_phone, #prof_site {
+  float: left;
+  height: 85px;
+}
+
+#prof_info {
+  float: left;
+  width: 800px;
+}
+
+#prof_info_preview {
+  width: 800px;
+  float: left;
+}
+
+#prof_info_preview_text {
+  margin: 11px 20px;
+}
+
+#prof_contact {
+  float: left;
+  width: 790px;
+}
+
+.no_display {
+  display: none;
+}
+
+#prof_test_url {
+  width: 200px;
+  text-align: center;
+  margin-left: 89px;
+  background-color: $profTestUrlBackground;
+  border-radius: 5px;
+  padding: 2px;
+  border: 1px solid $profTestUrlBorder;
+  a {
+    color: $profTestUrlText;
+    &:hover {
+      color: $profTestUrlTextHover;
+    }
+  }
+}
+
+#prof_contact_container {
+  float: left;
+  width: 790px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: $profContactContainerBackground;
+  padding: 3px;
+  border: 2px solid $profContactContainerBackground;
+}
+
+#save_changes_button {
+  margin-left: 350px;
+}
+/* --------------------- PROFESOR COURSE PAGE STYLING -------------------- */
+.prof_table {
+  border: 2px solid $profTableBorder;
+}
+
+.prof_table_10 {
+  width:10%;
+}
+
+.prof_table_20 {
+  width:20%;
+}
+
+.prof_table_25 {
+  width:25%;
+}
+
+.prof_table_title {
+  margin:10px;
+}
+
+.prof_table_row {
+  height:2em;
+}

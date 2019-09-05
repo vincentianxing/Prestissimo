@@ -1,0 +1,336 @@
+// Place all the styles related to the Carts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* --------------- GENERAL CART STYLING ------------------------------------- */
+/* ID of Div around entire cart */
+//@import "colors.scss";
+
+#cart_container {
+  position: fixed !important;
+  width: 200px;
+  z-index: 10;
+}
+
+#cart {
+  position:relative;
+  z-index:15;
+  background: $cartBackground;
+  padding:4px;
+  border-radius:5px;
+
+  /*drop shadow*/
+
+  /*firefox, Chrome, Safari*/
+  -moz-box-shadow: $cartShadow 0 0 4px;
+  -webkit-box-shadow: $cartShadow 0 0 4px;
+  box-shadow: $cartShadow 0 0 4px;
+
+  /* For IE 8 */
+  //-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+  /* For IE 5.5 - 7 */
+  //filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+
+}
+
+/* ID of DIV around headers table, in cart */
+#cart_header {
+  background: $cartHeader;                //url(images/ui-bg_glass_65_c72d19_1x400.png) 50% 50% repeat-x;
+  //background:#ee352E;
+  border-radius:5px 5px 0 0;
+  border:1px solid $cartHeader;
+  color: $cartHeaderText; 
+  padding-left: 2px;
+  font-weight:700;
+  font-size:small;
+  //-moz-box-shadow:inset 1px 1px 0px 0px #ffa189;
+  //-webkit-box-shadow:inset 1px 1px 0px 0px #ffa189;
+  //box-shadow:inset 1px 1px 0px 0px #ffa189;
+}
+
+#minimize_cart {
+  cursor: pointer;
+  float:right;
+}
+#cart_icon {
+  display: inline-block;
+  margin-bottom: -3px;
+  margin-left: 3px;
+}
+
+#minimized_cart {
+  cursor: pointer;
+  position:fixed;
+  bottom: 0;
+  left: 60px;
+  background: $cartHeader; //url(images/ui-bg_glass_65_c72d19_1x400.png) 50% 50% repeat-x;
+  //background:#ee352E;
+  border-radius:5px 5px 0 0;
+  border-width: 5px 5px 0px 5px;
+  border-style: solid;
+  border-color: $cartBackground;
+  color: $cartHeaderText;
+  font-weight:700;
+  font-size:small;
+  -moz-box-shadow: $cartShadow 0 0 4px;
+  -webkit-box-shadow: $cartShadow 0 0 4px;
+  box-shadow: $cartShadow 0 0 4px;
+  padding: 9px;
+  z-index: 15;
+}
+
+.sem_row {
+  background-color: $cartSemesterBackground;
+  color: $cartSemesterText;
+  text-align:center;
+  font-size:larger;
+}
+
+.sem_creds {
+  background-color: $cartSemCreditsBackground;
+  color: $cartSemCreditsText;
+  text-align:center;
+  font-size:larger;
+}
+
+/* class of table surrounding cart courses */
+.courses {
+  margin:0;
+}
+
+#courses_scroller {
+  border-color: $cartHeader;
+  border-style: solid;
+  border-width: 2px;
+  margin:0 0 5px 0;
+  overflow: auto;
+}
+
+.cart_course .cname {
+  min-height: 30px;
+  white-space: pre; /* CSS 2.0 */
+  white-space: pre-wrap; /* CSS 2.1 */
+  white-space: pre-line; /* CSS 3.0 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  white-space: -moz-pre-wrap; /* Mozilla */
+  white-space: -hp-pre-wrap; /* HP Printers */
+  word-wrap: break-word; /* IE 5+ */
+  max-width: 121px;
+}
+
+.cart_course .cnum {
+  width: 41px;
+}
+
+/* Class of span surrounding [x] button to remove courses */
+.rem_link {
+  color: $removeButton;
+  &:hover {
+    color: $removeButtonHover;
+  }
+}
+
+/* Class that makes course headers not bolded when selected */
+.selected {
+  font-weight:normal !important;
+}
+
+/* ID of Div surrounding email button, for positioning purposes */
+#maillink_outer {
+  text-align:center;
+}
+
+/* Email Cart Link */
+.cart_action_link {
+  display:inline-block;
+  border-radius:5px;
+  padding:3px;
+  margin-bottom:3px;
+  outline:none;
+  border:1px solid $cartButtonBorder;
+  color: $cartButtonText;
+  text-shadow: $cartButtonTextShadow 0 0 2px;
+  font-weight:700;
+  font-size:small;
+  background: $cartButtonBackground;;
+  //background: -moz-linear-gradient(bottom, #FFa189 2%, #FF7552 51%, #FFA189 51%);
+  //background: -webkit-linear-gradient(bottom,	#FFA189 2%, #FF7552 51%, #FFA189 51%);
+  //background: -ms-linear-gradient(bottom, #FFa189 2%, #FF7552 51%, #FFA189 51%);
+  text-decoration:none;
+  &:hover {
+    cursor:pointer;
+    background: $cartButtonBackgroundHover;
+    color: $cartButtonTextHover;
+    //background: -moz-linear-gradient(bottom, #FF7552 2%, #EE352E 51%, #FF7552 51%);
+    //background: -webkit-linear-gradient(bottom,	#FF7552 2%, #EE352E 51%, #FF7552 51%);
+    //background: -ms-linear-gradient(bottom, #FF7552 2%, #EE352E 51%, #FF7552 51%);
+    /* Inner light border */
+    //-moz-box-shadow:inset 1px 1px 0px 0px #ffa189;
+    //-webkit-box-shadow:inset 1px 1px 0px 0px #ffa189;
+    //box-shadow:inset 1px 1px 0px 0px #ffa189;
+
+    }
+    &:active {
+      //position:relative;
+      //top:-1px;
+      background: $cartButtonBackgroundActive;
+      border:1px solid $cartButtonBorderActive;
+    }
+}
+
+#cart_csv_link {
+  font-size: small;
+  color: $cartCSVLink;
+  text-decoration:none;
+  &:hover {
+    color: $cartCSVLinkHover;
+    text-decoration: underline;
+  }
+}
+
+/* --------------------- COURSE INFO BOX ------------------------------------ */
+/* ID of Div containing course information */
+#info_box {
+  position:absolute;
+  top:100%;
+  margin:10px 0 0 -6px;
+  width: 100%;
+  z-index:12;
+}
+
+/* Class of div surrounding course info that is initially hidden */
+.info {
+  display:none;
+  padding:4px;
+  background-color: $cartPopdownBackground;
+  border-radius: 5px ;
+  font-size:small;
+  margin-bottom: 4px;
+  box-shadow: $cartShadow 0 0 4px;
+}
+
+.cart_prof_png {
+  float:right;
+  height:30px;
+  width:30px;
+}
+
+#cart_crn {
+  float:right;
+}
+
+#cart_cred {
+  width:150px;
+  float:left;
+}
+
+.prof_cart_link {
+  color: $link;
+  text-decoration:none;
+  &:hover, &:active {
+    color: $linkHover;
+    text-decoration:underline;
+}
+}
+
+.cleaner {
+  clear: both;
+}
+
+/* -------------------- THE COURSE CART DIV --------------------------------- */
+/* ID for the course cart container 
+Not 100% on that... */
+#course_list {
+  position:fixed;
+  float:left;
+  //   margin:20px 0 0 20px;
+  //margin-top:20px;
+  margin-left: -150px;
+  width:200px;
+  z-index: 10;
+}
+
+
+/* Class for span surrounding the category labels, in
+expanded cart view */
+.cart_label {
+  font-weight:bold;
+}
+
+/* ID for span surrounding the remove course from cart link */
+#rem_link {
+  a {
+    color: $removeButton;
+    &:hover {
+      color: $removeButtonHover;
+              }
+      }
+}
+
+
+
+/* -------------------- DIALOG BOX STYLING ---------------------------------- */
+/* Class of div surrounding submit button and divider */
+.dialog_submit {
+  text-align:right;
+  padding:5px;
+}
+
+/* Class of actual submit button, in dialog box */
+.dialog_submit_button {
+  border-radius:5px;
+  outline:none;
+  padding:5px;
+  border:1px solid $cartButtonBorder;
+  color: $cartButtonText;
+  text-shadow: $cartButtonTextShadow 0 0 2px;
+  font-weight:700;
+  font-size:small;
+  background: $cartButtonBackground;
+  //background: -moz-linear-gradient(bottom, #FFa189 2%, #FF7552 51%, #FFA189 51%);
+  //background: -webkit-linear-gradient(bottom,	#FFA189 2%, #FF7552 51%, #FFA189 51%);
+  //background: -ms-linear-gradient(bottom, #FFa189 2%, #FF7552 51%, #FFA189 51%);
+  &:hover {
+    background: $cartButtonBackgroundHover;
+    color: $cartButtonTextHover;
+    //background: -moz-linear-gradient(bottom, #FF7552 2%, #EE352E 51%, #FF7552 51%);
+    //background: -webkit-linear-gradient(bottom,	#FF7552 2%, #EE352E 51%, #FF7552 51%);
+    //background: -ms-linear-gradient(bottom, #FF7552 2%, #EE352E 51%, #FF7552 51%);
+    /* Inner light border */
+    //-moz-box-shadow:inset 1px 1px 0px 0px #ffa189;
+    //-webkit-box-shadow:inset 1px 1px 0px 0px #ffa189;
+    //box-shadow:inset 1px 1px 0px 0px #ffa189;
+      }
+      &:active {
+        position:relative;
+        top:-1px;
+      }
+}
+
+/* Class of label text in dialog */
+.dialog_label {
+  display:block;
+  padding-bottom:5px;
+}
+
+/* Class of div around form, in dialog box */
+.dialog_form {
+  text-align:center;
+  padding:7px;
+}
+
+#total_credits {
+  background: $cartHeader; //url(images/ui-bg_glass_65_c72d19_1x400.png) 50% 50% repeat-x;
+  //background:#ee352E;
+  border-radius:5px;
+  padding: 5px;
+  color: $cartHeaderText;
+  font-weight:700;
+  font-size:small;
+  //-moz-box-shadow:inset 1px 1px 1px 1px #ffa189;
+  //-webkit-box-shadow:inset 1px 1px 1px 1px #ffa189;
+  //box-shadow:inset 1px 1px 1px 1px #ffa189;
+  margin-top: 2px;
+  margin-bottom: 7px;
+}

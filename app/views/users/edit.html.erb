@@ -1,0 +1,192 @@
+<!--
+This is the settings page
+It contains two forms:
+the first edits the handlename
+the second edits the user info
+the edit action passes a hash containing the user and their handle
+-->
+
+<% provide(:title, "Edit User") %>
+<% @user = @vals[:user] %>
+<% @handle = @vals[:handle] %>
+<% hasnoprefs = @user.privacy_prefs.nil? %>
+<% if faculty_user?(@user) %>
+  <h1 class="settings_header">Change Password</h1>
+<% else %>
+  <h1 class="settings_header">Update Your Profile</h1>
+<% end %>
+
+<% unless faculty_user?(@user) %>
+  <div id="handle_form_outer">
+    <!-- The Handle update form -->
+    <%= form_for(@handle, url: update_handle_path(@handle.id)) do |f| %>
+      <%= render 'shared/error_messages' %>
+      <div id="handle_form_inner">
+        <span class="su_label">
+          <%= f.label :username, "Commenter Name" %>
+        </span>
+        <div class="su_textfield">
+          <%= f.text_field :username, class: "default_inputfield" %>
+        </div>
+        <%= f.submit "Update Commenter Name" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+<div class="sign_form" id="usr_update_form">
+
+  <!-- The User update form -->
+  <%= form_for(@user, url: update_path(@user.id)) do |f| %>
+    <%= render 'shared/error_messages' %>
+    <div class="su_textfield">
+      <span class="su_label">
+        <div class="checkbox">
+          <span class="su_label_header">Hide on Profile?</span>
+        </div>
+        <%= f.label :nickname, "Nickname" %>
+      </span>
+    </div>
+    <% if !in_mobile_view? %>
+      <div class = "su_textfield">
+        <div class = "checkbox">
+    <% else %>
+      <div data-role="fieldcontain" class="field_group">
+        <fieldset data-role="controlgroup" data-type="horizontal">
+    <% end %>
+        <!-- check privacy preferences to decide whether box should already be checked -->
+        <% if !hasnoprefs && @user.privacy_prefs.include?("nonickname") %>
+          <%= check_box_tag "nickname", 1, true %>
+        <% else %>
+          <%= check_box_tag "nickname" %>
+        <% end %>
+        <%= label_tag 'nickname', 'Hide' %>
+        <% if !in_mobile_view? %>
+        </div>
+        <%= f.text_field :nickname, class: "default_inputfield" %>
+      </div>
+        <% else %>
+          <%= f.text_field :nickname, class: "settings_inputfield" %>
+        </fieldset>
+      </div>
+        <% end %>
+    <span class="su_label">
+      <%= f.label :year %>
+    </span>
+    <% if !in_mobile_view? %>
+      <div class = "su_textfield">
+        <div class="checkbox">
+        <% else %>
+          <div data-role="fieldcontain" class="field_group">
+            <fieldset data-role="controlgroup" data-type="horizontal">
+            <% end %>
+
+            <!-- check privacy preferences to decide whether box should already be checked -->
+            <% if !hasnoprefs && @user.privacy_prefs.include?("noyear") %>
+              <%= check_box_tag "year", 1, true %>
+            <% else %>
+              <%= check_box_tag "year" %>
+            <% end %>
+            <%= label_tag 'year', 'Hide' %>
+            <% if !in_mobile_view? %>
+            </div>
+            <%= f.text_field :year, class: "default_inputfield" %>
+          </div>
+        <% else %>
+          <%= f.text_field :year, class: "settings_inputfield" %>
+        </fieldset>
+      </div>
+    <% end %>
+
+    <!--
+    <span class="su_label">
+      <%= f.label :schedule %>
+    </span>
+    <% if !in_mobile_view? %>
+      <div class = "su_textfield">
+        <div class="checkbox">
+        <% else %>
+          <div data-role="fieldcontain" class="field_group">
+            <fieldset data-role="controlgroup" data-type="horizontal">
+            <% end %>
+
+            <% if !hasnoprefs && @user.privacy_prefs.include?("noschedule") %>
+              <%= check_box_tag "schedule", 1, true %>
+            <% else %>
+              <%= check_box_tag "schedule" %>
+            <% end %>
+            <%= label_tag 'schedule', 'Hide' %>
+            <% if !in_mobile_view? %>
+            </div>
+          </div>
+        <% else %>
+
+        </fieldset>
+      </div>
+    <% end %>
+    -->
+
+
+
+    <span class="su_label">
+      <%= f.label :major %>
+    </span>
+    <% if !in_mobile_view? %>
+      <div class = "su_textfield">
+        <div class="checkbox">
+        <% else %>
+          <div data-role="fieldcontain" class="field_group">
+            <fieldset data-role="controlgroup" data-type="horizontal">
+            <% end %>
+            <!-- check privacy preferences to decide whether box should already be checked -->
+            <% #if !hasnoprefs && @user.privacy_prefs.include?("secondmajor") %>
+            <%#= check_box_tag "major", 1, true %>
+            <%# else %>
+            <%#= check_box_tag "major" %>
+            <% #end %>
+            <%#=label_tag 'major', 'Second Major?' %>
+            <% if !in_mobile_view? %>
+            </div>
+            <div class="form" id="dept_div">
+              <%= f.collection_select :major, Department.all, :dept, :dept %>
+              <%#= f.collection_select :second_major, Department.all, :dept, :dept %>
+            </div>
+          <% else %>
+
+            <%= f.text_field :major, class: "settings_inputfield" %>
+          </fieldset>
+        </div>
+      <% end %>
+      <p>&nbsp;</p>
+      <span class="su_label">
+        <%= f.label :notes, "Profile Info" %>
+      </span>
+      <% if !in_mobile_view? %>
+        <div class="su_textfield">
+          <div class="checkbox">
+          <% else %>
+            <div data-role="fieldcontain" class="field_group">
+              <fieldset data-role="controlgroup" data-type="horizontal">
+              <% end %> 
+              <!-- check privacy preferences to decide whether box should already be checked -->
+              <% if !hasnoprefs && @user.privacy_prefs.include?("noinfo") %>
+                <%= check_box_tag "info", 1, true %>
+              <% else %>
+                <%= check_box_tag "info" %>
+              <% end %>
+              <%= label_tag 'info', "Hide" %>
+              <% if !in_mobile_view? %>
+              </div>
+              <%= f.text_area :notes, class: "default_inputfield"%>
+            </div>
+          <% else %>
+            <%= f.text_area :notes, class: "settings_inputfield", id: "settings_info" %>
+          </fieldset>
+        </div>
+      <% end %>
+    <%= f.submit "Save Changes" %>
+  <% end %>
+</div>
+
+<div id="rem_account_link">
+  <%= link_to "Delete My Account", confirm_destroy_path(@user.email.split('@')[0]) %>
+</div>

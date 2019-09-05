@@ -1,0 +1,6 @@
+tmp/*
+tmp
+Gemfile.lock
+*.log
+log/*
+log

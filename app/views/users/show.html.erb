@@ -1,0 +1,90 @@
+<!--
+The User profile page
+displays name, email, info, etc
+-->
+
+
+<% provide(:title, @user.email) %>
+<div id=report_dialog>
+</div>
+
+<!-- email, name, and role (e.g. Faculty) -->
+<div id="ldap_info">
+  <ul id="profile_ldap">
+    <li><%= @user.fname %> <%= @user.lname %></li>
+    <li><%= @user.email %></li>
+    <li><%= @user.role %></li>
+    <% if signed_in? && current_user.status == 'active' %>
+        <li><%= link_to "Report Abusive User", new_report_path(@user.class.to_s.underscore, @user.id, current_user.id), remote:true %></li>
+    <% end %>
+    <!-- display link to delete profile if user is admin or current -->
+    <% if signed_in? && current_user.admin? && !(current_user?(@user)) %>
+        <li>
+          <%=
+              link_to "Delete this user!", delete_user_path(@user.id), method: :delete, data: {confirm: "You sure?" }
+          %>
+        </li>
+    <% end %>
+  </ul>
+</div>
+
+
+<div class="profile">
+<!-- display nickname (according to privacy prefs) -->
+<% if (@user.nickname.blank? || (current_user != @user && @user.privacy_prefs.include?("nonickname"))) %>
+    <div id="profile_nickname">
+      <h1><%= "Profile" %></h1>
+    </div>
+<% elsif (current_user == @user || !@user.privacy_prefs.include?("nonickname")) %>
+    <div class="profile_nickname">
+      <h1 id="usr_nick"><%= @user.nickname %></h1>
+    </div>
+<% end %>
+
+<!-- display year -->
+<div id="year_box">
+  <% if (!@user.year.nil? && (current_user == @user || !@user.privacy_prefs.include?("noyear")) && !(@user.year.blank?)) %>
+      <h1 class="profile_info" id="year_header">Year:</h1>
+      <div id="profile_year">
+        <%= @user.year %>
+      </div>
+  <% end %>
+</div>
+
+<!-- major -->
+<div id="gender_box">
+  <h1 class="profile_info" id="gender_header">Major:</h1>
+  <div id="profile_gender">
+    <% if @user.major %>
+      <% if (@user.second_major && (current_user == @user || !@user.privacy_prefs.include?("secondmajor"))) %>
+        <%= link_to @user.major, getUrl(@user.major) %>,
+        <%= link_to @user.second_major, getUrl(@user.second_major) %>
+      <% else %>
+        <%= link_to @user.major, getUrl(@user.major) %>
+      <% end %>
+    <% else %>
+      None
+    <% end %>
+  </div>
+</div>
+
+<!-- notes -->
+<% if ((current_user == @user || (!@user.privacy_prefs.include?("noinfo")))) %>
+    <% if !@user.notes.blank? %>
+        <div id="profile_infobox">
+          <h1 class="profile_info">Info:</h1>
+          <p>
+          <div id="profile_notes">
+            <%= simple_format(@user.notes) %>
+          </div>
+          </p>
+        </div>
+    <% else %>
+        <div id="profile_noinfo">
+          <%= @user.fname %> has not added any information yet!
+        </div>
+    <% end %>
+<% end %>
+<br/>
+
+<%= render partial: "schedule"%>

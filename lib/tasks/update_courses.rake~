@@ -1,0 +1,129 @@
+namespace :db do
+  desc 'get/set revision of course DB'
+  task :courses_revision, [:revision_no] => [:environment] do |t, args|
+    if args[:revision_no].blank?
+      puts Setting.get_val('courses_revision_number')
+    else
+      Setting.set('courses_revision_number',args[:revision_no])
+    end
+  end
+
+  desc 'get/set curent semester'
+  task :current_semester, [:semester] => [:environment] do |t, args|
+    if args[:semester].blank?
+      puts Setting.get_val('current_semester')
+    else
+      Setting.set('current_semester',args[:semester])
+      Setting.set('semesters',args[:semester]+"|"+Setting.get_val('semesters'))
+    end
+  end
+  desc 'get/set revision of enrollment DB'
+  task :enrollment_revision, [:revision_no] => [:environment] do |t, args|
+    if args[:revision_no].blank?
+      puts Setting.get_val('enrollment_revision_number')
+    else
+      Setting.set('enrollment_revision_number',args[:revision_no])
+    end
+  end
+
+  desc 'set courses last updated time'
+  task :courses_last_updated, [:datetime] => [:environment] do |t, args|
+	  if args[:datetime].blank?
+		  puts Setting.get_val('courses_last_updated')
+	  else
+		Setting.set('courses_last_updated',args[:datetime])
+	  end
+  end
+
+  desc 'match hubcourses and professors to departments'
+  task assign_departments: :environment do
+    
+    # hubcourses to departments
+    Hubcourse.all.each do |hc|
+      unless hc.department
+	d = Department.find_by_dept(hc.hub_id[0..3])
+	unless d
+	  d = Department.new
+	  d.dept = hc.hub_id[0..3]
+	  d.dept_long = hc.courses.first.dept_long
+	  if d.save
+	    puts "Department #{d.dept} created"
+	  end
+	end
+	d.hubcourses << hc
+      end
+    end
+    Professor.all.each do |p|
+      p.courses.each do |c|
+	d = c.hubcourse.department
+	p.departments << d unless p.departments.include? d
+      end
+    end
+  end
+
+  desc 'update the course database'
+  task :update_courses, [:course_file, :enrollment_file] => [:environment] do |t, args|
+
+    # update the courses
+    File.open(args[:course_file], "r") do |f|
+      f.each_line do |course|
+	delete = (course[0] == '<')
+	course = course[2..-1]
+	next if course.start_with?("Experimental College", "dept desc")
+	course_arr = course.split('|')
+	c = Course.build(course_arr)
+	if delete
+	  course = Course.where(semcrn: c.semcrn, days: c.days, start_time: c.start_time, end_time: c.end_time, professor: c.professor)[0]
+	  course.cancel
+	  if course.save
+	    puts "Cancelled a course"
+	  end
+	else
+	  matches = Course.where(semcrn: c.semcrn, status: 'cancelled')
+	  if matches.size > 0
+	    matches.each do |match|
+	      match.sever_relationships
+	      match.delete
+	      c.enroll = match.enroll if match.enroll
+	      c.csize = match.csize if match.csize
+	    end
+	  end
+	  if c.save
+	    puts "Course #{c.semcrn} created"
+	  end
+	  c.generate_relationships
+	end
+      end
+    end
+
+    # enrollment and class size
+    File.open(args[:enrollment_file], "r") do |f|
+      f.each_line do |entry|
+	if entry[0] == '>'
+	  entry = entry[2..-1]
+	  next if entry.start_with? 'crn'
+	  semester = Setting.get_val('current_semester')
+	  sem = ''
+	  case semester[0]
+	  when 'F'
+	    sem = 'f'
+	  when 'S'
+	    sem = 's'
+	  end
+	  sem << semester[-2..-1]
+	  entry_arr = entry.split('|')
+	  semcrn = "#{sem}_#{entry_arr[0]}"
+	  puts semcrn
+	  c = Course.find_by_semcrn(semcrn)
+	  if c
+	    c.update_size(entry_arr[1],entry_arr[2])
+	    c.save
+	  else
+	    puts "Course #{semcrn} not found in DB"
+	  end
+	end
+      end
+    end
+  end
+end
+

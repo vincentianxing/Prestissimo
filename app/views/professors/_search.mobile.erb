@@ -1,0 +1,17 @@
+<!--
+Scrollable table for displaying the professor search results
+modeled after the course search results
+-->
+
+
+<!-- only display results... if there are results! -->
+<% if !@professors.nil? %>
+  <div data-role="collapsible" id="prof_collapsible" class="ui-alt-icon">
+    <h2>Professors</h2>
+    <ul data-role="listview" id="prof_list">
+      <% @professors.each do |p| %>
+        <li><%= link_to "#{p.fname} #{p.lname}", show_professor_path(fname: p.fname, lname: p.lname) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

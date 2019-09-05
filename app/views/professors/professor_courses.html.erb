@@ -1,0 +1,68 @@
+<!--
+Page for professors to see a list of courses
+that they can edit. yay.
+-->
+
+<% provide( :title, "Professor Courses" ) %>
+
+<% @prof_courses.keys.each do |key| %>
+  <% next unless (@prof_courses[key] && @prof_courses[key].size > 0) %>
+  <div id=<%="#{key}_courses"%>>
+    <% if key=="teaching" %>
+      <h1 class="prof_table_title">Courses you are teaching</h1>
+    <% elsif key == "requests" %>
+      <h1 class="prof_table_title">Courses in your cart</h1>
+    <% else %>
+      <h1 class="prof_table_title">Courses in <%=key%></h1>
+    <% end %>
+    <table id="headers">
+      <tr>
+        <td class="prof_table_10">CRN</td>
+        <td class="prof_table_10">Dept.</td>
+        <td class="prof_table_10">No.</td>
+        <td class="prof_table_25">Course Name</td>
+        <td class="prof_table_25">Instructor(s)</td>
+        <td class="prof_table_20">Edit Link</td>
+      </tr>
+    </table>
+    <table class="results prof_table">
+      <% i = 0 %>
+      <% prev_semcrn = -1 %>
+      <% show_sems = false %>
+      <% sem = @prof_courses[key].first.semester %>
+      <tr class="sem_row"><td colspan='6'><%= translate_semester(sem) %></td></tr>
+      <% @prof_courses[key].each_with_index do |c| %>
+        <% next if c.semcrn == prev_semcrn %>
+        <% prev_semcrn = c.semcrn %>
+        <% if c.semester != sem %>
+          <% sem = c.semester %>
+          <tr class="sem_row"><td colspan='6'><%= translate_semester(sem) %></td></tr>
+        <% end %>
+        <% if i % 2 == 0 %>
+          <tr class="even prof_table_row">
+        <% else %>
+          <tr class="odd prof_table_row">
+        <% end %>
+          <td class="prof_table_10"><%=c.crn%></td>
+          <td class="prof_table_10"><%=c.dept%></td>
+          <td class="prof_table_10"><%=c.cnum%></td>
+          <td class="prof_table_25"><%=c.short_title%></td>
+          <td class="prof_table_25">
+            <% if c.professors.size > 0 %>
+              <% c.professors.each do |professor| %>
+                <%= "#{professor.fname} #{professor.lname}" %>
+                <% unless c.professors.last == professor %>
+                  <br>
+                <% end %>	
+              <% end %>
+            <% else %>
+              <%= c.professor %>
+            <% end %>
+          </td>
+          <td class="prof_table_20"><%= link_to "Edit course", course_edit_path(semcrn: c.semcrn) %></td>
+        </tr>
+        <% i += 1 %>
+      <% end %>
+    </table>
+  </div>
+<% end %>

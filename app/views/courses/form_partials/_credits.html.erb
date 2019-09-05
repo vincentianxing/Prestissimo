@@ -1,0 +1,24 @@
+<!-- display of CREDITS
+- input: text fields
+- fields: min_credits, max_credits
+- displayed as a table, min on top, max on bottom
+-->
+<% if in_mobile_view? %>
+  <div class="field_group">
+    <legend>Number of Credits:</legend>
+    <%= label_tag 'min_credits', 'Min:' %>
+    <%= range_field_tag :min_credits, params[:min_credits], :min => 0, :max => 9, "data-highlight" => "true"%>
+    <%= label_tag 'max_credits', 'Max:' %>
+    <%= range_field_tag :max_credits, params[:max_credits], :min => 0, :max => 9 , "data-highlight" => "true"%>
+  </div>
+<% else %>
+  <div id="credit_slider_wrapper" title='Search by credit amount, inclusive.'>
+    <%=  label_tag :min_credits, 'Credits:', id: "credits_label", class: "label search_label" %>
+    <%=  text_field_tag :min_credit_range, params[:min_credits], :readonly => true %>
+    <%=  label_tag :max_credits, '', class: "label search_label"  %>
+    <%=  text_field_tag :max_credit_range, params[:max_credits], :readonly => true %>
+    <div id="credit_sliderdiv"></div>
+    <%= hidden_field_tag :min_credits %>
+    <%= hidden_field_tag :max_credits %>
+  </div>
+<% end %>

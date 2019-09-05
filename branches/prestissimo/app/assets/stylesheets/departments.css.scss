@@ -1,0 +1,106 @@
+// Place all the styles related to the Departments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* ---------------- DEPARTMENT INDEX PAGE ----------------------------------- */
+/* The outer box, provides top and bottom border */
+#dept_outer {
+  padding:0;
+  margin:0;
+  margin-right:auto;
+  margin-left:auto;
+}
+
+/* Inner box, provides styling for list of links */
+#dept_inner {
+  overflow:auto;
+  height:150px;
+  margin-right:auto;
+  margin-left:auto;
+  background-color:#FFF3B7;
+  border:1px solid #BBB;
+  ul {
+    font-weight:bold;
+    letter-spacing:3px;
+    text-align:center;
+    padding:0;
+    margin:0;
+    font-size:small;
+    list-style: none;
+      }
+      li {
+	margin:5px;
+      }
+      li:hover {
+	background:#FFD58B;
+	transition:all .3s;
+	-moz-transition: all .3s; /* Firefox 4 */
+	-webkit-transition: all .3s; /* Safari and Chrome */
+	-o-transition: all .3s; /* Opera */
+      }
+      li:hover a {
+	color:#FF6449;
+      }
+      a {
+	color:#FF6449;
+	&:hover, &:active {
+	  text-decoration:none;
+	  color:#FF6449;
+	      }
+      }
+}
+
+/* ------------------ DEPARTMENT SHOW PAGE ---------------------------------- */
+/* subheader styling: used to delineate professors and classes sections */
+h2.dept_h2 {
+  position:relative;
+  float:left;
+  padding:0;
+  margin:0;
+  color:#000000;
+  font-family:Lusitana;
+  font-size:20px;
+}
+
+#class_title {
+  width:350px;
+  margin-left:5px;
+  margin-right:40px;
+}
+
+#prof_title {
+  margin-left:5px;
+}
+
+/* ID of div surrounding classes */
+#dept_classes {
+  border:black solid 5px;
+  position:relative;
+  float:left;
+  width:350px;
+  max-height:350px;
+  overflow:auto;
+  td.dept {
+    width:70px;
+  }
+  td.name {
+    width:200px;
+  }
+  padding:2px;
+  margin:10px 40px 10px 5px;
+}
+
+/* ID of div surrounding professors */
+#dept_profs {
+  border:black solid 1px;
+  position:relative;
+  width:300px;
+  overflow:auto;
+  margin-top:10px;
+  margin-bottom:10px;
+  padding:2px;
+}
+
+div.clear {
+  clear:both;
+}

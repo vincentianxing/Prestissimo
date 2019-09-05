@@ -1,0 +1,114 @@
+<!-- display of TIME
+- input: drop down menus
+- fields: start_hour, start_minute, end_hour, end_minute
+- drop down menus displayed to simulate standard time notation
+-->
+<% if in_mobile_view? %>
+  <div data-role="fieldcontain" class="field_group">
+    <div data-role="controlgroup" data-type="horizontal">
+      <legend>Start After:</legend>
+      <%= select_tag :start_hour,
+	"<option></option>
+	  <option>00</option>
+	  <option>01</option>
+	  <option>02</option>
+	  <option>03</option>
+	  <option>04</option>
+	  <option>05</option>
+	  <option>06</option>
+	  <option>07</option>
+	  <option>08</option>
+	  <option>09</option>
+	  <option>10</option>
+	  <option>11</option>
+	  <option>12</option>
+	  <option>13</option>
+	  <option>14</option>
+	  <option>15</option>
+	  <option>16</option>
+	  <option>17</option>
+	  <option>18</option>
+	  <option>19</option>
+	  <option>20</option>
+	  <option>21</option>
+	  <option>22</option>
+	  <option>23</option>".html_safe, "data-inline" => "true"
+	%>
+	<%= select_tag :start_minute,
+	  "<option></option>
+	  <option>00</option>
+	  <option>05</option>
+	  <option>10</option>
+	  <option>15</option>
+	  <option>20</option>
+	  <option>25</option>
+	  <option>30</option>
+	  <option>35</option>
+	  <option>40</option>
+	  <option>45</option>
+	  <option>50</option>
+	  <option>55</option>".html_safe, "data-inline" => "true"
+	%>
+      </div>
+      <fieldset data-role="controlgroup" data-type="horizontal">
+	<legend>End Before:</legend>
+	<%= select_tag :end_hour,
+	  "<option></option>
+	      <option>00</option>
+	      <option>01</option>
+	      <option>02</option>
+	      <option>03</option>
+	      <option>04</option>
+	      <option>05</option>
+	      <option>06</option>
+	      <option>07</option>
+	      <option>08</option>
+	      <option>09</option>
+	      <option>10</option>
+	      <option>11</option>
+	      <option>12</option>
+	      <option>13</option>
+	      <option>14</option>
+	      <option>15</option>
+	      <option>16</option>
+	      <option>17</option>
+	      <option>18</option>
+	      <option>19</option>
+	      <option>20</option>
+	      <option>21</option>
+	      <option>22</option>
+	      <option>23</option>".html_safe, "data-inline" => "true"
+	    %>
+	    <%= select_tag :end_minute,
+	      "<option></option>
+	      <option>00</option>
+	      <option>05</option>
+	      <option>10</option>
+	      <option>15</option>
+	      <option>20</option>
+	      <option>25</option>
+	      <option>30</option>
+	      <option>35</option>
+	      <option>40</option>
+	      <option>45</option>
+	      <option>50</option>
+	      <option>55</option>".html_safe, "data-inline" => "true"
+	    %>
+
+      </fieldset>
+  </div>
+<% else %>
+  <div id="time_sliderdiv_wrapper" title='Search by start and end time, inclusive.'>
+    <label class="label search_label" id="time_label">Time:</label> 
+    <!--<span class="label search_label">Time:</span>-->
+    <label for="start_time_range" id="start_time_label"></label>
+    <%=  text_field_tag :start_time_range, params[:start_time_range], :readonly => true %>
+    <label for="end_time_range" id="end_time_label"></label>
+    <%=  text_field_tag :end_time_range, params[:end_time_range], :readonly => true %>
+    <div id="time_sliderdiv"></div>
+    <%= hidden_field_tag :start_hour %>
+    <%= hidden_field_tag :start_minute %>
+    <%= hidden_field_tag :end_hour %>
+    <%= hidden_field_tag :end_minute %>
+  </div>
+<% end %>

@@ -1,0 +1,12 @@
+// render the cart display
+$('.courses_updatificator').html("<%= escape_javascript( render partial: 'carts/courses', locals: {courses: get_courses} ) %> " );
+// make sure the cart doesn't get too big for the window.
+$( "#courses_scroller" ).css({ "max-height": ($(window).height()) * 0.6 - 100});
+
+// hide the load/clear/mail cart buttons when the cart is empty.
+if ( $( ".courses_updatificator" ).children().text() == " There are no courses in your cart.") {
+  $('#maillink_outer').hide();
+}
+// update status bar
+$('#status_bar').text("Course removed");
+

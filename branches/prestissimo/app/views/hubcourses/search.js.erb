@@ -1,0 +1,19 @@
+<% if @err_msg != nil %>
+  $('#status_bar').text("<%= @err_msg %>");
+<% else %>
+// render the search result partial
+<% if is_mobile_device? %>
+  $('#search_results').html("<%= escape_javascript( render( partial: 'search', :formats => [:mobile] )) %>");
+<% else %>
+  $('#search_results').html("<%= escape_javascript( render( partial: 'search' )) %>");
+<% end %>
+
+var hc_status_string = "";
+<% if @hubcourses.nil? %>
+	hc_status_string = "No Results Found";
+<% else %>
+	hc_status_string = "Showing Results";
+<% end %>
+
+$('#status_bar').text(hc_status_string);
+<% end %>

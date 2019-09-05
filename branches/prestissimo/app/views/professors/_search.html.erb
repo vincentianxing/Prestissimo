@@ -1,0 +1,59 @@
+<!--
+Scrollable table for displaying the professor search results
+modeled after the course search results
+-->
+
+
+<!-- only display results... if there are results! -->
+<% if !@professors.nil? %>
+	<h2>Professor Pages</h2>
+	<table id="headers">
+
+		<tr>
+			<th class="name" id="name_header">Name</th>
+			<th class="email">Email</th>
+			<th class="edit_link"></th>
+			<th class="active_link"></th>
+		</tr>
+		<% if !in_mobile_view? && !session[:mobile_view] %>
+		</table>
+	<% end %>
+	<% if !in_mobile_view? && !session[:mobile_view] %>
+		<div id="prof_results_scroller">
+			<table class="results">
+			<% end %>
+			<% @professors.each do |p| %>
+				<tr>
+					<td class="name">
+						<!-- no link if the professor is darkened -->
+						<% if p.status == "dark" %>
+							<%= "#{p.fname} #{p.lname}" %>
+						<% else %>
+							<!-- link to the professor's page -->
+							<%= link_to "#{p.fname} #{p.lname}", show_professor_path(p.id), class: "name_link" %>
+						<% end %>
+					</td>
+					<td class="email">
+						<%= p.email %>
+					</td>
+					<!-- the admin can edit and darken/activate a professor -->
+					<% if current_user.admin? %>
+						<td class="edit_link">
+							<!-- display the edit form -->
+							<%= link_to "Edit", edit_professor_path(p.id), remote: true, class: "ajax_link" %>
+						</td>
+						<td class="active_link">
+							<!-- toggles the status b/w active and dark -->
+							<%= link_to "Toggle Active", toggle_active_professor_path(p.id), remote: true, class: "ajax_link" %>
+						</td>
+					<% end %>
+				</tr>
+				<tr <%= "id=#{p.id}_edit_area" %>>
+					<!-- the edit form is loaded here by the edit link -->
+				</tr>
+			<% end %>
+			<% if !in_mobile_view? && !session[:mobile_view] %>
+			</table>
+		</div>
+	<% end %>
+<% end %>

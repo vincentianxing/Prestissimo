@@ -1,0 +1,150 @@
+// Place all the styles related to the Reports controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* ------------------ REPORT DIALOG STYLING --------------------------------- */
+/* Class of submit button, in dialog box */
+.report_submit_button {
+	border-radius:5px;
+	outline:none;
+	padding:5px;
+	border:1px solid $reportButtonBorder;
+	color: $reportButtonText;
+	font-weight:700;
+	font-size:small;
+	background: $reportButtonBackground;
+	&:hover {
+		background: $reportButtonHover;
+		color: $reportButtonHoverText;
+	}
+	&:active {
+		position:relative;
+		top:-1px;
+	}
+}
+
+/* Class of div around submit - 
+aligns div to right side of box */
+.report_submit {
+	text-align:right;
+}
+
+/* Class of form, in dialog:
+provides margins */
+.report_form {
+        margin-top:10px;
+	margin-right: 10px;
+	margin-left:10px;
+}
+
+/* ID of text area for the report body */
+#report_body {
+	width: 254px;
+	height:100px;
+        margin: 1px auto !important;
+        &:focus {
+          margin: 0px auto !important;
+        }
+}
+
+#report_dialog {
+  padding: 10px;
+}
+
+/* ID of text field for report title */
+#report_title {
+	width: 254px;
+        margin: 1px auto !important;
+        &:focus {
+          margin: 0px auto !important;
+        }
+}
+
+/* ID of labels for report title/body */
+.report_label {
+	display:block;
+	float:left;
+	padding-left:10px;
+	font-weight:bold;
+}
+
+/* ----------------- EDIT REPORT FORM STYLING ------------------------------- */
+/* ID of div surrounding resolved checkbox */
+#resolved_box {
+	font-weight:bold;
+	text-align:center;
+}
+
+/* Class of span surrounding text labels for form */
+.edit_report_label {
+	display:block;
+	font-weight:bold;
+	text-align:center;
+	margin:6px 0 6px 0;
+}
+
+/* ID of text area used in form */
+#report_textarea {
+	display:block;
+	height:100px;
+	font-size:small;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/* ID of column, in report edit area,
+that contains form fields */
+#reportform_col {
+	float:left;
+	width:150px;
+	padding:4px 10px 4px 10px;
+}
+
+/* ID of column, in report edit,
+that contains the report info */
+#reportinfo_col {
+	float:left;
+	margin-left:100px;
+	width:45%;
+	padding:4px 10px 4px 10px;
+}
+
+/* ID of div surrounding form submit button */
+#editreport_submit {
+	clear:both;
+	text-align:center;
+}
+
+
+/* class of div encompassing entire edit area.
+given a grey background to make it stand out more */
+.edit_area {
+	margin:2px;
+	background: $reportTextBorder;
+	padding-bottom:8px;
+}
+
+/* ID of div around the message regarding form success */
+#message {
+	margin:4px;
+	margin-top:10px;
+	color: $reportSuccessText;
+	font:bold 2em $labelFont;
+}
+
+/* Class of field labels in report info */
+.report_fields {
+	font-weight:bold;
+}
+
+/* IDs of links to show history and object */
+#show_hist_link, #show_reportable_link {
+	display:block;
+}
+
+/* Class of message indicating object has changed since
+report was filed */
+.object_changed {
+	display:block;
+	font-weight:bold;
+}

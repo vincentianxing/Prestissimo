@@ -1,0 +1,415 @@
+/*
+LAYOUTS FOR THE ENTIRE PRESTISSIMO SITE
+ */
+
+/* -------------- APPLIES TO ALL CONTENT ON PRESTISSIMO SITE -----------------*/
+/* The full document */
+
+$reddish: #DD352D;
+$dark_reddish: #820000;
+
+html {
+  height:100%
+}
+
+body { 
+  background-color:#FF0030;
+  /* Firefox */
+  background: -moz-linear-gradient(top, #FF6943, $dark_reddish);
+  /* Chrome, Safari */
+  background: -webkit-gradient(linear, left top, left bottom,	from(#FF6943), to($dark_reddish));
+  /* IE */
+  background: -ms-linear-gradient(top, #FF6943, $dark_reddish);	/* IE */
+  height:100%;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  margin:0px; 
+  font-family: sans-serif;
+}
+
+/* The page content is centered inside the gradient border */
+#content {
+  background-color:#FFFFFF;
+  width:800px;
+  margin:0px;
+  padding:5px 20px 20px 20px;
+  margin-left:auto;
+  margin-right:auto;
+  border-style:solid;
+  border-top-style:none;
+  border-bottom-style:none;
+  border-width:5px; 
+  border-color:#ab0000;
+  a {
+    color: $dark_reddish;
+    text-decoration:none;
+    &:hover, &:active {
+      color:#b70000;
+      text-decoration:underline;
+	      }
+      }
+      h1 {
+	color: $reddish;
+	font-family: Lusitana;
+	font-weight:bold;
+      }
+      h2 {
+	color: $reddish;
+	font-family: Lusitana;
+      }
+}
+
+hr {
+  border:none;
+  border-top:2px dashed #ee352e;
+}
+
+/* ---------------- FORM SETTINGS ------------------------------------------- */
+/* All forms on the site */
+form {
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* The 'FORM' class */
+/* - used around each individual form field */
+.form {
+}
+
+/* ------------------------ FOOTER AND HEADER SETTINGS ---------------------- */
+/* Footer */
+footer {
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width:30em;
+  padding:0px;
+  small {
+    font-size:10px;
+    text-align:center;
+      }
+}
+
+/* Header */
+header {
+  font-size: 16px;
+  margin-bottom: 30px;
+  /* 'LINKS' div, surrounds header content */
+  #signedout_links {
+    width:70%;
+    float:right;
+    /* ---- start DROPDOWN LIST FORMATTING ---- */
+    /* appearance of menu, top level */
+    ul {
+      z-index:12;
+      float: right;
+      list-style: none;
+      margin:0;
+      padding:0;
+	      }
+	      /* appearance of menu items, top level */
+	      li {
+		text-align:center;
+		float: right;
+		position:relative;
+		margin:0;
+	      }
+	      /* appearance of item text, top level */
+	      li a {
+		padding:4px 10px;
+		display: block;
+	      }
+	      /* appearance of menu items when hovered, top level */
+	      li:hover {
+		background-color: #FF764E;
+		border-radius:5px;
+	      }
+	      /* appearance of top level menu items w/ a sublist, on hover */
+	      .dd_menus:hover {
+		border-radius:5px 5px 0 0;
+	      }
+	      /* appearance of menu items, second level */
+	      li li {
+		float:none;
+		text-align:left;
+		white-space:nowrap;
+	      }
+	      /* appearance of item text, second level  */
+	      li li a {
+	      }
+	      /* appearance of hovered item text, second level */
+	      li li a:hover {
+		text-decoration:none;
+		background-color: #EE352E;
+		border-radius:5px;
+		padding:4px 10px;
+		color: #FFF !important;
+		-webkit-transition: background .3s;
+		-moz-transition: background .3s;
+		-o-transition: background .3s;
+		transition: background .3s;
+	      }
+	      /* appearance of menu, second level (the drop down) */
+	      li ul {
+		display:none;
+		position:absolute;
+		top:1em;
+		left:0;
+		background-color: #FF764E;
+		border-radius:0 0 5px 5px;
+		top:auto;
+		left:auto;
+	      }
+	      /* appearance of second level menu when first level is hovered */
+	      /* This is how the drop down becomes visible! */
+	      li:hover ul { 
+		display:block;
+	      }
+	      /* ---- end DROPDOWN LIST FORMATTING ---- */
+	      /* Links in the header */
+	      a {
+		&:hover, &:active {
+		  color:#FFF;
+		  text-decoration:none;
+		      }
+	      }
+      }
+      #links {
+	width:100%;
+	float:right;
+	/* ---- start DROPDOWN LIST FORMATTING ---- */
+	/* appearance of menu, top level */
+	ul {
+	  z-index:12;
+	  float: right;
+	  list-style: none;
+	  margin:0;
+	  padding:0;
+	      }
+	      /* appearance of menu items, top level */
+	      li {
+		text-align:center;
+		float: right;
+		position:relative;
+		margin:0;
+	      }
+	      /* appearance of item text, top level */
+	      li a {
+		padding:4px 10px;
+		display: block;
+		color: #dd352d;
+	      }
+	      /* appearance of item text on hover, top level */
+	      li > a:hover {
+		color:#FF6449;
+	      }
+	      /* appearance of menu items when hovered, top level */
+	      li:hover {
+		background-color: #FFD58B;
+		border-radius:5px;
+	      }
+	      /* appearance of top level menu items w/ a sublist, on hover */
+	      .dd_menus:hover {
+		border-radius:5px 5px 0 0;
+	      }
+	      /* appearance of menu items, second level */
+	      li li {
+		min-width:100px;
+		white-space:nowrap;
+		float:none;
+		text-align:left;
+	      }
+	      /* appearance of item text, second level  */
+	      li li a {
+	      }
+	      /* appearance of hovered item text, second level */
+	      li li a:hover {
+		text-decoration:none;
+		background-color: #EE352E;
+		border-radius:5px;
+		padding:4px 10px;
+		color: #FFF !important;
+		//-webkit-transition: background .3s;
+		//-moz-transition: background .3s;
+		//-o-transition: background .3s;
+		//transition: background .3s;
+	      }
+	      /* appearance of menu, second level (the drop down) */
+	      li ul {
+		display:none;
+		position:absolute;
+		top:1em;
+		left:0;
+		background-color: #FFD58B;
+		border-radius:0 5px 5px 5px;
+		top:auto;
+		left:auto;
+	      }
+	      /* appearance of second level menu when first level is hovered */
+	      /* This is how the drop down becomes visible! */
+	      li:hover ul { 
+		display:block;
+	      }
+	      /* ---- end DROPDOWN LIST FORMATTING ---- */
+	      /* Links in the header */
+	      a {
+		&:hover, &:active {
+		  color:#FFF;
+		  text-decoration:none;
+		      }
+	      }
+      }
+}
+
+/* ----------------------------- ALERT FORMATTING --------------------------- */
+/* Main Class */
+.alert {
+  width:auto;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Failure - Red Box */
+.alert-failure {
+  border: 1px solid red;
+  background-color: #ff8e8e;
+}
+
+/* Notice (Failure) */
+.alert-notice {
+  border: 1px solid red;
+  background-color: #ff8e8e;
+}
+
+/* Success - Green Box */
+.alert-success {
+  border: 1px solid green;
+  background-color: #afffaf;
+}
+
+/* -------------------------- INPUT FIELD STYLING --------------------------- */
+/* Default TEXT FIELD STYLING */
+.default_inputfield {
+  outline:none;
+  border: 1px solid #aeaeae;
+  width: 230px;
+  height: auto;
+  font-size:18px;
+  padding:2px;
+  border-radius:5px;
+  -moz-box-shadow:inset 2px 2px 10px 2px #EEEEEE;
+  -webkit-box-shadow:inset 2px 2px 10px 2px #EEE;
+  box-shadow:inset 2px 2px 10px 2px #EEE;
+}
+/* Default TEXT FIELDs, on focus */
+.default_inputfield:focus {
+  outline:none;
+  border:1px solid #EE352E;
+  border-radius:5px;
+  -moz-box-shadow: 1px 1px 10px 2px #FF7552, inset 2px 2px 10px 2px #EEE;;
+  -webkit-box-shadow: 1px 1px 10px 2px #FF7552, inset 2px 2px 10px 2px #EEE;
+  box-shadow: 1px 1px 10px 2px #FF7552, inset 2px 2px 10px 2px #EEE;
+}
+
+/* 1st ALTERNATIVE text field style - inset focus */
+.inputfield_alt1 {
+  outline:none;
+  border: 1px solid #aeaeae;
+  width: 230px;
+  height: auto;
+  font-size:18px;
+  padding:2px;
+  border-radius:5px;
+  -moz-box-shadow:inset 2px 2px 10px 2px #EEEEEE;
+  -webkit-box-shadow:inset 2px 2px 10px 2px #EEE;
+  box-shadow:inset 2px 2px 10px 2px #EEE;
+}
+/* FOCUS for 1st ALT text field */
+.inputfield_alt1:focus {
+  outline:none;
+  border:1px solid $dark_reddish;
+  border-radius:5px;
+  -moz-box-shadow: inset 2px 2px 10px 2px #999;
+  -webkit-box-shadow: inset 2px 2px 10px 2px #999;
+  box-shadow: inset 2px 2px 10px 2px #999;
+}
+
+/* As default textfield, but with a smaller focus effect */
+.smallspread_inputfield {
+  outline:none;
+  border: 1px solid #aeaeae;
+  width: 230px;
+  height: auto;
+  font-size:18px;
+  padding:2px;
+  border-radius:5px;
+  -moz-box-shadow:inset 2px 2px 10px 2px #EEEEEE;
+  -webkit-box-shadow:inset 2px 2px 10px 2px #EEE;
+  box-shadow:inset 2px 2px 10px 2px #EEE;
+}
+/* Small spread text field, on focus */
+.smallspread_inputfield:focus {
+  outline:none;
+  border:1px solid #EE352E;
+  border-radius:5px;
+  -moz-box-shadow: 1px 1px 5px 1px #FF7552, inset 2px 2px 10px 2px #EEE;;
+  -webkit-box-shadow: 1px 1px 5px 1px #FF7552, inset 2px 2px 10px 2px #EEE;
+  box-shadow: 1px 1px 5px 1px #FF7552, inset 2px 2px 10px 2px #EEE;
+}
+
+/* Profile Info text box on settings page */
+#default_textarea {
+  width: 300px;
+  height: 250px;
+}
+
+/* -------------- JQUERY DIALOG STYLING ------------------------------------ */
+/* JQuery Class - dialog box */
+.ui-dialog {
+  padding:4px;
+  background:#FFF;
+  border:1px solid #BBB;
+  border-radius:5px;
+  /* Firefox */
+  background: -moz-linear-gradient(top, #FFF, #DDD);
+  /* Chrome, Safari */
+  background: -webkit-gradient(linear, left top, left bottom,	from(#FFF), color-stop(0.7,#DDD));
+  /* IE */
+  background: -ms-linear-gradient(top, #FFF, #DDD);	/* IE */
+  -moz-box-shadow: 1px 1px 4px #666;
+  -webkit-box-shadow: 1px 1px 4px #666;
+  box-shadow: 1px 1px 4px #666;
+}
+
+/* JQuery Class - title bar on dialog */
+.ui-dialog-titlebar {
+  background:#ee352E;
+  border-radius:5px;
+  padding:5px;
+  border:1px solid #D80700;
+  color:#FFF;
+  font-weight:700;
+  font-size:small;
+  /* Firefox */
+  background: -moz-linear-gradient(top, #FF7552, #EE352E);
+  /* Chrome, Safari */
+  background: -webkit-gradient(linear, left top, left bottom,	from(#FF7552), to(#EE352E));
+  /* IE */
+  background: -ms-linear-gradient(top, #FF7552, #EE352E);
+  /* Inner light border */
+  -moz-box-shadow:inset 1px 1px 0px 0px #ffa189;
+  -webkit-box-shadow:inset 1px 1px 0px 0px #ffa189;
+  box-shadow:inset 1px 1px 0px 0px #ffa189;
+}
+
+/* JQuery class: close tag on dialog */
+.ui-dialog-titlebar-close {
+  float:right;
+  content:none;
+  color:#FFF;
+  text-decoration:none;
+  &:hover, &:active {
+    color:#FFD58B;
+      }
+}

@@ -1,0 +1,20 @@
+<div data-role="footer" id="footer_layout">
+  <footer>
+  <% store_location %>
+  <center>
+    <%= link_to "Toggle Mobile Theme", click_mobile_format_path, "data-role" => "button", :id => "mobile_change", "data-theme" => "a"%>
+  </center>
+  <small>
+    <p> 
+      Courses last updated on <%=courses_last_updated.to_time.in_time_zone.strftime("%B %d, %Y at %I:%M %p") %>
+    </p>
+
+    <p>
+    For assistance, please contact us at <a href="mailto:info@oprestissimo.com">info@oprestissimo.com</a>.
+    </p>
+    <p id="disclaimer">
+    <strong>Disclaimer:</strong> Prestissimo is not affiliated with Oberlin College in any official capacity and cannot guarantee the accuracy of any of its information. Prestissimo gathers its information automatically from Oberlin's online, publicly available course catalog and course schedule.
+    </p>
+    </small>
+  </div>
+  </footer>

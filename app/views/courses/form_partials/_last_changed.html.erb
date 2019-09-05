@@ -1,0 +1,4 @@
+<div class="form" id="date_div">
+  <span class="label search_label">Changed Since:</span>
+  <%= select_date(nil, include_blank: true, start_year: Time.now.year, end_year: 2009, class: 'changed_since', date_separator: '<span class="separator">/</span>') %>
+</div>

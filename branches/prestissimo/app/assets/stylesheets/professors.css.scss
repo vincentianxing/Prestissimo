@@ -1,0 +1,100 @@
+// Place all the styles related to the Professors controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* --------------------- PROFESOR SEARCH RESULTS STYLING -------------------- */
+/* Each class sets width of associated field */
+th {
+    text-align:left;
+}
+
+.name {
+    width:200px;
+}
+
+.email {
+  display:none;
+    width:250px;
+}
+
+.edit_link {
+    width:100px;
+}
+
+.active_link {
+    width:200px;
+}
+
+/* ----------------- PROFESSOR SEARCH PAGE STYLING -------------------------- */
+/* ID given to div surrounding search form */
+#prof_div {
+	display:inline-block;
+	padding-right:5px;
+	padding-bottom:10px;
+}
+
+/* ID given to search field label */
+#prof_label {
+	display:inline;
+	font-weight:500;
+	font-size:16px;
+	vertical-align:middle;
+}
+
+/* ID given to search field text box */
+#prof_field {
+	height:19px;
+	padding:0;
+	padding-right:3px;
+	padding-left:3px;
+	font-size:12px;
+}
+
+/* ID of div surrounding search submit tag */
+#prof_submit {
+	display:inline-block;
+}
+
+/* ID of dic surrounding search results */
+#prof_results_scroller {
+	max-height:300px;
+	overflow:auto;
+	padding:0px;
+	margin:0px;
+}
+
+/* -------------------- PROFESSOR SHOW PAGE STYLING ------------------------- */
+/* Styling for subheaders. used to start page sections */
+.prof_h2 {
+	padding:0;
+	margin:0;
+	color:#DE352D;
+	font-family:Lusitana;
+	font-size:20px;
+}
+
+.prof_h2#contact{
+  display:none;
+}
+
+/* ID of div surrounding classes section. */
+#prof_classes {
+  /* classes are displayed as a table */
+  max-height:350px;
+  overflow:auto;
+  td.dept {
+    width:100px;
+  }
+  td.name {
+    width:350px;
+  }
+  td.sem {
+    width:120px;
+  }
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+.cartlink_prof {
+	float:right;
+}

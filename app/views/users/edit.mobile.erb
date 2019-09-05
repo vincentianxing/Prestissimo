@@ -1,0 +1,94 @@
+<!--
+This is the settings page
+It contains two forms:
+the first edits the handlename
+the second edits the user info
+the edit action passes a hash containing the user and their handle
+-->
+
+<% provide(:title, "Edit User") %>
+<% @user = @vals[:user] %>
+<% @handle = @vals[:handle] %>
+<% hasnoprefs = @user.privacy_prefs.nil? %>
+<h1 class="ui-bar ui-bar-a titlebar">Update your profile</h1>
+
+
+<div class="ui-corner-all custom-corners" id="handle_form_outer">
+  <!-- The Handle update form -->
+  <div class="ui-bar ui-bar-a">
+    <h2>Commenter Name</h2>
+  </div>
+  <div class="ui-body ui-body-a">
+    <%= form_for(@handle, url: update_handle_path(@handle.id)) do |f| %>
+      <%= render 'shared/error_messages' %>
+      <div id="handle_form_inner">
+        <div class="su_textfield">
+          <%= f.text_field :username, class: "default_inputfield" %>
+        </div>
+        <%= f.submit "Update Commenter Name" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="ui-corner-all custom-corners sign_form" id="usr_update_form">
+  <div class="ui-bar ui-bar-a">
+    <h2>Public Profile</h2>
+  </div>
+  <div class="ui-body ui-body-a">
+    <!-- The User update form -->
+    <%= form_for(@user, url: update_path(@user.id)) do |f| %>
+      <%= render 'shared/error_messages' %>
+      
+      
+      <div class="su_textfield" id="nickname_label">
+        Nickname
+      </div>
+      <div data-role="controlgroup" data-type="horizontal" class="horizontal_div">
+        <%= f.text_field :nickname, class: "settings_inputfield", "data-wrapper-class" => "profile_textinput ui-btn"%>
+        <!-- check privacy preferences to decide whether box should already be checked -->
+        <% if !hasnoprefs && @user.privacy_prefs.include?("nonickname") %>
+          <%= check_box_tag "nickname", 1, true, "data-wrapper-class"=>"hide_btn" %>
+        <% else %>
+          <%= check_box_tag "nickname", 0, false, "data-wrapper-class"=>"hide_btn" %>
+        <% end %>
+      </div>
+      <%= label_tag 'nickname', 'Hide' %>
+      
+      <div class="su_textfield">
+        <%= f.label :year, "Year" %>
+      </div>
+      <div data-role="controlgroup" data-type="horizontal" class="horizontal_div">
+        <%= f.text_field :year, class: "settings_inputfield", "data-wrapper-class" => "profile_textinput ui-btn"%>
+        <!-- check privacy preferences to decide whether box should already be checked -->
+        <% if !hasnoprefs && @user.privacy_prefs.include?("noyear") %>
+          <%= check_box_tag "year", 1, true, "data-wrapper-class"=>"hide_btn" %>
+        <% else %>
+          <%= check_box_tag "year", 0, false, "data-wrapper-class"=>"hide_btn" %>
+        <% end %>
+      </div>
+      <%= label_tag 'year', 'Hide' %>
+
+
+      
+      <span class="su_label">
+        Profile Info
+      </span>
+      <div data-role="controlgroup" data-type="horizontal" class="field_group info_div">
+        <!-- check privacy preferences to decide whether box should already be checked -->
+        <%= f.text_area :notes, class: "settings_inputfield", id: "settings_info" %>
+        <% if !hasnoprefs && @user.privacy_prefs.include?("noinfo") %>
+          <%= check_box_tag "info", 1, true, "data-wrapper-class"=>"info_btn" %>
+        <% else %>
+          <%= check_box_tag "info", 0, false, "data-wrapper-class"=>"info_btn" %>
+        <% end %>
+        <%= label_tag 'info', "Hide" %>
+      </div>
+
+      <%= f.submit "Save Changes" %>
+    <% end %>
+    
+    <%= link_to "Delete My Account", confirm_destroy_path(@user.email.split('@')[0]), class: "ui-btn ui-corner-all" %>
+  </div>
+</div>
+
