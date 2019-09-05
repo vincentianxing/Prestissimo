@@ -156,6 +156,17 @@ else
 fi
 
 
+# Delete f19 courses because course addition for f19 is currently broken
+echo
+echo "Deleting f19"
+echo "==============="
+rake db:delete_f19["TRUE"]
+if [ $? != 0 ]
+then
+  echo "Delete f19 failed"
+  exit 20
+fi
+
 # Call the rake task
 echo
 echo "Updating courses"
