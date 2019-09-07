@@ -160,7 +160,7 @@ fi
 echo
 echo "Deleting f19"
 echo "==============="
-rake db:delete_f19["TRUE"]
+rake db:delete_f19
 if [ $? != 0 ]
 then
   echo "Delete f19 failed"
