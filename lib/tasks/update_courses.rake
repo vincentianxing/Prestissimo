@@ -53,6 +53,7 @@ namespace :db do
         unless d
           d = Department.new
           d.dept = hc.hub_id[0..3]
+	  next unless hc.courses.first
           d.dept_long = hc.courses.first.dept_long
           if d.save
             puts "Department #{d.dept} created"
@@ -81,6 +82,7 @@ namespace :db do
         course = course[2..-1]
         next if course.start_with?("Experimental College", "dept desc")
         course_arr = course.split('|')
+	next if course_arr[4] == ""
         c = Course.build(course_arr)
         if delete
           course = Course.where(semcrn: c.semcrn, days: c.days, start_time: c.start_time, end_time: c.end_time, professor: c.professor)[0]
