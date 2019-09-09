@@ -75,7 +75,7 @@ if [ "${OLDDATE}" = "${NEWDATE}" ]
 then
   # Nothing changed
   echo "Timestamp hasn't changed, exiting"
-  # exit 0 CHANGE BACK <<<
+  exit 0 
 else
   echo "Old timestamp: ${OLDDATE}"
   echo "New timestamp: ${NEWDATE}"
