@@ -48,12 +48,16 @@ namespace :db do
 
     # hubcourses to departments
     Hubcourse.all.each do |hc|
+      if not hc.courses.first
+        puts "Bad hc, deleting #{hc.id} #{hc.cname}"
+	hc.delete
+	next
+      end
       unless hc.department
         d = Department.find_by_dept(hc.hub_id[0..3])
         unless d
           d = Department.new
           d.dept = hc.hub_id[0..3]
-	  next unless hc.courses.first
           d.dept_long = hc.courses.first.dept_long
           if d.save
             puts "Department #{d.dept} created"
@@ -82,7 +86,10 @@ namespace :db do
         course = course[2..-1]
         next if course.start_with?("Experimental College", "dept desc")
         course_arr = course.split('|')
-	next if course_arr[4] == ""
+	if course_arr[4] == ""
+	  puts "Bad crn, #{course_arr[0]}"
+	  next
+	end
         c = Course.build(course_arr)
         if delete
           course = Course.where(semcrn: c.semcrn, days: c.days, start_time: c.start_time, end_time: c.end_time, professor: c.professor)[0]
