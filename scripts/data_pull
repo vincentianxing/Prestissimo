@@ -130,6 +130,7 @@ fi
 # Generate diff
 if [ "${OLDSEM}" != "${NEWSEM}" ]
 then
+  exit 6 #### --> If new sem, exit because this would currently break things and needs to be done by hand
   # If New Semester
   echo "New Semester $NEWSEM"
   # Add symbolic labels to RCS files
