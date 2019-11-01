@@ -1,0 +1,11 @@
+#!/bin/sh
+
+###
+# Prints a list of lines in the course file that break the course add tasks.
+###
+
+DATADROP="/home/datadrop/swrcin3_oprestis.lis"
+CHECK="^[^\|]+\|[^\|]+\|[^\|]+\|[^\|]+\|[^\|]+\|[^\|]*\|[^\|]*\|[^\|]+\|[^\|]+\|[^\|]*\|[^\|]+\|.*$"
+
+egrep -vn $CHECK $DATADROP 
+
