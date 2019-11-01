@@ -1,0 +1,76 @@
+#!/usr/bin/python
+
+###
+# Max Mitchell, Nov 2019
+# Finds lines with extra newlines and stitches them back together
+###
+
+# Read lines that need changing
+badlines_file = open("/var/www/htdocs/prestissimo/db/badlines.txt", "r")
+badlines = badlines_file.readlines()
+
+if len(badlines) == 0:
+	exit(0)
+
+# Read datadrop file
+with open("/home/datadrop/swrcin3_oprestis.lis", "r") as f:
+	datadrop = f.readlines()
+
+# Open datadrop file for writing
+datadrop_file = open("/home/datadrop/swrcin3_oprestis.lis", "w")
+
+# Line numbers that need changing
+bad_extras = []
+# Number of lines per course that need to be changed
+num_extras = []
+
+# First get line numbers
+for c in badlines:
+	# Int before : is the line num
+	arr = c.split(':')
+	line_num = int(arr[0])
+	# If there is a crn, the line should stay
+	# Start counting how many lines need to be tacked on
+	try:
+		crn = int(arr[1].split('|')[4])
+		bad_extras.append(line_num - 1)
+		num_extras.append(0)
+	# Else, record the line number and incriment tacked on lines
+	except:
+		if line_num != 0:
+			# num - 1 here to grab the line before every bad line
+			bad_extras.append(line_num - 1)
+			num_extras[-1] += 1
+
+#print(num_extras)
+
+# While there are lines left in the datadrop file
+l = 0 # Line num
+i = 0 # Course num
+j = 0 # Number added per course
+while l < len(datadrop):
+	# Skip if an empty string
+	if datadrop[l] == "":
+		pass
+	# If the next line is bad
+	elif l in bad_extras:
+		#print("============")
+		#print(datadrop[l])
+		#print(datadrop[l + 1])
+		#print(datadrop[l][0:-1] + datadrop[l + 1] + "")
+		#print("============")
+		datadrop[l + 1] = datadrop[l][0:-1] + datadrop[l + 1] + ""
+		j += 1
+		if j >= num_extras[i]:
+			datadrop_file.write(datadrop[l + 1])
+			l += 1
+			i += 1
+			j = 0
+	# Else write the line as normal	
+	else:
+		datadrop_file.write(datadrop[l])
+	l += 1
+
+# Close files
+datadrop_file.close()
+badlines_file.close()

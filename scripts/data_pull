@@ -7,6 +7,7 @@
 DROPDIR="/home/datadrop"
 #DROPFILE=`ls ${DROPDIR}/oprestissimo_*.lis | tail -1`
 DROPFILE=`ls -t1 ${DROPDIR}/*.lis | head -1`
+DROPFILE_BAC="${DROPFILE}.backup"
 #DROPFILE="/tmp/bktest.txt"
 
 if [ $# -gt 0 -a -r "$1" ]
@@ -29,6 +30,9 @@ ENROLLOUT="${DESTDIR}/enrollout"
 # Controls Rails status and DB selection
 #ENVIRONMENT="development"
 ENVIRONMENT="production"
+
+# Where the bad lines file goes
+BADLINES="${DESTDIR}/badlines.txt"
 
 
 echo "Starting data_pull:" `date`
@@ -101,6 +105,22 @@ else
   exit 3
 fi
 
+# Do a Sanity Check
+echo
+echo "Running Sanity Check"
+echo "=============="
+cp ${DROPFILE} ${DROPFILE_BAC}
+CHECK="^[^\|]+\|[^\|]+\|[^\|]+\|[^\|]+\|[^\|]+\|[^\|]*\|[^\|]*\|[^\|]+\|[^\|]+\|[^\|]*\|[^\|]+\|.*$"
+echo "Finding bad lines..."
+egrep -vn $CHECK $DROPFILE > "${BADLINES}"
+echo "Running Sanity fix..."
+/var/www/htdocs/prestissimo/scripts/sanity_check
+if [ $? != 0 ]
+then
+  echo "Sanity check failed, backup created at ${DROPFILE_BAC}"
+  exit 55
+fi
+
 # Move file to local dir
 #cp "${DROPFILE}" "${DESTFILE}"
 #cut -d'|' -f1-27,5,5,30- "${DROPFILE}" > "${DESTFILE}" ## UGH, doesn't work with multiple copies of '5'
@@ -130,7 +150,8 @@ fi
 # Generate diff
 if [ "${OLDSEM}" != "${NEWSEM}" ]
 then
-  exit 6 #### --> If new sem, exit because this would currently break things and needs to be done by hand
+  ### echo "EXIT, SP2020 is not set up yet, needs to be done manually"
+  ### exit 6
   # If New Semester
   echo "New Semester $NEWSEM"
   # Add symbolic labels to RCS files
@@ -156,12 +177,11 @@ else
   rcsdiff -r"${OLDEREV}" "${ENROLLFILE}" 2>&1 | egrep '^[>]' > "${ENROLLOUT}"
 fi
 
-
 # Delete f19 courses because course addition for f19 is currently broken
 echo
-echo "Deleting f19"
+echo "Deleting f19 *disabled*"
 echo "==============="
-rake db:delete_f19
+### rake db:delete_f19
 if [ $? != 0 ]
 then
   echo "Delete f19 failed"
