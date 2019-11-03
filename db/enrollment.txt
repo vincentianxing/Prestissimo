@@ -1,4 +1,12 @@
+
+Responding to Atrocity
+Responding to Atrocity
 crn|class limits|cur enroll|xlist act 1|xlist act 2|xlist act 3
+|CAST|209||
+|CINE|203||
+||||
+||||:    
+||||: POLT 120
 7002|40|0|||
 7043|12|0|||
 7044|12|0|||
@@ -670,6 +678,7 @@ crn|class limits|cur enroll|xlist act 1|xlist act 2|xlist act 3
 14619|5|0|||
 14620|5|0|||
 14629|12|0|||
+14649|999|0|||
 14669|999|0|||
 14675|40|0|||
 14677|999|0|||
@@ -698,6 +707,7 @@ crn|class limits|cur enroll|xlist act 1|xlist act 2|xlist act 3
 15089|20|0|||
 15102|20|0|||
 15153|20|0|||
+15237|999|0|||
 15377|20|0|||
 15387|15|0|||
 15412|20|0|||
@@ -2462,7 +2472,6 @@ crn|class limits|cur enroll|xlist act 1|xlist act 2|xlist act 3
 20099|20|0|||
 20100|20|0|0||
 20103|40|0|0|0|
-20104|15|0|||
 20105|20|0|||
 20106|12|0|||
 20108|15|0|||
@@ -2511,7 +2520,7 @@ crn|class limits|cur enroll|xlist act 1|xlist act 2|xlist act 3
 20161|9|0|||
 20162|4|0|||
 20163|20|0|||
-20164|12|0|||
+20164
 20166|25|0|||
 20167|20|0|||
 20168|10|0|||
@@ -2604,9 +2613,9 @@ crn|class limits|cur enroll|xlist act 1|xlist act 2|xlist act 3
 20253|12|0|||
 20254|999|0|||
 20255|24|0|||
-20256|15|0|||
-20257|30|0|0||
-20258|20|0|0||
+20256
+20257
+20258
 20259|25|0|0||
 20260|30|0|||
 20261|15|0|0||
@@ -2636,7 +2645,7 @@ crn|class limits|cur enroll|xlist act 1|xlist act 2|xlist act 3
 20284|999|0|||
 20285|999|0|||
 20286|999|0|||
-20287|30|0|||
+20287
 20288|20|0|0||
 20289|18|0|||
 20290|20|0|||
