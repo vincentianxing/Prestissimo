@@ -3,6 +3,11 @@ namespace :db do
   task :delete_f19, [:you_sure] => [:environment] do |t, args|
     Course.where(semester: "f19").delete_all
   end
+
+  desc 'remove all s20 courses'
+  task :delete_s20, [:you_sure] => [:environment] do |t, args|
+    Course.where(semester: "s20").delete_all
+  end
 	
   desc 'get/set revision of course DB'
   task :courses_revision, [:revision_no] => [:environment] do |t, args|
