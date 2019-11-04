@@ -79,7 +79,7 @@ if [ "${OLDDATE}" = "${NEWDATE}" ]
 then
   # Nothing changed
   echo "Timestamp hasn't changed, exiting"
-  #exit 0 
+  exit 0 
 else
   echo "Old timestamp: ${OLDDATE}"
   echo "New timestamp: ${NEWDATE}"
@@ -150,8 +150,6 @@ fi
 # Generate diff
 if [ "${OLDSEM}" != "${NEWSEM}" ]
 then
-  ### echo "EXIT, SP2020 is not set up yet, needs to be done manually"
-  ### exit 6
   # If New Semester
   echo "New Semester $NEWSEM"
   # Add symbolic labels to RCS files
@@ -175,17 +173,6 @@ else
   # and enrollments too
   OLDEREV=`rake db:enrollment_revision`
   rcsdiff -r"${OLDEREV}" "${ENROLLFILE}" 2>&1 | egrep '^[>]' > "${ENROLLOUT}"
-fi
-
-# Delete f19 courses because course addition for f19 is currently broken
-echo
-echo "Deleting f19 *disabled*"
-echo "==============="
-### rake db:delete_f19
-if [ $? != 0 ]
-then
-  echo "Delete f19 failed"
-  exit 20
 fi
 
 # Call the rake task
