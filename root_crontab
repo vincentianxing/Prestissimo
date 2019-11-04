@@ -4,7 +4,7 @@
 #29 * * * * ( export PATH=/usr/local/bin:/usr/bin:/bin:. ; cd /srv/httpd/htdocs/prestissimo ; export RAILS_ENV=production ; rake db:nonce_cleanse ; rake db:hide_neg_comments ; rake db:report_response ) > /srv/httpd/htdocs/prestissimo/log/half-hour-rakes
 
 # update the course db
-#0 0,6,12,18 * * * RAILS_ENV=production PATH=/usr/local/bin:/usr/bin:/bin:. /srv/httpd/htdocs/prestissimo/scripts/data_pull > /srv/httpd/htdocs/prestissimo/log/data_pull_log
+0 0,6,12,18 * * * RAILS_ENV=production PATH=/usr/local/bin:/usr/bin:/bin:. /srv/httpd/htdocs/prestissimo/scripts/data_pull > /srv/httpd/htdocs/prestissimo/log/data_pull_log
 
 # notify professors of changes to their courses.
 #0 8 * * * ( export PATH=/usr/local/bin:/usr/bin:/bin:. ;  cd /srv/httpd/htdocs/prestissimo ; rake db:notify_profs RAILS_ENV=production ) >> /srv/httpd/htdocs/prestissimo/log/notify_profs

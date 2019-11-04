@@ -41,9 +41,9 @@
       <%= motd.value.html_safe %>
       <p><br>
       <% if signed_in? && faculty_user?(current_user) %>
-	      <strong>Professors make Oberlin great! Welcome back (or just welcome!) to a new semester</strong>
+	      <strong>Professors make Oberlin great! Thank you for choosing to teach here. If you have any questions or concerns, or just want to say hi, let us know above in Help -> Questions!</strong>
       <% elsif signed_in? %>
-	      <strong>Welcome back to school!</strong>
+	      <strong>Welcome to Oprestissimo! If you have any questions or concerns, or just want to say hi, let us know above in Help -> Questions!</strong>
       <% else %>
 	      <strong>Welcome to Oprestissimo! Login above to start finding classes!</strong>
       <% end %>    
