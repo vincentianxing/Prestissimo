@@ -69,3 +69,9 @@ yarn-debug.log*
 .svn/*
 svn*
 .svn*
+
+# DB Stuff
+db/courses.txt*
+db/enrollment.txt*
+db/diffout
+db/badlines.txt
