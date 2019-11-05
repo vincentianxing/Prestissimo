@@ -1,11 +1,16 @@
-head	1.4;
+head	1.5;
 access;
 symbols
 	Spring_2020:1.4;
 locks
-	root:1.4; strict;
+	root:1.5; strict;
 comment	@# @;
 
+
+1.5
+date	2019.11.05.17.00.05;	author root;	state Exp;
+branches;
+next	1.4;
 
 1.4
 date	2019.11.04.20.48.08;	author root;	state Exp;
@@ -33,7 +38,7 @@ desc
 @
 
 
-1.4
+1.5
 log
 @Auto_Checkin
 @
@@ -2446,7 +2451,6 @@ text
 20035|25|0|0|0|
 20036|25|0|||
 20037|32|0|||
-20039|999|0|||
 20040|999|0|||
 20041|999|0|||
 20042|999|0|||
@@ -2698,6 +2702,18 @@ text
 20304|30|0|||
 20305|18|0|||
 20306|2|0|||
+20307|10|0|||
+@
+
+
+1.4
+log
+@Auto_Checkin
+@
+text
+@a2408 1
+20039|999|0|||
+d2660 1
 @
 
 
