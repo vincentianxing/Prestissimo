@@ -2406,7 +2406,6 @@ crn|class limits|cur enroll|xlist act 1|xlist act 2|xlist act 3
 20035|25|0|0|0|
 20036|25|0|||
 20037|32|0|||
-20039|999|0|||
 20040|999|0|||
 20041|999|0|||
 20042|999|0|||
@@ -2658,3 +2657,4 @@ crn|class limits|cur enroll|xlist act 1|xlist act 2|xlist act 3
 20304|30|0|||
 20305|18|0|||
 20306|2|0|||
+20307|10|0|||
