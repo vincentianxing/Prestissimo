@@ -71,7 +71,7 @@ svn*
 .svn*
 
 # DB Stuff
-db/courses.txt*
-db/enrollment.txt*
-db/diffout
-db/badlines.txt
+/db/courses.txt*
+/db/enrollment.txt*
+/db/diffout
+/db/badlines.txt
