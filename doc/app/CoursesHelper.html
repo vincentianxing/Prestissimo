@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>module CoursesHelper - Prestissimo Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/helpers/courses_helper.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-current_semester">#current_semester</a>
+    
+    <li><a href="#method-i-find_by_crn">#find_by_crn</a>
+    
+    <li><a href="#method-i-get_link">#get_link</a>
+    
+    <li><a href="#method-i-translate_mod">#translate_mod</a>
+    
+    <li><a href="#method-i-translate_semester">#translate_semester</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./JqueryWeekCalendar.html">JqueryWeekCalendar</a>
+  
+    <li><a href="./JqueryWeekCalendar/Install.html">JqueryWeekCalendar::Install</a>
+  
+    <li><a href="./JqueryWeekCalendar/Rails.html">JqueryWeekCalendar::Rails</a>
+  
+    <li><a href="./JqueryWeekCalendar/Rails/Engine.html">JqueryWeekCalendar::Rails::Engine</a>
+  
+    <li><a href="./JqueryWeekCalendar/Rails/Railtie.html">JqueryWeekCalendar::Rails::Railtie</a>
+  
+    <li><a href="./AdminsController.html">AdminsController</a>
+  
+    <li><a href="./AdminsHelper.html">AdminsHelper</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Cart.html">Cart</a>
+  
+    <li><a href="./CartsController.html">CartsController</a>
+  
+    <li><a href="./CartsHelper.html">CartsHelper</a>
+  
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
+    <li><a href="./Course.html">Course</a>
+  
+    <li><a href="./CoursesController.html">CoursesController</a>
+  
+    <li><a href="./CoursesHelper.html">CoursesHelper</a>
+  
+    <li><a href="./Department.html">Department</a>
+  
+    <li><a href="./DepartmentsController.html">DepartmentsController</a>
+  
+    <li><a href="./DepartmentsHelper.html">DepartmentsHelper</a>
+  
+    <li><a href="./ErrorsController.html">ErrorsController</a>
+  
+    <li><a href="./Handle.html">Handle</a>
+  
+    <li><a href="./HandlesController.html">HandlesController</a>
+  
+    <li><a href="./HandlesHelper.html">HandlesHelper</a>
+  
+    <li><a href="./Hubcourse.html">Hubcourse</a>
+  
+    <li><a href="./HubcoursesController.html">HubcoursesController</a>
+  
+    <li><a href="./HubcoursesHelper.html">HubcoursesHelper</a>
+  
+    <li><a href="./Interact.html">Interact</a>
+  
+    <li><a href="./MajorsHelper.html">MajorsHelper</a>
+  
+    <li><a href="./MyClassesController.html">MyClassesController</a>
+  
+    <li><a href="./MyClassesHelper.html">MyClassesHelper</a>
+  
+    <li><a href="./Professor.html">Professor</a>
+  
+    <li><a href="./ProfessorsController.html">ProfessorsController</a>
+  
+    <li><a href="./ProfessorsHelper.html">ProfessorsHelper</a>
+  
+    <li><a href="./Report.html">Report</a>
+  
+    <li><a href="./ReportsController.html">ReportsController</a>
+  
+    <li><a href="./ReportsHelper.html">ReportsHelper</a>
+  
+    <li><a href="./SessionsController.html">SessionsController</a>
+  
+    <li><a href="./SessionsHelper.html">SessionsHelper</a>
+  
+    <li><a href="./Setting.html">Setting</a>
+  
+    <li><a href="./SettingsController.html">SettingsController</a>
+  
+    <li><a href="./SettingsHelper.html">SettingsHelper</a>
+  
+    <li><a href="./StaticPagesController.html">StaticPagesController</a>
+  
+    <li><a href="./StaticPagesHelper.html">StaticPagesHelper</a>
+  
+    <li><a href="./Syllabus.html">Syllabus</a>
+  
+    <li><a href="./SyllabusController.html">SyllabusController</a>
+  
+    <li><a href="./SyllabusHelper.html">SyllabusHelper</a>
+  
+    <li><a href="./UTF8Sanitizer.html">UTF8Sanitizer</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
+  
+    <li><a href="./VotesController.html">VotesController</a>
+  
+    <li><a href="./VotesHelper.html">VotesHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module CoursesHelper</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-current_semester" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">current_semester</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="current_semester-source">
+            <pre><span class="ruby-comment"># File app/helpers/courses_helper.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">current_semester</span>
+        <span class="ruby-ivar">@current_semester</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">get_val</span>(<span class="ruby-string">&quot;current_semester&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- current_semester-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- current_semester-method -->
+
+    
+      <div id="method-i-find_by_crn" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_by_crn</span><span
+            class="method-args">(course_list, semcrn)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="find_by_crn-source">
+            <pre><span class="ruby-comment"># File app/helpers/courses_helper.rb, line 3</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">find_by_crn</span>(<span class="ruby-identifier">course_list</span>, <span class="ruby-identifier">semcrn</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">Array</span>.<span class="ruby-identifier">try_convert</span>(<span class="ruby-identifier">course_list</span>)
+  <span class="ruby-ivar">@course</span>
+  <span class="ruby-identifier">course_list</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@course</span> = <span class="ruby-identifier">c</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">semcrn</span> = <span class="ruby-identifier">semcrn</span>
+    <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@course</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@course</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- find_by_crn-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- find_by_crn-method -->
+
+    
+      <div id="method-i-get_link" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_link</span><span
+            class="method-args">(type, value)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>More efficient link generation using a hash table of previously requested
+links</p>
+          
+
+          
+          <div class="method-source-code" id="get_link-source">
+            <pre><span class="ruby-comment"># File app/helpers/courses_helper.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_link</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">value</span>)
+  <span class="ruby-identifier">key</span> = <span class="ruby-node">&quot;#{type}:#{value}&quot;</span>
+  <span class="ruby-ivar">@links</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>()
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@links</span>[<span class="ruby-identifier">key</span>]
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">type</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;obiemaps_prof&quot;</span>
+      <span class="ruby-ivar">@links</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-node">&quot;http://obiemaps.oberlin.edu/faculty/#{value.fname.downcase}-#{value.lname.downcase}&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;obiemaps_course&quot;</span>
+      <span class="ruby-ivar">@links</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-string">&quot;http://obiemaps.oberlin.edu/courses/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">title</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/[:,]/</span>, <span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\s+/</span>, <span class="ruby-string">&#39;-&#39;</span>).<span class="ruby-identifier">downcase</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@links</span>[<span class="ruby-identifier">key</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_link-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_link-method -->
+
+    
+      <div id="method-i-translate_mod" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">translate_mod</span><span
+            class="method-args">(mod_num)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="translate_mod-source">
+            <pre><span class="ruby-comment"># File app/helpers/courses_helper.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">translate_mod</span>(<span class="ruby-identifier">mod_num</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">mod_num</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">mod</span> = <span class="ruby-string">&quot;First&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">2</span>
+    <span class="ruby-identifier">mod</span> = <span class="ruby-string">&quot;Second&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">3</span>
+    <span class="ruby-identifier">mod</span> = <span class="ruby-string">&quot;Full&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">4</span>
+    <span class="ruby-identifier">mod</span> = <span class="ruby-string">&quot;Special&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">mod</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">mod</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- translate_mod-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- translate_mod-method -->
+
+    
+      <div id="method-i-translate_semester" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">translate_semester</span><span
+            class="method-args">(semester)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="translate_semester-source">
+            <pre><span class="ruby-comment"># File app/helpers/courses_helper.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">translate_semester</span>(<span class="ruby-identifier">semester</span>)
+        <span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;Fall&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">semester</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;f&quot;</span>
+        <span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;Spring&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">semester</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;s&quot;</span>
+        <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; 20#{semester[1..2]}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- translate_semester-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- translate_semester-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
