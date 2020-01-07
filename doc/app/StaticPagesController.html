@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class StaticPagesController - Prestissimo Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/controllers/static_pages_controller.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-about">#about</a>
+    
+    <li><a href="#method-i-accounts">#accounts</a>
+    
+    <li><a href="#method-i-advanced">#advanced</a>
+    
+    <li><a href="#method-i-basics">#basics</a>
+    
+    <li><a href="#method-i-cart">#cart</a>
+    
+    <li><a href="#method-i-editcourse">#editcourse</a>
+    
+    <li><a href="#method-i-error_mailer">#error_mailer</a>
+    
+    <li><a href="#method-i-features">#features</a>
+    
+    <li><a href="#method-i-guidelines">#guidelines</a>
+    
+    <li><a href="#method-i-help">#help</a>
+    
+    <li><a href="#method-i-nameerror">#nameerror</a>
+    
+    <li><a href="#method-i-professors">#professors</a>
+    
+    <li><a href="#method-i-questions">#questions</a>
+    
+    <li><a href="#method-i-questions_mailer">#questions_mailer</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./JqueryWeekCalendar.html">JqueryWeekCalendar</a>
+  
+    <li><a href="./JqueryWeekCalendar/Install.html">JqueryWeekCalendar::Install</a>
+  
+    <li><a href="./JqueryWeekCalendar/Rails.html">JqueryWeekCalendar::Rails</a>
+  
+    <li><a href="./JqueryWeekCalendar/Rails/Engine.html">JqueryWeekCalendar::Rails::Engine</a>
+  
+    <li><a href="./JqueryWeekCalendar/Rails/Railtie.html">JqueryWeekCalendar::Rails::Railtie</a>
+  
+    <li><a href="./AdminsController.html">AdminsController</a>
+  
+    <li><a href="./AdminsHelper.html">AdminsHelper</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Cart.html">Cart</a>
+  
+    <li><a href="./CartsController.html">CartsController</a>
+  
+    <li><a href="./CartsHelper.html">CartsHelper</a>
+  
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
+    <li><a href="./Course.html">Course</a>
+  
+    <li><a href="./CoursesController.html">CoursesController</a>
+  
+    <li><a href="./CoursesHelper.html">CoursesHelper</a>
+  
+    <li><a href="./Department.html">Department</a>
+  
+    <li><a href="./DepartmentsController.html">DepartmentsController</a>
+  
+    <li><a href="./DepartmentsHelper.html">DepartmentsHelper</a>
+  
+    <li><a href="./ErrorsController.html">ErrorsController</a>
+  
+    <li><a href="./Handle.html">Handle</a>
+  
+    <li><a href="./HandlesController.html">HandlesController</a>
+  
+    <li><a href="./HandlesHelper.html">HandlesHelper</a>
+  
+    <li><a href="./Hubcourse.html">Hubcourse</a>
+  
+    <li><a href="./HubcoursesController.html">HubcoursesController</a>
+  
+    <li><a href="./HubcoursesHelper.html">HubcoursesHelper</a>
+  
+    <li><a href="./Interact.html">Interact</a>
+  
+    <li><a href="./MajorsHelper.html">MajorsHelper</a>
+  
+    <li><a href="./MyClassesController.html">MyClassesController</a>
+  
+    <li><a href="./MyClassesHelper.html">MyClassesHelper</a>
+  
+    <li><a href="./Professor.html">Professor</a>
+  
+    <li><a href="./ProfessorsController.html">ProfessorsController</a>
+  
+    <li><a href="./ProfessorsHelper.html">ProfessorsHelper</a>
+  
+    <li><a href="./Report.html">Report</a>
+  
+    <li><a href="./ReportsController.html">ReportsController</a>
+  
+    <li><a href="./ReportsHelper.html">ReportsHelper</a>
+  
+    <li><a href="./SessionsController.html">SessionsController</a>
+  
+    <li><a href="./SessionsHelper.html">SessionsHelper</a>
+  
+    <li><a href="./Setting.html">Setting</a>
+  
+    <li><a href="./SettingsController.html">SettingsController</a>
+  
+    <li><a href="./SettingsHelper.html">SettingsHelper</a>
+  
+    <li><a href="./StaticPagesController.html">StaticPagesController</a>
+  
+    <li><a href="./StaticPagesHelper.html">StaticPagesHelper</a>
+  
+    <li><a href="./Syllabus.html">Syllabus</a>
+  
+    <li><a href="./SyllabusController.html">SyllabusController</a>
+  
+    <li><a href="./SyllabusHelper.html">SyllabusHelper</a>
+  
+    <li><a href="./UTF8Sanitizer.html">UTF8Sanitizer</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
+  
+    <li><a href="./VotesController.html">VotesController</a>
+  
+    <li><a href="./VotesHelper.html">VotesHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class StaticPagesController</h1>
+
+  <div id="description" class="description">
+    
+<p>A static page has no dynamic content, so each page is essentially just a
+view.</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-about" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">about</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="about-source">
+            <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">about</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- about-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- about-method -->
+
+    
+      <div id="method-i-accounts" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">accounts</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="accounts-source">
+            <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">accounts</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- accounts-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- accounts-method -->
+
+    
+      <div id="method-i-advanced" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">advanced</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="advanced-source">
+            <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">advanced</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- advanced-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- advanced-method -->
+
+    
+      <div id="method-i-basics" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">basics</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="basics-source">
+            <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">basics</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- basics-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- basics-method -->
+
+    
+      <div id="method-i-cart" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cart</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="cart-source">
+            <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">cart</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- cart-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- cart-method -->
+
+    
+      <div id="method-i-editcourse" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">editcourse</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="editcourse-source">
+            <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">editcourse</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">help_path</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">in_mobile_view?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- editcourse-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- editcourse-method -->
+
+    
+      <div id="method-i-error_mailer" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">error_mailer</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="error_mailer-source">
+            <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">error_mailer</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">help_path</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">in_mobile_view?</span>
+  <span class="ruby-ivar">@title</span> = <span class="ruby-string">&quot;My Courses Error&quot;</span>
+  <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:message</span>]
+  <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
+  <span class="ruby-constant">Interact</span>.<span class="ruby-identifier">send_e</span>(<span class="ruby-ivar">@title</span>, <span class="ruby-ivar">@message</span>, <span class="ruby-ivar">@user</span>).<span class="ruby-identifier">deliver</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- error_mailer-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- error_mailer-method -->
+
+    
+      <div id="method-i-features" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">features</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="features-source">
+            <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">features</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- features-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- features-method -->
+
+    
+      <div id="method-i-guidelines" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">guidelines</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="guidelines-source">
+            <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">guidelines</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- guidelines-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- guidelines-method -->
+
+    
+      <div id="method-i-help" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">help</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="help-source">
+            <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">help</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- help-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- help-method -->
+
+    
+      <div id="method-i-nameerror" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">nameerror</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="nameerror-source">
+            <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">nameerror</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">help_path</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">in_mobile_view?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- nameerror-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- nameerror-method -->
+
+    
+      <div id="method-i-professors" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">professors</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="professors-source">
+            <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">professors</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">help_path</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">in_mobile_view?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- professors-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- professors-method -->
+
+    
+      <div id="method-i-questions" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">questions</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="questions-source">
+            <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">questions</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- questions-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- questions-method -->
+
+    
+      <div id="method-i-questions_mailer" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">questions_mailer</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="questions_mailer-source">
+            <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">questions_mailer</span>
+  <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>]
+  <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:message</span>]
+  <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
+  <span class="ruby-constant">Interact</span>.<span class="ruby-identifier">send_q</span>(<span class="ruby-ivar">@title</span>, <span class="ruby-ivar">@message</span>, <span class="ruby-ivar">@user</span>).<span class="ruby-identifier">deliver</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">help_path</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- questions_mailer-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- questions_mailer-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

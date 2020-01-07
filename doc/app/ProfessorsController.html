@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class ProfessorsController - Prestissimo Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/controllers/professors_controller.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-create">#create</a>
+    
+    <li><a href="#method-i-edit">#edit</a>
+    
+    <li><a href="#method-i-index">#index</a>
+    
+    <li><a href="#method-i-new">#new</a>
+    
+    <li><a href="#method-i-populate">#populate</a>
+    
+    <li><a href="#method-i-preview">#preview</a>
+    
+    <li><a href="#method-i-professor_courses">#professor_courses</a>
+    
+    <li><a href="#method-i-search">#search</a>
+    
+    <li><a href="#method-i-show">#show</a>
+    
+    <li><a href="#method-i-toggle_active">#toggle_active</a>
+    
+    <li><a href="#method-i-update">#update</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./JqueryWeekCalendar.html">JqueryWeekCalendar</a>
+  
+    <li><a href="./JqueryWeekCalendar/Install.html">JqueryWeekCalendar::Install</a>
+  
+    <li><a href="./JqueryWeekCalendar/Rails.html">JqueryWeekCalendar::Rails</a>
+  
+    <li><a href="./JqueryWeekCalendar/Rails/Engine.html">JqueryWeekCalendar::Rails::Engine</a>
+  
+    <li><a href="./JqueryWeekCalendar/Rails/Railtie.html">JqueryWeekCalendar::Rails::Railtie</a>
+  
+    <li><a href="./AdminsController.html">AdminsController</a>
+  
+    <li><a href="./AdminsHelper.html">AdminsHelper</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Cart.html">Cart</a>
+  
+    <li><a href="./CartsController.html">CartsController</a>
+  
+    <li><a href="./CartsHelper.html">CartsHelper</a>
+  
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
+    <li><a href="./Course.html">Course</a>
+  
+    <li><a href="./CoursesController.html">CoursesController</a>
+  
+    <li><a href="./CoursesHelper.html">CoursesHelper</a>
+  
+    <li><a href="./Department.html">Department</a>
+  
+    <li><a href="./DepartmentsController.html">DepartmentsController</a>
+  
+    <li><a href="./DepartmentsHelper.html">DepartmentsHelper</a>
+  
+    <li><a href="./ErrorsController.html">ErrorsController</a>
+  
+    <li><a href="./Handle.html">Handle</a>
+  
+    <li><a href="./HandlesController.html">HandlesController</a>
+  
+    <li><a href="./HandlesHelper.html">HandlesHelper</a>
+  
+    <li><a href="./Hubcourse.html">Hubcourse</a>
+  
+    <li><a href="./HubcoursesController.html">HubcoursesController</a>
+  
+    <li><a href="./HubcoursesHelper.html">HubcoursesHelper</a>
+  
+    <li><a href="./Interact.html">Interact</a>
+  
+    <li><a href="./MajorsHelper.html">MajorsHelper</a>
+  
+    <li><a href="./MyClassesController.html">MyClassesController</a>
+  
+    <li><a href="./MyClassesHelper.html">MyClassesHelper</a>
+  
+    <li><a href="./Professor.html">Professor</a>
+  
+    <li><a href="./ProfessorsController.html">ProfessorsController</a>
+  
+    <li><a href="./ProfessorsHelper.html">ProfessorsHelper</a>
+  
+    <li><a href="./Report.html">Report</a>
+  
+    <li><a href="./ReportsController.html">ReportsController</a>
+  
+    <li><a href="./ReportsHelper.html">ReportsHelper</a>
+  
+    <li><a href="./SessionsController.html">SessionsController</a>
+  
+    <li><a href="./SessionsHelper.html">SessionsHelper</a>
+  
+    <li><a href="./Setting.html">Setting</a>
+  
+    <li><a href="./SettingsController.html">SettingsController</a>
+  
+    <li><a href="./SettingsHelper.html">SettingsHelper</a>
+  
+    <li><a href="./StaticPagesController.html">StaticPagesController</a>
+  
+    <li><a href="./StaticPagesHelper.html">StaticPagesHelper</a>
+  
+    <li><a href="./Syllabus.html">Syllabus</a>
+  
+    <li><a href="./SyllabusController.html">SyllabusController</a>
+  
+    <li><a href="./SyllabusHelper.html">SyllabusHelper</a>
+  
+    <li><a href="./UTF8Sanitizer.html">UTF8Sanitizer</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
+  
+    <li><a href="./VotesController.html">VotesController</a>
+  
+    <li><a href="./VotesHelper.html">VotesHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class ProfessorsController</h1>
+
+  <div id="description" class="description">
+    
+<p><a href="Professor.html">Professor</a> Controller</p>
+
+<p>These actions perform operations related to the professor object</p>
+
+<p>ACTIONS in the order they appear on the page:</p>
+
+<p>ACTION  <em>__</em> PERMISSIONS new    <em>_</em> admin create <em>_</em>
+admin index <em>__</em> any user search <em>_</em> any user edit <em>_</em>
+admin update <em>_</em> admin <a
+href="ProfessorsController.html#method-i-toggle_active">#toggle_active</a>
+<em>__</em> admin show <em>_</em> any user populate <em>_</em> admin</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>create a new professor from form</p>
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File app/controllers/professors_controller.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create-method -->
+
+    
+      <div id="method-i-edit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>get the professor to be edited by the form</p>
+          
+
+          
+          <div class="method-source-code" id="edit-source">
+            <pre><span class="ruby-comment"># File app/controllers/professors_controller.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
+  <span class="ruby-ivar">@professor</span> = <span class="ruby-constant">Professor</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">fname</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:fname</span>], <span class="ruby-identifier">lname</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lname</span>])[<span class="ruby-value">0</span>]
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@professor</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-comment"># Find the user who&#39;s name matches</span>
+    <span class="ruby-ivar">@prof_user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">fname</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:fname</span>], <span class="ruby-identifier">lname</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lname</span>])[<span class="ruby-value">0</span>]
+    <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@prof_user</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-comment"># Try to fond the professor based on the user&#39;s other info</span>
+      <span class="ruby-ivar">@professor</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Professor</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-ivar">@prof_user</span>.<span class="ruby-identifier">prof_id</span>)
+      <span class="ruby-ivar">@professor</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Professor</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">userid</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@prof_user</span>.<span class="ruby-identifier">email</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;@&#39;</span>)[<span class="ruby-value">0</span>])[<span class="ruby-value">0</span>]
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">nameerror_path</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@professor</span>.<span class="ruby-identifier">blank?</span>
+  <span class="ruby-ivar">@professor</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- edit-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- edit-method -->
+
+    
+      <div id="method-i-index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>render the page with the professor search</p>
+          
+
+          
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File app/controllers/professors_controller.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- index-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- index-method -->
+
+    
+      <div id="method-i-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>render the page with the form for a new professor</p>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/controllers/professors_controller.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+      <div id="method-i-populate" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">populate</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Unused. Also, don&#39;t use this. It&#39;s out of date. The LDAP connection
+shit is super different now. Also, if you used this it wouldn&#39;t connect
+the professors to courses or departments.</p>
+          
+
+          
+          <div class="method-source-code" id="populate-source">
+            <pre><span class="ruby-comment"># File app/controllers/professors_controller.rb, line 127</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">populate</span>
+  <span class="ruby-comment"># LDAP TIME!</span>
+  <span class="ruby-identifier">ldap</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">LDAP</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">port</span><span class="ruby-operator">:</span> <span class="ruby-value">389</span>, <span class="ruby-identifier">host</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;ldap1.cc.oberlin.edu&#39;</span> )
+  <span class="ruby-ivar">@names</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">ldap</span>.<span class="ruby-identifier">bind</span>
+    <span class="ruby-comment"># query for role=Faculty</span>
+    <span class="ruby-identifier">filter</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">LDAP</span><span class="ruby-operator">::</span><span class="ruby-constant">Filter</span>.<span class="ruby-identifier">eq</span>(<span class="ruby-string">&quot;o&quot;</span>,<span class="ruby-string">&quot;Faculty&quot;</span>)
+    <span class="ruby-identifier">treebase</span> = <span class="ruby-string">&quot;ou=People,o=oberlin.edu,o=oberlin-college&quot;</span>
+    <span class="ruby-ivar">@professors</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">ldap</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">base</span><span class="ruby-operator">:</span> <span class="ruby-identifier">treebase</span>, <span class="ruby-identifier">filter</span><span class="ruby-operator">:</span> <span class="ruby-identifier">filter</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">results</span><span class="ruby-operator">|</span>
+      <span class="ruby-ivar">@professors</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">results</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@professors</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+      <span class="ruby-comment"># need to take out leading and trailing slashes, brackets, and quotes</span>
+      <span class="ruby-identifier">mail</span> = <span class="ruby-identifier">p</span>.<span class="ruby-identifier">mail</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">-3</span>)
+      <span class="ruby-keyword">if</span> (<span class="ruby-constant">Professor</span>.<span class="ruby-identifier">find_by_email</span>(<span class="ruby-identifier">mail</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>)
+        <span class="ruby-identifier">prof</span> = <span class="ruby-constant">Professor</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">prof</span>.<span class="ruby-identifier">lname</span> = <span class="ruby-identifier">p</span>.<span class="ruby-identifier">sn</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">-3</span>)
+        <span class="ruby-comment"># some professors share names with students, and have Faculty in their lname</span>
+        <span class="ruby-identifier">prof</span>.<span class="ruby-identifier">lname</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-string">&#39;Faculty&#39;</span>,<span class="ruby-string">&#39;&#39;</span>) <span class="ruby-keyword">if</span> (<span class="ruby-identifier">prof</span>.<span class="ruby-identifier">lname</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&#39;Faculty&#39;</span>)
+        <span class="ruby-identifier">prof</span>.<span class="ruby-identifier">fname</span> = <span class="ruby-identifier">p</span>.<span class="ruby-identifier">givenname</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">-3</span>)
+        <span class="ruby-identifier">prof</span>.<span class="ruby-identifier">nickname</span> = <span class="ruby-string">&#39;&#39;</span>
+        <span class="ruby-identifier">prof</span>.<span class="ruby-identifier">email</span> = <span class="ruby-identifier">mail</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">prof</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-ivar">@names</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">prof</span>.<span class="ruby-identifier">fname</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">prof</span>.<span class="ruby-identifier">lname</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-comment"># array of the new professors</span>
+  <span class="ruby-ivar">@names</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- populate-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- populate-method -->
+
+    
+      <div id="method-i-preview" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">preview</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Function to generate a preview of a professor&#39;s more information
+content. Uses the redcarpet gem to render markdown formatted input as html.</p>
+          
+
+          
+          <div class="method-source-code" id="preview-source">
+            <pre><span class="ruby-comment"># File app/controllers/professors_controller.rb, line 162</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">preview</span>
+ <span class="ruby-comment"># @professor = Professor.where(fname: params[:fname], lname: params[:lname])[0]</span>
+ <span class="ruby-comment"># @result = &quot;&quot;</span>
+ <span class="ruby-comment"># @result ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, underline: true, highlight: true, lax_spacing: true).render(params[:professor][:content])</span>
+ <span class="ruby-comment"># @result.html_safe</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- preview-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- preview-method -->
+
+    
+      <div id="method-i-professor_courses" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">professor_courses</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Function to generate all the courses the professor has the permission to
+edit</p>
+          
+
+          
+          <div class="method-source-code" id="professor_courses-source">
+            <pre><span class="ruby-comment"># File app/controllers/professors_controller.rb, line 173</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">professor_courses</span>
+  <span class="ruby-ivar">@professor</span> = <span class="ruby-constant">Professor</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">fname</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:fname</span>], <span class="ruby-identifier">lname</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lname</span>])[<span class="ruby-value">0</span>]
+  
+  <span class="ruby-comment"># Fix for the &quot;Bob Geitz problem&quot; where the user&#39;s name is different from the professor&#39;s</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@professor</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-comment"># Find the user who&#39;s name matches</span>
+    <span class="ruby-ivar">@prof_user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">fname</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:fname</span>], <span class="ruby-identifier">lname</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lname</span>])[<span class="ruby-value">0</span>]
+    <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@prof_user</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-comment"># Try to fond the professor based on the user&#39;s other info</span>
+      <span class="ruby-ivar">@professor</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Professor</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-ivar">@prof_user</span>.<span class="ruby-identifier">prof_id</span>)
+      <span class="ruby-ivar">@professor</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Professor</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">userid</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@prof_user</span>.<span class="ruby-identifier">email</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;@&#39;</span>)[<span class="ruby-value">0</span>])[<span class="ruby-value">0</span>]
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment">#Redirects to the nameerror file with a text field to allow professors to let us know their accounts aren&#39;t connected</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">nameerror_path</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@professor</span>.<span class="ruby-identifier">blank?</span>
+
+  <span class="ruby-ivar">@prof_cart</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">cart</span>.<span class="ruby-identifier">get_courses</span>
+  <span class="ruby-ivar">@prof_courses</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">short_cur_sem</span> = <span class="ruby-identifier">view_context</span>.<span class="ruby-identifier">current_semester</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">downcase</span><span class="ruby-operator">+</span><span class="ruby-identifier">view_context</span>.<span class="ruby-identifier">current_semester</span>[<span class="ruby-value">-2</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]
+  
+  <span class="ruby-ivar">@prof_courses</span>[<span class="ruby-string">&quot;teaching&quot;</span>]=<span class="ruby-ivar">@professor</span>.<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">delete_if</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">semester!</span>=<span class="ruby-identifier">short_cur_sem</span>}
+  <span class="ruby-ivar">@prof_courses</span>[<span class="ruby-string">&quot;requests&quot;</span>] = <span class="ruby-ivar">@prof_cart</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@prof_cart</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">==</span><span class="ruby-value">0</span>
+  
+  <span class="ruby-ivar">@professor</span>.<span class="ruby-identifier">departments</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">qs</span>  = <span class="ruby-string">&#39;( dept LIKE &#39;</span><span class="ruby-operator">+</span><span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-string">&quot;%&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">d</span>.<span class="ruby-identifier">dept</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;%&quot;</span>)<span class="ruby-operator">+</span><span class="ruby-string">&quot; AND semester=&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-identifier">short_cur_sem</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;)&quot;</span>
+    <span class="ruby-identifier">dept_courses</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">all</span>(<span class="ruby-value">:conditions=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">qs</span>).<span class="ruby-identifier">sort</span>
+    <span class="ruby-ivar">@prof_courses</span>[<span class="ruby-identifier">d</span>.<span class="ruby-identifier">dept</span>] = <span class="ruby-identifier">dept_courses</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">dept_courses</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+  <span class="ruby-keyword">end</span>
+  
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- professor_courses-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- professor_courses-method -->
+
+    
+      <div id="method-i-search" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">search</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="search-source">
+            <pre><span class="ruby-comment"># File app/controllers/professors_controller.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">search</span>
+  <span class="ruby-comment"># return nothing if no query made</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:name</span>].<span class="ruby-identifier">blank?</span>
+  <span class="ruby-comment"># search by both first name and last name</span>
+  <span class="ruby-ivar">@professors</span> = <span class="ruby-constant">Professor</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:all</span>, <span class="ruby-identifier">conditions</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;fname LIKE &#39;%#{params[:name]}%&#39; OR lname LIKE &#39;%#{params[:name]}%&#39;&quot;</span>)
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- search-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- search-method -->
+
+    
+      <div id="method-i-show" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>render the professor page</p>
+          
+
+          
+          <div class="method-source-code" id="show-source">
+            <pre><span class="ruby-comment"># File app/controllers/professors_controller.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+  <span class="ruby-ivar">@professor</span> = <span class="ruby-constant">Professor</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">fname</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:fname</span>], <span class="ruby-identifier">lname</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lname</span>])[<span class="ruby-value">0</span>]
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">error_404_path</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@professor</span>
+  <span class="ruby-identifier">all_comments</span> = <span class="ruby-ivar">@professor</span>.<span class="ruby-identifier">root_comments</span>
+  <span class="ruby-ivar">@comments</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">all_comments</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+      <span class="ruby-ivar">@comments</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">c</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;removed&quot;</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">old</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@comments</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">sort_by_score</span>(<span class="ruby-ivar">@comments</span>)
+  <span class="ruby-comment"># build a hash to return the professor and its comments</span>
+  <span class="ruby-ivar">@vals</span> = {}
+  <span class="ruby-ivar">@vals</span>[<span class="ruby-value">:professor</span>] = <span class="ruby-ivar">@professor</span>
+  <span class="ruby-ivar">@vals</span>[<span class="ruby-value">:comments</span>] = <span class="ruby-ivar">@comments</span>
+  
+  <span class="ruby-ivar">@hubcourses</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">prev_semcrn</span> = <span class="ruby-value">-1</span>
+  <span class="ruby-identifier">prof_all_courses</span> = <span class="ruby-ivar">@professor</span>.<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">sort</span>
+  <span class="ruby-identifier">prof_all_courses</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">course</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">semcrn</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">prev_semcrn</span>
+    <span class="ruby-identifier">prev_semcrn</span> = <span class="ruby-identifier">course</span>.<span class="ruby-identifier">semcrn</span>
+    <span class="ruby-ivar">@hubcourses</span>[<span class="ruby-identifier">course</span>.<span class="ruby-identifier">hubcourse</span>] <span class="ruby-operator">||=</span> [] <span class="ruby-keyword">unless</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">status</span><span class="ruby-operator">==</span><span class="ruby-string">&quot;hidden&quot;</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">status</span><span class="ruby-operator">==</span><span class="ruby-string">&quot;cancelled&quot;</span>
+    <span class="ruby-ivar">@hubcourses</span>[<span class="ruby-identifier">course</span>.<span class="ruby-identifier">hubcourse</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">course</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">status</span><span class="ruby-operator">==</span><span class="ruby-string">&quot;hidden&quot;</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">status</span><span class="ruby-operator">==</span><span class="ruby-string">&quot;cancelled&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@vals</span>[<span class="ruby-value">:hubcourses</span>] = <span class="ruby-ivar">@hubcourses</span>
+
+  <span class="ruby-ivar">@vals</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">csv</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">text</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@professor</span>.<span class="ruby-identifier">to_csv</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:enroll</span>]<span class="ruby-operator">||=</span><span class="ruby-value">0</span>) }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- show-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- show-method -->
+
+    
+      <div id="method-i-toggle_active" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">toggle_active</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>switch a professor between active and dark</p>
+          
+
+          
+          <div class="method-source-code" id="toggle_active-source">
+            <pre><span class="ruby-comment"># File app/controllers/professors_controller.rb, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">toggle_active</span>
+  <span class="ruby-ivar">@professor</span> = <span class="ruby-constant">Professor</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">fname</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:fname</span>], <span class="ruby-identifier">lname</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lname</span>])[<span class="ruby-value">0</span>]
+  <span class="ruby-ivar">@professor</span>.<span class="ruby-identifier">toggle_status</span>
+  <span class="ruby-ivar">@professor</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-ivar">@professor</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- toggle_active-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- toggle_active-method -->
+
+    
+      <div id="method-i-update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>change the professor according to the form</p>
+          
+
+          
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File app/controllers/professors_controller.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+  <span class="ruby-ivar">@professor</span> = <span class="ruby-constant">Professor</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@professor</span>.<span class="ruby-identifier">update_attributes</span>( <span class="ruby-identifier">params</span>[<span class="ruby-value">:professor</span>] )
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:success</span>] = <span class="ruby-string">&quot;Profile successfully updated!&quot;</span>
+    <span class="ruby-comment"># go to the professor profile</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">show_professor_path</span>(<span class="ruby-identifier">fname</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@professor</span>.<span class="ruby-identifier">fname</span>, <span class="ruby-identifier">lname</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@professor</span>.<span class="ruby-identifier">lname</span>)
+  <span class="ruby-keyword">else</span> <span class="ruby-comment"># the professor could not be saved (for some reason)</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">edit_professor_path</span>(<span class="ruby-identifier">fname</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@professor</span>.<span class="ruby-identifier">fname</span>, <span class="ruby-identifier">lname</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@professor</span>.<span class="ruby-identifier">lname</span>), <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Settings could not be changed. Please contact the Prestissmo managers!&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

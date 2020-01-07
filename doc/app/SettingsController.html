@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class SettingsController - Prestissimo Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/controllers/settings_controller.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-change">#change</a>
+    
+    <li><a href="#method-i-edit_motd">#edit_motd</a>
+    
+    <li><a href="#method-i-set_motd">#set_motd</a>
+    
+    <li><a href="#method-i-update_all">#update_all</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./JqueryWeekCalendar.html">JqueryWeekCalendar</a>
+  
+    <li><a href="./JqueryWeekCalendar/Install.html">JqueryWeekCalendar::Install</a>
+  
+    <li><a href="./JqueryWeekCalendar/Rails.html">JqueryWeekCalendar::Rails</a>
+  
+    <li><a href="./JqueryWeekCalendar/Rails/Engine.html">JqueryWeekCalendar::Rails::Engine</a>
+  
+    <li><a href="./JqueryWeekCalendar/Rails/Railtie.html">JqueryWeekCalendar::Rails::Railtie</a>
+  
+    <li><a href="./AdminsController.html">AdminsController</a>
+  
+    <li><a href="./AdminsHelper.html">AdminsHelper</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Cart.html">Cart</a>
+  
+    <li><a href="./CartsController.html">CartsController</a>
+  
+    <li><a href="./CartsHelper.html">CartsHelper</a>
+  
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
+    <li><a href="./Course.html">Course</a>
+  
+    <li><a href="./CoursesController.html">CoursesController</a>
+  
+    <li><a href="./CoursesHelper.html">CoursesHelper</a>
+  
+    <li><a href="./Department.html">Department</a>
+  
+    <li><a href="./DepartmentsController.html">DepartmentsController</a>
+  
+    <li><a href="./DepartmentsHelper.html">DepartmentsHelper</a>
+  
+    <li><a href="./ErrorsController.html">ErrorsController</a>
+  
+    <li><a href="./Handle.html">Handle</a>
+  
+    <li><a href="./HandlesController.html">HandlesController</a>
+  
+    <li><a href="./HandlesHelper.html">HandlesHelper</a>
+  
+    <li><a href="./Hubcourse.html">Hubcourse</a>
+  
+    <li><a href="./HubcoursesController.html">HubcoursesController</a>
+  
+    <li><a href="./HubcoursesHelper.html">HubcoursesHelper</a>
+  
+    <li><a href="./Interact.html">Interact</a>
+  
+    <li><a href="./MajorsHelper.html">MajorsHelper</a>
+  
+    <li><a href="./MyClassesController.html">MyClassesController</a>
+  
+    <li><a href="./MyClassesHelper.html">MyClassesHelper</a>
+  
+    <li><a href="./Professor.html">Professor</a>
+  
+    <li><a href="./ProfessorsController.html">ProfessorsController</a>
+  
+    <li><a href="./ProfessorsHelper.html">ProfessorsHelper</a>
+  
+    <li><a href="./Report.html">Report</a>
+  
+    <li><a href="./ReportsController.html">ReportsController</a>
+  
+    <li><a href="./ReportsHelper.html">ReportsHelper</a>
+  
+    <li><a href="./SessionsController.html">SessionsController</a>
+  
+    <li><a href="./SessionsHelper.html">SessionsHelper</a>
+  
+    <li><a href="./Setting.html">Setting</a>
+  
+    <li><a href="./SettingsController.html">SettingsController</a>
+  
+    <li><a href="./SettingsHelper.html">SettingsHelper</a>
+  
+    <li><a href="./StaticPagesController.html">StaticPagesController</a>
+  
+    <li><a href="./StaticPagesHelper.html">StaticPagesHelper</a>
+  
+    <li><a href="./Syllabus.html">Syllabus</a>
+  
+    <li><a href="./SyllabusController.html">SyllabusController</a>
+  
+    <li><a href="./SyllabusHelper.html">SyllabusHelper</a>
+  
+    <li><a href="./UTF8Sanitizer.html">UTF8Sanitizer</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
+  
+    <li><a href="./VotesController.html">VotesController</a>
+  
+    <li><a href="./VotesHelper.html">VotesHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class SettingsController</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-change" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">change</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="change-source">
+            <pre><span class="ruby-comment"># File app/controllers/settings_controller.rb, line 3</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">change</span>
+  <span class="ruby-ivar">@high_comment_score</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">get_val</span>(<span class="ruby-string">&#39;high_comment_score&#39;</span>)
+  <span class="ruby-ivar">@low_comment_score</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">get_val</span>(<span class="ruby-string">&#39;low_comment_score&#39;</span>)
+  <span class="ruby-ivar">@comment_report_threshold</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">get_val</span>(<span class="ruby-string">&#39;comment_report_threshold&#39;</span>)
+  <span class="ruby-ivar">@handle_report_threshold</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">get_val</span>(<span class="ruby-string">&#39;handle_report_threshold&#39;</span>)
+  <span class="ruby-ivar">@user_report_threshold</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">get_val</span>(<span class="ruby-string">&#39;user_report_threshold&#39;</span>)
+  <span class="ruby-ivar">@handle_abuse_threshold</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">get_val</span>(<span class="ruby-string">&#39;handle_abuse_threshold&#39;</span>)
+  <span class="ruby-comment">#   sems = Setting.get_value(&#39;semesters&#39;)</span>
+  <span class="ruby-comment">#   @settings[:semesters] = &#39;&#39;</span>
+  <span class="ruby-comment">#   sems.split(&#39;|&#39;).each do |sem|</span>
+  <span class="ruby-comment">#           @settings[:semesters] &lt;&lt; sem + &#39; &#39;</span>
+  <span class="ruby-comment">#   end</span>
+  <span class="ruby-comment">#   @settings[:semesters].slice!</span>
+  <span class="ruby-comment">#   @settings[:admins] = &#39;&#39;</span>
+  <span class="ruby-comment">#   admins = Setting.get_value(&#39;admins&#39;)</span>
+  <span class="ruby-comment">#   admins.split(&#39;|&#39;).each do |admin|</span>
+  <span class="ruby-comment">#           @settings[:admins] &lt;&lt; admin + &#39; &#39;</span>
+  <span class="ruby-comment">#   end</span>
+  <span class="ruby-comment">#   @settings[:admins].slice!</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- change-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- change-method -->
+
+    
+      <div id="method-i-edit_motd" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit_motd</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="edit_motd-source">
+            <pre><span class="ruby-comment"># File app/controllers/settings_controller.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit_motd</span>
+  <span class="ruby-ivar">@motd</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">get_val</span>(<span class="ruby-string">&#39;motd&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- edit_motd-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- edit_motd-method -->
+
+    
+      <div id="method-i-set_motd" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_motd</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="set_motd-source">
+            <pre><span class="ruby-comment"># File app/controllers/settings_controller.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_motd</span>
+  <span class="ruby-ivar">@motd</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">set</span>(<span class="ruby-string">&#39;motd&#39;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:motd</span>]).<span class="ruby-identifier">value</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:motd</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- set_motd-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- set_motd-method -->
+
+    
+      <div id="method-i-update_all" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_all</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="update_all-source">
+            <pre><span class="ruby-comment"># File app/controllers/settings_controller.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_all</span>
+  <span class="ruby-ivar">@settings</span> = {}
+  <span class="ruby-ivar">@settings</span>[<span class="ruby-value">:high_comment_score</span>] = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">set</span>(<span class="ruby-string">&#39;high_comment_score&#39;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:high_comment_score</span>]).<span class="ruby-identifier">value</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:high_comment_score</span>]
+  <span class="ruby-ivar">@settings</span>[<span class="ruby-value">:low_comment_score</span>] = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">set</span>(<span class="ruby-string">&#39;low_comment_score&#39;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:low_comment_score</span>]).<span class="ruby-identifier">value</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:low_comment_score</span>]
+  <span class="ruby-ivar">@settings</span>[<span class="ruby-value">:comment_report_threshold</span>] = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">set</span>(<span class="ruby-string">&#39;comment_report_threshold&#39;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:comment_report_threshold</span>]).<span class="ruby-identifier">value</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:comment_report_threshold</span>]
+  <span class="ruby-ivar">@settings</span>[<span class="ruby-value">:handle_report_threshold</span>] = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">set</span>(<span class="ruby-string">&#39;handle_report_threshold&#39;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:handle_report_threshold</span>]).<span class="ruby-identifier">value</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:handle_report_threshold</span>]
+  <span class="ruby-ivar">@settings</span>[<span class="ruby-value">:user_report_threshold</span>] = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">set</span>(<span class="ruby-string">&#39;user_report_threshold&#39;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:user_report_threshold</span>]).<span class="ruby-identifier">value</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:user_report_threshold</span>]
+  <span class="ruby-ivar">@settings</span>[<span class="ruby-value">:handle_abuse_threshold</span>] = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">set</span>(<span class="ruby-string">&#39;handle_abuse_threshold&#39;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:handle_abuse_threshold</span>]).<span class="ruby-identifier">value</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:handle_abuse_threshold</span>]
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:add_admin</span>].<span class="ruby-identifier">blank?</span>
+    <span class="ruby-identifier">name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:add_admin</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39; &#39;</span>)
+    <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;fname = ? AND lname = ?&quot;</span>, <span class="ruby-identifier">name</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">name</span>[<span class="ruby-value">1</span>]).<span class="ruby-identifier">first</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">make_admin</span>
+      <span class="ruby-identifier">admins</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">get_val</span>(<span class="ruby-string">&#39;admins&#39;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&#39;|&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:add_admin</span>]
+      <span class="ruby-ivar">@settings</span>[<span class="ruby-value">:admins</span>] = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">set</span>(<span class="ruby-string">&#39;admins&#39;</span>,<span class="ruby-identifier">admins</span>).<span class="ruby-identifier">value</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:rem_admin</span>].<span class="ruby-identifier">blank?</span>
+    <span class="ruby-identifier">name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:rem_admin</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39; &#39;</span>)
+    <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;fname = ? AND lname = ?&quot;</span>, <span class="ruby-identifier">name</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">name</span>[<span class="ruby-value">1</span>]).<span class="ruby-identifier">first</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">unmake_admin</span>
+      <span class="ruby-identifier">admins</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">get_val</span>(<span class="ruby-string">&#39;admins&#39;</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-node">&quot;|#{params[:rem_admin]}&quot;</span>,<span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-node">&quot;#{params[:rem_admin]}|&quot;</span>,<span class="ruby-string">&quot;&quot;</span>)
+        <span class="ruby-ivar">@settings</span>[<span class="ruby-value">:admins</span>] = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">set</span>(<span class="ruby-string">&#39;admins&#39;</span>,<span class="ruby-identifier">admins</span>).<span class="ruby-identifier">value</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@settings</span>[<span class="ruby-value">:admins</span>] = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">get_val</span>(<span class="ruby-string">&#39;admins&#39;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@settings</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update_all-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update_all-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
