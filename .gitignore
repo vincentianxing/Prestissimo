@@ -74,6 +74,3 @@ svn*
 /db/enrollment.txt*
 /db/diffout
 /db/badlines.txt
-
-# Don't track docs
-/doc/app/*

@@ -60,14 +60,14 @@ Just keep in mind that whenever you make changes to Prestissimo, you'll want
 to commit them. Update first, make changes, then commit. Commit early, commit often.
 AND WRITE GOOD COMMIT MESSAGES. 
 
-The online git repo is kept on Gitlab at https://gitlab.com/mmitchel1/prestissimo. While
+The online git repo is kept on Gitlab at https://gitlab.com/mmitchel1/prestissimo While
 the new site is in development, <b>MAKE SURE</b> you are using the <code>newprestissimo</code>
 branch as your master. We do not want to overwrite the old code until we are sure the new code
 works.
 
 To clone the repo, you need two things: access to it on GitLab, and a GitLab account with an 
 ssh key <i>from your account on the Prestissimo server</i>. If you don't know how to do the 
-second part, check this out https://dev.to/sndrx/how-to-set-up-an-ssh-key-and-use-it-in-gitlab--42p1.
+second part, check this out https://dev.to/sndrx/how-to-set-up-an-ssh-key-and-use-it-in-gitlab--42p1
 Once you've done both things, you can clone with <code>git clone git@gitlab.com:mmitchel1/prestissimo.git</code>.
 
 
@@ -106,7 +106,7 @@ push your changes to the development server and later the production server.
 
 This part can be a bit confusing at first because of Oberlin's firewalls, but bear with me.
 First of all, you can only access either Prestissimo server through the Oberlin VPN. If you
-don't know how to use the Oberlin VPN, check this out https://citwiki.oberlin.edu/index.php/VPN.
+don't know how to use the Oberlin VPN, check this out https://citwiki.oberlin.edu/index.php/VPN
 
 If you have been reading up on Ruby on Rails, you know about <code>$ rails server</code>.
 This is what you'll be using to view your changes in your home directory
@@ -125,19 +125,6 @@ Some things to keep in mind with port numbers:
   you DO NOT connect with https. 3005 is just a placeholder port, you'll want
   to navigate to the port that you specified with rails server -p <port>).
 
-** I think this next part doesn't apply anymore **
-
-<b>Connecting from outside the cs lab</b>:
-- If you want to work on Prestissimo remotely, you have to set up port forwarding
-  because outside of the cs lab, ports 3000-3100 are blocked.
-  Port forwarding is simple though, just follow these steps/enter these commands:
-    $ ssh -L 3012:oprestissimo.info:3005 username@occs.cs.oberlin.edu
-  Leave this session open in its own window.
-- Now, from a different terminal window, ssh again to occs and then
-  oprestissimo.info 
-    $ rails server -p 3005
-- To view your site, you can navigate to http://localhost:3012
-
 Pretty cool, huh?
 
 
@@ -146,7 +133,7 @@ Pretty cool, huh?
 
 To edit any files on the server you can use vim or emacs, but we've also
 set it up so you can use Visual Studio Code to remotely make changes. If you 
-don't have it downloaded, you can get it here https://code.visualstudio.com/download.
+don't have it downloaded, you can get it here https://code.visualstudio.com/download
 Setting it up to work with Prestissimo is easy:
 
 1.  Make sure VS Code works on your machine.
