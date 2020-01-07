@@ -36,7 +36,7 @@ group :development do
   gem 'meta_request'
 end
 
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.21'
 
 gem 'ruby-mysql'
 
