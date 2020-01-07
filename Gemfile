@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.22'
+gem 'rake', '~> 10.4.2'
 gem 'therubyracer', '~> 0.12.3'
 gem 'libv8', '3.16.14.15'
 gem 'faker', '1.0.1'
