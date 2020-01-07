@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.22'
-gem 'therubyracer'
-gem 'libv8', '3.16.14.7'
+gem 'therubyracer', '~> 0.12.3'
+gem 'libv8', '3.16.14.15'
 gem 'faker', '1.0.1'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'mail'

@@ -47,37 +47,65 @@ heavy use of the jQuery Javascript library, whose extensive documentation can be
 http://api.jquery.com/.
 
 
-===2. New to Git?
+===2. New to SVN?
 --------------
 
-Git is the version control system that Prestissimo uses. The rails
-tutorial above uses git, so after going through that you should have
-a pretty good grasp on the major features.
+Subversion (SVN) is the version control system that Prestissimo uses. If
+you are new to SVN but not new to version control, it's not too different
+from git, although some of the commands are different syntactically, and
+branching is kind of weird.
+
+If you are new to version control, you should read up on it. The rails
+tutorial above uses git, and is a good example of how version control
+should be used (although Prestissimo uses significantly fewer branches).
+Find some short svn tutorials and read the wikipedia page for source control.
 
 Just keep in mind that whenever you make changes to Prestissimo, you'll want
 to commit them. Update first, make changes, then commit. Commit early, commit often.
 AND WRITE GOOD COMMIT MESSAGES. 
 
-The online git repo is kept on Gitlab at https://gitlab.com/mmitchel1/prestissimo. While
-the new site is in development, <b>MAKE SURE</b> you are using the <code>newprestissimo</code>
-branch as your master. We do not want to overwrite the old code until we are sure the new code
-works.
+More logistics: 
+- <b>*OLD SKIP*</b> The SVN server is located at: https://occs.cs.oberlin.edu/svn/prestissimo/prestissimo
+- <b>*OLD SKIP*</b> To check out a copy you can just type 
+    $ svn co https://occs.cs.oberlin.edu/svn/prestissimo/prestissimo
+- The SVN URL is (since 2014): svn+ssh://occs.cs.oberlin.edu/usr/users/noquota/prestissimo/svnrepo/prestissimo
+- To check out a copy you can just type
+    $ svn co svn+ssh://occs.cs.oberlin.edu/usr/users/noquota/prestissimo/svnrepo/prestissimo
+- You can run this to get more information
+    $ svn info
+- To deal with multiple users working in one directory (e.g., apache) preface the command with a setting for *SVN_SSH* using your username
+    $ SVN_SSH="ssh -l kuperman" svn diff
+
+SVN can be very frustrating sometimes (it often spits out very cryptic messages and
+doesn't do what you want it to do), but have patience and stick with it.
+
+SVN has an extremely useful feature called *diff* that tells you the differences
+between revisions. diff's default behavior is to simply print out which chunks
+of code were altered between revisions, but with large amounts of alterations,
+this can be a bit of a pain. A better way to utilize this function is to view
+the differences with vim, a command-line text editor. Follow these instructions
+to set up vimdiff:
+http://blog.tplus1.com/blog/2007/08/29/how-to-use-vimdiff-as-the-subversion-diff-tool/.
+Then, to view differences, simply type 
+<code>svn diff -r 1112:1113</code>
+replacing the revision numbers with whatever revisions you would like to see.
+Lines that are changed will be highlighted in pretty colors (!),
+making it easy to see where changes occurred. 
+
+If you have any questions, ask Ben Kuperman--he knows everything about SVN.
 
 
 ===3. How many servers is Prestissimo on anyways?
 --------------
 
-Normally, prestissimo lives in three locations:
+Prestissimo lives in three locations:
 - oprestissimo.com
 - oprestissimo.info
 - Your Home Directory (on oprestissimo.info)
 
-However, while under development, there is no oprestissimo.com or oprestissimo.info. 
-Right now, it is just on the new Ubuntu server, and in your home directory.
-
 *oprestissimo.com* is the production server. The files for the real Prestissimo, the
-files that are running the whole shebang, will be located in:
-/var/www/html/oprestissimo.com/
+files that are running the whole shebang, are located in:
+/srv/httpd/htdocs/prestissimo
 DON'T TOUCH THEM. EVER. When you need to make changes to the production website, there
 is a script that will do everything without any human intervention. Read more about this
 in section 6, <em>Procedure for making changes to the website</em>.
@@ -85,11 +113,11 @@ in section 6, <em>Procedure for making changes to the website</em>.
 *oprestissimo.info* is the development server. Most of the time you will be
 logged into this server. This is also a public website, but no one knows about
 it (https://oprestissimo.info).  You should be testing any changes you make
-with the oprestissimo.info server.  A copy of prestissimo will also be located on
-this server in the same location as above.
+with the oprestissimo.info server.  A copy of prestissimo is also located on
+this server at: /srv/httpd/htdocs/prestissimo
 
 <b>Your Home Directory (on oprestissimo.info)</b>: there should be a copy of prestissimo in your
-home directory. If there isn't, you can clone one (see above section). ALL THE CHANGES YOU
+home directory. If there isn't, you can check one out (see above section). ALL THE CHANGES YOU
 EVER MAKE TO THE WEBSITE WILL HAPPEN HERE. There are scipts that will automatically
 push your changes to the development server and later the production server.
 
@@ -97,8 +125,8 @@ push your changes to the development server and later the production server.
 ===4. Connecting to Prestissimo/rails server
 --------------
 This part can be a bit confusing at first because of Oberlin's firewalls, but bear with me.
-First of all, you can only access either Prestissimo server through the Oberlin VPN. If you
-don't know how to use the Oberlin VPN, check this out https://citwiki.oberlin.edu/index.php/VPN.
+First of all, you can only access either Prestissimo server through occs, so you will always first
+need to ssh to occs, then Prestissimo.
 
 If you have been reading up on Ruby on Rails, you know about <code>$ rails server</code>.
 This is what you'll be using to view your changes in your home directory
@@ -111,14 +139,12 @@ Some things to keep in mind with port numbers:
 - you might have to try a couple different ports before you get a free one
 - Oberlin blocks ports that aren't between 3000-3100, so use something like 3005
 
-<b>Viewing changes with rails server</b>:
-- Make sure you are on the Oberlin VPN.
+<b>Viewing changes with rails server from within the CS lab</b>:
 - To see your rails server, navigate to <code>http://oprestissimo.info:3005</code> (note that
   you DO NOT connect with https. 3005 is just a placeholder port, you'll want
   to navigate to the port that you specified with rails server -p <port>).
 
-** I think this next part doesn't apply anymore **
-<i><b>Connecting from outside the cs lab</b>:
+<b>Connecting from outside the cs lab</b>:
 - If you want to work on Prestissimo remotely, you have to set up port forwarding
   because outside of the cs lab, ports 3000-3100 are blocked.
   Port forwarding is simple though, just follow these steps/enter these commands:
@@ -127,7 +153,7 @@ Some things to keep in mind with port numbers:
 - Now, from a different terminal window, ssh again to occs and then
   oprestissimo.info 
     $ rails server -p 3005
-- To view your site, you can navigate to http://localhost:3012</i>
+- To view your site, you can navigate to http://localhost:3012
 
 Pretty cool, huh?
 
@@ -189,16 +215,16 @@ they're ready to get pushed up to the production site. Follow these steps to pro
 
 1. Don't forget to update the help pages with information about your changes!!
 
-2. Make sure you have committed all of your changes to the git repository. Make
-   sure git doesn't think you've modified any of the database files (especially
+2. Make sure you have committed all of your changes to the SVN repository. Make
+   sure SVN doesn't think you've modified any of the database files (especially
    courses.txt), only ruby on rails files. If it is necessary to modify the
    database files (files contained in db/), be very very careful and make sure you
    fully understand all of the scripts that update the database.
 
 3. In your home directory version of prestissimo, run 
    <code> $ sudo ./scripts/fixit </code>
-   (If you don't have sudo permissions, you should get someone to give you sudo permission.)
-   You can read the script to see what it does, but basically it does an git update
+   (If you don't have sudo permissions, you should get Ben or someone else to give you sudo permission.)
+   You can read the script to see what it does, but basically it does an svn update
    of the files in the main oprestissimo.info website.
 
 4. Check to make sure your changes are working well on oprestissimo.info. Once
@@ -216,15 +242,14 @@ they're ready to get pushed up to the production site. Follow these steps to pro
 
 8. open up the file scripts/comfixit
 
-** Don't do this **
-<i>9. change REVNUM to be the svn revision number of the version you are pushing.
+9. change REVNUM to be the svn revision number of the version you are pushing.
    This will probably just be the most recent version if you are updating, but
    make note of what the version number was before you changed it in case you have
-   to rollback to a previous working version of the website.</i>
+   to rollback to a previous working version of the website.
 
 10. If you need any gems to be updated you will also need to uncomment the section 
     of comfixit that runs "bundle update" and, the first time you do this, you should
-    talk to professor Hoyle about giving the apache user privileges to use sudo
+    talk to professor kuperman about giving the apache user privileges to use sudo
     without a password. He'll show you how to do so in the future. When you're done,
     don't forget to recomment the section!
 
@@ -246,15 +271,12 @@ a. <em>About the database</em>
    that will explain more about the structure of the database and how to update or 
    rollback the database. 
 
-   *NOTE*: For the upgrade, MySQL has been set to use legacy security. This should be changed
-   as soon as possible.
-
 b. <em>Examining the database by hand</em>
 
    The database is a MySql database. If you need to log in to the database, you can do
    so by typing:
       $ sudo mysql -u busystudent -p
-   It will then prompt you for a password. If you need the password, ask Prof. Hoyle.
+   It will then prompt you for a password. If you need the password, ask Ben Kuperman.
    The username is busystudent.
 
    I would recommend accessing the database through rails console, however. It's like
@@ -264,11 +286,10 @@ b. <em>Examining the database by hand</em>
 c. <em>Updating the courses in the database</em>
 
    The courses in the database get updated with the scripts/data_pull script.
-   Basically, we get a file from CIT, which goes into /home/datadump. This file is 
-   sent four times a day, every weekeday. To see the exact times, check the crontab for
-   root. data_pull checks the time stamp on this file to see if we have received a new one, and
-   if so, first does a sanity check on the file, then creates a file called courses.txt 
-   in the db directory (btw, don't ever manually edit this file, it could wreak havoc on the database).
+   Basically, we get a file from CIT, which goes into /home/datadump. data_pull
+   checks the time stamp on this file to see if we have received a new one, and
+   if so, it creates a file called courses.txt in the db directory (btw, don't
+   ever manually edit this file, it could wreak havoc on the database).
    That file then gets parsed and fed into the database with the rake task update_courses
    (located in ./lib/tasks/update_courses.rake). To gain a better
    understanding of what happens, read through the scripts--the process is a little more
@@ -280,11 +301,14 @@ d. <em>Backing up the database </em>
 
 e. <em>Who should we contact in CIT if we have problems?</em>
 
-   As of now, our contact with CIT is Chris Raspe.
+   As of now, our contact with CIT is Joe Barrile, who is the person who actually 
+   generates the file. Whenever a course catalog for a new semester is published, 
+   someone needs to contact Joe Barrile and have him start sending files for the 
+   new semester.
 
 f. <em>How do courses get updated between semesters?</em>
 
-   A new file is automatically sent at the start of each semester. 
+   Someone contacts Joe Barrile and reminds him to send us a file for the new semester.
    The scripts that parse the file will be able to automatically tell that it is for a
    new semester and will create new courses for all of the courses in the new semester.
    It will update the value for 'current_semester' and add a new option on the front
@@ -296,18 +320,3 @@ g. <em>How do I set an admin?</em>
    Admins can be set by other admins on the website under Account/Admin/Edit Global Settings,
    or by changing the user's admin column in the database to 1.
       $  update users set admin=1 where email="flast@oberlin.edu"
-
-
-===8. Apache
----------------
-
-    Oprestissimo uses Apache to host its webserver. If you need to edit any of the apache
-    settings, you can find them at <code>/etc/apache2/sites-available/oprestissimo.com.conf</code>.
-
-    To work with Rails, we are using the Passenger module. It is very easy to use. To tell it to
-    use a specific version of Ruby you need to:
-        1) Run <code>rvm use VERSION</code> to set the ruby version. For ex., <code>rvm use 2.2.2</code>.
-        2) Run <code>passenger-config about ruby-command</code> to make sure the Ruby version
-            is correct.
-        3) Edit the PassengerRuby line in the Apache conf file above to reflect the changes to
-            the Ruby version.
