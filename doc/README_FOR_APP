@@ -126,7 +126,8 @@ Some things to keep in mind with port numbers:
   to navigate to the port that you specified with rails server -p <port>).
 
 ** I think this next part doesn't apply anymore **
-<i><b>Connecting from outside the cs lab</b>:
+
+<b>Connecting from outside the cs lab</b>:
 - If you want to work on Prestissimo remotely, you have to set up port forwarding
   because outside of the cs lab, ports 3000-3100 are blocked.
   Port forwarding is simple though, just follow these steps/enter these commands:
@@ -135,7 +136,7 @@ Some things to keep in mind with port numbers:
 - Now, from a different terminal window, ssh again to occs and then
   oprestissimo.info 
     $ rails server -p 3005
-- To view your site, you can navigate to http://localhost:3012</i>
+- To view your site, you can navigate to http://localhost:3012
 
 Pretty cool, huh?
 
@@ -246,10 +247,10 @@ they're ready to get pushed up to the production site. Follow these steps to pro
 8. open up the file scripts/comfixit
 
 ** Don't do this **
-<i>9. change REVNUM to be the svn revision number of the version you are pushing.
+9. change REVNUM to be the svn revision number of the version you are pushing.
    This will probably just be the most recent version if you are updating, but
    make note of what the version number was before you changed it in case you have
-   to rollback to a previous working version of the website.</i>
+   to rollback to a previous working version of the website.
 
 10. If you need any gems to be updated you will also need to uncomment the section 
     of comfixit that runs "bundle update" and, the first time you do this, you should
