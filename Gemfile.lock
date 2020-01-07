@@ -108,14 +108,14 @@ GEM
       rails
     multi_json (1.14.1)
     multi_xml (0.6.0)
-    mysql2 (0.5.3)
+    mysql2 (0.3.21)
     net-ldap (0.16.2)
-    nokogiri (1.10.7)
+    nokogiri (1.9.1)
       mini_portile2 (~> 2.4.0)
     polyglot (0.3.5)
     power_assert (1.1.5)
     rack (1.4.7)
-    rack-cache (1.11.0)
+    rack-cache (1.9.0)
       rack (>= 0.4)
     rack-contrib (1.8.0)
       rack (~> 1.4)
@@ -224,7 +224,7 @@ DEPENDENCIES
   mail
   meta_request
   mobile-fu
-  mysql2
+  mysql2 (~> 0.3.21)
   net-ldap
   rails (= 3.2.22)
   redcarpet
