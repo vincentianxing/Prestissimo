@@ -148,14 +148,20 @@ To edit any files on the server you can use vim or emacs, but we've also
 set it up so you can use Visual Studio Code to remotely make changes. If you 
 don't have it downloaded, you can get it here https://code.visualstudio.com/download.
 Setting it up to work with Prestissimo is easy:
-    1) Make sure VS Code works on your machine.
-    2) Using the built in Extensions Manager, install the <b>Remote - SSH</b> extension.
-    3) Make sure you are on the Oberlin VPN.
-    4) When you reload VS Code, you'll see a little green buton with two arrows at
+
+1. Make sure VS Code works on your machine.
+
+2. Using the built in Extensions Manager, install the <b>Remote - SSH</b> extension.
+
+3. Make sure you are on the Oberlin VPN.
+
+4. When you reload VS Code, you'll see a little green buton with two arrows at
         the bottom left of the window. Click it. Then select 'Remote - SSH: Connect to Host...'
-    5) Enter your login (and password if you haven't shared your public key with 
+
+5. Enter your login (and password if you haven't shared your public key with 
         Prestissimo, which you should) and it should just work!
-    6) Once you're in, install the 'Ruby' and 'GitLens' extensions if they aren't 
+
+6. Once you're in, install the 'Ruby' and 'GitLens' extensions if they aren't 
         already installed and reload VS Code.
 
 If any of that gies you trouble, just Google whatever didn't work. There are a lot 
@@ -246,8 +252,7 @@ they're ready to get pushed up to the production site. Follow these steps to pro
 
 8. open up the file scripts/comfixit
 
-** Don't do this **
-9. change REVNUM to be the svn revision number of the version you are pushing.
+9. ** DON'T DO THIS ** change REVNUM to be the svn revision number of the version you are pushing.
    This will probably just be the most recent version if you are updating, but
    make note of what the version number was before you changed it in case you have
    to rollback to a previous working version of the website.
@@ -336,8 +341,11 @@ settings, you can find them at <code>/etc/apache2/sites-available/oprestissimo.c
 
 To work with Rails, we are using the Passenger module. It is very easy to use. To tell it to
 use a specific version of Ruby you need to:
-    1) Run <code>rvm use VERSION</code> to set the ruby version. For ex., <code>rvm use 2.2.2</code>.
-    2) Run <code>passenger-config about ruby-command</code> to make sure the Ruby version
+
+1. Run <code>rvm use VERSION</code> to set the ruby version. For ex., <code>rvm use 2.2.2</code>.
+
+2. Run <code>passenger-config about ruby-command</code> to make sure the Ruby version
         is correct.
-    3) Edit the PassengerRuby line in the Apache conf file above to reflect the changes to
+
+3. Edit the PassengerRuby line in the Apache conf file above to reflect the changes to
         the Ruby version.
