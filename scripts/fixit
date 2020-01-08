@@ -42,13 +42,13 @@ if [ $? -ne 0 ]; then
     exit 3
 fi
 
-echo
-echo "*** Updating documentation files..."
-sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $RAKE doc:app"
-if [ $? -ne 0 ]; then
-    echo "Failed!"
-    exit 6
-fi
+#echo
+#echo "*** Updating documentation files..."
+#sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $RAKE doc:app"
+#if [ $? -ne 0 ]; then
+#    echo "Failed!"
+#    exit 6
+#fi
 
 # deploy
 echo
