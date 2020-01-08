@@ -332,8 +332,8 @@
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">result</span>
     <span class="ruby-comment">#we get a list of results, but we only care about the first one</span>
     <span class="ruby-identifier">result</span> = <span class="ruby-identifier">result</span>.<span class="ruby-identifier">first</span>
-    <span class="ruby-comment">#If the user exists and gave the correct password, we sign him in and redirect him</span>
-    <span class="ruby-comment">#to whatever page he was trying to get to (friendly forwarding)</span>
+    <span class="ruby-comment">#If the user exists and gave the correct password, we sign them in and redirect them</span>
+    <span class="ruby-comment">#to whatever page they was trying to get to (friendly forwarding)</span>
     <span class="ruby-comment">#check for a cart stored in a cookie</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">cookies</span>[<span class="ruby-value">:cart</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span>(<span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">cookies</span>[<span class="ruby-value">:cart</span>]).<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">nil?</span>)
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">cart</span>.<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">nil?</span>

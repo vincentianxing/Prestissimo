@@ -33,8 +33,8 @@ class SessionsController < ApplicationController
     if result
       #we get a list of results, but we only care about the first one
       result = result.first
-      #If the user exists and gave the correct password, we sign him in and redirect him
-      #to whatever page he was trying to get to (friendly forwarding)
+      #If the user exists and gave the correct password, we sign them in and redirect them
+      #to whatever page they was trying to get to (friendly forwarding)
       #check for a cart stored in a cookie
       if cookies[:cart] && !(Cart.find_by_cartid(cookies[:cart]).courses.nil?)
         if user.cart.courses.nil?

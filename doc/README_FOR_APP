@@ -68,7 +68,9 @@ works.
 To clone the repo, you need two things: access to it on GitLab, and a GitLab account with an 
 ssh key <i>from your account on the Prestissimo server</i>. If you don't know how to do the 
 second part, check this out https://dev.to/sndrx/how-to-set-up-an-ssh-key-and-use-it-in-gitlab--42p1
-Once you've done both things, you can clone with <code>git clone git@gitlab.com:mmitchel1/prestissimo.git</code>.
+Also check this out for ssh generation and permissions https://gist.github.com/grenade/6318301
+Once you've done both things, you can clone with 
+    <code>git clone git@gitlab.com:mmitchel1/prestissimo.git</code>.
 
 
 ===3. How many servers is Prestissimo on anyways?
