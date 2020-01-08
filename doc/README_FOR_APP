@@ -211,7 +211,7 @@ they're ready to get pushed up to the production site. Follow these steps to pro
 1.  <b>DOCUMENT THE CHANGES THAT YOU HAVE MADE</b>. Read more about this in the previous
     section. Don't forget to compile the docs with <code>$ rake doc:app</code> before you commit!
 
-2.  Make sure you have committed all of your changes to the git repository. Make
+2.  Make sure you have committed <b>and pushed</b> all of your changes to the git repository. Make
     sure git doesn't think you've modified any of the database files (especially
     courses.txt), only ruby on rails files. If it is necessary to modify the
     database files (files contained in db/), be very very careful and make sure you
