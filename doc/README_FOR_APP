@@ -70,7 +70,13 @@ ssh key <i>from your account on the Prestissimo server</i>. If you don't know ho
 second part, check this out https://dev.to/sndrx/how-to-set-up-an-ssh-key-and-use-it-in-gitlab--42p1
 Also check this out for ssh generation and permissions https://gist.github.com/grenade/6318301
 Once you've done both things, you can clone with 
-    <code>git clone git@gitlab.com:mmitchel1/prestissimo.git</code>.
+    $ git clone git@gitlab.com:mmitchel1/prestissimo.git
+
+When using git, everytime you do anything, you should be creating a new branch.
+<b>Never</b> edit and commit to the main branch. Always make a new branch, edit, commit, then merge
+ONLY after making sure everything works perfectly. And if you're on one branch for a while,
+make sure to keep it up to date with master. That way, you'll be able to fix any issues you have
+with someone else's merge <b>before</b> the bug gets to master.
 
 
 ===3. How many servers is Prestissimo on anyways?
@@ -106,8 +112,8 @@ push your changes to the development server and later the production server.
 ===4. Connecting to Prestissimo/rails server
 --------------
 
-This part can be a bit confusing at first because of Oberlin's firewalls, but bear with me.
-First of all, you can only access either Prestissimo server through the Oberlin VPN. If you
+This part can be a bit confusing at first because of Oberlin's firewalls.
+First of all, you can only access any Prestissimo server through the Oberlin VPN. If you
 don't know how to use the Oberlin VPN, check this out https://citwiki.oberlin.edu/index.php/VPN
 
 If you have been reading up on Ruby on Rails, you know about <code>$ rails server</code>.
@@ -135,8 +141,8 @@ Pretty cool, huh?
 
 To edit any files on the server you can use vim or emacs, but we've also
 set it up so you can use Visual Studio Code to remotely make changes. If you 
-don't have it downloaded, you can get it here https://code.visualstudio.com/download 
-Setting it up to work with Prestissimo is easy:
+don't have it downloaded, you can get it here https://code.visualstudio.com/download
+Getting it working with Prestissimo is easy:
 
 1.  Make sure VS Code works on your machine.
 
@@ -203,48 +209,45 @@ c. How do I write more documentation?
 Okay, so you've made some changes in your home directory Prestissimo and you think
 they're ready to get pushed up to the production site. Follow these steps to proceed:
 
-0. <b>DOCUMENT THE CHANGES THAT YOU HAVE MADE</b>. Read more about this in the previous
-   section.
+1.  <b>DOCUMENT THE CHANGES THAT YOU HAVE MADE</b>. Read more about this in the previous
+    section. Don't forget to compile the docs with <code>$ rake doc:app</code> before you commit!
 
-1. Don't forget to update the help pages with information about your changes!!
+2.  Make sure you have committed all of your changes to the git repository. Make
+    sure git doesn't think you've modified any of the database files (especially
+    courses.txt), only ruby on rails files. If it is necessary to modify the
+    database files (files contained in db/), be very very careful and make sure you
+    fully understand all of the scripts that update the database.
 
-2. Make sure you have committed all of your changes to the git repository. Make
-   sure git doesn't think you've modified any of the database files (especially
-   courses.txt), only ruby on rails files. If it is necessary to modify the
-   database files (files contained in db/), be very very careful and make sure you
-   fully understand all of the scripts that update the database.
+3.  In your home directory version of prestissimo, run 
+    <code> $ sudo ./scripts/fixit </code>
+    (If you don't have sudo permissions, you should get someone to give you sudo permission.)
+    You can read the script to see what it does, but basically it does an git pull
+    in the main website folder and migrates the database.
 
-3. In your home directory version of prestissimo, run 
-   <code> $ sudo ./scripts/fixit </code>
-   (If you don't have sudo permissions, you should get someone to give you sudo permission.)
-   You can read the script to see what it does, but basically it does an git pull
-   in the main website folder, updates the docs, and migrates the database.
+4.  Check to make sure your changes are working well on the live site. Once
+    you are happy with the way it's working, and you've decided
+    that it's time to update the production server, you can proceed to the next
+    step. <b>Except don't actually, stop here. The rest doesn't work right now.</b>
 
-4. Check to make sure your changes are working well on the live site. Once
-   you are happy with the way it's working, and you've decided
-   that it's time to update the production server, you can proceed to the next
-   step. <b>Except don't actually, stop here. The rest doesn't work right now.</b>
+5.  ssh to the oprestissimo.com server. Your login should be the same as the .info server
 
-5. ssh to the oprestissimo.com server. Your login should be the same as the .info server
+6.  back up the database by cd'ing into db and running 
+    <code> $ sudo ./dump_db </code>
 
-6. back up the database by cd'ing into db and running 
-   <code> $ sudo ./dump_db </code>
+7.  sudo to the apache user: 
+    <code> $ sudo -s -u apache </code>
 
-7. sudo to the apache user: 
-   <code> $ sudo -s -u apache </code>
-
-8. If you need any gems to be updated you will also need to uncomment the section 
+8.  If you need any gems to be updated you will also need to uncomment the section 
     of comfixit that runs "bundle update" and, the first time you do this, you should
     talk to professor Hoyle about giving the apache user privileges to use sudo
     without a password. He'll show you how to do so in the future. When you're done,
     don't forget to recomment the section!
 
-9. You are now ready to run 
+9.  You are now ready to run 
     <code> $ ./comfixit </code>
     After running ./comfixit, the oprestissimo.com website should have your
     changes on it.  If things go awry, there are READMEs that will tell you how
-    to roll back the database in the doc directory, and you should also change
-    the REVNUM in comfixit to the one it was before and rerun comfixit.
+    to roll back the database in the doc directory.
 
 
 ===8. The Database
@@ -257,9 +260,6 @@ a. <em>About the database</em>
    that will explain more about the structure of the database and how to update or 
    rollback the database. 
 
-   *NOTE*: For the upgrade, MySQL has been set to use legacy security. This should be changed
-   as soon as possible.
-
 b. <em>Examining the database by hand</em>
 
    The database is a MySql database. If you need to log in to the database, you can do
@@ -268,7 +268,7 @@ b. <em>Examining the database by hand</em>
    It will then prompt you for a password. If you need the password, ask somebody in charge.
    The username is busystudent.
 
-   I would recommend accessing the database through rails console, however. It's like
+   However, I would recommend accessing the database through rails console. It's like
    directly accessing the database, but instead of doing it with sql statements, you can
    use Ruby on Rails code.
 
@@ -306,7 +306,7 @@ g. <em>How do I set an admin?</em>
   
    Admins can be set by other admins on the website under Account/Admin/Edit Global Settings,
    or by changing the user's admin column in the database to 1.
-      $  update users set admin=1 where email="flast@oberlin.edu"
+      $ update users set admin=1 where email="flast@oberlin.edu"
 
 
 ===9. Apache
@@ -314,19 +314,21 @@ g. <em>How do I set an admin?</em>
 
 Oprestissimo uses Apache to host its webserver. If you need to edit any of the apache
 settings, you can find them at 
-    <code>/etc/apache2/sites-available/oprestissimo.com.conf</code>.
+    /etc/apache2/sites-available/oprestissimo.com.conf
 
 To work with Rails, we are using the Passenger module. It is very easy to use. To tell it to
 use a specific version of Ruby you need to:
 
-1.  Run 
-        <code>rvm use VERSION</code> 
-    to set the ruby version. For ex., 
-        <code>rvm use 2.2.2</code>.
+1.  Set the Ruby version with 
+        $ rvm use VERSION
+    To see all available Ruby versions, use
+        $ rvm list
 
-2.  Run 
-        <code>passenger-config about ruby-command</code> 
-    to make sure the Ruby version is correct.
+2.  Make sure Passenger is using the right version of Ruby with 
+        $ passenger-config about ruby-command
 
 3.  Edit the PassengerRuby line in the Apache conf file above to reflect the changes to
     the Ruby version.
+
+To restart the server, use 
+    $ sudo systemctl restart apache2.service

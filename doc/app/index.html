@@ -111,8 +111,17 @@ out <a
 href="https://dev.to/sndrx/how-to-set-up-an-ssh-key-and-use-it-in-gitlab--42p1">dev.to/sndrx/how-to-set-up-an-ssh-key-and-use-it-in-gitlab–42p1</a>
 Also check this out for ssh generation and permissions <a
 href="https://gist.github.com/grenade/6318301">gist.github.com/grenade/6318301</a>
-Once you&#39;ve done both things, you can clone with <tt>git clone
-git@gitlab.com:mmitchel1/prestissimo.git</tt>.</p>
+Once you&#39;ve done both things, you can clone with</p>
+
+<pre>$ git clone git@gitlab.com:mmitchel1/prestissimo.git</pre>
+
+<p>When using git, everytime you do anything, you should be creating a new
+branch. <b>Never</b> edit and commit to the main branch. Always make a new
+branch, edit, commit, then merge ONLY after making sure everything works
+perfectly. And if you&#39;re on one branch for a while, make sure to keep
+it up to date with master. That way, you&#39;ll be able to fix any issues
+you have with someone else&#39;s merge <b>before</b> the bug gets to
+master.</p>
 
 <h3>3. How many servers is Prestissimo on anyways?</h3>
 <hr style="height: 10px">
@@ -130,19 +139,20 @@ git@gitlab.com:mmitchel1/prestissimo.git</tt>.</p>
 oprestissimo.info.  Right now, <b>it is just on the new Ubuntu server at
 132.162.201.242</b>, and in your home directory.</p>
 
-<p><b>oprestissimo.com</b> is the production server. The files for the real
-Prestissimo, the files that are running the whole shebang, will be located
-in: /var/www/html/oprestissimo.com/ DON&#39;T TOUCH THEM. EVER. When you
-need to make changes to the production website, there is a script that will
-do everything without any human intervention. Read more about this in
-section 7, <em>Procedure for making changes to the website</em>.</p>
+<p><b>oprestissimo.com</b> will be the production server. The files for the
+real Prestissimo, the files that are running the whole shebang, will be
+located in: /var/www/html/oprestissimo.com/ DON&#39;T TOUCH THEM. EVER.
+When you need to make changes to the production website, there is a script
+that will do everything without any human intervention. Read more about
+this in section 7, <em>Procedure for making changes to the website</em>.</p>
 
-<p><b>oprestissimo.info</b> is the development server. Most of the time you
-will be logged into this server. This is also a public website, but no one
-knows about it (<a href="https://oprestissimo.info">oprestissimo.info</a>).
-You should be testing any changes you make with the oprestissimo.info
-server. A copy of prestissimo will also be located on this server in the
-same location as above.</p>
+<p><b>oprestissimo.info</b> will be the development server. Most of the time
+you will be logged into this server. This is also a public website, but no
+one knows about it (<a
+href="https://oprestissimo.info">oprestissimo.info</a>). You should be
+testing any changes you make with the oprestissimo.info server. A copy of
+prestissimo will also be located on this server in the same location as
+above.</p>
 
 <p><b>Your Home Directory (on oprestissimo.info)</b>: there should be a copy
 of prestissimo in your home directory. If there isn&#39;t, you can clone
@@ -154,9 +164,9 @@ the development server and later the production server.</p>
 <hr style="height: 10px">
 
 <p>This part can be a bit confusing at first because of Oberlin&#39;s
-firewalls, but bear with me. First of all, you can only access either
-Prestissimo server through the Oberlin VPN. If you don&#39;t know how to
-use the Oberlin VPN, check this out <a
+firewalls. First of all, you can only access any Prestissimo server through
+the Oberlin VPN. If you don&#39;t know how to use the Oberlin VPN, check
+this out <a
 href="https://citwiki.oberlin.edu/index.php/VPN">citwiki.oberlin.edu/index.php/VPN</a></p>
 
 <p>If you have been reading up on Ruby on Rails, you know about <tt>$ rails
@@ -178,10 +188,10 @@ like 3005</p>
 <ul><li>
 <p>Make sure you are on the Oberlin VPN.</p>
 </li><li>
-<p>To see your rails server, navigate to
-<tt>http://oprestissimo.info:3005</tt> (note that you DO NOT connect with
-https. 3005 is just a placeholder port, you&#39;ll want to navigate to the
-port that you specified with rails server -p &lt;port&gt;).</p>
+<p>To see your rails server, navigate to <tt>http://132.162.201.242:3005</tt>
+(note that you DO NOT connect with https. 3005 is just a placeholder port,
+you&#39;ll want to navigate to the port that you specified with rails
+server -p &lt;port&gt;).</p>
 </li></ul>
 
 <p>Pretty cool, huh?</p>
@@ -193,8 +203,7 @@ port that you specified with rails server -p &lt;port&gt;).</p>
 also set it up so you can use Visual Studio Code to remotely make changes.
 If you  don&#39;t have it downloaded, you can get it here <a
 href="https://code.visualstudio.com/download">code.visualstudio.com/download</a>
-<a href="../Setting.html">Setting</a> it up to work with Prestissimo is
-easy:</p>
+Getting it working with Prestissimo is easy:</p>
 <ol><li>
 <p>Make sure VS Code works on your machine.</p>
 </li><li>
@@ -207,14 +216,15 @@ extension.</p>
 arrows at  the bottom left of the window. Click it. Then select &#39;Remote
 - SSH: Connect to Host…&#39;</p>
 </li><li>
-<p>Enter your login (and password if you haven&#39;t shared your public key
-with  Prestissimo, which you should) and it should just work!</p>
+<p>Enter your ssh login, ie user@132.162.201.242 (and password if you
+haven&#39;t shared your public key with  Prestissimo, which you should),
+and it should just work!</p>
 </li><li>
 <p>Once you&#39;re in, install the &#39;Ruby&#39; and &#39;GitLens&#39;
 extensions if they aren&#39;t  already installed and reload VS Code.</p>
 </li></ol>
 
-<p>If any of that gies you trouble, just Google whatever didn&#39;t work.
+<p>If any of that gives you trouble, just Google whatever didn&#39;t work.
 There are a lot  of good answers on the web.</p>
 
 <h3>6. How do I figure out what the heck is going on here??</h3>
@@ -256,13 +266,6 @@ oprestissimo.info/app/index.html. The html pages are all in doc/app/</p>
 rdoc sometimes doesn&#39;t do what you want it to do.</p>
 </li></ol>
 
-<p><b>NOTE</b>: You might have noticed that the html documentation files are
-not under version control. Don&#39;t put then under version control, since
-the whole directory gets deleted and recreated when you recompile, and, as
-a result, SVN freaks out. When you are pushing your changes to the dev and
-then production servers, the scripts will automatically recompile the
-documentation.</p>
-
 <h3>7. Procedure for making changes to the website</h3>
 <hr style="height: 10px">
 
@@ -271,10 +274,8 @@ and you think they&#39;re ready to get pushed up to the production site.
 Follow these steps to proceed:</p>
 <ol><li>
 <p><b>DOCUMENT THE CHANGES THAT YOU HAVE MADE</b>. Read more about this in the
-previous section.</p>
-</li><li>
-<p>Don&#39;t forget to update the help pages with information about your
-changes!!</p>
+previous section. Don&#39;t forget to compile the docs with <tt>$ rake
+doc:app</tt> before you commit!</p>
 </li><li>
 <p>Make sure you have committed all of your changes to the git repository.
 Make sure git doesn&#39;t think you&#39;ve modified any of the database
@@ -286,13 +287,14 @@ update the database.</p>
 <p>In your home directory version of prestissimo, run  <tt> $ sudo
 ./scripts/fixit </tt> (If you don&#39;t have sudo permissions, you should
 get someone to give you sudo permission.) You can read the script to see
-what it does, but basically it does an git update of the files in the main
-oprestissimo.info website.</p>
+what it does, but basically it does an git pull in the main website folder
+and migrates the database.</p>
 </li><li>
-<p>Check to make sure your changes are working well on oprestissimo.info. Once
-you are happy with the way oprestissimo.info is working, and you&#39;ve
-decided that it&#39;s time to update the production server, you can proceed
-to the next step.</p>
+<p>Check to make sure your changes are working well on the live site. Once you
+are happy with the way it&#39;s working, and you&#39;ve decided that
+it&#39;s time to update the production server, you can proceed to the next
+step. <b>Except don&#39;t actually, stop here. The rest doesn&#39;t work
+right now.</b></p>
 </li><li>
 <p>ssh to the oprestissimo.com server. Your login should be the same as the
 .info server</p>
@@ -301,14 +303,6 @@ to the next step.</p>
 ./dump_db </tt></p>
 </li><li>
 <p>sudo to the apache user:  <tt> $ sudo -s -u apache </tt></p>
-</li><li>
-<p>open up the file scripts/comfixit</p>
-</li><li>
-<p>** DON&#39;T DO THIS ** change REVNUM to be the svn revision number of the
-version you are pushing. This will probably just be the most recent version
-if you are updating, but make note of what the version number was before
-you changed it in case you have to rollback to a previous working version
-of the website.</p>
 </li><li>
 <p>If you need any gems to be updated you will also need to uncomment the
 section  of comfixit that runs “bundle update” and, the first time you do
@@ -320,8 +314,7 @@ section!</p>
 <p>You are now ready to run  <tt> $ ./comfixit </tt> After running ./comfixit,
 the oprestissimo.com website should have your changes on it.  If things go
 awry, there are READMEs that will tell you how to roll back the database in
-the doc directory, and you should also change the REVNUM in comfixit to the
-one it was before and rerun comfixit.</p>
+the doc directory.</p>
 </li></ol>
 
 <h3>8. The Database</h3>
@@ -333,9 +326,6 @@ one it was before and rerun comfixit.</p>
 courses, users, carts, comments, and much more. There are various READMEs
 in the doc/ directory that will explain more about the structure of the
 database and how to update or  rollback the database.</p>
-
-<p><b>NOTE</b>: For the upgrade, MySQL has been set to use legacy security.
-This should be changed as soon as possible.</p>
 </li><li>
 <p><em>Examining the database by hand</em></p>
 
@@ -344,10 +334,10 @@ you can do so by typing:</p>
 
 <pre>$ sudo mysql -u busystudent -p</pre>
 
-<p>It will then prompt you for a password. If you need the password, ask Prof.
-Hoyle. The username is busystudent.</p>
+<p>It will then prompt you for a password. If you need the password, ask
+somebody in charge. The username is busystudent.</p>
 
-<p>I would recommend accessing the database through rails console, however.
+<p>However, I would recommend accessing the database through rails console.
 It&#39;s like directly accessing the database, but instead of doing it with
 sql statements, you can use Ruby on Rails code.</p>
 </li><li>
@@ -356,14 +346,15 @@ sql statements, you can use Ruby on Rails code.</p>
 <p>The courses in the database get updated with the scripts/data_pull script.
 Basically, we get a file from CIT, which goes into /home/datadump. This
 file is  sent four times a day, every weekeday. To see the exact times,
-check the crontab for root. data_pull checks the time stamp on this file to
-see if we have received a new one, and if so, first does a sanity check on
-the file, then creates a file called courses.txt  in the db directory (btw,
-don&#39;t ever manually edit this file, it could wreak havoc on the
-database). That file then gets parsed and fed into the database with the
-rake task update_courses (located in ./lib/tasks/update_courses.rake). To
-gain a better understanding of what happens, read through the scripts–the
-process is a little more involved than what I just described.</p>
+check the crontab for root. scripts/data_pull checks the time stamp on this
+file to see if we have received a new one, and if so, first does a sanity
+check on the file, then creates a file called courses.txt  in the db
+directory (btw, don&#39;t ever manually edit this file, it could wreak
+havoc on the database). That file then gets parsed and fed into the
+database with the rake task update_courses (located in
+./lib/tasks/update_courses.rake). To gain a better understanding of what
+happens, read through the scripts – the process is a little more involved
+than what I just described.</p>
 </li><li>
 <p><em>Backing up the database </em></p>
 
@@ -390,28 +381,39 @@ in EXACTLY the same format as the file for the old semester.</p>
 Global Settings, or by changing the user&#39;s admin column in the database
 to 1.</p>
 
-<pre>$  update users set admin=1 where email=&quot;flast@oberlin.edu&quot;</pre>
+<pre>$ update users set admin=1 where email=&quot;flast@oberlin.edu&quot;</pre>
 </li></ol>
 
 <h3>9. Apache</h3>
 <hr style="height: 10px">
 
 <p>Oprestissimo uses Apache to host its webserver. If you need to edit any of
-the apache settings, you can find them at
-<tt>/etc/apache2/sites-available/oprestissimo.com.conf</tt>.</p>
+the apache settings, you can find them at</p>
+
+<pre>/etc/apache2/sites-available/oprestissimo.com.conf</pre>
 
 <p>To work with Rails, we are using the Passenger module. It is very easy to
 use. To tell it to use a specific version of Ruby you need to:</p>
 <ol><li>
-<p>Run <tt>rvm use VERSION</tt> to set the ruby version. For ex., <tt>rvm use
-2.2.2</tt>.</p>
+<p>Set the Ruby version with</p>
+
+<pre>$ rvm use VERSION</pre>
+
+<p>To see all available Ruby versions, use</p>
+
+<pre>$ rvm list</pre>
 </li><li>
-<p>Run <tt>passenger-config about ruby-command</tt> to make sure the Ruby
-version is correct.</p>
+<p>Make sure Passenger is using the right version of Ruby with</p>
+
+<pre>$ passenger-config about ruby-command</pre>
 </li><li>
 <p>Edit the PassengerRuby line in the Apache conf file above to reflect the
 changes to the Ruby version.</p>
 </li></ol>
+
+<p>To restart the server, use</p>
+
+<pre>$ sudo systemctl restart apache2.service</pre>
 
   </div>
   
