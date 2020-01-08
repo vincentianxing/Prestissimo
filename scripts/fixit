@@ -3,11 +3,13 @@
 # run this as root to bring the .info server up to the current svn revision
 # the database is migrated (not reset, this needs to be done manually)
 
-WEB_DIR=/var/www/htdocs/prestissimo/
-APACHECTL=/usr/sbin/apachectl
-SVNCMD=/usr/bin/svn
-BUNDLE=/usr/local/bin/bundle
-WEBUSER="apache"
+RUBYV="ruby-2.2.2" # Change this for a different ruby version
+WEB_DIR=/var/www/html/oprestissimo.com/
+GITCMD=/usr/bin/git
+BUNDLE=/usr/share/rvm/rubies/$RUBYV/bin/bundle
+WEBUSER="svradm"
+
+echo $BUNDLE
 
 # sign in as apache
 if [ `id -u` -ne 0 ]; then
@@ -18,33 +20,19 @@ fi
 # go to apache's svn co
 cd $WEB_DIR
 
-echo "*** Pulling from svn repository..."
+echo "*** Pulling from git repository..."
 
-echo -n "    Enter OCCS username: "
-read OCCS_USER
-
-# TEMP DISABLE until http is restored - kuperman - 2015-06-01
-# echo -n "    Enter OCCS password: "
-# stty -echo
-# read OCCS_PASSWD
-# stty echo
-# echo
-SVN_SSH="ssh -l $OCCS_USER"
-export SVN_SSH
-OCCS_PASSWD="remove_when_http_reenabled"
-# also reenable it in fixit/comfixit
-
-# update svn checkout
-sudo -E -u $WEBUSER $SVNCMD up --non-interactive --trust-server-cert --no-auth-cache --username "$OCCS_USER" --password "$OCCS_PASSWD"
+# git pull
+sudo git pull
 if [ $? -ne 0 ]; then
-    echo "svn up failed"
+    echo "git pull failed"
     exit 2
 fi
 
 # update database
 echo
-echo "*** Updating production database..."
-sudo -u $WEBUSER $BUNDLE exec rake db:migrate RAILS_ENV="production"
+echo "*** Updating database..."
+sudo -u $WEBUSER bundle exec rake db:migrate # Need to specify RAILS_ENV for production
 if [ $? -ne 0 ]; then
     echo "Failed!"
     exit 3
@@ -71,7 +59,7 @@ fi
 # restart apache server
 echo
 echo "*** Restarting apache server..."
-$APACHECTL restart
+sudo systemctl restart apache2.service
 if [ $? -ne 0 ];
 then
     echo "Failed!"
