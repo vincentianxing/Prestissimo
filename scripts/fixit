@@ -4,18 +4,22 @@
 # the database is migrated (not reset, this needs to be done manually)
 
 RUBYV="ruby-2.2.2" # Change this for a different ruby version
-WEB_DIR=/var/www/html/oprestissimo.com/
-GITCMD=/usr/bin/git
-BUNDLE=/usr/share/rvm/rubies/$RUBYV/bin/bundle
+WEB_DIR="/var/www/html/oprestissimo.com/"
+GITCMD="/usr/bin/git"
+BUNDLE="/usr/share/rvm/rubies/$RUBYV/bin/bundle"
+RAKE="/usr/share/rvm/rubies/$RUBYV/bin/rake"
+RUBYBIN="/usr/share/rvm/rubies/$RUBYV/bin"
+SUPARAMS="export PATH=\$PATH:$RUBYBIN;"
 WEBUSER="svradm"
-
-echo $BUNDLE
 
 # sign in as apache
 if [ `id -u` -ne 0 ]; then
         echo "Need to be root to run fixit"
         exit 1
 fi
+
+#sudo su $WEBUSER -c "env PATH=\$PATH:$RUBYBIN; export PATH"
+sudo su $WEBUSER -c "$SUPARAMS echo \$PATH"
 
 # go to apache's svn co
 cd $WEB_DIR
@@ -32,15 +36,15 @@ fi
 # update database
 echo
 echo "*** Updating database..."
-sudo -u $WEBUSER bundle exec rake db:migrate # Need to specify RAILS_ENV for production
+sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $RAKE db:migrate" # Need to specify RAILS_ENV for production
 if [ $? -ne 0 ]; then
     echo "Failed!"
     exit 3
 fi
 
 echo
-echo "*** Updating documentation files ***"
-sudo -u $WEBUSER $BUNDLE exec rake doc:app
+echo "*** Updating documentation files..."
+sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $RAKE doc:app"
 if [ $? -ne 0 ]; then
     echo "Failed!"
     exit 6
@@ -49,7 +53,7 @@ fi
 # deploy
 echo
 echo "*** Precompiling assets..."
-sudo -u $WEBUSER $BUNDLE exec rake assets:precompile
+sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $RAKE assets:precompile"
 if [ $? -ne 0 ];
 then
     echo "Failed!"
