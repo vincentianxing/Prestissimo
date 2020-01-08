@@ -61,9 +61,8 @@ to commit them. Update first, make changes, then commit. Commit early, commit of
 AND WRITE GOOD COMMIT MESSAGES. 
 
 The online git repo is kept on Gitlab at https://gitlab.com/mmitchel1/prestissimo While
-the new site is in development, <b>MAKE SURE</b> you are using the <code>newprestissimo</code>
-branch as your master. We do not want to overwrite the old code until we are sure the new code
-works.
+the new site is in development, <b>Make sure you are using the newprestissimo branch.</b>
+We do not want to overwrite the old code until we are sure the new code works.
 
 To clone the repo, you need two things: access to it on GitLab, and a GitLab account with an 
 ssh key <i>from your account on the Prestissimo server</i>. If you don't know how to do the 
@@ -75,7 +74,7 @@ Once you've done both things, you can clone with
 When using git, everytime you do anything, you should be creating a new branch.
 <b>Never</b> edit and commit to the main branch. Always make a new branch, edit, commit, then merge
 ONLY after making sure everything works perfectly. And if you're on one branch for a while,
-make sure to keep it up to date with master. That way, you'll be able to fix any issues you have
+make sure to keep it up to date with master using <code>$ git rebase</code>. That way, you'll be able to fix any issues you have
 with someone else's merge <b>before</b> the bug gets to master.
 
 
