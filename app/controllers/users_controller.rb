@@ -184,10 +184,13 @@ class UsersController < ApplicationController
           redirect_to signin_path
         end
       else # no user found in LDAP to match the flast given
-	flash[:failure] = "Please use your <strong>ObieID</strong> (flast format) username and <strong>OCPass password</strong>."
-	#session[:wrong_email_singup] = params[:user][:email]
+	      flash[:failure] = "Please use your <strong>ObieID</strong> (flast format) username and <strong>OCPass password</strong>."
+	      #session[:wrong_email_singup] = params[:user][:email]
         redirect_to signin_path
       end
+    else # LDAP connection failure
+      flash[:failure] = "There was a problem with Oberlin's LDAP server, please try again later."
+      redirect_to signin_path
     end
   end
 
