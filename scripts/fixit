@@ -27,6 +27,7 @@ cd $WEB_DIR
 echo "*** Pulling from git repository..."
 
 # git pull
+sudo git stash
 sudo git pull
 if [ $? -ne 0 ]; then
     echo "git pull failed"
