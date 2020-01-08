@@ -17,10 +17,7 @@ pickle-email-*.html
 !/tmp/.keep
 
 # TODO Comment out this rule if you are OK with secrets being uploaded to the repo
-# .secret
-
-# Only include if you have production secrets in this file, which is no longer a Rails default
-config/secrets.yml
+.secret
 
 # dotenv
 # TODO Comment out this rule if environment variables can be committed
@@ -32,15 +29,7 @@ config/secrets.yml
 
 # these should all be checked in to normalize the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset
-#
-# unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
-# .rvmrc
 
-# if using bower-rails ignore default bower_components path bower.json files
-# /vendor/assets/bower_components
-# *.bowerrc
-# bower.json
-#
 # Ignore pow environment settings
 .powenv
 
@@ -74,3 +63,4 @@ svn*
 /db/enrollment.txt*
 /db/diffout
 /db/badlines.txt
+/db/enrollout
