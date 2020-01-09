@@ -64,3 +64,4 @@ svn*
 /db/diffout
 /db/badlines.txt
 /db/enrollout
+/db/backups/*
