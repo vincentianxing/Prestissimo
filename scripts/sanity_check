@@ -6,7 +6,7 @@
 ###
 
 # Read lines that need changing
-badlines_file = open("/var/www/htdocs/prestissimo/db/badlines.txt", "r")
+badlines_file = open("/var/www/html/oprestissimo.com/db/badlines.txt", "r")
 badlines = badlines_file.readlines()
 
 if len(badlines) == 0:

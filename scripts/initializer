@@ -1,7 +1,7 @@
 #!/bin/sh -x   
 
 # Starts up prestissimo db on a new server
-# Run this script after checking out the current version
+# Run this script after pulling the current version
 # from the repo and configuring apache & sendmail
 
 # Migrates and resets the database
