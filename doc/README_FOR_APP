@@ -70,6 +70,8 @@ second part, check this out https://dev.to/sndrx/how-to-set-up-an-ssh-key-and-us
 Also check this out for ssh generation and permissions https://gist.github.com/grenade/6318301
 Once you've done both things, you can clone with 
     $ git clone git@gitlab.com:mmitchel1/prestissimo.git
+Also, make sure the project is located in /home/USERNAME/prestissimo. Some of the scripts
+depend on that path.
 
 When using git, everytime you do anything, you should be creating a new branch.
 <b>Never</b> edit and commit to the main branch. Always make a new branch, edit, commit, then merge

@@ -5,8 +5,10 @@
 # Finds lines with extra newlines and stitches them back together
 ###
 
+import sys
+
 # Read lines that need changing
-badlines_file = open("/var/www/html/oprestissimo.com/db/badlines.txt", "r")
+badlines_file = open(sys.argv[1], "r")
 badlines = badlines_file.readlines()
 
 if len(badlines) == 0:
