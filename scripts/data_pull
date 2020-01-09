@@ -15,8 +15,15 @@ then
   DROPFILE="$1"
 fi
 
+USER=`whoami`
+
+if [ $USER = "svradm" ]; then
+    PRESTISSIMO_HOME="/var/www/html/oprestissimo.com"
+else 
+    PRESTISSIMO_HOME="/home/$USER/prestissimo"
+fi
+
 # Where it goes to
-PRESTISSIMO_HOME="/srv/httpd/htdocs/prestissimo"
 DESTDIR="${PRESTISSIMO_HOME}/db"
 DESTFILE="${DESTDIR}/courses.txt"
 DIFFOUT="${DESTDIR}/diffout"
@@ -114,7 +121,7 @@ CHECK="^[^\|]+\|[^\|]+\|[^\|]+\|[^\|]+\|[^\|]+\|[^\|]*\|[^\|]*\|[^\|]+\|[^\|]+\|
 echo "Finding bad lines..."
 egrep -vn $CHECK $DROPFILE > "${BADLINES}"
 echo "Running Sanity fix..."
-/var/www/htdocs/prestissimo/scripts/sanity_check
+$PRESTISSIMO_HOME/scripts/sanity_check $BADLINES
 if [ $? != 0 ]
 then
   echo "Sanity check failed, backup created at ${DROPFILE_BAC}"
@@ -225,7 +232,7 @@ fi
 echo
 echo "Successful data_pull:" `date`
 
-CRONOUTFILE="/srv/httpd/htdocs/prestissimo/log/data_pull_log"
+CRONOUTFILE="$PRESTISSIMO_HOME/log/data_pull_log"
 if [ -r ${CRONOUTFILE} ]
 then
   cp "${CRONOUTFILE}" "${CRONOUTFILE}.lastgood"
