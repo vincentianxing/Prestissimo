@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CartPagesController do
+describe CartsController do
 
   describe "GET 'view'" do
     it "returns http success" do
