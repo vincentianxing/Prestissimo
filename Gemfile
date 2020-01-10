@@ -44,6 +44,9 @@ gem 'ruby-mysql'
 
 gem 'json'
 
+gem 'guard', '~> 2.0.0' # For testing
+ gem 'guard-rspec'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
