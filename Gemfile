@@ -38,6 +38,7 @@ group :development do
 end
 
 gem 'mysql2', '~> 0.3.21'
+gem 'activerecord-native_db_types_override', '~> 0.2.1'
 
 gem 'ruby-mysql'
 

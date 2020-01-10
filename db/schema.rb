@@ -13,16 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20150730174436) do
 
-  create_table "attachments", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "cart_pages", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "carts", :force => true do |t|
     t.text     "courses",       :limit => 16777215
     t.datetime "created_at",                        :null => false
@@ -99,10 +89,10 @@ ActiveRecord::Schema.define(:version => 20150730174436) do
     t.string   "status",                         :default => ""
     t.string   "distributions"
     t.string   "dept_long",                      :default => ""
-    t.string   "full_course"
     t.string   "xlist1_semcrn"
     t.string   "xlist2_semcrn"
     t.string   "xlist3_semcrn"
+    t.string   "full_course"
     t.text     "prof_desc"
     t.string   "which_desc"
     t.string   "new_desc_action"
@@ -219,11 +209,9 @@ ActiveRecord::Schema.define(:version => 20150730174436) do
     t.string   "nickname"
     t.boolean  "admin",          :default => false
     t.string   "year"
-    t.text     "notes"
     t.text     "privacy_prefs"
+    t.text     "notes"
     t.integer  "cart_id"
-    t.string   "second_major"
-    t.string   "double_major"
     t.string   "major"
     t.integer  "prof_id"
   end
