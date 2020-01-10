@@ -1,4 +1,4 @@
-Thu, 09 Jan 2020 13:13:33 -0500
+Fri, 10 Jan 2020 09:41:55 -0500
 app/controllers/admins_controller.rb	Thu, 09 Jan 2020 12:30:57 -0500
 app/controllers/application_controller.rb	Thu, 09 Jan 2020 12:30:57 -0500
 app/controllers/carts_controller.rb	Thu, 09 Jan 2020 12:30:57 -0500
@@ -52,4 +52,4 @@ lib/jquery-week-calendar.rb	Thu, 09 Jan 2020 12:30:58 -0500
 lib/jquery-week-calendar/engine.rb	Thu, 09 Jan 2020 12:30:58 -0500
 lib/jquery-week-calendar/generators.rb	Thu, 09 Jan 2020 12:30:58 -0500
 lib/jquery-week-calendar/railtie.rb	Thu, 09 Jan 2020 12:30:58 -0500
-doc/README_FOR_APP	Thu, 09 Jan 2020 13:13:27 -0500
+doc/README_FOR_APP	Fri, 10 Jan 2020 09:41:50 -0500

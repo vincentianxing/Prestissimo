@@ -271,7 +271,10 @@ Once you&#39;ve done both things, you can clone with</p>
 <pre>$ git clone git@gitlab.com:mmitchel1/prestissimo.git</pre>
 
 <p>Also, make sure the project is located in /home/USERNAME/prestissimo. Some
-of the scripts depend on that path.</p>
+of the scripts depend on that path. Once you&#39;ve cloned your own copy,
+run <tt>$ ./scrips/rcs_setup</tt> to setup some of the database files, and
+then ask somebody for the .secret file. The website won&#39;t work  without
+it.</p>
 
 <p>When using git, everytime you do anything, you should be creating a new
 branch. <b>Never</b> edit and commit to the main branch. Always make a new
