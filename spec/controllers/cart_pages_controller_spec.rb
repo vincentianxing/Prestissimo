@@ -1,12 +1,10 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe CartsController do
-
   describe "GET 'view'" do
     it "returns http success" do
-      get 'view'
+      get :show
       response.should be_success
     end
   end
-
 end

@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# Custom rcs_setup for local (macos)
+
+# Sets up the course and enrollment diff files,
+# and their rcs tracker counterparts. If in the main project copy, this should
+# be run as apache (user svradm) so that apache
+# can update the db without relying on root.
+
+# Note that these files are NOT tracked by git
+# and so much be created for each local prestissimo
+
+# The descriptions don't really matter, put whatever makes sense
+
+USER=$(whoami)
+
+PRESTISSIMO="$HOME/prestissimo"
+
+# Course table files
+COURSES="${PRESTISSIMO}/db/courses.txt"
+ENROLL="${PRESTISSIMO}/db/enrollment.txt"
+
+# Make the new empty files
+touch $COURSES
+touch $ENROLL
+
+ci -u $COURSES
+ci -u $ENROLL
+
+co -l $COURSES
+co -l $ENROLL
