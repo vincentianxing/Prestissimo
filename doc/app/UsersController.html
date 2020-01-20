@@ -1,310 +1,173 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+
+<html>
 <head>
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta charset="UTF-8">
 
-  <title>Class: UsersController</title>
+<title>class UsersController - Prestissimo Documentation</title>
 
-  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
 
-  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
 
-</head>
-<body id="top" class="class">
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
 
-  <div id="metadata">
-    <div id="home-metadata">
-      <div id="home-section" class="section">
-        <h3 class="section-header">
-          <a href="./index.html">Home</a>
-          <a href="./index.html#classes">Classes</a>
-          <a href="./index.html#methods">Methods</a>
-        </h3>
-      </div>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
     </div>
 
-    <div id="file-metadata">
-      <div id="file-list-section" class="section">
-        <h3 class="section-header">In Files</h3>
-        <div class="section-body">
-          <ul>
-          
-            <li><a href="./app/controllers/users_controller_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="app/controllers/users_controller.rb">app/controllers/users_controller.rb</a></li>
-          
-          </ul>
-        </div>
-      </div>
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
 
-      
-    </div>
-
-    <div id="class-metadata">
-      
-      <!-- Parent Class -->
-      <div id="parent-class-section" class="section">
-        <h3 class="section-header">Parent</h3>
-        
-        <p class="link"><a href="ApplicationController.html">ApplicationController</a></p>
-        
-      </div>
-      
-
-      
-
-      
-
-      
-      <!-- Method Quickref -->
-      <div id="method-list-section" class="section">
-        <h3 class="section-header">Methods</h3>
-        <ul class="link-list">
-          
-          <li><a href="#method-i-confirm_destroy">#confirm_destroy</a></li>
-          
-          <li><a href="#method-i-create">#create</a></li>
-          
-          <li><a href="#method-i-destroy">#destroy</a></li>
-          
-          <li><a href="#method-i-edit">#edit</a></li>
-          
-          <li><a href="#method-i-index">#index</a></li>
-          
-          <li><a href="#method-i-new">#new</a></li>
-          
-          <li><a href="#method-i-schedule">#schedule</a></li>
-          
-          <li><a href="#method-i-search">#search</a></li>
-          
-          <li><a href="#method-i-self_destroy">#self_destroy</a></li>
-          
-          <li><a href="#method-i-show">#show</a></li>
-          
-          <li><a href="#method-i-update">#update</a></li>
-          
-        </ul>
-      </div>
-      
-
-      
-      <!-- Included Modules -->
-      <div id="includes-section" class="section">
-        <h3 class="section-header">Included Modules</h3>
-        <ul class="link-list">
-        
-        
-          <li><a class="include" href="ApplicationHelper.html">ApplicationHelper</a></li>
-        
-        
-        </ul>
-      </div>
-      
-    </div>
-
-    <div id="project-metadata">
-      
-      
-      <div id="fileindex-section" class="section project-section">
-        <h3 class="section-header">Files</h3>
-        <ul>
-        
-          <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a></li>
-        
-        </ul>
-      </div>
-      
-
-      <div id="classindex-section" class="section project-section">
-        <h3 class="section-header">Class/Module Index
-          <span class="search-toggle"><img src="./images/find.png"
-            height="16" width="16" alt="[+]"
-            title="show/hide quicksearch" /></span></h3>
-        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
-        <fieldset>
-          <legend>Quicksearch</legend>
-          <input type="text" name="quicksearch" value=""
-            class="quicksearch-field" />
-        </fieldset>
-        </form>
-
-        <ul class="link-list">
-        
-          <li><a href="./JqueryWeekCalendar.html">JqueryWeekCalendar</a></li>
-        
-          <li><a href="./JqueryWeekCalendar/Install.html">JqueryWeekCalendar::Install</a></li>
-        
-          <li><a href="./JqueryWeekCalendar/Rails.html">JqueryWeekCalendar::Rails</a></li>
-        
-          <li><a href="./JqueryWeekCalendar/Rails/Engine.html">JqueryWeekCalendar::Rails::Engine</a></li>
-        
-          <li><a href="./JqueryWeekCalendar/Rails/Railtie.html">JqueryWeekCalendar::Rails::Railtie</a></li>
-        
-          <li><a href="./AdminsController.html">AdminsController</a></li>
-        
-          <li><a href="./AdminsHelper.html">AdminsHelper</a></li>
-        
-          <li><a href="./ApplicationController.html">ApplicationController</a></li>
-        
-          <li><a href="./ApplicationHelper.html">ApplicationHelper</a></li>
-        
-          <li><a href="./Cart.html">Cart</a></li>
-        
-          <li><a href="./CartsController.html">CartsController</a></li>
-        
-          <li><a href="./CartsHelper.html">CartsHelper</a></li>
-        
-          <li><a href="./Comment.html">Comment</a></li>
-        
-          <li><a href="./CommentsController.html">CommentsController</a></li>
-        
-          <li><a href="./CommentsHelper.html">CommentsHelper</a></li>
-        
-          <li><a href="./Course.html">Course</a></li>
-        
-          <li><a href="./CoursesController.html">CoursesController</a></li>
-        
-          <li><a href="./CoursesHelper.html">CoursesHelper</a></li>
-        
-          <li><a href="./Department.html">Department</a></li>
-        
-          <li><a href="./DepartmentsController.html">DepartmentsController</a></li>
-        
-          <li><a href="./DepartmentsHelper.html">DepartmentsHelper</a></li>
-        
-          <li><a href="./ErrorsController.html">ErrorsController</a></li>
-        
-          <li><a href="./Handle.html">Handle</a></li>
-        
-          <li><a href="./HandlesController.html">HandlesController</a></li>
-        
-          <li><a href="./HandlesHelper.html">HandlesHelper</a></li>
-        
-          <li><a href="./Hubcourse.html">Hubcourse</a></li>
-        
-          <li><a href="./HubcoursesController.html">HubcoursesController</a></li>
-        
-          <li><a href="./HubcoursesHelper.html">HubcoursesHelper</a></li>
-        
-          <li><a href="./Interact.html">Interact</a></li>
-        
-          <li><a href="./MajorsHelper.html">MajorsHelper</a></li>
-        
-          <li><a href="./MyClassesController.html">MyClassesController</a></li>
-        
-          <li><a href="./MyClassesHelper.html">MyClassesHelper</a></li>
-        
-          <li><a href="./Professor.html">Professor</a></li>
-        
-          <li><a href="./ProfessorsController.html">ProfessorsController</a></li>
-        
-          <li><a href="./ProfessorsHelper.html">ProfessorsHelper</a></li>
-        
-          <li><a href="./Report.html">Report</a></li>
-        
-          <li><a href="./ReportsController.html">ReportsController</a></li>
-        
-          <li><a href="./ReportsHelper.html">ReportsHelper</a></li>
-        
-          <li><a href="./SessionsController.html">SessionsController</a></li>
-        
-          <li><a href="./SessionsHelper.html">SessionsHelper</a></li>
-        
-          <li><a href="./Setting.html">Setting</a></li>
-        
-          <li><a href="./SettingsController.html">SettingsController</a></li>
-        
-          <li><a href="./SettingsHelper.html">SettingsHelper</a></li>
-        
-          <li><a href="./StaticPagesController.html">StaticPagesController</a></li>
-        
-          <li><a href="./StaticPagesHelper.html">StaticPagesHelper</a></li>
-        
-          <li><a href="./Syllabus.html">Syllabus</a></li>
-        
-          <li><a href="./SyllabusController.html">SyllabusController</a></li>
-        
-          <li><a href="./SyllabusHelper.html">SyllabusHelper</a></li>
-        
-          <li><a href="./UTF8Sanitizer.html">UTF8Sanitizer</a></li>
-        
-          <li><a href="./User.html">User</a></li>
-        
-          <li><a href="./UsersController.html">UsersController</a></li>
-        
-          <li><a href="./UsersHelper.html">UsersHelper</a></li>
-        
-          <li><a href="./VotesController.html">VotesController</a></li>
-        
-          <li><a href="./VotesHelper.html">VotesHelper</a></li>
-        
-        </ul>
-        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
-      </div>
-
-      
-    </div>
   </div>
 
-  <div id="documentation">
-    <h1 class="class">UsersController</h1>
+  
 
-    <div id="description" class="description">
-      
-<h2>User Controller</h2>
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="ApplicationHelper.html">ApplicationHelper</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-confirm_destroy">#confirm_destroy</a>
+    
+    <li ><a href="#method-i-create">#create</a>
+    
+    <li ><a href="#method-i-destroy">#destroy</a>
+    
+    <li ><a href="#method-i-edit">#edit</a>
+    
+    <li ><a href="#method-i-index">#index</a>
+    
+    <li ><a href="#method-i-new">#new</a>
+    
+    <li ><a href="#method-i-schedule">#schedule</a>
+    
+    <li ><a href="#method-i-search">#search</a>
+    
+    <li ><a href="#method-i-self_destroy">#self_destroy</a>
+    
+    <li ><a href="#method-i-show">#show</a>
+    
+    <li ><a href="#method-i-update">#update</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-UsersController">
+  <h1 id="class-UsersController" class="class">
+    class UsersController
+  </h1>
+
+  <section class="description">
+    
+<h2 id="class-UsersController-label-User+Controller">User Controller<span><a href="#class-UsersController-label-User+Controller">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
 <p>This is where we create <a href="User.html">User</a> model objects in order
 to gather data from the database, manipulate it, and pass it back to the <a
 href="User.html">User</a> views.</p>
 
-<p><b>Permissions</b> for each action can be seen with the method signature.</p>
+<p><strong>Permissions</strong> for each action can be seen with the method
+signature.</p>
 
-    </div><!-- description -->
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
 
     
+
     
+
     
-    <div id="5Buntitled-5D" class="documentation-section">
-      
 
-      
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
 
-      
+    
+      <div id="method-i-confirm_destroy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">confirm_destroy</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
 
-      
+        <div class="method-description">
+          
+          <p>render the page to delete account</p>
 
-      <!-- Methods -->
-      
-      <div id="public-instance-method-details" class="method-section section">
-        <h3 class="section-header">Public Instance Methods</h3>
-
-      
-        <div id="confirm_destroy-method" class="method-detail ">
-          <a name="method-i-confirm_destroy"></a>
+<p><strong>Permissions</strong> current_user</p>
+          
+          
 
           
-          <div class="method-heading">
-            <span class="method-name">confirm_destroy</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>render the page to delete account</p>
-
-<p><b>Permissions</b> current_user</p>
-            
-
-            
-            <div class="method-source-code" id="confirm_destroy-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/users_controller.rb, line 315</span>
+          <div class="method-source-code" id="confirm_destroy-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 315</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">confirm_destroy</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&#39;@oberlin.edu&#39;</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@user</span>
@@ -312,38 +175,38 @@ href="User.html">User</a> views.</p>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- confirm_destroy-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- confirm_destroy-method -->
-
-      
-        <div id="create-method" class="method-detail ">
-          <a name="method-i-create"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">create</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            <p>Posts a new user</p>
+        
 
-<p><b>Permissions</b> any browser</p>
-            
+        
+      </div>
 
-            
-            <div class="method-source-code" id="create-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/users_controller.rb, line 100</span>
+    
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Posts a new user</p>
+
+<p><strong>Permissions</strong> any browser</p>
+          
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-comment"># Sets up an object representing the LDAP db to connect to</span>
   <span class="ruby-identifier">ldap</span> = <span class="ruby-identifier">initialize_ldap_con</span>
@@ -440,38 +303,38 @@ href="User.html">User</a> views.</p>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">signin_path</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- create-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- create-method -->
-
-      
-        <div id="destroy-method" class="method-detail ">
-          <a name="method-i-destroy"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">destroy</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            <p>The action used to delete a user. (for admin use)</p>
+        
 
-<p><b>Permissions</b> admin_user</p>
-            
+        
+      </div>
 
-            
-            <div class="method-source-code" id="destroy-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/users_controller.rb, line 341</span>
+    
+      <div id="method-i-destroy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">destroy</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The action used to delete a user. (for admin use)</p>
+
+<p><strong>Permissions</strong> admin_user</p>
+          
+          
+
+          
+          <div class="method-source-code" id="destroy-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 341</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-comment"># get the user and its handle</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
@@ -482,38 +345,38 @@ href="User.html">User</a> views.</p>
   <span class="ruby-identifier">flash</span>[<span class="ruby-value">:success</span>] = <span class="ruby-string">&quot;User destroyed&quot;</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">users_path</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- destroy-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- destroy-method -->
-
-      
-        <div id="edit-method" class="method-detail ">
-          <a name="method-i-edit"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">edit</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            <p>renders the edit view (settings)</p>
+        
 
-<p><b>Permissions</b> current_user</p>
-            
+        
+      </div>
 
-            
-            <div class="method-source-code" id="edit-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/users_controller.rb, line 88</span>
+    
+      <div id="method-i-edit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>renders the edit view (settings)</p>
+
+<p><strong>Permissions</strong> current_user</p>
+          
+          
+
+          
+          <div class="method-source-code" id="edit-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 88</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>]<span class="ruby-operator">+</span><span class="ruby-string">&#39;@oberlin.edu&#39;</span>)
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@user</span>
@@ -522,142 +385,142 @@ href="User.html">User</a> views.</p>
   <span class="ruby-comment"># the user and its handle are passed in a hash</span>
   <span class="ruby-ivar">@vals</span> = <span class="ruby-constant">Hash</span>[<span class="ruby-value">:user</span>,<span class="ruby-ivar">@user</span>,<span class="ruby-value">:handle</span>,<span class="ruby-ivar">@handle</span>]
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- edit-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- edit-method -->
-
-      
-        <div id="index-method" class="method-detail ">
-          <a name="method-i-index"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">index</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            <p>return all the users and render the user list page</p>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return all the users and render the user list page</p>
 
 <p>Permissions any user</p>
-            
+          
+          
 
-            
-            <div class="method-source-code" id="index-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/users_controller.rb, line 355</span>
+          
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 355</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@users</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- index-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- index-method -->
-
-      
-        <div id="new-method" class="method-detail ">
-          <a name="method-i-new"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">new</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            <p>renders the new view (signup)</p>
+        
 
-<p><b>Permissions</b> any browser</p>
-            
+        
+      </div>
 
-            
-            <div class="method-source-code" id="new-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/users_controller.rb, line 308</span>
+    
+      <div id="method-i-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>renders the new view (signup)</p>
+
+<p><strong>Permissions</strong> any browser</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 308</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- new-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- new-method -->
-
-      
-        <div id="schedule-method" class="method-detail ">
-          <a name="method-i-schedule"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">schedule</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            
-            
+        
 
-            
-            <div class="method-source-code" id="schedule-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/users_controller.rb, line 409</span>
+        
+      </div>
+
+    
+      <div id="method-i-schedule" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">schedule</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="schedule-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 409</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">schedule</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>]<span class="ruby-operator">+</span><span class="ruby-string">&#39;@oberlin.edu&#39;</span>)
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@user</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- schedule-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- schedule-method -->
-
-      
-        <div id="search-method" class="method-detail ">
-          <a name="method-i-search"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">search</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            <p>search the users according to form from index page</p>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-search" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">search</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>search the users according to form from index page</p>
 
 <p>Permissions any user</p>
-            
+          
+          
 
-            
-            <div class="method-source-code" id="search-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/users_controller.rb, line 364</span>
+          
+          <div class="method-source-code" id="search-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 364</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">search</span>
   <span class="ruby-comment"># build a query string</span>
   <span class="ruby-identifier">usrqs</span> = <span class="ruby-string">&#39;&#39;</span>
@@ -702,38 +565,38 @@ href="User.html">User</a> views.</p>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- search-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- search-method -->
-
-      
-        <div id="self_destroy-method" class="method-detail ">
-          <a name="method-i-self_destroy"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">self_destroy</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            <p>used by a user to delete their own account (from confirm destroy page)</p>
+        
 
-<p><b>Permissions</b> current_user</p>
-            
+        
+      </div>
 
-            
-            <div class="method-source-code" id="self_destroy-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/users_controller.rb, line 326</span>
+    
+      <div id="method-i-self_destroy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">self_destroy</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>used by a user to delete their own account (from confirm destroy page)</p>
+
+<p><strong>Permissions</strong> current_user</p>
+          
+          
+
+          
+          <div class="method-source-code" id="self_destroy-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 326</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">self_destroy</span>
   <span class="ruby-comment"># get the user and its handle</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
@@ -745,78 +608,79 @@ href="User.html">User</a> views.</p>
   <span class="ruby-identifier">flash</span>[<span class="ruby-value">:success</span>] = <span class="ruby-string">&quot;Account deleted&quot;</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- self_destroy-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- self_destroy-method -->
-
-      
-        <div id="show-method" class="method-detail ">
-          <a name="method-i-show"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">show</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            <p>Renders views/users/show.html.erb. This is the Profile page.</p>
+        
 
-<p><b>Permissions</b>: any browser</p>
-            
+        
+      </div>
 
-            
-            <div class="method-source-code" id="show-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/users_controller.rb, line 30</span>
+    
+      <div id="method-i-show" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Renders views/users/show.html.erb. This is the Profile page.</p>
+
+<p><strong>Permissions</strong>: any browser</p>
+          
+          
+
+          
+          <div class="method-source-code" id="show-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>]<span class="ruby-operator">+</span><span class="ruby-string">&#39;@oberlin.edu&#39;</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">error_404_path</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@user</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">show_professor_path</span>(<span class="ruby-identifier">fname</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">fname</span>, <span class="ruby-identifier">lname</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">lname</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">faculty_user?</span> <span class="ruby-ivar">@user</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- show-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- show-method -->
-
-      
-        <div id="update-method" class="method-detail ">
-          <a name="method-i-update"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">update</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            <p>Posts changes to the user&#39;s settings.</p>
+        
 
-<p><tt>params[:user]</tt> is submitted by a call to
-<tt>update_path(@user.id)</tt> i.e. in the file views/users/edit.html.erb</p>
+        
+      </div>
 
-<p><b>Permissions</b> current_user</p>
-            
+    
+      <div id="method-i-update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
 
-            
-            <div class="method-source-code" id="update-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/users_controller.rb, line 46</span>
+        <div class="method-description">
+          
+          <p>Posts changes to the user&#39;s settings.</p>
+
+<p><code>params[:user]</code> is submitted by a call to
+<code>update_path(@user.id)</code> i.e. in the file
+views/users/edit.html.erb</p>
+
+<p><strong>Permissions</strong> current_user</p>
+          
+          
+
+          
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 
@@ -855,29 +719,25 @@ href="User.html">User</a> views.</p>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">settings_path</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;@&#39;</span>)[<span class="ruby-value">0</span>]), <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Settings could not be changed. Please contact the Prestissmo managers!&quot;</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- update-source -->
-            
           </div>
-
           
+        </div>
 
-          
-        </div><!-- update-method -->
+        
 
-      
-      </div><!-- public-instance-method-details -->
+        
+      </div>
+
     
-    </div><!-- 5Buntitled-5D -->
+    </section>
   
+  </section>
+</main>
 
-  </div><!-- documentation -->
 
-  <div id="validator-badges">
-    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
-    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
-      Rdoc Generator</a> 2</small>.</p>
-  </div>
-
-</body>
-</html>
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
 

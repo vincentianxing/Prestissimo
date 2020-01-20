@@ -1,286 +1,149 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+
+<html>
 <head>
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta charset="UTF-8">
 
-  <title>Class: CommentsController</title>
+<title>class CommentsController - Prestissimo Documentation</title>
 
-  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
 
-  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
 
-</head>
-<body id="top" class="class">
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
 
-  <div id="metadata">
-    <div id="home-metadata">
-      <div id="home-section" class="section">
-        <h3 class="section-header">
-          <a href="./index.html">Home</a>
-          <a href="./index.html#classes">Classes</a>
-          <a href="./index.html#methods">Methods</a>
-        </h3>
-      </div>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
     </div>
 
-    <div id="file-metadata">
-      <div id="file-list-section" class="section">
-        <h3 class="section-header">In Files</h3>
-        <div class="section-body">
-          <ul>
-          
-            <li><a href="./app/controllers/comments_controller_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="app/controllers/comments_controller.rb">app/controllers/comments_controller.rb</a></li>
-          
-          </ul>
-        </div>
-      </div>
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
 
-      
-    </div>
-
-    <div id="class-metadata">
-      
-      <!-- Parent Class -->
-      <div id="parent-class-section" class="section">
-        <h3 class="section-header">Parent</h3>
-        
-        <p class="link"><a href="ApplicationController.html">ApplicationController</a></p>
-        
-      </div>
-      
-
-      
-
-      
-
-      
-      <!-- Method Quickref -->
-      <div id="method-list-section" class="section">
-        <h3 class="section-header">Methods</h3>
-        <ul class="link-list">
-          
-          <li><a href="#method-i-create">#create</a></li>
-          
-          <li><a href="#method-i-destroy">#destroy</a></li>
-          
-          <li><a href="#method-i-edit">#edit</a></li>
-          
-          <li><a href="#method-i-hide_remove">#hide_remove</a></li>
-          
-          <li><a href="#method-i-index">#index</a></li>
-          
-          <li><a href="#method-i-new">#new</a></li>
-          
-          <li><a href="#method-i-reply">#reply</a></li>
-          
-          <li><a href="#method-i-reply_form">#reply_form</a></li>
-          
-          <li><a href="#method-i-show">#show</a></li>
-          
-          <li><a href="#method-i-update">#update</a></li>
-          
-        </ul>
-      </div>
-      
-
-      
-    </div>
-
-    <div id="project-metadata">
-      
-      
-      <div id="fileindex-section" class="section project-section">
-        <h3 class="section-header">Files</h3>
-        <ul>
-        
-          <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a></li>
-        
-        </ul>
-      </div>
-      
-
-      <div id="classindex-section" class="section project-section">
-        <h3 class="section-header">Class/Module Index
-          <span class="search-toggle"><img src="./images/find.png"
-            height="16" width="16" alt="[+]"
-            title="show/hide quicksearch" /></span></h3>
-        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
-        <fieldset>
-          <legend>Quicksearch</legend>
-          <input type="text" name="quicksearch" value=""
-            class="quicksearch-field" />
-        </fieldset>
-        </form>
-
-        <ul class="link-list">
-        
-          <li><a href="./JqueryWeekCalendar.html">JqueryWeekCalendar</a></li>
-        
-          <li><a href="./JqueryWeekCalendar/Install.html">JqueryWeekCalendar::Install</a></li>
-        
-          <li><a href="./JqueryWeekCalendar/Rails.html">JqueryWeekCalendar::Rails</a></li>
-        
-          <li><a href="./JqueryWeekCalendar/Rails/Engine.html">JqueryWeekCalendar::Rails::Engine</a></li>
-        
-          <li><a href="./JqueryWeekCalendar/Rails/Railtie.html">JqueryWeekCalendar::Rails::Railtie</a></li>
-        
-          <li><a href="./AdminsController.html">AdminsController</a></li>
-        
-          <li><a href="./AdminsHelper.html">AdminsHelper</a></li>
-        
-          <li><a href="./ApplicationController.html">ApplicationController</a></li>
-        
-          <li><a href="./ApplicationHelper.html">ApplicationHelper</a></li>
-        
-          <li><a href="./Cart.html">Cart</a></li>
-        
-          <li><a href="./CartsController.html">CartsController</a></li>
-        
-          <li><a href="./CartsHelper.html">CartsHelper</a></li>
-        
-          <li><a href="./Comment.html">Comment</a></li>
-        
-          <li><a href="./CommentsController.html">CommentsController</a></li>
-        
-          <li><a href="./CommentsHelper.html">CommentsHelper</a></li>
-        
-          <li><a href="./Course.html">Course</a></li>
-        
-          <li><a href="./CoursesController.html">CoursesController</a></li>
-        
-          <li><a href="./CoursesHelper.html">CoursesHelper</a></li>
-        
-          <li><a href="./Department.html">Department</a></li>
-        
-          <li><a href="./DepartmentsController.html">DepartmentsController</a></li>
-        
-          <li><a href="./DepartmentsHelper.html">DepartmentsHelper</a></li>
-        
-          <li><a href="./ErrorsController.html">ErrorsController</a></li>
-        
-          <li><a href="./Handle.html">Handle</a></li>
-        
-          <li><a href="./HandlesController.html">HandlesController</a></li>
-        
-          <li><a href="./HandlesHelper.html">HandlesHelper</a></li>
-        
-          <li><a href="./Hubcourse.html">Hubcourse</a></li>
-        
-          <li><a href="./HubcoursesController.html">HubcoursesController</a></li>
-        
-          <li><a href="./HubcoursesHelper.html">HubcoursesHelper</a></li>
-        
-          <li><a href="./Interact.html">Interact</a></li>
-        
-          <li><a href="./MajorsHelper.html">MajorsHelper</a></li>
-        
-          <li><a href="./MyClassesController.html">MyClassesController</a></li>
-        
-          <li><a href="./MyClassesHelper.html">MyClassesHelper</a></li>
-        
-          <li><a href="./Professor.html">Professor</a></li>
-        
-          <li><a href="./ProfessorsController.html">ProfessorsController</a></li>
-        
-          <li><a href="./ProfessorsHelper.html">ProfessorsHelper</a></li>
-        
-          <li><a href="./Report.html">Report</a></li>
-        
-          <li><a href="./ReportsController.html">ReportsController</a></li>
-        
-          <li><a href="./ReportsHelper.html">ReportsHelper</a></li>
-        
-          <li><a href="./SessionsController.html">SessionsController</a></li>
-        
-          <li><a href="./SessionsHelper.html">SessionsHelper</a></li>
-        
-          <li><a href="./Setting.html">Setting</a></li>
-        
-          <li><a href="./SettingsController.html">SettingsController</a></li>
-        
-          <li><a href="./SettingsHelper.html">SettingsHelper</a></li>
-        
-          <li><a href="./StaticPagesController.html">StaticPagesController</a></li>
-        
-          <li><a href="./StaticPagesHelper.html">StaticPagesHelper</a></li>
-        
-          <li><a href="./Syllabus.html">Syllabus</a></li>
-        
-          <li><a href="./SyllabusController.html">SyllabusController</a></li>
-        
-          <li><a href="./SyllabusHelper.html">SyllabusHelper</a></li>
-        
-          <li><a href="./UTF8Sanitizer.html">UTF8Sanitizer</a></li>
-        
-          <li><a href="./User.html">User</a></li>
-        
-          <li><a href="./UsersController.html">UsersController</a></li>
-        
-          <li><a href="./UsersHelper.html">UsersHelper</a></li>
-        
-          <li><a href="./VotesController.html">VotesController</a></li>
-        
-          <li><a href="./VotesHelper.html">VotesHelper</a></li>
-        
-        </ul>
-        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
-      </div>
-
-      
-    </div>
   </div>
 
-  <div id="documentation">
-    <h1 class="class">CommentsController</h1>
+  
 
-    <div id="description" class="description">
-      
-    </div><!-- description -->
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</div>
 
     
     
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
     
-    <div id="5Buntitled-5D" class="documentation-section">
-      
+    <li ><a href="#method-i-create">#create</a>
+    
+    <li ><a href="#method-i-destroy">#destroy</a>
+    
+    <li ><a href="#method-i-edit">#edit</a>
+    
+    <li ><a href="#method-i-hide_remove">#hide_remove</a>
+    
+    <li ><a href="#method-i-index">#index</a>
+    
+    <li ><a href="#method-i-new">#new</a>
+    
+    <li ><a href="#method-i-reply">#reply</a>
+    
+    <li ><a href="#method-i-reply_form">#reply_form</a>
+    
+    <li ><a href="#method-i-show">#show</a>
+    
+    <li ><a href="#method-i-update">#update</a>
+    
+  </ul>
+</div>
 
-      
+  </div>
+</nav>
 
-      
+<main role="main" aria-labelledby="class-CommentsController">
+  <h1 id="class-CommentsController" class="class">
+    class CommentsController
+  </h1>
 
-      
+  <section class="description">
+    
+  </section>
 
-      <!-- Methods -->
-      
-      <div id="public-instance-method-details" class="method-section section">
-        <h3 class="section-header">Public Instance Methods</h3>
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
 
-      
-        <div id="create-method" class="method-detail ">
-          <a name="method-i-create"></a>
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
 
           
-          <div class="method-heading">
-            <span class="method-name">create</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="create-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 8</span>
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 8</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:comment</span>][<span class="ruby-value">:body</span>].<span class="ruby-identifier">blank?</span>
     <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">build_from</span>( <span class="ruby-ivar">@commentable</span>, <span class="ruby-ivar">@handle</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:comment</span>][<span class="ruby-value">:body</span>])
@@ -299,36 +162,36 @@
           <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- create-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- create-method -->
-
-      
-        <div id="destroy-method" class="method-detail ">
-          <a name="method-i-destroy"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">destroy</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            
-            
+        
 
-            
-            <div class="method-source-code" id="destroy-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 41</span>
+        
+      </div>
+
+    
+      <div id="method-i-destroy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">destroy</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="destroy-source">
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">has_children?</span> <span class="ruby-operator">||</span> (<span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">created_at</span> <span class="ruby-operator">+</span> <span class="ruby-value">5</span>.<span class="ruby-identifier">minutes</span>).<span class="ruby-identifier">past?</span>
@@ -348,105 +211,105 @@
   <span class="ruby-comment"># render js that removes comment from page</span>
   <span class="ruby-ivar">@message</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- destroy-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- destroy-method -->
-
-      
-        <div id="edit-method" class="method-detail ">
-          <a name="method-i-edit"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">edit</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            
-            
+        
 
-            
-            <div class="method-source-code" id="edit-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 64</span>
+        
+      </div>
+
+    
+      <div id="method-i-edit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="edit-source">
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 64</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- edit-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- edit-method -->
-
-      
-        <div id="hide_remove-method" class="method-detail ">
-          <a name="method-i-hide_remove"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">hide_remove</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            
-            
+        
 
-            
-            <div class="method-source-code" id="hide_remove-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 132</span>
+        
+      </div>
+
+    
+      <div id="method-i-hide_remove" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">hide_remove</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="hide_remove-source">
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 132</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">hide_remove</span>
         <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
         <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">toggle_status</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:status</span>])
         <span class="ruby-identifier">params</span>[<span class="ruby-value">:status</span>] 
         <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">save</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- hide_remove-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- hide_remove-method -->
-
-      
-        <div id="index-method" class="method-detail ">
-          <a name="method-i-index"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">index</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            
-            
+        
 
-            
-            <div class="method-source-code" id="index-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 27</span>
+        
+      </div>
+
+    
+      <div id="method-i-index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-identifier">all_comments</span> = <span class="ruby-ivar">@commentable</span>.<span class="ruby-identifier">root_comments</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@commentable</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-identifier">all_comments</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find_comments_by_user</span>(<span class="ruby-ivar">@commenter</span>)
@@ -460,68 +323,68 @@
   <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-ivar">@comments</span>
   <span class="ruby-ivar">@comments</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- index-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- index-method -->
-
-      
-        <div id="new-method" class="method-detail ">
-          <a name="method-i-new"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">new</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            
-            
+        
 
-            
-            <div class="method-source-code" id="new-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 61</span>
+        
+      </div>
+
+    
+      <div id="method-i-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- new-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- new-method -->
-
-      
-        <div id="reply-method" class="method-detail ">
-          <a name="method-i-reply"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">reply</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            
-            
+        
 
-            
-            <div class="method-source-code" id="reply-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 112</span>
+        
+      </div>
+
+    
+      <div id="method-i-reply" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reply</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="reply-source">
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 112</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reply</span>
         <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:comment</span>][<span class="ruby-value">:body</span>].<span class="ruby-identifier">blank?</span>
                 <span class="ruby-identifier">parent</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
@@ -541,104 +404,104 @@
                 <span class="ruby-keyword">end</span>
         <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- reply-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- reply-method -->
-
-      
-        <div id="reply_form-method" class="method-detail ">
-          <a name="method-i-reply_form"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">reply_form</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            
-            
+        
 
-            
-            <div class="method-source-code" id="reply_form-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 108</span>
+        
+      </div>
+
+    
+      <div id="method-i-reply_form" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reply_form</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="reply_form-source">
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 108</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reply_form</span>
   <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- reply_form-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- reply_form-method -->
-
-      
-        <div id="show-method" class="method-detail ">
-          <a name="method-i-show"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">show</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            <p>shows the previous version of the comment</p>
-            
+        
 
-            
-            <div class="method-source-code" id="show-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 102</span>
+        
+      </div>
+
+    
+      <div id="method-i-show" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>shows the previous version of the comment</p>
+          
+          
+
+          
+          <div class="method-source-code" id="show-source">
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 102</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-identifier">new</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">new</span>.<span class="ruby-identifier">prev</span>)
   <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">div_id</span> = <span class="ruby-identifier">new</span>.<span class="ruby-identifier">id</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- show-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- show-method -->
-
-      
-        <div id="update-method" class="method-detail ">
-          <a name="method-i-update"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">update</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            
-            
+        
 
-            
-            <div class="method-source-code" id="update-source">
-<pre>
-<span class="ruby-comment"># File app/controllers/comments_controller.rb, line 68</span>
+        
+      </div>
+
+    
+      <div id="method-i-update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-comment"># create a new comment to hold the old comment</span>
@@ -671,29 +534,25 @@
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@comment</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- update-source -->
-            
           </div>
-
           
+        </div>
 
-          
-        </div><!-- update-method -->
+        
 
-      
-      </div><!-- public-instance-method-details -->
+        
+      </div>
+
     
-    </div><!-- 5Buntitled-5D -->
+    </section>
   
+  </section>
+</main>
 
-  </div><!-- documentation -->
 
-  <div id="validator-badges">
-    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
-    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
-      Rdoc Generator</a> 2</small>.</p>
-  </div>
-
-</body>
-</html>
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
 

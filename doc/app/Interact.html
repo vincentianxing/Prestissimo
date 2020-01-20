@@ -1,286 +1,149 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+
+<html>
 <head>
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta charset="UTF-8">
 
-  <title>Class: Interact</title>
+<title>class Interact - Prestissimo Documentation</title>
 
-  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
 
-  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
 
-</head>
-<body id="top" class="class">
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
 
-  <div id="metadata">
-    <div id="home-metadata">
-      <div id="home-section" class="section">
-        <h3 class="section-header">
-          <a href="./index.html">Home</a>
-          <a href="./index.html#classes">Classes</a>
-          <a href="./index.html#methods">Methods</a>
-        </h3>
-      </div>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
     </div>
 
-    <div id="file-metadata">
-      <div id="file-list-section" class="section">
-        <h3 class="section-header">In Files</h3>
-        <div class="section-body">
-          <ul>
-          
-            <li><a href="./app/mailers/interact_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="app/mailers/interact.rb">app/mailers/interact.rb</a></li>
-          
-          </ul>
-        </div>
-      </div>
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
 
-      
-    </div>
-
-    <div id="class-metadata">
-      
-      <!-- Parent Class -->
-      <div id="parent-class-section" class="section">
-        <h3 class="section-header">Parent</h3>
-        
-        <p class="link">ActionMailer::Base</p>
-        
-      </div>
-      
-
-      
-
-      
-
-      
-      <!-- Method Quickref -->
-      <div id="method-list-section" class="section">
-        <h3 class="section-header">Methods</h3>
-        <ul class="link-list">
-          
-          <li><a href="#method-i-admin_report_notice">#admin_report_notice</a></li>
-          
-          <li><a href="#method-i-error_report">#error_report</a></li>
-          
-          <li><a href="#method-i-mail_cart">#mail_cart</a></li>
-          
-          <li><a href="#method-i-notify_professor">#notify_professor</a></li>
-          
-          <li><a href="#method-i-report_confirmation">#report_confirmation</a></li>
-          
-          <li><a href="#method-i-reveal_handle_user">#reveal_handle_user</a></li>
-          
-          <li><a href="#method-i-send_e">#send_e</a></li>
-          
-          <li><a href="#method-i-send_q">#send_q</a></li>
-          
-          <li><a href="#method-i-to_reported">#to_reported</a></li>
-          
-          <li><a href="#method-i-to_reporter">#to_reporter</a></li>
-          
-        </ul>
-      </div>
-      
-
-      
-    </div>
-
-    <div id="project-metadata">
-      
-      
-      <div id="fileindex-section" class="section project-section">
-        <h3 class="section-header">Files</h3>
-        <ul>
-        
-          <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a></li>
-        
-        </ul>
-      </div>
-      
-
-      <div id="classindex-section" class="section project-section">
-        <h3 class="section-header">Class/Module Index
-          <span class="search-toggle"><img src="./images/find.png"
-            height="16" width="16" alt="[+]"
-            title="show/hide quicksearch" /></span></h3>
-        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
-        <fieldset>
-          <legend>Quicksearch</legend>
-          <input type="text" name="quicksearch" value=""
-            class="quicksearch-field" />
-        </fieldset>
-        </form>
-
-        <ul class="link-list">
-        
-          <li><a href="./JqueryWeekCalendar.html">JqueryWeekCalendar</a></li>
-        
-          <li><a href="./JqueryWeekCalendar/Install.html">JqueryWeekCalendar::Install</a></li>
-        
-          <li><a href="./JqueryWeekCalendar/Rails.html">JqueryWeekCalendar::Rails</a></li>
-        
-          <li><a href="./JqueryWeekCalendar/Rails/Engine.html">JqueryWeekCalendar::Rails::Engine</a></li>
-        
-          <li><a href="./JqueryWeekCalendar/Rails/Railtie.html">JqueryWeekCalendar::Rails::Railtie</a></li>
-        
-          <li><a href="./AdminsController.html">AdminsController</a></li>
-        
-          <li><a href="./AdminsHelper.html">AdminsHelper</a></li>
-        
-          <li><a href="./ApplicationController.html">ApplicationController</a></li>
-        
-          <li><a href="./ApplicationHelper.html">ApplicationHelper</a></li>
-        
-          <li><a href="./Cart.html">Cart</a></li>
-        
-          <li><a href="./CartsController.html">CartsController</a></li>
-        
-          <li><a href="./CartsHelper.html">CartsHelper</a></li>
-        
-          <li><a href="./Comment.html">Comment</a></li>
-        
-          <li><a href="./CommentsController.html">CommentsController</a></li>
-        
-          <li><a href="./CommentsHelper.html">CommentsHelper</a></li>
-        
-          <li><a href="./Course.html">Course</a></li>
-        
-          <li><a href="./CoursesController.html">CoursesController</a></li>
-        
-          <li><a href="./CoursesHelper.html">CoursesHelper</a></li>
-        
-          <li><a href="./Department.html">Department</a></li>
-        
-          <li><a href="./DepartmentsController.html">DepartmentsController</a></li>
-        
-          <li><a href="./DepartmentsHelper.html">DepartmentsHelper</a></li>
-        
-          <li><a href="./ErrorsController.html">ErrorsController</a></li>
-        
-          <li><a href="./Handle.html">Handle</a></li>
-        
-          <li><a href="./HandlesController.html">HandlesController</a></li>
-        
-          <li><a href="./HandlesHelper.html">HandlesHelper</a></li>
-        
-          <li><a href="./Hubcourse.html">Hubcourse</a></li>
-        
-          <li><a href="./HubcoursesController.html">HubcoursesController</a></li>
-        
-          <li><a href="./HubcoursesHelper.html">HubcoursesHelper</a></li>
-        
-          <li><a href="./Interact.html">Interact</a></li>
-        
-          <li><a href="./MajorsHelper.html">MajorsHelper</a></li>
-        
-          <li><a href="./MyClassesController.html">MyClassesController</a></li>
-        
-          <li><a href="./MyClassesHelper.html">MyClassesHelper</a></li>
-        
-          <li><a href="./Professor.html">Professor</a></li>
-        
-          <li><a href="./ProfessorsController.html">ProfessorsController</a></li>
-        
-          <li><a href="./ProfessorsHelper.html">ProfessorsHelper</a></li>
-        
-          <li><a href="./Report.html">Report</a></li>
-        
-          <li><a href="./ReportsController.html">ReportsController</a></li>
-        
-          <li><a href="./ReportsHelper.html">ReportsHelper</a></li>
-        
-          <li><a href="./SessionsController.html">SessionsController</a></li>
-        
-          <li><a href="./SessionsHelper.html">SessionsHelper</a></li>
-        
-          <li><a href="./Setting.html">Setting</a></li>
-        
-          <li><a href="./SettingsController.html">SettingsController</a></li>
-        
-          <li><a href="./SettingsHelper.html">SettingsHelper</a></li>
-        
-          <li><a href="./StaticPagesController.html">StaticPagesController</a></li>
-        
-          <li><a href="./StaticPagesHelper.html">StaticPagesHelper</a></li>
-        
-          <li><a href="./Syllabus.html">Syllabus</a></li>
-        
-          <li><a href="./SyllabusController.html">SyllabusController</a></li>
-        
-          <li><a href="./SyllabusHelper.html">SyllabusHelper</a></li>
-        
-          <li><a href="./UTF8Sanitizer.html">UTF8Sanitizer</a></li>
-        
-          <li><a href="./User.html">User</a></li>
-        
-          <li><a href="./UsersController.html">UsersController</a></li>
-        
-          <li><a href="./UsersHelper.html">UsersHelper</a></li>
-        
-          <li><a href="./VotesController.html">VotesController</a></li>
-        
-          <li><a href="./VotesHelper.html">VotesHelper</a></li>
-        
-        </ul>
-        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
-      </div>
-
-      
-    </div>
   </div>
 
-  <div id="documentation">
-    <h1 class="class">Interact</h1>
+  
 
-    <div id="description" class="description">
-      
-    </div><!-- description -->
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ActionMailer::Base
+  
+</div>
 
     
     
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
     
-    <div id="5Buntitled-5D" class="documentation-section">
-      
+    <li ><a href="#method-i-admin_report_notice">#admin_report_notice</a>
+    
+    <li ><a href="#method-i-error_report">#error_report</a>
+    
+    <li ><a href="#method-i-mail_cart">#mail_cart</a>
+    
+    <li ><a href="#method-i-notify_professor">#notify_professor</a>
+    
+    <li ><a href="#method-i-report_confirmation">#report_confirmation</a>
+    
+    <li ><a href="#method-i-reveal_handle_user">#reveal_handle_user</a>
+    
+    <li ><a href="#method-i-send_e">#send_e</a>
+    
+    <li ><a href="#method-i-send_q">#send_q</a>
+    
+    <li ><a href="#method-i-to_reported">#to_reported</a>
+    
+    <li ><a href="#method-i-to_reporter">#to_reporter</a>
+    
+  </ul>
+</div>
 
-      
+  </div>
+</nav>
 
-      
+<main role="main" aria-labelledby="class-Interact">
+  <h1 id="class-Interact" class="class">
+    class Interact
+  </h1>
 
-      
+  <section class="description">
+    
+  </section>
 
-      <!-- Methods -->
-      
-      <div id="public-instance-method-details" class="method-section section">
-        <h3 class="section-header">Public Instance Methods</h3>
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
 
-      
-        <div id="admin_report_notice-method" class="method-detail ">
-          <a name="method-i-admin_report_notice"></a>
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-admin_report_notice" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">admin_report_notice</span><span
+            class="method-args">(sender, report)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
 
           
-          <div class="method-heading">
-            <span class="method-name">admin_report_notice</span><span
-              class="method-args">(sender, report)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="admin_report_notice-source">
-<pre>
-<span class="ruby-comment"># File app/mailers/interact.rb, line 45</span>
+          <div class="method-source-code" id="admin_report_notice-source">
+            <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">admin_report_notice</span>(<span class="ruby-identifier">sender</span>, <span class="ruby-identifier">report</span>)
   <span class="ruby-ivar">@sender</span> = <span class="ruby-identifier">sender</span>
   <span class="ruby-ivar">@report</span> = <span class="ruby-identifier">report</span>
@@ -292,36 +155,36 @@
   <span class="ruby-identifier">mail</span>(<span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">admin_list</span>,
        <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;New Report: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">report</span>.<span class="ruby-identifier">title</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- admin_report_notice-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- admin_report_notice-method -->
-
-      
-        <div id="error_report-method" class="method-detail ">
-          <a name="method-i-error_report"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">error_report</span><span
-              class="method-args">(message, page, browser)</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            
-            
+        
 
-            
-            <div class="method-source-code" id="error_report-source">
-<pre>
-<span class="ruby-comment"># File app/mailers/interact.rb, line 95</span>
+        
+      </div>
+
+    
+      <div id="method-i-error_report" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">error_report</span><span
+            class="method-args">(message, page, browser)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="error_report-source">
+            <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">error_report</span>(<span class="ruby-identifier">message</span>, <span class="ruby-identifier">page</span>, <span class="ruby-identifier">browser</span>)
   <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">message</span>
   <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">page</span>
@@ -329,36 +192,36 @@
   <span class="ruby-identifier">mail</span>(<span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;info@oprestissimo.com&quot;</span>,
        <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;A 500 server error has occurred!&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- error_report-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- error_report-method -->
-
-      
-        <div id="mail_cart-method" class="method-detail ">
-          <a name="method-i-mail_cart"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">mail_cart</span><span
-              class="method-args">(requestip,cart,email,sender)</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            
-            
+        
 
-            
-            <div class="method-source-code" id="mail_cart-source">
-<pre>
-<span class="ruby-comment"># File app/mailers/interact.rb, line 15</span>
+        
+      </div>
+
+    
+      <div id="method-i-mail_cart" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mail_cart</span><span
+            class="method-args">(requestip,cart,email,sender)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="mail_cart-source">
+            <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mail_cart</span>(<span class="ruby-identifier">requestip</span>,<span class="ruby-identifier">cart</span>,<span class="ruby-identifier">email</span>,<span class="ruby-identifier">sender</span>)
   <span class="ruby-ivar">@cart</span> = <span class="ruby-identifier">cart</span>
   <span class="ruby-ivar">@email</span> = <span class="ruby-identifier">email</span>
@@ -380,36 +243,36 @@
          <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;OPrestissimo Course Cart&quot;</span>)
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- mail_cart-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- mail_cart-method -->
-
-      
-        <div id="notify_professor-method" class="method-detail ">
-          <a name="method-i-notify_professor"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">notify_professor</span><span
-              class="method-args">(course, email)</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            
-            
+        
 
-            
-            <div class="method-source-code" id="notify_professor-source">
-<pre>
-<span class="ruby-comment"># File app/mailers/interact.rb, line 103</span>
+        
+      </div>
+
+    
+      <div id="method-i-notify_professor" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">notify_professor</span><span
+            class="method-args">(course, email)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="notify_professor-source">
+            <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">notify_professor</span>(<span class="ruby-identifier">course</span>, <span class="ruby-identifier">email</span>)
 
   <span class="ruby-comment">#Put changed fields in a formatted hash for the email </span>
@@ -473,36 +336,36 @@
        <span class="ruby-identifier">from</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;info@oprestissimo.com&quot;</span>,
        <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{course.dept} #{course.cnum} has been updated in the Prestissimo database&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- notify_professor-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- notify_professor-method -->
-
-      
-        <div id="report_confirmation-method" class="method-detail ">
-          <a name="method-i-report_confirmation"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">report_confirmation</span><span
-              class="method-args">(sender, report)</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            
-            
+        
 
-            
-            <div class="method-source-code" id="report_confirmation-source">
-<pre>
-<span class="ruby-comment"># File app/mailers/interact.rb, line 37</span>
+        
+      </div>
+
+    
+      <div id="method-i-report_confirmation" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">report_confirmation</span><span
+            class="method-args">(sender, report)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="report_confirmation-source">
+            <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">report_confirmation</span>(<span class="ruby-identifier">sender</span>, <span class="ruby-identifier">report</span>)
   <span class="ruby-ivar">@sender</span> = <span class="ruby-identifier">sender</span>
   <span class="ruby-ivar">@report</span> = <span class="ruby-identifier">report</span>
@@ -510,36 +373,36 @@
        <span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">sender</span>.<span class="ruby-identifier">email</span>,
        <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;OPrestissimo Report Confirmation&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- report_confirmation-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- report_confirmation-method -->
-
-      
-        <div id="reveal_handle_user-method" class="method-detail ">
-          <a name="method-i-reveal_handle_user"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">reveal_handle_user</span><span
-              class="method-args">(user, admin, handle)</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            
-            
+        
 
-            
-            <div class="method-source-code" id="reveal_handle_user-source">
-<pre>
-<span class="ruby-comment"># File app/mailers/interact.rb, line 5</span>
+        
+      </div>
+
+    
+      <div id="method-i-reveal_handle_user" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reveal_handle_user</span><span
+            class="method-args">(user, admin, handle)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="reveal_handle_user-source">
+            <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reveal_handle_user</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">admin</span>, <span class="ruby-identifier">handle</span>)
   <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
   <span class="ruby-ivar">@admin</span> = <span class="ruby-identifier">admin</span>
@@ -549,36 +412,36 @@
        <span class="ruby-identifier">bcc</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;info@oprestissimo.com&quot;</span>,
        <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;OPrestissimo Commenter Nickname Revealed&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- reveal_handle_user-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- reveal_handle_user-method -->
-
-      
-        <div id="send_e-method" class="method-detail ">
-          <a name="method-i-send_e"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">send_e</span><span
-              class="method-args">(title, message, user)</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            
-            
+        
 
-            
-            <div class="method-source-code" id="send_e-source">
-<pre>
-<span class="ruby-comment"># File app/mailers/interact.rb, line 85</span>
+        
+      </div>
+
+    
+      <div id="method-i-send_e" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">send_e</span><span
+            class="method-args">(title, message, user)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="send_e-source">
+            <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 85</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">send_e</span>(<span class="ruby-identifier">title</span>, <span class="ruby-identifier">message</span>, <span class="ruby-identifier">user</span>)
   <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">message</span>
@@ -588,36 +451,36 @@
        <span class="ruby-identifier">return_path</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email</span>,
        <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{title}: #{@user.fname} #{@user.lname}&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- send_e-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- send_e-method -->
-
-      
-        <div id="send_q-method" class="method-detail ">
-          <a name="method-i-send_q"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">send_q</span><span
-              class="method-args">(title, message, user)</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            
-            
+        
 
-            
-            <div class="method-source-code" id="send_q-source">
-<pre>
-<span class="ruby-comment"># File app/mailers/interact.rb, line 75</span>
+        
+      </div>
+
+    
+      <div id="method-i-send_q" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">send_q</span><span
+            class="method-args">(title, message, user)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="send_q-source">
+            <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">send_q</span>(<span class="ruby-identifier">title</span>, <span class="ruby-identifier">message</span>, <span class="ruby-identifier">user</span>)
   <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">message</span>
@@ -627,36 +490,36 @@
        <span class="ruby-identifier">return_path</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email</span>,
        <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">fname</span><span class="ruby-operator">+</span><span class="ruby-string">&quot; &quot;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@user</span>.<span class="ruby-identifier">lname</span><span class="ruby-operator">+</span><span class="ruby-string">&quot; has asked a question about Prestissimo!&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- send_q-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- send_q-method -->
-
-      
-        <div id="to_reported-method" class="method-detail ">
-          <a name="method-i-to_reported"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">to_reported</span><span
-              class="method-args">(reported, message, report)</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            
-            
+        
 
-            
-            <div class="method-source-code" id="to_reported-source">
-<pre>
-<span class="ruby-comment"># File app/mailers/interact.rb, line 66</span>
+        
+      </div>
+
+    
+      <div id="method-i-to_reported" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_reported</span><span
+            class="method-args">(reported, message, report)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="to_reported-source">
+            <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_reported</span>(<span class="ruby-identifier">reported</span>, <span class="ruby-identifier">message</span>, <span class="ruby-identifier">report</span>)
   <span class="ruby-ivar">@reported</span> = <span class="ruby-identifier">reported</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">message</span>
@@ -665,36 +528,36 @@
        <span class="ruby-identifier">bcc</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;info@oprestissimo.com&quot;</span>,
        <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Your activity on Prestissimo has been reported.&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- to_reported-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- to_reported-method -->
-
-      
-        <div id="to_reporter-method" class="method-detail ">
-          <a name="method-i-to_reporter"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">to_reporter</span><span
-              class="method-args">(reporter, message, report)</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            
-            
+        
 
-            
-            <div class="method-source-code" id="to_reporter-source">
-<pre>
-<span class="ruby-comment"># File app/mailers/interact.rb, line 57</span>
+        
+      </div>
+
+    
+      <div id="method-i-to_reporter" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_reporter</span><span
+            class="method-args">(reporter, message, report)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="to_reporter-source">
+            <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_reporter</span>(<span class="ruby-identifier">reporter</span>, <span class="ruby-identifier">message</span>, <span class="ruby-identifier">report</span>)
   <span class="ruby-ivar">@reporter</span> = <span class="ruby-identifier">reporter</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">message</span>
@@ -703,29 +566,25 @@
        <span class="ruby-identifier">bcc</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;info@oprestissimo.com&quot;</span>,
        <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Your report at Prestissimo has been resolved!&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- to_reporter-source -->
-            
           </div>
-
           
+        </div>
 
-          
-        </div><!-- to_reporter-method -->
+        
 
-      
-      </div><!-- public-instance-method-details -->
+        
+      </div>
+
     
-    </div><!-- 5Buntitled-5D -->
+    </section>
   
+  </section>
+</main>
 
-  </div><!-- documentation -->
 
-  <div id="validator-badges">
-    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
-    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
-      Rdoc Generator</a> 2</small>.</p>
-  </div>
-
-</body>
-</html>
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
 
