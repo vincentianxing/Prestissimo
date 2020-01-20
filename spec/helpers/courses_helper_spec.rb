@@ -38,6 +38,13 @@ describe CoursesHelper do
         end
     end
 
+    describe "#current_semester" do
+        it "should get current semester" do
+            cTest1 = Setting.create(key: "current_semester", value: "testCourse")
+            current_semester.should eq("testCourse")
+        end
+    end
+
     describe "#get_link" do
         it "should get course" do
             couTest = Course.new(title: "Introduction to Computer Science")
