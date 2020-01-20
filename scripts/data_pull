@@ -7,7 +7,6 @@
 DROPDIR="/home/datadrop"
 #DROPFILE=`ls ${DROPDIR}/oprestissimo_*.lis | tail -1`
 DROPFILE=`ls -t1 ${DROPDIR}/*.lis | head -1`
-DROPFILE_BAC="${DROPFILE}.backup"
 #DROPFILE="/tmp/bktest.txt"
 
 if [ $# -gt 0 -a -r "$1" ]
@@ -28,6 +27,11 @@ DESTDIR="${PRESTISSIMO_HOME}/db"
 DESTFILE="${DESTDIR}/courses.txt"
 DIFFOUT="${DESTDIR}/diffout"
 
+<<<<<<< HEAD
+=======
+DROPFILE_BAC="${DESTDIR}/coursefile.lis.backup"
+
+>>>>>>> f84f49574eb7dcd2c824d5582ffc4e75ecf38a19
 CONVERTFILE="${DESTDIR}/converting.txt"
 
 # To handle just the enrollments
@@ -35,8 +39,13 @@ ENROLLFILE="${DESTDIR}/enrollment.txt"
 ENROLLOUT="${DESTDIR}/enrollout"
 
 # Controls Rails status and DB selection
+<<<<<<< HEAD
 #ENVIRONMENT="development"
 ENVIRONMENT="production"
+=======
+ENVIRONMENT="development"
+#ENVIRONMENT="production"
+>>>>>>> f84f49574eb7dcd2c824d5582ffc4e75ecf38a19
 
 # Where the bad lines file goes
 BADLINES="${DESTDIR}/badlines.txt"
