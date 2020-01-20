@@ -40,6 +40,8 @@ end
 gem 'mysql2'
 gem 'activerecord-native_db_types_override'
 
+gem 'protected_attributes' # Needs to be removed by Rails 5
+
 gem 'ruby-mysql'
 
 gem 'json'
@@ -54,11 +56,10 @@ gem 'sass-rails'
 gem 'coffee-rails'
 gem 'jquery-ui-rails'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+# gem 'therubyracer', :platforms => :ruby
 
-  gem 'uglifier'
-end
+gem 'uglifier'
 
 
 group :test do
