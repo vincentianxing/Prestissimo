@@ -8,7 +8,8 @@ ActiveSupport.on_load(:action_controller) do
   wrap_parameters format: [:json]
 end
 
-# Disable root element in JSON by default.
-ActiveSupport.on_load(:active_record) do
-  self.include_root_in_json = false
-end
+# Disable root element in JSON by default. 
+# EDIT: Default behavior in Rails >= 4.0
+# ActiveSupport.on_load(:active_record) do
+#  self.include_root_in_json = false
+# end

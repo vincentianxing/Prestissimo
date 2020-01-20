@@ -10,8 +10,8 @@ Using https://guides.rubyonrails.org/upgrading_ruby_on_rails.html
             8.3         --  Done
             8.4         --  
                 Need to remove 'protected_attributes' gem by Rails 5
-            8.5         --  
-            8.6         --  
+            8.5         --  Done
+            8.6         --  Done
             8.7         --  IP
             8.8         --  
                 8.8.1   --  
