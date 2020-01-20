@@ -216,21 +216,21 @@ someone else&#39;s merge <strong>before</strong> the bug gets to master.</p>
 oprestissimo.info.  Right now, <strong>it is just on the new Ubuntu server
 at 132.162.201.242</strong>, and in your home directory.</p>
 
-<p><strong>oprestissimo.com</strong> will be the production server. The files
-for the real Prestissimo, the files that are running the whole shebang,
-will be located in: /var/www/html/oprestissimo.com/ DON&#39;T TOUCH THEM.
-EVER. When you need to make changes to the production website, there is a
-script that will do everything without any human intervention. Read more
-about this in section 7, <em>Procedure for making changes to the
-website</em>.</p>
+<pre>oprestissimo.com* will be the production server. The files for the real Prestissimo, the</pre>
 
-<p><strong>oprestissimo.info</strong> will be the development server. Most of
-the time you will be logged into this server. This is also a public
-website, but no one knows about it (<a
-href="https://oprestissimo.info">oprestissimo.info</a>). You should be
-testing any changes you make with the oprestissimo.info server. A copy of
-prestissimo will also be located on this server in the same location as
-above.</p>
+<p>files that are running the whole shebang, will be located in:
+/var/www/html/oprestissimo.com/ DON&#39;T TOUCH THEM. EVER. When you need
+to make changes to the production website, there is a script that will do
+everything without any human intervention. Read more about this in section
+7, <em>Procedure for making changes to the website</em>.</p>
+
+<pre>oprestissimo.info* will be the development server. Most of the time you will be</pre>
+
+<p>logged into this server. This is also a public website, but no one knows
+about it (<a href="https://oprestissimo.info">oprestissimo.info</a>). You
+should be testing any changes you make with the oprestissimo.info server. A
+copy of prestissimo will also be located on this server in the same
+location as above.</p>
 
 <p><strong>Your Home Directory (on oprestissimo.info)</strong>: there should
 be a copy of prestissimo in your home directory. If there isn&#39;t, you
@@ -335,8 +335,9 @@ rdoc style comments. Here is a short guide to writing the documentation: <a
 href="http://rdoc.rubyforge.org/RDoc/Markup.html">rdoc.rubyforge.org/RDoc/Markup.html</a>
 Think of it as javadocs.</p>
 
-<p>To recompile the documentation, you simply type: <code>$ rake
-doc:app</code></p>
+<p>To recompile the documentation, run the following: <code>$ rdoc --main
+doc/README_FOR_APP -t &#39;Prestissimo Documentation&#39;
+doc/README_FOR_APP app   /*.rb lib/   *.rb --op doc/app</code></p>
 
 <p>This reparses all of the docs and rebuilds the nice html pages in 
 oprestissimo.info/app/index.html. The html pages are all in doc/app/</p>
@@ -353,8 +354,8 @@ and you think they&#39;re ready to get pushed up to the production site.
 Follow these steps to proceed:</p>
 <ol><li>
 <p><strong>DOCUMENT THE CHANGES THAT YOU HAVE MADE</strong>. Read more about
-this in the previous section. Don&#39;t forget to compile the docs with
-<code>$ rake doc:app</code> before you commit!</p>
+this in the previous section. Don&#39;t forget to compile the docs before
+you commit!</p>
 </li><li>
 <p>Make sure you have committed <strong>and pushed</strong> all of your
 changes to the git repository. Make sure git doesn&#39;t think you&#39;ve
