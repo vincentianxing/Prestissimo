@@ -5,7 +5,7 @@ require "csv"
 require "active_record/railtie"
 require "action_controller/railtie"
 require "action_mailer/railtie"
-# require "active_resource/railtie" ## Support hasbeen removed as of Rails 4.x
+# require "active_resource/railtie" ## Support has been removed as of Rails 4.x
 require "sprockets/railtie"
 require 'digest/md5'
 # require "rails/test_unit/railtie"
