@@ -67,7 +67,7 @@ class Course < ActiveRecord::Base
 
   before_create :fix_gaps
 
-  default_scope :order => "dept, cnum, section"
+  default_scope { where(order: "dept, cnum, section") }
   # allow for setting query sort by order
 #  def self.set_scope(order)
 #    default_scope :order => order

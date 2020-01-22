@@ -61,7 +61,7 @@ class Course < ActiveRecord::Base
 
   before_create :fix_gaps
 
-  default_scope :order => "dept, cnum, section"
+  default_scope { where(order: "dept, cnum, section") }
 
   def fix_gaps
     self.title = self.short_title if self.title.blank?

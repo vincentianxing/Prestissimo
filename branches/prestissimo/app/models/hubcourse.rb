@@ -18,7 +18,7 @@ class Hubcourse < ActiveRecord::Base
   belongs_to :department
   acts_as_commentable
 
-  default_scope :order => "hub_id"
+  default_scope { where(order: "hub_id") }
 
   def self.build(hub_id, cnum)
     h = Hubcourse.new
