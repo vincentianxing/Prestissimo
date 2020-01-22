@@ -374,7 +374,7 @@ class UsersController < ApplicationController
       usrqs = make_query_string(person.gsub(/['"]/, ""), ["fname", "lname", "email"], false)
       usrqs << ' AND role LIKE '+ActiveRecord::Base.connection.quote("%student%")
       @usrresults = Array.new
-      @usrresults = User.find(:all, :conditions => usrqs)
+      @usrresults = User.where(usrqs).to_a
       @usrresults.delete(current_user)
       @usrresults.sort_by! {|u| [u.lname, u.fname]}
       @usrresults = nil if @usrresults.size == 0
@@ -382,7 +382,7 @@ class UsersController < ApplicationController
       ##### COMMENTER SEARCH BIT #####
       # uses function defined in application helper to construct a mysql query string
       handqs = make_query_string(person, ["username"], false)
-      @handleresults = Handle.find(:all, :conditions => handqs)
+      @handleresults = Handle.where(handqs).to_a
       @handleresults.delete(Handle.find_by_handlekey(current_user.handlekey))
       @handleresults.sort_by! {|h| h.username}
       @handleresults = nil if @handleresults.size == 0
@@ -390,7 +390,7 @@ class UsersController < ApplicationController
       ##### PROF PAGE SEARCH BIT #####
       # uses function defined in application helper to construct a mysql query string
       prfqs = make_query_string(person.gsub(/['"]/, ""), ["fname", "lname", "nickname"], false)
-      @professors = Professor.find(:all, :conditions => prfqs)
+      @professors = Professor.where(prfqs).to_a
       @professors.sort_by! {|p| [p.lname, p.fname]}
       @professors = nil if @professors.size == 0
 

@@ -13,7 +13,7 @@ class HandlesController < ApplicationController
       return nil unless params[:all]
       @handles = Handle.all
     else
-      @handles = Handle.find(:all, conditions: "username LIKE '%#{params[:username]}%'")
+      @handles = Handle.where("username LIKE '%#{params[:username]}%'").to_a
     end
     @handles.delete(current_handle)
     respond_to do |format|

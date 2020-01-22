@@ -39,7 +39,7 @@ class HubcoursesController < ApplicationController
   end
 
   def index
-		@depts = Department.find(:all)
+		@depts = Department.all.to_a
   end
 
   def search
@@ -64,7 +64,7 @@ class HubcoursesController < ApplicationController
 	  qs << 'cnum ' + params[:comparator] + ' ' + ActiveRecord::Base.connection.quote(level)
 	end
       end
-      @hubcourses = Hubcourse.find(:all, conditions: qs)
+      @hubcourses = Hubcourse.where(qs).to_a
       @hubcourses = nil if @hubcourses.size == 0
     else
       @err_msg = "Please select an option from the drop-down before searching."

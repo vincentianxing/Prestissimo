@@ -40,7 +40,7 @@ class ProfessorsController < ApplicationController
     # return nothing if no query made
     return nil if params[:name].blank?
     # search by both first name and last name
-    @professors = Professor.find(:all, conditions: "fname LIKE '%#{params[:name]}%' OR lname LIKE '%#{params[:name]}%'")
+    @professors = Professor.where("fname LIKE '%#{params[:name]}%' OR lname LIKE '%#{params[:name]}%'")to_a
     respond_to do |format|
       format.html
       format.js

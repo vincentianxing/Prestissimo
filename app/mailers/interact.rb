@@ -45,7 +45,7 @@ class Interact < ActionMailer::Base
   def admin_report_notice(sender, report)
     @sender = sender
     @report = report
-    admins = User.find_all_by_admin(true)
+    admins = User.where(admin: true).to_a
     admin_list = Array.new
     admins.each do |a|
       admin_list << a.email
