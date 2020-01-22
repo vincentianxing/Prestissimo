@@ -469,7 +469,7 @@ class CoursesController < ApplicationController
       # Course.set_scope("dept, cnum, section");
       # Performs the search, using the built query string
     end
-    @courses = Course.all(:conditions => qs)
+    @courses = Course.where(qs).to_a
 #    @courses = Course.find_by_sql(qs)
     if params[:cart_id]
       @cart = Cart.find_by_cartid(params[:cart_id])
