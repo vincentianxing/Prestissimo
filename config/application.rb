@@ -68,6 +68,13 @@ module Prestissimo
     # Enable the asset pipeline
     config.assets.enabled = true
 
+    # Call top level js and css files
+    config.assets.precompile += %w( jquery-1.10.2.js )
+    config.assets.precompile += %w( print.css )
+    config.assets.precompile += %w( print_collapsed.css )
+    config.assets.precompile += %w( print_expanded.css )
+    config.assets.precompile += %w( jquery-ui-1.10.3.custom.css )
+
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
