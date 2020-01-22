@@ -12,7 +12,7 @@
 class Department < ActiveRecord::Base
   attr_accessible :dept
 
-  has_and_belongs_to_many :professors
+  has_and_belongs_to_many :professors, join_table: 'departments_professors'
   acts_as_commentable
   has_many :hubcourses
 

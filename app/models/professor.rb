@@ -23,8 +23,8 @@ class Professor < ActiveRecord::Base
 
 	#Relations to other models
   acts_as_commentable
-  has_and_belongs_to_many :courses
-  has_and_belongs_to_many :departments
+  has_and_belongs_to_many :courses, join_table: 'courses_professors'
+  has_and_belongs_to_many :departments, join_table: 'departments_professors'
 
 	#Changes status of a professor
   def toggle_status

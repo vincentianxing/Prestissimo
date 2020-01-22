@@ -55,7 +55,7 @@ class Course < ActiveRecord::Base
     :prof_desc, :which_desc, :new_desc_action, :notify_profs, :changed_fields, :recent_edit
   
   belongs_to :hubcourse
-  has_and_belongs_to_many :professors
+  has_and_belongs_to_many :professors, join_table: 'courses_professors'
   has_one :syllabus
 
   # don't enter unless the following fields conform to specified expectations
