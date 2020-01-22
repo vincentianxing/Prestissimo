@@ -227,25 +227,28 @@ GEM
       rspec-support (~> 3.9.0)
     rspec-support (3.9.2)
     ruby-mysql (2.9.14)
-    sass-rails (6.0.0)
-      sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.2.1)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
-    shellany (0.0.1)
-    sprockets (3.7.2)
-      concurrent-ruby (~> 1.0)
-      rack (> 1, < 3)
-    sprockets-rails (3.2.1)
-      actionpack (>= 4.0)
-      activesupport (>= 4.0)
-      sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
+    rubyzip (1.3.0)
+    sass (3.7.4)
+      sass-listen (~> 4.0.0)
+    sass-listen (4.0.0)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
+    sass-rails (3.2.6)
+      railties (~> 3.2.0)
+      sass (>= 3.1.10)
+      tilt (~> 1.3)
+    selenium-webdriver (2.53.4)
+      childprocess (~> 0.5)
+      rubyzip (~> 1.0)
+      websocket (~> 1.0)
+    shoulda-matchers (2.8.0)
+      activesupport (>= 3.0.0)
+    sprockets (2.2.3)
+      hike (~> 1.2)
+      multi_json (~> 1.0)
+      rack (~> 1.0)
+      tilt (~> 1.1, != 1.3.0)
+    sqlite3 (1.3.10)
     test-unit (3.3.5)
       power_assert
     therubyracer (0.12.3)
@@ -301,10 +304,11 @@ DEPENDENCIES
   redcarpet
   rspec-rails
   ruby-mysql
-  sass-rails
-  sqlite3
-  test-unit
-  therubyracer
+  sass-rails (~> 3.2.4)
+  shoulda-matchers (~> 2.8.0)
+  sqlite3 (= 1.3.10)
+  test-unit (~> 3.0)
+  therubyracer (~> 0.12.3)
   uglifier
   utf8-cleaner
 
