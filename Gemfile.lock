@@ -304,6 +304,7 @@ DEPENDENCIES
   redcarpet
   rspec-rails
   ruby-mysql
+
   sass-rails (~> 3.2.4)
   shoulda-matchers (~> 2.8.0)
   sqlite3 (= 1.3.10)
