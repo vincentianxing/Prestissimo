@@ -1,6 +1,9 @@
 Prestissimo::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
+  # Specify log detail level
+  config.log_level = :info
+
   # Code is not reloaded between requests
   config.cache_classes = true
 
@@ -9,7 +12,7 @@ Prestissimo::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  config.serve_static_files = false
 
   # Compress JavaScripts and CSS
   config.assets.js_compressor = true
@@ -43,7 +46,7 @@ Prestissimo::Application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production
-  config.cache_store = :mem_cache_store { size: 128.megabytes, namespace: "rails-4.0-cache" }
+  config.cache_store = :mem_cache_store, { size: 128.megabytes, namespace: "rails-4.0-cache" }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"

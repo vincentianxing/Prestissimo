@@ -16,6 +16,8 @@ gem 'jquery-ui-themes'
 gem 'utf8-cleaner'
 gem 'redcarpet'
 
+gem 'dalli'
+
 gem 'test-unit' # Added for rails console
 
 
