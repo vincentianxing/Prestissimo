@@ -61,7 +61,7 @@ describe CartsController do
       assigns(:cart_courses).should eq(assigns(:cart).get_courses)
       cart.delete
     end
-=begin
+=begin THIS TEST COSTS TOO MANY TIME IN CURRENT IMPLEMENTATION
     context "returns current cart" do
       it "when too many courses are selected" do
         cart = Cart.create
