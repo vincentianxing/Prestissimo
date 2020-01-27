@@ -63,7 +63,7 @@ describe CartsController do
       put :update, id: cart.cartid, courses: courses, format: "js"
       params = { id: cart.cartid, semcrn: "f20_532", cart: cart, format: "js"}
       put :remove, params
-      cart.courses.should eq("")
+      cart.courses.should be_nil
     end
     it "clear the cart" do # clear
       put :update, id: cart.cartid, courses: courses, format: "js"
@@ -90,8 +90,6 @@ describe CartsController do
       cart.delete
     end
   end
-<<<<<<< HEAD
-=======
 
   describe "GET #mail_to" do
   end
@@ -103,5 +101,4 @@ describe CartsController do
     #get :search, id: cart.id, format: 'js'
     #response.should redirect_to 'courses/search'
   end
->>>>>>> 8672c9bb640cb7e5839f7a88139216c487e32515
 end
