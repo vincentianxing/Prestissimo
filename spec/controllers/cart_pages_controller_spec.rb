@@ -60,6 +60,7 @@ describe CartsController do
       assigns(:cart_courses).should eq(assigns(:cart).get_courses)
     end
     it "remove one course from cart" do # remove
+      put :update, id: cart.cartid, courses: courses, format: "js"
       params = { id: course.id, semcrn: "f20_532", cart: cart }
       put :remove, params, format: "js"
       cart.courses.should eq("")
@@ -67,7 +68,7 @@ describe CartsController do
     it "clear the cart" do # clear
       put :update, id: cart.cartid, courses: courses, format: "js"
       put :clear, id: cart.cartid, format: "js"
-      cart.courses.should eq("")
+      cart.courses.should be_nil
     end
 
 =begin THIS TEST TAKES TOO MUCH TIMES IN CURRENT IMPLEMENTATION
@@ -96,6 +97,8 @@ describe CartsController do
   describe "GET #search" do
     cart = Cart.create
     get :search, id: cart.id, format: 'html'
+    response.should redirect_to root_path
     get :search, id: cart.id, format: 'js'
+    response.should redirect_to 'courses/search'
   end
 end
