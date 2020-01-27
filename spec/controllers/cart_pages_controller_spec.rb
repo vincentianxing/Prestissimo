@@ -45,7 +45,7 @@ describe CartsController do
     end
   end
 
-  describe "PUT #update" do
+  describe "PUT #update & #remove & #clear" do
     course_arr = ["Computer Science", "CSCI", "214", "01", 
                     "532", "Full Term", "", "202009",
                     "", "Principles of Computer Science", 
@@ -53,15 +53,26 @@ describe CartsController do
     course = Course.build(course_arr)
     course.save               
     courses = { "f20_532" => "Principles of Computer Science" }
+    cart = Cart.create
 
-    it "adds selected courses to the cart" do
-      cart = Cart.create
-      course.semcrn.should eq("f20_532")
-      put :update, id: cart.cartid, courses: courses, format: 'js'
-      assigns(:cart_courses).should eq(assigns(:cart).get_courses)
-      cart.delete
+    context "when add or remove courses to the cart" do
+      it "add selected courses" do # update
+        course.semcrn.should eq("f20_532")
+        put :update, id: cart.cartid, courses: courses, format: 'js'
+        assigns(:cart_courses).should eq(assigns(:cart).get_courses)
+      end
+      it "remove one course" do # remove
+        params = { id: course.id, semcrn: "f20_532", cart: cart }
+        put :remove, params, format: 'js'
+        cart.courses.should eq("")
+      end
+      it "clear the cart" do # clear
+        put :update, id: cart.cartid, courses: courses, format: 'js'
+        put :clear, id: cart.cartid, format: 'js'
+        cart.courses.should eq("")
+      end
     end
-=begin
+=begin THIS TEST TAKES TOO MUCH TIMES IN CURRENT IMPLEMENTATION
     context "returns current cart" do
       it "when too many courses are selected" do
         cart = Cart.create
@@ -78,16 +89,6 @@ describe CartsController do
       put :update, id: cart.cartid, courses: nil, format: 'js'
       assigns(:cart_courses).should eq(cart_before)
       cart.delete
-    end
-  end
-  
-  describe "PUT #remove" do
-
-  end
-
-  describe "PUT #clear" do
-    it "should clear the cart of courses" do
-      
     end
   end
 
