@@ -95,6 +95,7 @@ describe CartsController do
 
   describe "GET #search" do
     cart = Cart.create
-    GET :search, id: cart.id
+    get :search, id: cart.id, format: 'html'
+    get :search, id: cart.id, format: 'js'
   end
 end
