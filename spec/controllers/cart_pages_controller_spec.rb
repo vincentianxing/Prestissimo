@@ -44,30 +44,43 @@ describe CartsController do
     end
   end
 
-  describe "PUT #update & #remove & #clear" do
-    course_arr = ["Computer Science", "CSCI", "214", "01",
+  describe "PUT" do
+    Course.where(semester: "f20").delete_all
+    course_arr1 = ["Computer Science", "CSCI", "214", "01",
                   "532", "Full Term", "", "202009",
                   "", "Principles of Computer Science",
                   "Geitz, Bob"]
-    course = Course.build(course_arr)
-    course.save
-    courses = { "f20_532" => "Principles of Computer Science" }
+    course_arr2 = ["Mathematics", "MATH", "220", "01",
+                  "235", "Full Term", "", "202009",
+                  "", "Discrete Mathematics",
+                  "Geitz, Bob"]  
+    course1 = Course.build(course_arr1)
+    course2 = Course.build(course_arr2)
+    course1.save
+    course2.save
+    courses = { "f20_532" => "Principles of Computer Science",
+                "f20_235" => "Discrete Mathematics" }  
     cart = Cart.create
+    puts cart.get_courses
 
-    it "add selected courses to cart" do # update
-      course.semcrn.should eq("f20_532")
+    it "#update add selected courses to cart" do
+      course1.semcrn.should eq("f20_532")
+      course2.semcrn.should eq("f20_235")
       put :update, id: cart.cartid, courses: courses, format: "js"
-      assigns(:cart_courses).should eq(assigns(:cart).get_courses)
+      puts cart.get_courses
+      assigns(:cart_courses).should eq(cart.get_courses)
     end
-    it "remove one course from cart" do # remove
+    it "#remove removes one course from cart" do
       put :update, id: cart.cartid, courses: courses, format: "js"
       params = { id: cart.cartid, semcrn: "f20_532", cart: cart, format: "js"}
       put :remove, params
-      cart.courses.should be_nil
+      puts cart.get_courses
+      cart.courses.should be_nil #TODO
     end
-    it "clear the cart" do # clear
+    it "#clear clears the cart" do
       put :update, id: cart.cartid, courses: courses, format: "js"
       put :clear, id: cart.cartid, format: "js"
+      puts cart.get_courses
       cart.courses.should be_nil
     end
 
