@@ -3,7 +3,7 @@
 ###  Professor Controller
 ###
 ###  These actions perform operations related to the professor object
-###  
+###
 ###  ACTIONS in the order they appear on the page:
 ###
 ###  ACTION  ________________ PERMISSIONS
@@ -19,9 +19,8 @@
 ###
 
 class ProfessorsController < ApplicationController
-
   before_filter :signed_in_user
-  before_filter :correct_professor_user, only: [:edit, :update, :professor_courses] 
+  before_filter :correct_professor_user, only: [:edit, :update, :professor_courses]
   before_filter :admin_user, only: [:populate, :toggle_active, :new, :admin, :create]
 
   # render the page with the form for a new professor
@@ -57,7 +56,7 @@ class ProfessorsController < ApplicationController
       unless @prof_user.nil?
         # Try to fond the professor based on the user's other info
         @professor ||= Professor.find_by_id(@prof_user.prof_id)
-        @professor ||= Professor.where(userid: @prof_user.email.split('@')[0])[0]
+        @professor ||= Professor.where(userid: @prof_user.email.split("@")[0])[0]
       end
     end
 
@@ -69,7 +68,7 @@ class ProfessorsController < ApplicationController
   def update
     @professor = Professor.find(params[:id])
 
-    if @professor.update_attributes( params[:professor] )
+    if @professor.update_attributes(params[:professor])
       flash[:success] = "Profile successfully updated!"
       # go to the professor profile
       redirect_to show_professor_path(fname: @professor.fname, lname: @professor.lname)
@@ -93,22 +92,22 @@ class ProfessorsController < ApplicationController
     all_comments = @professor.root_comments
     @comments = Array.new
     all_comments.each do |c|
-        @comments << c unless c.status == "removed" || c.old
+      @comments << c unless c.status == "removed" || c.old
     end
     @comments = Comment.sort_by_score(@comments)
     # build a hash to return the professor and its comments
     @vals = {}
     @vals[:professor] = @professor
     @vals[:comments] = @comments
-    
+
     @hubcourses = Hash.new
     prev_semcrn = -1
     prof_all_courses = @professor.courses.sort
     prof_all_courses.each do |course|
       next if course.semcrn == prev_semcrn
       prev_semcrn = course.semcrn
-      @hubcourses[course.hubcourse] ||= [] unless course.status=="hidden" || course.status=="cancelled"
-      @hubcourses[course.hubcourse] << course unless course.status=="hidden" || course.status=="cancelled"
+      @hubcourses[course.hubcourse] ||= [] unless course.status == "hidden" || course.status == "cancelled"
+      @hubcourses[course.hubcourse] << course unless course.status == "hidden" || course.status == "cancelled"
     end
 
     @vals[:hubcourses] = @hubcourses
@@ -116,21 +115,21 @@ class ProfessorsController < ApplicationController
     @vals
     respond_to do |format|
       format.html
-      format.csv { render text: @professor.to_csv(params[:enroll]||=0) }
+      format.csv { render text: @professor.to_csv(params[:enroll] ||= 0) }
     end
   end
-        
+
   # Unused. Also, don't use this. It's out of date.
   # The LDAP connection shit is super different now.
   # Also, if you used this it wouldn't connect the
   # professors to courses or departments.
   def populate
     # LDAP TIME!
-    ldap = Net::LDAP.new( port: 389, host: 'ldap1.cc.oberlin.edu' )
+    ldap = Net::LDAP.new(port: 389, host: "ldap1.cc.oberlin.edu")
     @names = Array.new
     if ldap.bind
       # query for role=Faculty
-      filter = Net::LDAP::Filter.eq("o","Faculty")
+      filter = Net::LDAP::Filter.eq("o", "Faculty")
       treebase = "ou=People,o=oberlin.edu,o=oberlin-college"
       @professors = Array.new
       ldap.search(base: treebase, filter: filter) do |results|
@@ -143,9 +142,9 @@ class ProfessorsController < ApplicationController
           prof = Professor.new
           prof.lname = p.sn.to_s.slice(2..-3)
           # some professors share names with students, and have Faculty in their lname
-          prof.lname.gsub!('Faculty','') if (prof.lname.include? 'Faculty')
+          prof.lname.gsub!("Faculty", "") if (prof.lname.include? "Faculty")
           prof.fname = p.givenname.to_s.slice(2..-3)
-          prof.nickname = ''
+          prof.nickname = ""
           prof.email = mail
           if prof.save
             @names << prof.fname + " " + prof.lname
@@ -160,10 +159,10 @@ class ProfessorsController < ApplicationController
   # Function to generate a preview of a professor's more information content.
   # Uses the redcarpet gem to render markdown formatted input as html.
   def preview
-   # @professor = Professor.where(fname: params[:fname], lname: params[:lname])[0]
-   # @result = ""
-   # @result ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, underline: true, highlight: true, lax_spacing: true).render(params[:professor][:content])
-   # @result.html_safe
+    # @professor = Professor.where(fname: params[:fname], lname: params[:lname])[0]
+    # @result = ""
+    # @result ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, underline: true, highlight: true, lax_spacing: true).render(params[:professor][:content])
+    # @result.html_safe
     respond_to do |format|
       format.js
     end
@@ -172,7 +171,7 @@ class ProfessorsController < ApplicationController
   #Function to generate all the courses the professor has the permission to edit
   def professor_courses
     @professor = Professor.where(fname: params[:fname], lname: params[:lname])[0]
-    
+
     # Fix for the "Bob Geitz problem" where the user's name is different from the professor's
     if @professor.nil?
       # Find the user who's name matches
@@ -180,7 +179,7 @@ class ProfessorsController < ApplicationController
       unless @prof_user.nil?
         # Try to fond the professor based on the user's other info
         @professor ||= Professor.find_by_id(@prof_user.prof_id)
-        @professor ||= Professor.where(userid: @prof_user.email.split('@')[0])[0]
+        @professor ||= Professor.where(userid: @prof_user.email.split("@")[0])[0]
       end
     end
 
@@ -189,25 +188,23 @@ class ProfessorsController < ApplicationController
 
     @prof_cart = current_user.cart.get_courses
     @prof_courses = Hash.new
-    short_cur_sem = view_context.current_semester[0].downcase+view_context.current_semester[-2..-1]
-    
-    @prof_courses["teaching"]=@professor.courses.delete_if{|x| x.semester!=short_cur_sem}
-    @prof_courses["requests"] = @prof_cart unless @prof_cart.length==0
-    
+    short_cur_sem = view_context.current_semester[0].downcase + view_context.current_semester[-2..-1]
+
+    @prof_courses["teaching"] = @professor.courses.delete_if { |x| x.semester != short_cur_sem }
+    @prof_courses["requests"] = @prof_cart unless @prof_cart.length == 0
+
     @professor.departments.each do |d|
-      qs  = '( dept LIKE '+ActiveRecord::Base.connection.quote("%"+d.dept+"%")+" AND semester=" + ActiveRecord::Base.connection.quote(short_cur_sem) + ")"
-      dept_courses = Course.all(:conditions=>qs).sort
+      qs = "( dept LIKE " + ActiveRecord::Base.connection.quote("%" + d.dept + "%") + " AND semester=" + ActiveRecord::Base.connection.quote(short_cur_sem) + ")"
+      dept_courses = Course.all(:conditions => qs).sort
       @prof_courses[d.dept] = dept_courses if dept_courses.size > 0
     end
-    
   end
-
 
   private
 
   # check if there is a user
   def signed_in_user
-    redirect_to signin_path, notice:"Please sign in." unless signed_in?
+    redirect_to signin_path, notice: "Please sign in." unless signed_in?
   end
 
   # check that the user is an admin
@@ -217,12 +214,11 @@ class ProfessorsController < ApplicationController
 
   def correct_professor_user
     begin
-      prof_temp = Professor.find(params[:id]) 
+      prof_temp = Professor.find(params[:id])
       @prof_user = User.where(fname: prof_temp.fname, lname: prof_temp.lname)[0]
     rescue
       @prof_user = User.where(fname: params[:fname], lname: params[:lname])[0]
     end
     redirect_to(root_path) unless current_user?(@prof_user) && faculty_user?(current_user)
   end
-
 end
