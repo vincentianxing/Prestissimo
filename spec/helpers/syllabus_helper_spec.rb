@@ -10,6 +10,8 @@ require 'spec_helper'
 #     end
 #   end
 # end
+
+## app/syllabus have nothing
 describe SyllabusHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  pending "Nothing in the file needed to be test #{__FILE__}"
 end
