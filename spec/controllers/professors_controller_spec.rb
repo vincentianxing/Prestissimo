@@ -1,23 +1,25 @@
 require "spec_helper"
 
 describe ProfessorsController do
+  user = User.new
   professor = Professor.new(fname: "Bob", lname: "Geitz")
   professor.save
+  #sign_in user
 
   it "should redirect when not logged in" do
-    # get :search, format: 'js'
-    get professor_search_path
+    get :search, format: 'js'
+    #get professor_search_path
     response.should redirect_to signin_path
   end
 
-  describe "GET #search" do
+  describe "GET #search" do # TODO
     it "return nil if no query made" do
-      get :search, format: 'js'
+      get :search, name: nil, format: 'js'
       response.should be_nil
     end
     it "render the search page" do
       get :search, name: "Geitz, Bob", format: 'html'
-      response.should render_template("search")
+      response.should render_template("search") # render problem
     end
   end
 
@@ -61,7 +63,7 @@ describe ProfessorsController do
       get :show,
           fname: professor.fname, lname: professor.lname,
           format: 'html'
-      response.should render_template("show")
+      response.should render_template("show") # render problem
     end
   end
 
@@ -77,5 +79,5 @@ describe ProfessorsController do
   # private
   #"#signed_in_user"
   #"#correct_professor_user"
-
+  Professor.delete_all
 end

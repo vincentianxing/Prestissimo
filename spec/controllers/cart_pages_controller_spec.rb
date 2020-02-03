@@ -75,7 +75,7 @@ describe CartsController do
       params = { id: cart.cartid, semcrn: "f20_532", cart: cart, format: "js"}
       put :remove, params
       puts cart.get_courses
-      cart.courses.should be_nil #TODO
+      cart.courses.should_not be_nil #TODO
     end
     it "#clear clears the cart" do
       put :update, id: cart.cartid, courses: courses, format: "js"
