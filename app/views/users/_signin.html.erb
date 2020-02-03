@@ -10,7 +10,7 @@ uses a form_for to create a session (sessions#create)
     <%= form_for(:session, url: sessions_path) do |f| %>
       <span class="su_label">
         <%= f.label :email, "ObieID" %>
-        </br>(ex: mkrislov or mkrislov@oberlin.edu)
+        </br>(ex: cambar or cambar@oberlin.edu)
       </span>
       <div class="su_textfield">
         <% if @obie_email %> 
