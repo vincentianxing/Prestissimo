@@ -37,6 +37,8 @@ module CartsHelper
     else
 	    courses = nil
     end
-    courses.sort unless courses.nil?
+    if !courses.nil?
+    	courses.sort
+    end
   end
 end
