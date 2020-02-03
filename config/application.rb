@@ -84,5 +84,8 @@ module Prestissimo
     # allows for custom error pages
     # sets own app as responsible for showing error pages
     config.exceptions_app = self.routes
+
+    # Allows transition from Marshal based cookies to JSON based ones
+    config.action_dispatch.cookies_serializer = :hybrid
   end
 end
