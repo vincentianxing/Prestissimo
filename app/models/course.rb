@@ -367,8 +367,8 @@ class Course < ActiveRecord::Base
           when "A&S Staff", "Con Staff", "OCEAN Staff", "Staff", /^\s*$/
             next
           else
-	    userid = prim_userid if a_prof == prim_instructor
-	    email = prim_email if a_prof == prim_instructor
+	          userid = prim_userid if a_prof == prim_instructor
+	          email = prim_email if a_prof == prim_instructor
             fname = ""
             lname = ""
             name_arr = a_prof.split(" ")
@@ -387,8 +387,8 @@ class Course < ActiveRecord::Base
               prof = Professor.new
               prof.fname = fname
               prof.lname = lname
-	      prof.userid = userid #TODO
-	      prof.email = email #TODO
+	            prof.userid = userid #TODO
+	            prof.email = email #TODO
               prof.save
 	    else
 	      #TODO#adding in data for existing professors, consider removing
@@ -396,7 +396,7 @@ class Course < ActiveRecord::Base
 	      prof.email = email unless email.blank?
 	      prof.save
 	    end
-            self.professors << prof
+          self.professors << prof
         end
       end
     end

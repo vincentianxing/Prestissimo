@@ -55,8 +55,8 @@ namespace :db do
     Hubcourse.all.each do |hc|
       if not hc.courses.first
         puts "Bad hc, deleting #{hc.id} #{hc.cname}"
-	hc.delete
-	next
+	      hc.delete
+	      next
       end
       unless hc.department
         d = Department.find_by_dept(hc.hub_id[0..3])
