@@ -262,6 +262,10 @@ GEM
       execjs (>= 0.3.0, < 3)
     utf8-cleaner (0.2.5)
       activesupport
+    web-console (3.3.0)
+      activemodel (>= 4.2)
+      debug_inspector
+      railties (>= 4.2)
     xpath (3.1.0)
       nokogiri (~> 1.8)
 
@@ -297,7 +301,7 @@ DEPENDENCIES
   mysql2
   net-ldap
   protected_attributes
-  rails (~> 4.1)
+  rails (~> 4.2)
   redcarpet
   rspec-rails
   ruby-mysql
@@ -307,6 +311,7 @@ DEPENDENCIES
   therubyracer
   uglifier
   utf8-cleaner
+  web-console
 
 BUNDLED WITH
    1.17.3

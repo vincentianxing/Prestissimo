@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.1'
+gem 'rails', '~> 4.2'
 gem 'therubyracer'
 gem 'libv8'
 gem 'faker'
@@ -50,6 +50,10 @@ gem 'json'
 gem 'guard' # For testing
 gem 'guard-rspec'
 gem 'listen', '~> 2.1'
+
+# Can add a console to any page
+# Provides a free console on all error pages
+gem 'web-console'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -30,7 +30,7 @@ Prestissimo::Application.routes.draw do
       member do
         get 'reply_form'
         post 'reply'
-        patch 'hide_remove'
+        put 'hide_remove'
       end
     end
   end
@@ -44,9 +44,9 @@ Prestissimo::Application.routes.draw do
   resources :settings, only: [] do
     collection do
       get 'change'
-      patch 'update_all'
+      put 'update_all'
       get 'edit_motd'
-      patch 'set_motd'
+      put 'set_motd'
     end
   end
 
@@ -54,9 +54,9 @@ Prestissimo::Application.routes.draw do
   resources :carts, only: [:create, :update, :destroy, :show] do
     member do
       scope "(/:semcrn)" do
-        patch 'add'
-        patch 'remove'
-        patch 'clear'
+        put 'add'
+        put 'remove'
+        put 'clear'
       end
       get 'mail_to'
       get 'search'
