@@ -43,13 +43,13 @@ Following https://guides.rubyonrails.org/upgrading_ruby_on_rails.html
         Section 6
             6.1         --  Done
             6.2         --  Done
-            6.3         --  
-            6.4         --  
-            6.5         --  
-            6.6         --  
-            6.7         --  
-            6.8         --  
-            6.9         --  
-            6.10        --  
-            6.11        --  
-            6.12        --  
+            6.3         --  Done
+            6.4         --  Done
+            6.5         --  Done
+            6.6         --  Done
+            6.7         --  Done
+            6.8         --  Done
+            6.9         --  Done
+            6.10        --  ??   -- Might affect signin
+            6.11        --  Done
+            6.12        --  Done
