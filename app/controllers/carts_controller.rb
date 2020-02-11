@@ -38,7 +38,7 @@ class CartsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to root_path }
       format.js
-      format.csv { render text: @cart.to_csv }
+      format.csv { render plain: @cart.to_csv }
     end
   end
 

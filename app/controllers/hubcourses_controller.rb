@@ -34,7 +34,7 @@ class HubcoursesController < ApplicationController
     @vals[:professors] = @professors
     respond_to do |format|
       format.html
-      format.csv { render text: @hubcourse.to_csv(params[:enroll]||=0) }
+      format.csv { render plain: @hubcourse.to_csv(params[:enroll]||=0) }
     end
   end
 

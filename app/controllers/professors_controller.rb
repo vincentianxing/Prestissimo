@@ -116,7 +116,7 @@ class ProfessorsController < ApplicationController
     @vals
     respond_to do |format|
       format.html
-      format.csv { render text: @professor.to_csv(params[:enroll]||=0) }
+      format.csv { render plain: @professor.to_csv(params[:enroll]||=0) }
     end
   end
         
