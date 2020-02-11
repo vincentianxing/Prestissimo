@@ -55,6 +55,9 @@ gem 'listen', '~> 2.1'
 # Provides a free console on all error pages
 gem 'web-console'
 
+# Required in Rails 4.2 to use respond_to methods
+gem 'responders'
+
 # Gems used only for assets and not required
 # in production environments by default.
 gem 'sass-rails'

@@ -205,6 +205,9 @@ GEM
       ffi (~> 1.0)
     redcarpet (3.5.0)
     ref (2.0.0)
+    responders (2.4.1)
+      actionpack (>= 4.2.0, < 6.0)
+      railties (>= 4.2.0, < 6.0)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
@@ -303,6 +306,7 @@ DEPENDENCIES
   protected_attributes
   rails (~> 4.2)
   redcarpet
+  responders
   rspec-rails
   ruby-mysql
   sass-rails
