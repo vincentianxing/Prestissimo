@@ -93,14 +93,14 @@ module SessionsHelper
   def initialize_ldap_con
     credentials = {
       :method => :simple,
-      :username => "cn=pr-oprest,ou=dmanage,o=oberlin.edu,o=oberlin-college",
+      :username => "cn=pr-oprest,ou=dmanage,dc=ad,dc=oberlin,dc=edu",
       :password => "OC-2015op"
     }
     Net::LDAP.new(
-      :host => "ldap.oberlin.edu",
+      :host => "ad.oberlin.edu",
       :port => "636",
       :encryption => :simple_tls,
-      :base => "ou=People,o=oberlin.edu,o=Oberlin-College",
+      :base => "ou=people,dc=ad,dc=oberlin,dc=edu",
       :auth => credentials
     )
   end
@@ -112,7 +112,7 @@ module SessionsHelper
     return false unless ldap.bind
 
     result = ldap.bind_as(
-      :filter => "(uid=#{user})",
+      :filter => "(cn=#{user})",
       :password => pass
     )
   end
