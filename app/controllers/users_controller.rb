@@ -107,9 +107,9 @@ class UsersController < ApplicationController
     # connect to the LDAP
     if ldap.bind
       # where to look in the ldap sorta
-      treebase = "ou=People,o=oberlin.edu,o=Oberlin-College" 
+      treebase = "ou=people,dc=ad,dc=oberlin,dc=edu" 
       # find the user who's  uid is the one we want
-      filter = Net::LDAP::Filter.eq( "uid", "#{params[:user][:email].split("@")[0]}" )
+      filter = Net::LDAP::Filter.eq( "cn", "#{params[:user][:email].split("@")[0]}" )
       # search the ldap!
       result = ldap.search( :base => treebase, :filter => filter )
       if result.size > 0
