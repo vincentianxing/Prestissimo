@@ -126,7 +126,7 @@ class UsersController < ApplicationController
           @user.status = "active"
           
           #If user is faculty, match them to their id
-          if @user.role=="FACULTY"
+          if @user.role == "Faculty" or @user.role == "FACULTY"
             #Find by ObieID
             profUser=Professor.find_by_userid(@user.email.split("@")[0])
             if profUser
