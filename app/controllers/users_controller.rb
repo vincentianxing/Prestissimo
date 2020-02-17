@@ -122,11 +122,11 @@ class UsersController < ApplicationController
           # assign the parameters, chopping off leading and trailing quotes, brackets, and backslashes
           @user.fname = result.givenname.to_s.slice!(2..-3)
           @user.lname = result.sn.to_s.slice!(2..-3)
-          @user.role = result.o.to_s.slice!(2..-3)
+          @user.role = result.employeetype.to_s.slice!(2..-3)
           @user.status = "active"
           
           #If user is faculty, match them to their id
-          if @user.role=="Faculty"
+          if @user.role=="FACULTY"
             #Find by ObieID
             profUser=Professor.find_by_userid(@user.email.split("@")[0])
             if profUser
