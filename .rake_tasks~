@@ -1,4 +1,6 @@
 about
+app:template
+app:update
 assets:clean[keep]
 assets:clobber
 assets:environment
@@ -17,6 +19,7 @@ db:delete_f19[you_sure]
 db:delete_s20[you_sure]
 db:drop
 db:enrollment_revision[revision_no]
+db:environment:set
 db:expire_tokens
 db:filter_users
 db:fix_enrollments
@@ -44,17 +47,17 @@ db:structure:dump
 db:structure:load
 db:update_courses[course_file,enrollment_file]
 db:version
-doc:app
+dev:cache
 doc:clobber_app
 doc:reapp
+initializers
 jquery_ui_themes:import:google_cdn[version,theme]
 jquery_ui_themes:import:themeroller[path,name]
 log:clear
 middleware
 notes
 notes:custom
-rails:template
-rails:update
+restart
 routes
 secret
 spec
@@ -65,6 +68,7 @@ spec:models
 spec:requests
 spec:views
 stats
-time:zones:all
+time:zones[country_or_offset]
 tmp:clear
 tmp:create
+yarn:install
