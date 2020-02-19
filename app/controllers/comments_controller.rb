@@ -1,9 +1,9 @@
 class CommentsController < ApplicationController
 
-  before_filter :load_commentable
-  before_filter :load_handle
-  before_filter :student_user, only: [:edit, :reply, :create, :reply_form, :update]
-  before_filter :mute_handle, only: [:edit, :reply, :reply_form, :create, :update]
+  before_action :load_commentable
+  before_action :load_handle
+  before_action :student_user, only: [:edit, :reply, :create, :reply_form, :update]
+  before_action :mute_handle, only: [:edit, :reply, :reply_form, :create, :update]
   
   def create
     if !params[:comment][:body].blank?

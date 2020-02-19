@@ -1,6 +1,6 @@
 class HubcoursesController < ApplicationController
-  before_filter :signed_in_user
-  before_filter :admin_user, only: [:edit, :update, :destroy, :create, :new]
+  before_action :signed_in_user
+  before_action :admin_user, only: [:edit, :update, :destroy, :create, :new]
 
   def show
     @hubcourse = Hubcourse.find_by_hub_id(params[:id].gsub('-', ' '))

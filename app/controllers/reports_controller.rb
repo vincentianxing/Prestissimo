@@ -1,7 +1,7 @@
 class ReportsController < ApplicationController
-	before_filter :get_reportable, only: [:create, :edit, :update, :new]
-	before_filter :signed_in_user, only: [:create, :edit, :update, :new]
-	before_filter :admin_user, only: [:edit, :update, :index]
+	before_action :get_reportable, only: [:create, :edit, :update, :new]
+	before_action :signed_in_user, only: [:create, :edit, :update, :new]
+	before_action :admin_user, only: [:edit, :update, :index]
 
 	def index
 		@resolved = Array.new

@@ -1,7 +1,7 @@
 class HandlesController < ApplicationController
-  before_filter :signed_in_user
-#  before_filter :correct_user, only: :update
-  before_filter :admin_user, only: :mute
+  before_action :signed_in_user
+#  before_action :correct_user, only: :update
+  before_action :admin_user, only: :mute
   
   def index
     @handle = current_handle

@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include UsersHelper
   
-  before_filter :mobile_switch
+  before_action :mobile_switch
 
   def mobile_switch 
       if session[:mobile_view] == true && request.format.html?

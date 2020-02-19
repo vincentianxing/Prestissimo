@@ -20,9 +20,9 @@
 
 class ProfessorsController < ApplicationController
 
-  before_filter :signed_in_user
-  before_filter :correct_professor_user, only: [:edit, :update, :professor_courses] 
-  before_filter :admin_user, only: [:populate, :toggle_active, :new, :admin, :create]
+  before_action :signed_in_user
+  before_action :correct_professor_user, only: [:edit, :update, :professor_courses] 
+  before_action :admin_user, only: [:populate, :toggle_active, :new, :admin, :create]
 
   # render the page with the form for a new professor
   def new

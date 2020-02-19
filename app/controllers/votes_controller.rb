@@ -1,7 +1,7 @@
 class VotesController < ApplicationController
 
-  before_filter :assign_vars
-  before_filter :correct_user
+  before_action :assign_vars
+  before_action :correct_user
 
   def create
     if params[:value] == 'up'

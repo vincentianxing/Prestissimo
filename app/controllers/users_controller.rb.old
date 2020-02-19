@@ -18,9 +18,9 @@ class UsersController < ApplicationController
   private method calls (at bottom of file) to limit the actions of certain users
   e.g., the destroy action only occurs if the user is an admin
 =end
-  before_filter :signed_in_user, only: [:edit, :update, :index, :destroy, :confirm_destroy, :self_destroy, :search]
-  before_filter :correct_user, only: [:edit, :update, :confirm_destroy, :self_destroy]
-  before_filter :admin_user, only: :destroy
+  before_action :signed_in_user, only: [:edit, :update, :index, :destroy, :confirm_destroy, :self_destroy, :search]
+  before_action :correct_user, only: [:edit, :update, :confirm_destroy, :self_destroy]
+  before_action :admin_user, only: :destroy
 
 =begin rdoc
   # Renders views/users/show.html.erb. This is the Profile page.
