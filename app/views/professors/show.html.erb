@@ -121,7 +121,7 @@
 </script>
 <div id="prof_csv_link">
   <p>
-  <%= link_to "Download detailed information on all courses Prof. #{@professor.lname.capitalize} has taught since fall 2009", params.merge(:format => :csv), :target => "_blank" %>
+  <%= link_to "Download detailed information on all courses Prof. #{@professor.lname.capitalize} has taught since fall 2009", params.permit(:fname, :lname, :email, :nickname, :contact, :phone, :office, :content, :url).merge(:format => :csv), :target => "_blank" %>
   <br>
   <%= check_box_tag 'prof_csv_check', 1, false %>
   Include courses with 0 enrollment

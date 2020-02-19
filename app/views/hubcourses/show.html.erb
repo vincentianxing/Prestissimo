@@ -82,7 +82,7 @@ will show its courses, comments, and professors
 </script>
 <div id="hub_csv_link">
   <p>
-  <%= link_to "Download detailed information on each time #{@courses.first.title} has been offered since fall 2009", params.merge(:format => :csv, :enroll => "1"), :target => "_blank" %>
+  <%= link_to "Download detailed information on each time #{@courses.first.title} has been offered since fall 2009", params.permit(:hub_id, :cnum).merge(:format => :csv, :enroll => "1"), :target => "_blank" %>
   <br>
   <%= check_box_tag 'hub_csv_check', 1, true %>
   Include courses with 0 enrollment
