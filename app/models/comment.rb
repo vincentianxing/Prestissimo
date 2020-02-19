@@ -22,7 +22,7 @@
 #  old                :boolean(1)      default(FALSE)
 #
 
-class Comment < ActiveRecord::Base
+class Comment < ApplicationRecord
 	attr_accessor :div_id
 
 	# Means that a comment can be reported by other users

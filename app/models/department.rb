@@ -9,7 +9,7 @@
 #  dept_long  :string(255)
 #
 
-class Department < ActiveRecord::Base
+class Department < ApplicationRecord
   attr_accessible :dept
 
   has_and_belongs_to_many :professors, join_table: 'departments_professors'

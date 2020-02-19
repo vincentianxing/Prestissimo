@@ -46,7 +46,7 @@
 #  page             :integer(4)      default(0)
 #
 
-class Course < ActiveRecord::Base
+class Course < ApplicationRecord
   include Comparable
   #Set of fields that can be included in an update when update_attributes is called
   #Any field not included here cannot be assigned with a call to update_attributes

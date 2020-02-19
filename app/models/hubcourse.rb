@@ -12,7 +12,7 @@
 #
 
 
-class Hubcourse < ActiveRecord::Base
+class Hubcourse < ApplicationRecord
   attr_accessible :hub_id, :cnum
   has_many :courses
   belongs_to :department

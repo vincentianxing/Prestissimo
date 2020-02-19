@@ -23,7 +23,7 @@
 #  cart_id         :integer(4)
 #
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
 
   #These attributes are changeable via update_attributes
   attr_accessible :email, :fname, :password,

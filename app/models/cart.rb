@@ -10,7 +10,7 @@
 #
 
 
-class Cart < ActiveRecord::Base
+class Cart < ApplicationRecord
   attr_accessible :courses, :total_credits
   has_one :user
   has_one :cart_page

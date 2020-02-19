@@ -10,7 +10,7 @@
 #  handlekey  :string(255)
 #
 
-class Handle < ActiveRecord::Base
+class Handle < ApplicationRecord
   #These attributes are changeable via update_attributes
   attr_accessible :is_mute, :username
 

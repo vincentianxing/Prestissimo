@@ -22,7 +22,7 @@
 #  credits_done    :integer(4)
 #  double_major    :string(255)
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
 
   #These attributes are changeable via update_attributes
   attr_accessible :second_major,  :major,  :email, :fname,

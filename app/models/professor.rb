@@ -17,7 +17,7 @@
 #  content    :text
 #
 
-class Professor < ActiveRecord::Base
+class Professor < ApplicationRecord
 	#These attributes are changeable via update_attributes
   attr_accessible :fname, :lname, :email, :nickname, :contact, :phone, :office, :content, :url
 

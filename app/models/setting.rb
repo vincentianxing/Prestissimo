@@ -9,7 +9,7 @@
 #  updated_at :datetime        not null
 #
 
-class Setting < ActiveRecord::Base
+class Setting < ApplicationRecord
   attr_accessible :key, :value
 
   def self.get_val(key)
