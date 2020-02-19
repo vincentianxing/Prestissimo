@@ -57,32 +57,32 @@ Following https://guides.rubyonrails.org/upgrading_ruby_on_rails.html
         Section 5
             5.1         --  Done
             5.2         --  Done?
-            5.3         --  
-            5.4         --  
-            5.5         --  
-                5.5.1   --  
-                5.5.2   --  
-            5.6         --  
-            5.7         --  
-            5.8         --  
-            5.9         --  
-            5.10        --  
-            5.11        --  
-            5.12        --  
-            5.13        --  
-            5.14        --  
-            5.15        --  
-            5.16        --  
-            5.17        --  
-            5.18        --  
-            5.19        --  
-            5.20        --  
-                5.20.1  --  
-                5.20.2  --  
-                5.20.3  --  
-                5.20.4  --  
-                5.20.5  --  
-                5.20.6  --  
-                5.20.7  --  
-                5.20.8  --  
-            5.21        --  
+            5.3         --  Done
+            5.4         --  Done
+            5.5         --  Done
+                5.5.1   --  Done
+                5.5.2   --  Done
+            5.6         --  Done
+            5.7         --  Done
+            5.8         --  Done
+            5.9         --  Done
+            5.10        --  Done
+            5.11        --  ?? <- Needs looking at
+            5.12        --  Done
+            5.13        --  Done?
+            5.14        --  Done
+            5.15        --  Done
+            5.16        --  Done
+            5.17        --  Done
+            5.18        --  Done
+            5.19        --  Done
+            5.20        --  Done
+                5.20.1  --  Done
+                5.20.2  --  Might want to add later
+                5.20.3  --  Done
+                5.20.4  --  Done
+                5.20.5  --  Done
+                5.20.6  --  Done
+                5.20.7  --  Done
+                5.20.8  --  Might want to add later
+            5.21        --  Done
