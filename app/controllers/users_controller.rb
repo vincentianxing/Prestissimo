@@ -72,7 +72,7 @@ class UsersController < ApplicationController
     params[:user][:privacy_prefs] = newprefs
 
     # update the user, there is no old_password field, so it needs to be removed from the hash
-    if @user.update_attributes( params[:user] )
+    if @user.update(params_user)
       flash[:success] = "Settings successfully changed!"
       sign_in @user
       # go to the user profile
@@ -288,7 +288,7 @@ class UsersController < ApplicationController
   #  # know the nonce is in the db and unexpired from the edit_pass method
   #  @user = User.find_by_nonce(params[:nonce])
   #  # save the new password to the user
-  #  if @user.update_attributes( params[:user] )
+  #  if @user.update( params[:user] )
   #    @user.nonce_complete
   #    flash[:success] = "Successfully reset password"
   #    # email confirmation of changed password
@@ -412,6 +412,12 @@ class UsersController < ApplicationController
   end
 
   private
+
+  # Set which params can be updated by update
+  def params_user
+    params(:user).permit(:second_major,  :major,  :email, :fname,
+      :nickname, :year, :notes, :privacy_prefs)
+  end
 
   # verify that there is a signed in user, uses sessions_helper method signed_in?
   def signed_in_user

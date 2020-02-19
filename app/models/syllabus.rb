@@ -1,6 +1,4 @@
 class Syllabus < ApplicationRecord
-  attr_accessible :path, :course_id
-
   belongs_to :course
 
   def add

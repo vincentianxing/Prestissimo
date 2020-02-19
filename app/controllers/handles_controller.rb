@@ -42,7 +42,7 @@ class HandlesController < ApplicationController
       flash[:failure] = "Please enter a username between 1 and 16 characters long"
     elsif !(/^[\w\-]+$/ =~ params[:handle][:username])
       flash[:failure] = "Please enter a username using only letters, numbers, and underscores"
-    elsif @handle.update_attributes( params[:handle] )
+    elsif @handle.update(params_handle)
       flash[:success] = "Updated username"
     else
       flash[:failure] = "Username not valid or already taken"
@@ -70,6 +70,10 @@ class HandlesController < ApplicationController
 	end
 
   private
+
+  def params_handle
+    params(:handle).permit(:is_mute, :username)
+  end
   
   def signed_in_user
     redirect_to signin_path, notice:"Please sign in." unless signed_in?

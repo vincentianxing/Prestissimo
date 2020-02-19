@@ -11,9 +11,6 @@
 #
 
 class Handle < ApplicationRecord
-  #These attributes are changeable via update_attributes
-  attr_accessible :is_mute, :username
-
   acts_as_voter
 
 	# A handle can be reported by other users

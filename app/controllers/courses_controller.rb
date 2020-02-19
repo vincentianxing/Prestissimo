@@ -40,7 +40,7 @@ class CoursesController < ApplicationController
       section_hash[c.semcrn]=[c.changed_fields,c.notify_profs]
     end
 
-    updates = params[:course].clone
+    updates = course_params.clone
     if updates[:display_prof_note]=="0"
       updates[:display_prof_note]=false;
     else
@@ -108,7 +108,7 @@ class CoursesController < ApplicationController
     @courses.each do |c|
       updates[:changed_fields]=section_hash[c.semcrn][0]
       updates[:notify_profs]=section_hash[c.semcrn][1]
-      temp_bool=c.update_attributes(updates)
+      temp_bool=c.update(updates)
       had_error||=!temp_bool
     end
 
@@ -495,6 +495,13 @@ class CoursesController < ApplicationController
   #NOTE:
   # All Append methods escape/quote user-input values, using packaged ruby 
   #  methods.
+
+  # Sets which params can be updated in the database from a call to update
+  def course_params
+    params(:course).permit(:conflict, :syllabus, :dept, :cname, :professor, :proficiencies,
+      :building, :room, :cnum, :crn, :title, :semcrn, :prof_note, :display_prof_note,
+      :prof_desc, :which_desc, :new_desc_action, :notify_profs, :changed_fields, :recent_edit)
+  end
 
   # Appends a 'LIKE' comparison to the end of the specified query string
   #  qs: query string, string object

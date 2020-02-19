@@ -11,7 +11,6 @@
 
 
 class Cart < ApplicationRecord
-  attr_accessible :courses, :total_credits
   has_one :user
   has_one :cart_page
 
@@ -65,7 +64,7 @@ class Cart < ApplicationRecord
   #     total_credits += @hours #unless newcourses.include? course.semcrn
   #     current_user.cart.total_credits = total_credits
   #   end
-  #   current_user.cart.update_attributes!( total_credits: total_credits )
+  #   current_user.cart.update!( total_credits: total_credits )
   # end
 
 end

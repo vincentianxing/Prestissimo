@@ -48,11 +48,6 @@
 
 class Course < ApplicationRecord
   include Comparable
-  #Set of fields that can be included in an update when update_attributes is called
-  #Any field not included here cannot be assigned with a call to update_attributes
-  attr_accessible :conflict, :syllabus, :dept, :cname, :professor, :proficiencies,
-    :building, :room, :cnum, :crn, :title, :semcrn, :prof_note, :display_prof_note,
-    :prof_desc, :which_desc, :new_desc_action, :notify_profs, :changed_fields, :recent_edit
   
   belongs_to :hubcourse
   has_and_belongs_to_many :professors, join_table: 'courses_professors'

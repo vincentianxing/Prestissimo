@@ -69,7 +69,7 @@ class ProfessorsController < ApplicationController
   def update
     @professor = Professor.find(params[:id])
 
-    if @professor.update_attributes( params[:professor] )
+    if @professor.update(params_professor)
       flash[:success] = "Profile successfully updated!"
       # go to the professor profile
       redirect_to show_professor_path(fname: @professor.fname, lname: @professor.lname)
@@ -204,6 +204,11 @@ class ProfessorsController < ApplicationController
 
 
   private
+
+  # Set which params can be updated with update
+  def params_professor
+    params(:professor).permit(:fname, :lname, :email, :nickname, :contact, :phone, :office, :content, :url)
+  end
 
   # check if there is a user
   def signed_in_user

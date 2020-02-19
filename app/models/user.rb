@@ -24,10 +24,6 @@
 
 class User < ApplicationRecord
 
-  #These attributes are changeable via update_attributes
-  attr_accessible :second_major,  :major,  :email, :fname,
-    :nickname, :year, :notes, :privacy_prefs
-
   # Means that a user can create reports
   has_many :reports
   # A user can also be reported, however

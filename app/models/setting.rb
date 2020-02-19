@@ -10,8 +10,6 @@
 #
 
 class Setting < ApplicationRecord
-  attr_accessible :key, :value
-
   def self.get_val(key)
 	  Setting.find_by_key(key).value
   end

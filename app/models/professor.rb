@@ -18,9 +18,6 @@
 #
 
 class Professor < ApplicationRecord
-	#These attributes are changeable via update_attributes
-  attr_accessible :fname, :lname, :email, :nickname, :contact, :phone, :office, :content, :url
-
 	#Relations to other models
   acts_as_commentable
   has_and_belongs_to_many :courses, join_table: 'courses_professors'

@@ -62,7 +62,7 @@ class SessionsController < ApplicationController
         end
         user.cart.set_courses(cart)
         #total_credits = Cart.find_by_cartid(cookies[:cart]).total_credits
-        #user.cart.update_attributes(total_credits: total_credits)
+        #user.cart.update(total_credits: total_credits)
         user.cart.save
         # clear the cookie cart, deleting is bad... keep cookie cart always for unsigned in cart activities...
         c_cart = Cart.find_by_cartid(cookies[:cart]) #cookie_cart

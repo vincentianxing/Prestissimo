@@ -91,7 +91,7 @@ class CartsController < ApplicationController
         total_credits = @cart.total_credits.to_f
         total_credits += @hours 
         @cart.total_credits = total_credits
-        @cart.update_attributes!(total_credits: total_credits )
+        @cart.update!(total_credits: total_credits )
         @cart.set_courses(courses)
         @cart_courses = Array.new
         if @cart.save
@@ -141,7 +141,7 @@ class CartsController < ApplicationController
     total_credits = @cart.total_credits.to_f
     total_credits += @hours
     @cart.total_credits = total_credits
-    @cart.update_attributes!(total_credits: total_credits )
+    @cart.update!(total_credits: total_credits )
     @cart.set_courses(courses)
     @cart_courses = Array.new
     if @cart.save
@@ -164,7 +164,7 @@ class CartsController < ApplicationController
       params[:cart][:courses] << ' ' + parts[1].strip unless parts[1].blank?
       @cart_courses = Array.new
       @hours = 0
-      if @cart.update_attributes(params[:cart])
+      if @cart.update(cart_params)
         @cart_courses = @cart.get_courses
         course = Course.find_by_semcrn(params[:semcrn])
         if course.crmax != course.crmin
@@ -179,7 +179,7 @@ class CartsController < ApplicationController
         else
           @cart.total_credits = total_credits
         end
-        @cart.update_attributes!(total_credits: total_credits )
+        @cart.update!(total_credits: total_credits )
       else
         @cart_courses = nil
         @cart.destroy
@@ -245,6 +245,11 @@ class CartsController < ApplicationController
   end
 
   private
+
+  # Sets which params can be updated in the database from a call to update
+  def cart_params
+    params.require(:cart).permit(:total_credits, :courses)
+  end
 
   def verify_email(email)
     (email =~ /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i) == 0
