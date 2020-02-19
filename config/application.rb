@@ -21,7 +21,8 @@ end
 module Prestissimo
   class Application < Rails::Application
 
-    config.middleware.use "UTF8Sanitizer"
+    # Use UTF8Sanitizer (rack-utf8_sanitizer gem)
+    config.middleware.insert 0, Rack::UTF8Sanitizer
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

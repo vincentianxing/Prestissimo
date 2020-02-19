@@ -13,7 +13,10 @@ gem 'jquery-rails'
 gem 'jquery_mobile_rails'
 gem 'jquery-week-calendar'
 gem 'jquery-ui-themes'
+
+gem 'rack-utf8_sanitizer'
 gem 'utf8-cleaner'
+
 gem 'redcarpet'
 
 gem 'dalli'
