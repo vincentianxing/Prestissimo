@@ -19,7 +19,7 @@ namespace :db do
   task notify_profs: :environment do
     # Find courses where professors want to be notified
     course_arr=[]
-    Course.all(:conditions=>"notify_profs IS NOT NULL AND notify_profs != ''").each do |c|
+    Course.where("notify_profs IS NOT NULL AND notify_profs != ''").each do |c|
       if course_arr.include?(c.semcrn)
         c.recent_edit=""
         c.changed_fields=""

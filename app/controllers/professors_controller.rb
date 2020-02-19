@@ -196,7 +196,7 @@ class ProfessorsController < ApplicationController
     
     @professor.departments.each do |d|
       qs  = '( dept LIKE '+ActiveRecord::Base.connection.quote("%"+d.dept+"%")+" AND semester=" + ActiveRecord::Base.connection.quote(short_cur_sem) + ")"
-      dept_courses = Course.all(:conditions=>qs).sort
+      dept_courses = Course.where(qs).sort
       @prof_courses[d.dept] = dept_courses if dept_courses.size > 0
     end
     

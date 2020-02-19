@@ -23,7 +23,7 @@ class Department < ApplicationRecord
     qs = '( dept LIKE '+ActiveRecord::Base.connection.quote("%"+dept+"%") + ' AND status!="cancelled"'
     qs << ' AND ( enroll BETWEEN 1 AND 999 )' if (enroll == 0)
     qs << ' )'
-    courses = Course.all( :conditions => qs).sort
+    courses = Course.where(qs).sort
     CSV.generate do |csv|
       csv << Course.csv_headers 
       courses.each do |c|
