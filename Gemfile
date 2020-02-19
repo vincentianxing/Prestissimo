@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2'
+gem 'rails', '~> 5.0'
 gem 'therubyracer'
 gem 'libv8'
 gem 'faker'
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 gem 'mail'
 gem 'mobile-fu'
 gem 'acts_as_commentable_with_threading'
@@ -41,7 +41,7 @@ end
 gem 'mysql2'
 gem 'activerecord-native_db_types_override'
 
-gem 'protected_attributes' # Needs to be removed by Rails 5
+# gem 'protected_attributes' # Needs to be removed by Rails 5
 
 gem 'ruby-mysql'
 
@@ -49,7 +49,7 @@ gem 'json'
 
 gem 'guard' # For testing
 gem 'guard-rspec'
-gem 'listen', '~> 2.1'
+gem 'listen'
 
 # Can add a console to any page
 # Provides a free console on all error pages
