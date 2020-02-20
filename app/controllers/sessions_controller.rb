@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
     @obie_email = email
     user = User.find_by_email(email)
     # create a new user if one doesn't already exist
-    return redirect_to create_user_path(:user=>params[:session]) unless user
+    return redirect_to create_user_path(:user => params[:session].permit(:email, :password)) unless user
     result = authenticate(user.email.split('@')[0],params[:session][:password])
     if result
       #we get a list of results, but we only care about the first one
