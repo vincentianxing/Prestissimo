@@ -1,7 +1,7 @@
 <h1>Upload syllabus for <%= @course.title %></h1>
 <div class="upload_syllabus">
   Enter a URL to the syllabus for <%= @course.title %>: <br /> <br/>
-    <%= form_for(@syllabus, url: create_syllabus_path(@syllabus.id)), method: 'post', method: 'post' do |f| %>
+    <%= form_for(@syllabus, url: create_syllabus_path(@syllabus.id), method: 'post') do |f| %>
       <%= f.label "URL: ", class: "sylsubmit_label" %>
       <%= f.text_field :path, class: "inputfield_alt2" %>
       <%= f.submit "Submit", class: "submit_button" %>

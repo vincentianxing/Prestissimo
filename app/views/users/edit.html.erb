@@ -19,7 +19,7 @@ the edit action passes a hash containing the user and their handle
 <% unless faculty_user?(@user) %>
   <div id="handle_form_outer">
     <!-- The Handle update form -->
-    <%= form_for(@handle, url: update_handle_path(@handle.id)), method: 'post' do |f| %>
+    <%= form_for(@handle, url: update_handle_path(@handle.id), method: 'post') do |f| %>
       <%= render 'shared/error_messages' %>
       <div id="handle_form_inner">
         <span class="su_label">
@@ -36,7 +36,7 @@ the edit action passes a hash containing the user and their handle
 <div class="sign_form" id="usr_update_form">
 
   <!-- The User update form -->
-  <%= form_for(@user, url: update_path(@user.id)), method: 'post' do |f| %>
+  <%= form_for(@user, url: update_path(@user.id), method: 'post') do |f| %>
     <%= render 'shared/error_messages' %>
     <div class="su_textfield">
       <span class="su_label">
