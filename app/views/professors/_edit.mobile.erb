@@ -3,7 +3,7 @@
     -->
 
 <div>
-<%= form_for @professor, url: update_professor_path, remote: true do |f| %>
+<%= form_for @professor, url: update_professor_path, remote: true, method: 'post' do |f| %>
 <span class="su_label">
   <%= f.label :fname, "Name" %>
 </span>

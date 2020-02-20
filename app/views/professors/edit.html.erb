@@ -8,7 +8,7 @@ Page for updating a professor page!
 <h1>Update Your Page</h1>
 
 <div id="edit_prof_div">
-  <%= form_for @professor, url: update_professor_path(@professor.id) do |f| %>
+  <%= form_for @professor, url: update_professor_path(@professor.id), method: 'post' do |f| %>
     <%= render 'shared/error_messages' %>
     <div id="prof_nick">
       <span class="su_label">

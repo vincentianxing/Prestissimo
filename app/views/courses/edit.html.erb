@@ -23,7 +23,7 @@ Page for professors to edit courses!
 <div id="edit_course_div">
 
 
-  <%= form_for @course, url: update_course_path(@course.id) do |f| %>
+  <%= form_for @course, url: update_course_path(@course.id), method: 'post'  do |f| %>
     <%= render 'shared/error_messages' %>
 
     <div class="text_input_div">

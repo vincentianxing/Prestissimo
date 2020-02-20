@@ -19,7 +19,7 @@ the edit action passes a hash containing the user and their handle
     <h2>Commenter Name</h2>
   </div>
   <div class="ui-body ui-body-a">
-    <%= form_for(@handle, url: update_handle_path(@handle.id)) do |f| %>
+    <%= form_for(@handle, url: update_handle_path(@handle.id)), method: 'post' do |f| %>
       <%= render 'shared/error_messages' %>
       <div id="handle_form_inner">
         <div class="su_textfield">
@@ -37,7 +37,7 @@ the edit action passes a hash containing the user and their handle
   </div>
   <div class="ui-body ui-body-a">
     <!-- The User update form -->
-    <%= form_for(@user, url: update_path(@user.id)) do |f| %>
+    <%= form_for(@user, url: update_path(@user.id)), method: 'post' do |f| %>
       <%= render 'shared/error_messages' %>
       
       
