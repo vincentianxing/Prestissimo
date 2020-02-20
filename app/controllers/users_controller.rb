@@ -415,7 +415,7 @@ class UsersController < ApplicationController
 
   # Set which params can be updated by update
   def params_user
-    params(:user).permit(:second_major,  :major,  :email, :fname,
+    params[:user].permit(:second_major,  :major,  :email, :fname,
       :nickname, :year, :notes, :privacy_prefs)
   end
 

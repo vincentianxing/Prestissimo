@@ -72,7 +72,7 @@ class HandlesController < ApplicationController
   private
 
   def params_handle
-    params(:handle).permit(:is_mute, :username)
+    params[:handle].permit(:is_mute, :username)
   end
   
   def signed_in_user

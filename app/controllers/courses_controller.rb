@@ -498,7 +498,7 @@ class CoursesController < ApplicationController
 
   # Sets which params can be updated in the database from a call to update
   def course_params
-    params(:course).permit(:conflict, :syllabus, :dept, :cname, :professor, :proficiencies,
+    params[:course].permit(:conflict, :syllabus, :dept, :cname, :professor, :proficiencies,
       :building, :room, :cnum, :crn, :title, :semcrn, :prof_note, :display_prof_note,
       :prof_desc, :which_desc, :new_desc_action, :notify_profs, :changed_fields, :recent_edit)
   end

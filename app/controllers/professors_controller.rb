@@ -207,7 +207,7 @@ class ProfessorsController < ApplicationController
 
   # Set which params can be updated with update
   def params_professor
-    params(:professor).permit(:fname, :lname, :email, :nickname, :contact, :phone, :office, :content, :url)
+    params[:professor].permit(:fname, :lname, :email, :nickname, :contact, :phone, :office, :content, :url)
   end
 
   # check if there is a user
