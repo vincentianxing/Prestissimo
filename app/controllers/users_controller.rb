@@ -115,14 +115,14 @@ class UsersController < ApplicationController
       if result.size > 0
         if authenticate(params[:user][:email].split("@")[0], params[:user][:password])
           params[:user].delete(:password)
-          @user = User.new(params[:user])
+          @user = User.new(params_user)
           # find the first LDAP entry for the given flast (we ignore any extra entries that also match, there should really not be any...)
           result = result.first
           @user.email = @user.email.split("@")[0] + "@oberlin.edu"
           # assign the parameters, chopping off leading and trailing quotes, brackets, and backslashes
           @user.fname = result.givenname.to_s.slice!(2..-3)
           @user.lname = result.sn.to_s.slice!(2..-3)
-          @user.role = result.employeetype.to_s.slice!(2..-3)
+          @user.role = result.employeenumber.to_s.slice!(2..-3)
           @user.status = "active"
           
           #If user is faculty, match them to their id

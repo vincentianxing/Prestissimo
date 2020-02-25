@@ -77,7 +77,7 @@ class SessionsController < ApplicationController
       # Update the user's information based on the ldap
       user.fname = result.givenname.to_s.slice!(2..-3)
       user.lname = result.sn.to_s.slice!(2..-3)
-      user.role = result.employeetype.to_s.slice!(2..-3)
+      user.role = result.employeenumber.to_s.slice!(2..-3)
       user.status = "active"
       
       if user.role == "Faculty" or user.role == "FACULTY"
