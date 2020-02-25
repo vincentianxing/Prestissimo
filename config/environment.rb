@@ -1,5 +1,5 @@
 # Load the rails application
-require File.expand_path('../application', __FILE__)
+require_relative 'application'
 
 # Patches a mysql error where primary keys default to NULL
 require File.expand_path('../initializers/abstract_mysql2_adapter.rb', __FILE__)
