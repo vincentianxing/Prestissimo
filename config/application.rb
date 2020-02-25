@@ -1,25 +1,24 @@
-require File.expand_path('../boot', __FILE__)
-
+require_relative 'boot'
+require 'rails'
 # Pick the frameworks you want:
 require "csv"
 require "active_record/railtie"
+# require "active_storage/railite"
 require "action_controller/railtie"
 require "action_mailer/railtie"
-# require "active_resource/railtie" ## Support has been removed as of Rails 4.x
 require "sprockets/railtie"
 require 'digest/md5'
-# require "rails/test_unit/railtie"
 
 
-if defined?(Bundler)
-  # If you precompile assets before deploying to production, use this line
-  Bundler.require(*Rails.groups(:assets => %w(development test)))
-  # If you want your assets lazily compiled in production, use this line
-  # Bundler.require(:default, :assets, Rails.env)
-end
+# Require the gems listed in Gemfile, including any gems
+# you've limited to :test, :development, or :production.
+Bundler.require(*Rails.groups)
 
 module Prestissimo
   class Application < Rails::Application
+
+    # Initialize configuration defaults for originally generated Rails version.
+    # config.load_defaults 5.0
 
     # Use UTF8Sanitizer (rack-utf8_sanitizer gem)
     config.middleware.insert 0, Rack::UTF8Sanitizer
