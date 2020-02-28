@@ -30,10 +30,19 @@ gem 'net-ldap'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
-			#gem 'bcrypt-ruby', '3.0.1'
-      gem 'sqlite3'
-      gem 'rspec-rails'
-      gem 'annotate'
+  #gem 'bcrypt-ruby', '3.0.1'
+  gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'annotate'
+  
+  # Can add a console to any page
+  # Provides a free console on all error pages
+  gem 'web-console'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'factory_girl_rails'
 end
 
 group :development do
@@ -55,10 +64,6 @@ gem 'guard' # For testing
 gem 'guard-rspec'
 gem 'listen'
 
-# Can add a console to any page
-# Provides a free console on all error pages
-gem 'web-console'
-
 # Required in Rails 4.2 to use respond_to methods
 gem 'responders'
 
@@ -72,12 +77,6 @@ gem 'jquery-ui-rails'
 # gem 'therubyracer', :platforms => :ruby
 
 gem 'uglifier'
-
-
-group :test do
-      gem 'capybara'
-      gem 'factory_girl_rails'
-end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

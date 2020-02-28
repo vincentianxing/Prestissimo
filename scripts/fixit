@@ -10,9 +10,9 @@ BUNDLE="/usr/share/rvm/rubies/$RUBYV/bin/bundle"
 RAKE="/usr/share/rvm/rubies/$RUBYV/bin/rake"
 RUBYBIN="/usr/share/rvm/rubies/$RUBYV/bin"
 SUPARAMS="export PATH=\$PATH:$RUBYBIN;"
-WEBUSER="svradm"
+WEBUSER="oprestissimo"
 
-# sign in as apache
+# sign in as web user
 if [ `id -u` -ne 0 ]; then
         echo "Need to be root to run fixit"
         exit 1
@@ -53,7 +53,7 @@ echo "*** Bundle update and install..."
 # update database
 echo
 echo "*** Updating database..."
-sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $RAKE db:migrate" # Need to specify RAILS_ENV for production
+sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $RAKE db:migrate RAILS_ENV=production" # Need to specify RAILS_ENV for production
 if [ $? -ne 0 ]; then
     echo "Failed!"
     exit 3
@@ -70,7 +70,7 @@ fi
 # deploy
 echo
 echo "*** Precompiling assets..."
-sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $RAKE assets:precompile"
+sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $RAKE assets:precompile RAILS_ENV=production"
 if [ $? -ne 0 ];
 then
     echo "Failed!"
