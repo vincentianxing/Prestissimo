@@ -1,4 +1,4 @@
-class JoinDepartmentsAndHubcourses < ActiveRecord::Migration
+class JoinDepartmentsAndHubcourses < ActiveRecord::Migration[3.2]
   def change
     create_table :departments_hubcourses, id: false do |t|
       t.references :department, null: false

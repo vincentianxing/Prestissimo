@@ -1,4 +1,4 @@
-class AddFieldsToProfessors < ActiveRecord::Migration
+class AddFieldsToProfessors < ActiveRecord::Migration[3.2]
   def change
     add_column :professors, :office, :string
     add_column :professors, :phone, :string

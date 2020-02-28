@@ -1,4 +1,4 @@
-class AddProfessorsHabtmCoursesJoin < ActiveRecord::Migration
+class AddProfessorsHabtmCoursesJoin < ActiveRecord::Migration[3.2]
   def change
     create_table :professors_courses, id: false do |t|
       t.references :professor, null: false

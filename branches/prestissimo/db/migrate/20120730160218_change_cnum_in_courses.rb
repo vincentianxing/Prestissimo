@@ -1,4 +1,4 @@
-class ChangeCnumInCourses < ActiveRecord::Migration
+class ChangeCnumInCourses < ActiveRecord::Migration[3.2]
   def up
     change_column :courses, :cnum, :string, default: ""
     add_column :courses, :dept_long, :string, default: ""

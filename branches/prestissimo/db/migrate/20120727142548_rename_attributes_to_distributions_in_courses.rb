@@ -1,4 +1,4 @@
-class RenameAttributesToDistributionsInCourses < ActiveRecord::Migration
+class RenameAttributesToDistributionsInCourses < ActiveRecord::Migration[3.2]
   def up
     add_column :courses, :distributions, :string
     remove_column :courses, :attributes

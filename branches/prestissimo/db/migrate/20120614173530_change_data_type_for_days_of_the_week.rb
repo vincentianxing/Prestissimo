@@ -1,4 +1,4 @@
-class ChangeDataTypeForDaysOfTheWeek < ActiveRecord::Migration
+class ChangeDataTypeForDaysOfTheWeek < ActiveRecord::Migration[3.2]
   def up
 		change_table :courses do |t|
 			t.change :days_off, :string

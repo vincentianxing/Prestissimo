@@ -1,4 +1,4 @@
-class AddFieldsToCourses1 < ActiveRecord::Migration
+class AddFieldsToCourses1 < ActiveRecord::Migration[3.2]
   def change
     add_column :courses, :csize, :integer
     add_column :courses, :semester, :string

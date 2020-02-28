@@ -1,4 +1,4 @@
-class JoinProfessorsAndDepartments < ActiveRecord::Migration
+class JoinProfessorsAndDepartments < ActiveRecord::Migration[3.2]
   def change
     create_table :professors_departments, id: false do |t|
       t.references :professor, null: false

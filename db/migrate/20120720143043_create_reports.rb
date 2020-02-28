@@ -1,4 +1,4 @@
-class CreateReports < ActiveRecord::Migration
+class CreateReports < ActiveRecord::Migration[3.2]
   def change
     create_table :reports do |t|
       t.string :title

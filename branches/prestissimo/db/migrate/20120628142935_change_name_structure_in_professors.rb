@@ -1,4 +1,4 @@
-class ChangeNameStructureInProfessors < ActiveRecord::Migration
+class ChangeNameStructureInProfessors < ActiveRecord::Migration[3.2]
   def up
     remove_column :professors, :name
     add_column :professors, :fname, :string

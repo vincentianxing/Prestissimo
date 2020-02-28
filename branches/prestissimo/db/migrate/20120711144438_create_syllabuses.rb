@@ -1,4 +1,4 @@
-class CreateSyllabuses < ActiveRecord::Migration
+class CreateSyllabuses < ActiveRecord::Migration[3.2]
   def change
     create_table :syllabuses do |t|
       t.string :path
