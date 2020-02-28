@@ -37,18 +37,18 @@ fi
 echo "*** Bundle update and install..."
 
 # bundle update
-sudo su $WEBUSER -c "$SUPARAMS $BUNDLE update --quiet"
-if [ $? -ne 0 ]; then
-    echo "Failed!"
-    exit 6
-fi
+# sudo $BUNDLE update --quiet
+# if [ $? -ne 0 ]; then
+#     echo "Failed!"
+#     exit 6
+# fi
 
 # bundle install
-sudo su $WEBUSER -c "$SUPARAMS $BUNDLE install --quiet"
-if [ $? -ne 0 ]; then
-    echo "Failed!"
-    exit 7
-fi
+# sudo su $WEBUSER -c "$SUPARAMS $BUNDLE install --quiet"
+# if [ $? -ne 0 ]; then
+#     echo "Failed!"
+#     exit 7
+# fi
 
 # update database
 echo
