@@ -216,7 +216,7 @@ module Rack
 
     # This regexp matches all 'unreserved' characters from RFC3986 (2.3),
     # plus all multibyte UTF-8 characters.
-    UNRESERVED_OR_UTF8 = /[A-Za-z0-9\-._~\x80-\xFF]/
+    UNRESERVED_OR_UTF8 = "/[A-Za-z0-9\-._~\x80-\xFF]/"
 
     # RFC3986, 2.2 states that the characters from 'reserved' group must be
     # protected during normalization (which is what UTF8Sanitizer does).
