@@ -1,4 +1,4 @@
-class CreateHandles < ActiveRecord::Migration[3.2]
+class CreateHandles < ActiveRecord::Migration[4.2]
   def change
     create_table :handles do |t|
       t.string :username

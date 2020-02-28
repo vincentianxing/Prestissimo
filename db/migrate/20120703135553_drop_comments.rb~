@@ -1,4 +1,4 @@
-class DropComments < ActiveRecord::Migration[3.2]
+class DropComments < ActiveRecord::Migration[4.2]
   def up
     drop_table(:comments)
   end

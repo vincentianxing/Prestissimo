@@ -1,4 +1,4 @@
-class AddDetailsToCourses < ActiveRecord::Migration[3.2]
+class AddDetailsToCourses < ActiveRecord::Migration[4.2]
   def change
     add_column :courses, :prof_desc, :text
     add_column :courses, :which_desc, :string

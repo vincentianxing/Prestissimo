@@ -1,4 +1,4 @@
-class CreateHubcourses < ActiveRecord::Migration[3.2]
+class CreateHubcourses < ActiveRecord::Migration[4.2]
   def change
     create_table :hubcourses do |t|
       t.string :hub_id

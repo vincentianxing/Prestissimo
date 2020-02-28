@@ -1,4 +1,4 @@
-class DrasticallyChangeFieldsInCourses < ActiveRecord::Migration[3.2]
+class DrasticallyChangeFieldsInCourses < ActiveRecord::Migration[4.2]
   def up 
     add_column :courses, :prereqs, :text
     add_column :courses, :short_title, :string

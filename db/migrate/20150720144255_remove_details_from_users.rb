@@ -1,4 +1,4 @@
-class RemoveDetailsFromUsers < ActiveRecord::Migration[3.2]
+class RemoveDetailsFromUsers < ActiveRecord::Migration[4.2]
   def up
     remove_column :users, :gender
     remove_column :users, :password_digest

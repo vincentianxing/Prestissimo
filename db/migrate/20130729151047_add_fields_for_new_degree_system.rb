@@ -1,4 +1,4 @@
-class AddFieldsForNewDegreeSystem < ActiveRecord::Migration[3.2]
+class AddFieldsForNewDegreeSystem < ActiveRecord::Migration[4.2]
   def change
     # fix for differences between .com and .info
     #add_column :users, :second_major, :string

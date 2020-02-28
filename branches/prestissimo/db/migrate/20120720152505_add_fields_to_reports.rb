@@ -1,4 +1,4 @@
-class AddFieldsToReports < ActiveRecord::Migration[3.2]
+class AddFieldsToReports < ActiveRecord::Migration[4.2]
   def change
     add_column :reports, :response, :text
     add_column :reports, :admin_email, :string

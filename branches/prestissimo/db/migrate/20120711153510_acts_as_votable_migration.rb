@@ -1,4 +1,4 @@
-class ActsAsVotableMigration < ActiveRecord::Migration[3.2]
+class ActsAsVotableMigration < ActiveRecord::Migration[4.2]
   def self.up
     create_table :votes do |t|
 

@@ -1,4 +1,4 @@
-class DropDeptHubcJoin < ActiveRecord::Migration[3.2]
+class DropDeptHubcJoin < ActiveRecord::Migration[4.2]
   def up
 	  drop_table :departments_hubcourses
   end

@@ -1,4 +1,4 @@
-class FixDepartmentProfessorJoin < ActiveRecord::Migration[3.2]
+class FixDepartmentProfessorJoin < ActiveRecord::Migration[4.2]
   def up
     drop_table :professors_departments
     create_table :departments_professors, id: false do |t|
