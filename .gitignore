@@ -67,3 +67,6 @@ svn*
 /db/badlines.txt
 /db/enrollout
 /db/backups/*
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
