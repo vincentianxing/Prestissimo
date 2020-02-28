@@ -18,6 +18,8 @@ pickle-email-*.html
 
 # TODO Comment out this rule if you are OK with secrets being uploaded to the repo
 .secret*
+config/secrets.yml.key
+config/master.key
 
 # dotenv
 # TODO Comment out this rule if environment variables can be committed
