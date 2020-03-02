@@ -21,7 +21,8 @@ module Prestissimo
     # config.load_defaults 5.0
 
     # Use UTF8Sanitizer (rack-utf8_sanitizer gem)
-    config.middleware.insert 0, Rack::UTF8Sanitizer
+    # config.middleware.insert 0, Rack::UTF8Sanitizer
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
