@@ -320,7 +320,7 @@ img.prof_png {
   } 
   tr.full {
     td.chkbox, td.car_inf.cnum {
-    background-image: url(/assets/full_bg.gif);
+    background-image: image-url("/assets/full_bg.gif");
     background-repeat: repeat-y;
     background-position: top left;
     }
