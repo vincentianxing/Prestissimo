@@ -28,7 +28,7 @@ echo "*** Pulling from git repository..."
 
 # git pull
 sudo su $WEBUSER -c "git stash"
-sudo git pull
+sudo su $WEBUSER -c "git pull"
 if [ $? -ne 0 ]; then
     echo "git pull failed"
     exit 2
@@ -44,11 +44,11 @@ echo "*** Bundle update and install..."
 # fi
 
 # bundle install
-# sudo su $WEBUSER -c "$SUPARAMS $BUNDLE install --quiet"
-# if [ $? -ne 0 ]; then
-#     echo "Failed!"
-#     exit 7
-# fi
+sudo su $WEBUSER -c "$SUPARAMS $BUNDLE install --quiet --deployment --without development test"
+if [ $? -ne 0 ]; then
+    echo "Failed!"
+    exit 7
+fi
 
 # update database
 echo
@@ -80,7 +80,7 @@ fi
 # restart apache server
 echo
 echo "*** Restarting apache server..."
-sudo systemctl restart apache2.service
+sudo apache2ctl restart
 if [ $? -ne 0 ];
 then
     echo "Failed!"
