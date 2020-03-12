@@ -1,4 +1,4 @@
-Prestissimo::Application.configure do
+Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # The test environment is used exclusively to run your application's
@@ -17,9 +17,10 @@ Prestissimo::Application.configure do
   config.whiny_nils = true
 
   # Show full error reports and disable caching
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
   config.action_mailer.perform_caching = false
+  config.cache_store = :null_store
 
   # Raise exceptions instead of rendering exception templates
   config.action_dispatch.show_exceptions = false

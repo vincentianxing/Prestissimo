@@ -5,6 +5,6 @@ require_relative 'application'
 require File.expand_path('../initializers/abstract_mysql2_adapter.rb', __FILE__)
 
 # Initialize the rails application
-Prestissimo::Application.initialize!
+Rails.application.initialize!
 
 ENV[ 'RAILS_ENV' ] ||= 'production'

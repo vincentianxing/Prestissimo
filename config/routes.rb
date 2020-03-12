@@ -1,4 +1,4 @@
-Prestissimo::Application.routes.draw do
+Rails.application.routes.draw do
 
     #example of what 'resources :users' would create automatically 
     #

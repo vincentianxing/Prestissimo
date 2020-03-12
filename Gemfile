@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.2'
+gem 'rails', '~> 6.0'
 gem 'therubyracer'
 gem 'libv8'
 gem 'faker'
@@ -24,6 +24,8 @@ gem 'dalli'
 gem 'test-unit' # Added for rails console
 
 gem 'bootsnap' # New in Rails 5.2
+
+gem 'webpacker' # New in Rails 6.0
 
 gem 'net-ldap'
 

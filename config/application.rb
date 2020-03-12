@@ -7,7 +7,7 @@ require "active_record/railtie"
 require "action_controller/railtie"
 require "action_mailer/railtie"
 require "sprockets/railtie"
-require 'digest/md5'
+# require 'digest/md5'
 
 
 # Require the gems listed in Gemfile, including any gems
@@ -24,7 +24,7 @@ module Prestissimo
     # config.middleware.insert 0, Rack::UTF8Sanitizer
 
     # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
+    # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
