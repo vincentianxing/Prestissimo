@@ -17,8 +17,8 @@ Bundler.require(*Rails.groups)
 module Prestissimo
   class Application < Rails::Application
 
-    # Initialize configuration defaults for originally generated Rails version.
-    # config.load_defaults 5.0
+    # Initialize configuration defaults for Rails 6.0
+    config.load_defaults "6.0"
 
     # Use UTF8Sanitizer (rack-utf8_sanitizer gem)
     # config.middleware.insert 0, Rack::UTF8Sanitizer
@@ -44,6 +44,21 @@ module Prestissimo
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    # Embed purpose and expiry metadata inside signed and encrypted
+    # cookies for increased security.
+    #
+    # This option is not backwards compatible with earlier Rails versions.
+    # It's best enabled when your entire app is migrated and stable on 6.0.
+    # Rails.application.config.action_dispatch.use_cookies_with_metadata = true
+
+    # When assigning to a collection of attachments declared via `has_many_attached`, replace existing
+    # attachments instead of appending. Use #attach to add new attachments without replacing existing ones.
+    Rails.application.config.active_storage.replace_on_assign_to_many = true
+
+    # New in Rails 6
+    # Opimizes load paths by not including user define paths (I think)
+    config.add_autoload_paths_to_load_path = false
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"

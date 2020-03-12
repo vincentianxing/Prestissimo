@@ -99,23 +99,23 @@ Following https://guides.rubyonrails.org/upgrading_ruby_on_rails.html
         Section 2
             2.1         --  Done
             2.2         --  Done
-            2.3         --  
-            2.4         --  
-            2.5         --  
-            2.6         --  
-            2.7         --  
-                2.7.1   --  
-                2.7.2   --  
-                2.7.3   --  
-                2.7.4   --  
-                2.7.5   --  
-                2.7.6   --  
-                2.7.7   --  
-                2.7.8   --  
-                2.7.9   --  
-                2.7.10  --  
-                2.7.11  --  
-                2.7.12  --  
-                2.7.13  --  
-                2.7.14  --  
-            2.8         --  
+            2.3         --  Done
+            2.4         --  Done
+            2.5         --  Done
+            2.6         --  Done
+            2.7         --  Done
+                2.7.1   --  Done
+                2.7.2   --  There is a bug, should be fixed in 6.0.3
+                2.7.3   --  Done
+                2.7.4   --  Done
+                2.7.5   --  Done
+                2.7.6   --  Done??
+                2.7.7   --  Done??
+                2.7.8   --  ??
+                2.7.9   --  Done
+                2.7.10  --  Done
+                2.7.11  --  Done
+                2.7.12  --  Done
+                2.7.13  --  Done
+                2.7.14  --  Done
+            2.8         --  Done
