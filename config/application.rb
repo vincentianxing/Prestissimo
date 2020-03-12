@@ -3,7 +3,7 @@ require 'rails'
 # Pick the frameworks you want:
 require "csv"
 require "active_record/railtie"
-# require "active_storage/railite"
+require "active_storage/engine"
 require "action_controller/railtie"
 require "action_mailer/railtie"
 require "sprockets/railtie"

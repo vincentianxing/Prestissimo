@@ -2,7 +2,8 @@ module CommentsHelper
 
 	# Takes a TIME object and converts it to human readable timestamp for comments
 	def translate_time(t)
-		time = t.in_time_zone("Eastern Time (US & Canada)").to_s
+		time_frozen = t.in_time_zone("Eastern Time (US & Canada)").to_s
+		time = time_frozen.dup
 		5.times { time.chop! }
 		time << "EST"
 		tarray = time.split(" ")
