@@ -84,7 +84,7 @@
     <% end %>
 
     <!-- Show number of positive votes -->
-    <p class="up_text"><%= @comment.likes.size %></p>
+    <p class="up_text"><%= @comment.get_likes.size %></p>
   </div>
 
   <div class="downvote_div">
@@ -109,7 +109,7 @@
     <% end %>
 
     <!-- Show number of negative votes -->
-    <p class="down_text"><%= @comment.dislikes.size %></p>
+    <p class="down_text"><%= @comment.get_dislikes.size %></p>
   </div>
   <div  <%= "id=#{@comment.id}_edit_area class=edit_comment" %>>
   </div>

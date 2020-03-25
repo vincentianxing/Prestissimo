@@ -82,7 +82,7 @@
 				<% end %>
 
 				<!-- Show number of positive votes -->
-				<p class="up_text"><%= r.likes.size %></p>
+				<p class="up_text"><%= r.get_likes.size %></p>
 			</div>
 
 			<div class="downvote_div">
@@ -107,7 +107,7 @@
 				<% end %>
 
 				<!-- Show number of negative votes -->
-				<p class="down_text"><%= r.dislikes.size %></p>
+				<p class="down_text"><%= r.get_dislikes.size %></p>
 			</div>
 		</div>
 

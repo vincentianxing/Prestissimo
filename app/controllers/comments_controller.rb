@@ -78,13 +78,13 @@ class CommentsController < ApplicationController
       @comment.edit(params[:comment][:body], @comment_old.id)
       if @comment.save
         # everything worked
-	      if @comment.upvotes.size > 0
-		      @comment.upvotes.each do |v|
+	      if @comment.get_upvotes.size > 0
+		      @comment.get_upvotes.each do |v|
 			      @comment_old.upvote_from Handle.find(v.voter_id)
 		      end
 	      end
-	      if @comment.downvotes.size > 0
-		      @comment.downvotes.each do |v|
+	      if @comment.get_downvotes.size > 0
+		      @comment.get_downvotes.each do |v|
 			      @comment_old.downvote_from Handle.find(v.voter_id)
 		      end
 	      end

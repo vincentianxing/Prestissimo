@@ -113,7 +113,7 @@ class Comment < ApplicationRecord
 
   # calculate the voted score of the comment
   def score
-    score = self.upvotes.size - (1.25 * self.downvotes.size)
+    score = self.get_upvotes.size - (1.25 * self.get_downvotes.size)
   end
 
   def make_old
