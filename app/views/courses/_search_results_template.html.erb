@@ -66,10 +66,10 @@
     </script>
     <% if buttons %>
     <div id="blank_space" style="clear:both;"></div>
-    <%= submit_tag "Add to Cart", name: nil, id: "add_to_cart_button_top", :class => 'search_button' %>
+    <%= submit_tag "Add to Cart", name: nil, id: "add_to_cart_button_top", :class => "search_button" %>
 
     <div id="print_items">
-      <%= button_tag "Print", id: "print_button", type: "button", :class => 'search_button' %>
+      <%= button_tag "Print", id: "print_button", type: "button", :class => "search_button" %>
       <%= check_box "print", "with_descriptions", title: "Check this box to include expanded course descriptions when printing." %>
       <span class="label" id="checkbox_info">Detailed printout:</span>
     </div>
@@ -103,7 +103,7 @@
       </tr>
 
       <!-- If this is a mobile device, we want the headers and the info in the same table -->
-      <% if !in_mobile_view? && !session[:mobile_view]%>
+      <% if !in_mobile_view? && !session[:mobile_view] %>
       </table>
     <% end %>
     <!-- SEARCH RESULTS start here -->
@@ -144,7 +144,7 @@
               <% color = "even course_entry" %>
             <% end %>
             <% if c.descrip.include?("This course is already in your cart") || (!c.prof_desc.blank? && c.prof_desc.include?("This course is already in your cart")) %>
-              <% color << ' evenincart' %>
+              <% color << " evenincart" %>
             <% end %>
           <% else %>
             <% if c.descrip.include?("This course conflicts") || (!c.prof_desc.blank? && c.prof_desc.include?("This course conflicts")) %>
@@ -153,26 +153,26 @@
               <% color = "odd course_entry" %>
             <% end %>
             <% if c.descrip.include?("This course is already in your cart") || (!c.prof_desc.blank? && c.prof_desc.include?("This course is already in your cart")) %>
-              <% color << ' oddincart' %>
+              <% color << " oddincart" %>
             <% end %>
           <% end %>
 
           <% # Check to see if we are at or above 80% of seat capacity %>
           <% unless c.enroll.nil? || c.csize.nil? || c.csize == 0 %>
-            <% if ((1.0*c.enroll)/c.csize) > 0.8 %>
-              <% color << ' full' %>
+            <% if ((1.0 * c.enroll) / c.csize) > 0.8 %>
+              <% color << " full" %>
             <% end %>
           <% end %>
 
           <% # mark the row as being a continuation %>
           <% if course_continue %>
-            <% color << ' course_continued' %>
+            <% color << " course_continued" %>
           <% end %>
 
           <% # row that displays course information %>
-          <tr class="<%=color%>"  id=<%="no_#{counter}" %>>
+          <tr class="<%= color %>"  id=<%= "no_#{counter}" %>>
             <td class="chkbox optional">
-              <%= check_box_tag "courses[#{c.semcrn}]",c.semcrn if buttons%>
+              <%= check_box_tag "courses[#{c.semcrn}]", c.semcrn if buttons %>
             </td>
             <td class="crn optional"><%= c.crn %></td>
             <td class="dept"><%= c.dept.html_safe %></td>
@@ -221,7 +221,7 @@
               <% if c.proficiencies.blank? %>
                 <%= image_tag("none.png", alt: "None", class: "none prof_png") %>
               <% else %>
-                <% prof_string = c.proficiencies.gsub('-', '').split(',').sort.join('-') %>
+                <% prof_string = c.proficiencies.gsub("-", "").split(",").sort.join("-") %>
                 <%= image_tag("#{prof_string}.png", alt: prof_string, title: prof_string, class: "prof_png") %>
               <% end %>
             </td>
@@ -231,10 +231,10 @@
             <td colspan="11" <%= "class=p_#{color}" %>>
 
               <div class="desc_spec">
-                <span class="course_id_title"><%= link_to "#{c.dept} #{c.cnum}: #{c.title}".html_safe, hubcourse_path(c.hubcourse.hub_id.gsub(' ', '-')), :target => "_blank" %></span> 
-                <%= link_to(image_tag("obiemaps-logo.png", id: "obiemaps_logo", width: 20, height: 20, title: "Find this course on ObieMaps!"), 
-                            get_link("obiemaps_course", c),  target: "_blank" ) %>
-                <% if !in_mobile_view? && !session[:mobile_view]%>
+                <span class="course_id_title"><%= link_to "#{c.dept} #{c.cnum}: #{c.title}".html_safe, hubcourse_path(c.hubcourse.hub_id.gsub(" ", "-")), :target => "_blank" %></span> 
+                <%= link_to(image_tag("obiemaps-logo.png", id: "obiemaps_logo", width: 20, height: 20, title: "Find this course on ObieMaps!"),
+                            get_link("obiemaps_course", c), target: "_blank") %>
+                <% if !in_mobile_view? && !session[:mobile_view] %>
                   <span class="section">Section <%= c.section %> - <%= c.format %></span>
                   <span class="semester"><%= translate_semester(c.semester) %>&nbsp;&nbsp;-&nbsp;&nbsp; </span> 
                 <% else %>
@@ -264,8 +264,8 @@
                       <% else %>
                         <%= link_to "#{professor.fname} #{professor.lname}", show_professor_path(fname: professor.fname, lname: professor.lname) %>
                       <% end %>
-                      <%= link_to(image_tag("obiemaps-logo.png", id: "obiemaps_logo", width: 20, height: 20, title: "Find this professor on ObieMaps!"), 
-                      get_link("obiemaps_prof", professor), target: "_blank" ) %>
+                      <%= link_to(image_tag("obiemaps-logo.png", id: "obiemaps_logo", width: 20, height: 20, title: "Find this professor on ObieMaps!"),
+                                  get_link("obiemaps_prof", professor), target: "_blank") %>
                     <% end %>
                   <% else %>
                     <%= c.professor %>
@@ -273,32 +273,32 @@
                 </span>
               </div>
               
-              <% if c.which_desc=="default" ||  c.which_desc=="both" || c.which_desc.nil? %> 
+              <% if c.which_desc == "default" || c.which_desc == "both" || c.which_desc.nil? %> 
                 <div class="desc_spec course_description first_div">
                   <% if c.descrip.include?("expanded_course_header") %>
                     <div class="course_description first_div" id="results_registrar_descrip"><%= c.descrip.html_safe %></div>
                   <% else %>
                     <div class="course_description first_div" id="results_registrar_descrip"><span class="expanded_course_header">Registrar Description:</span><p><%= c.descrip.html_safe %></p></div>
-                  <%end%> 
+                  <% end %> 
                   <% unless c.prereqs.blank? %>
                     <div class="course_description" id="results_registrar_note"><span class="expanded_course_header">Registrar Notes:</span> <%= c.prereqs.html_safe %></div>
                   <% end %>
                 </div>
               <% end %>  
 
-              <% if !c.prof_desc.blank? && (c.which_desc=="professor" || c.which_desc=="both") %>
-                <% if c.which_desc=="both" %>
+              <% if !c.prof_desc.blank? && (c.which_desc == "professor" || c.which_desc == "both") %>
+                <% if c.which_desc == "both" %>
                   <div class="desc_spec course_description">
                 <% else %>
                   <div class="desc_spec course_description first_div">
-                <%end %>
+                <% end %>
                 <% if c.prof_desc.include?("expanded_course_header") %>
                   <div class="course_description first_div" id="results_prof_descrip"><%= simple_format(c.prof_desc) %></div>
                 <% else %>
                   <div class="course_description first_div" id="results_prof_descrip"><span class="expanded_course_header">Professor Description:</span><%= simple_format(c.prof_desc) %></div>
                 <% end %>
                 </div>
-              <%end%>  
+              <% end %>  
 
               <% if c.display_prof_note && !c.prof_note.blank? %>
                 <div class="desc_spec course_description">
@@ -306,7 +306,7 @@
                 </div>                
               <% end %>  
 
-              <% unless c.prereqs.blank? || c.which_desc!="professor" %>
+              <% unless c.prereqs.blank? || c.which_desc != "professor" %>
                 <div class="desc_spec course_description">
                   <div class="course_description" id="results_registrar_note"><span class="expanded_course_header">Registrar Notes:</span> <%= c.prereqs.html_safe %></div>
                 </div>
@@ -319,7 +319,7 @@
                 <% end %>
 
                 <% if signed_in? && faculty_user?(current_user) %>
-                  <%= link_to "Edit course", course_edit_path(semcrn: c.semcrn), class:"enrollment" %>
+                  <%= link_to "Edit course", course_edit_path(semcrn: c.semcrn), class: "enrollment" %>
                 <% end %>
 
                 <span class="module">Module: <%= c.get_module %></span>
@@ -368,8 +368,8 @@
                     <% if Hubcourse.find_by_hub_id(c.xlist1).nil? %>
                       <%= c.xlist1.html_safe %>
                     <% else %>
-                      <%= link_to c.xlist1.html_safe, 
-                      hubcourse_path(c.xlist1.gsub(' ','-')) %>
+                      <%= link_to c.xlist1.html_safe,
+                                  hubcourse_path(c.xlist1.gsub(" ", "-")) %>
                     <% end %>
                   </span>
                 <% end %>
@@ -378,8 +378,8 @@
                     <% if Hubcourse.find_by_hub_id(c.xlist2).nil? %>
                       <%= c.xlist2.html_safe %>
                     <% else %>
-                      <%= link_to c.xlist2.html_safe, 
-                      hubcourse_path(c.xlist2.gsub(' ','-')) %>
+                      <%= link_to c.xlist2.html_safe,
+                                  hubcourse_path(c.xlist2.gsub(" ", "-")) %>
                     <% end %>
                   </span>
                 <% end %>
@@ -388,8 +388,8 @@
                     <% if Hubcourse.find_by_hub_id(c.xlist3).nil? %>
                       <%= c.xlist3.html_safe %>
                     <% else %>
-                      <%= link_to c.xlist3.html_safe, 
-                      hubcourse_path(c.xlist3.gsub(' ','-')) %>
+                      <%= link_to c.xlist3.html_safe,
+                                  hubcourse_path(c.xlist3.gsub(" ", "-")) %>
                     <% end %>
                   </span>
                 <% end %>

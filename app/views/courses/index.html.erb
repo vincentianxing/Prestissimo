@@ -1,9 +1,9 @@
 
 <!--This File loads the search form, displays results -->
 
-<%= provide(:title, 'Search') %>
+<%= provide(:title, "Search") %>
 
-<% #load_cart indicates that we do not need to redirect to the home page when a user selects the 'load' button on their cart as we are already here.%>
+<% #load_cart indicates that we do not need to redirect to the home page when a user selects the 'load' button on their cart as we are already here. %>
 <% @load_cart = true %>
 
 <!-- DISCLAIMER MESSAGE -->
@@ -53,41 +53,41 @@
 <% end %>
 
 <!-- COURSE SEARCH FORM (fields listed below) -->
-<%= form_tag course_search_path, :method=> 'get', id: "sf", :remote=> true, "name" => "sf", class: "search_form" do %>
+<%= form_tag course_search_path, :method => "get", id: "sf", :remote => true, "name" => "sf", class: "search_form" do %>
 
   <div id= "search_form_upper_left" >
-    <%= render 'courses/form_partials/dept' %>
-    <%= render 'courses/form_partials/crn' %>
+    <%= render "courses/form_partials/dept" %>
+    <%= render "courses/form_partials/crn" %>
   </div>
   <div id= "search_form_upper_right" >
-    <%= render 'courses/form_partials/name' %>
-    <%= render 'courses/form_partials/professor' %>
-    <%= render 'courses/form_partials/semester' %>
+    <%= render "courses/form_partials/name" %>
+    <%= render "courses/form_partials/professor" %>
+    <%= render "courses/form_partials/semester" %>
     <!-- Keyword search of course descriptions, titles, crosslistings, and prerequisites -->
-    <%= render 'courses/form_partials/keyword' %>
-    <%= render 'courses/form_partials/credits' %>
-    <%= render 'courses/form_partials/time' %>
-    <%= render 'courses/form_partials/level' %>
-    <%= render 'courses/form_partials/days' %>
+    <%= render "courses/form_partials/keyword" %>
+    <%= render "courses/form_partials/credits" %>
+    <%= render "courses/form_partials/time" %>
+    <%= render "courses/form_partials/level" %>
+    <%= render "courses/form_partials/days" %>
     <!-- course size -->
-    <%= render 'courses/form_partials/size' %>
+    <%= render "courses/form_partials/size" %>
     <!-- course enrollment -->
-    <%= render 'courses/form_partials/enrollment' %>
+    <%= render "courses/form_partials/enrollment" %>
   </div>
 
   <div id="search_form_lower_left" >
     <!-- NS, SS, HU -->
-    <%= render 'courses/form_partials/attributes' %>
+    <%= render "courses/form_partials/attributes" %>
     <!-- proficiencies - CD, QFR, WP -->
-    <%= render 'courses/form_partials/proficiencies' %>
+    <%= render "courses/form_partials/proficiencies" %>
     <!-- conservatory attributes -->
-    <%= render 'courses/form_partials/con_attributes' %>
+    <%= render "courses/form_partials/con_attributes" %>
   </div>
   <div id="search_form_lower_right" >
     <!-- full course, half course, cocurricular -->
-    <%= render 'courses/form_partials/full_course' %>
+    <%= render "courses/form_partials/full_course" %>
     <!-- 1st module, 2nd module, full, special -->
-    <%= render 'courses/form_partials/modules' %>
+    <%= render "courses/form_partials/modules" %>
   </div>
 
   <div class="submit">
