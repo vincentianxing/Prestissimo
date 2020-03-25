@@ -16,7 +16,7 @@ fi
 
 USER=`whoami`
 
-if [ $USER = "svradm" ]; then
+if [ $USER = "oprestissimo" ]; then
     PRESTISSIMO_HOME="/var/www/html/oprestissimo.com"
 else 
     PRESTISSIMO_HOME="/home/$USER/prestissimo"
