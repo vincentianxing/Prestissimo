@@ -36,7 +36,7 @@ class SessionsController < ApplicationController
       #If the user exists and gave the correct password, we sign them in and redirect them
       #to whatever page they was trying to get to (friendly forwarding)
       #check for a cart stored in a cookie
-      if cookies[:cart] && !(Cart.find_by_cartid(cookies[:cart]).courses.nil?)
+      if cookies[:cart] && !(Cart.find_by_cartid(cookies[:cart]).courses.nil?) && !(Cart.find_by_cartid(cookies[:cart]).total_credits.nil?)
         if user.cart.courses.nil?
           old_cart = Cart.find_by_cartid(cookies[:cart]).courses.split(' ')
           cart = user.cart.courses
