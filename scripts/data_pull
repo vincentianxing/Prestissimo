@@ -36,8 +36,8 @@ ENROLLFILE="${DESTDIR}/enrollment.txt"
 ENROLLOUT="${DESTDIR}/enrollout"
 
 # Controls Rails status and DB selection
-ENVIRONMENT="development"
-#ENVIRONMENT="production"
+# ENVIRONMENT="development"
+# ENVIRONMENT="production"
 
 # Where the bad lines file goes
 BADLINES="${DESTDIR}/badlines.txt"
@@ -46,7 +46,7 @@ BADLINES="${DESTDIR}/badlines.txt"
 echo "Starting data_pull:" `date`
 echo
 
-export RAILS_ENV="${ENVIRONMENT}"
+# export RAILS_ENV="${ENVIRONMENT}"
 cd $PRESTISSIMO_HOME
 
 # Test semester

@@ -3,7 +3,7 @@
 # run this as root to bring the .info server up to the current svn revision
 # the database is migrated (not reset, this needs to be done manually)
 
-RUBYV="ruby-2.2.2" # Change this for a different ruby version
+RUBYV="ruby-2.6.3" # Change this for a different ruby version
 WEB_DIR="/var/www/html/oprestissimo.com/"
 GITCMD="/usr/bin/git"
 BUNDLE="/usr/share/rvm/rubies/$RUBYV/bin/bundle"
