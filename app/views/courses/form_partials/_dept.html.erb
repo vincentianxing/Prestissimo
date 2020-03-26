@@ -17,7 +17,7 @@
     var short = selector.substring(0,4);
     var rem_arg = "rem_dept('"+short+"')";
     var selector_span =  "<span id='remove_"+short+"' class='dept_list_elem' name=dept style='cursor:pointer;' onClick="+rem_arg+">"+selector+"</span>";
-    var remover_image = "<img src='<%= image_pack_tag "delete_button_91002E.png" %>' height='11' width='11'>";
+    var remover_image = "<img src='<%= image_pack_tag "media/images/delete_button_91002E.png" %>' height='11' width='11'>";
     var remover = "<span class = 'rem_box' id='remove_"+short+"' style='cursor:pointer;' onClick="+rem_arg+">"+remover_image +" </span>";
     if(short.substring(0,1) != "<" && $("#dept_text").val().indexOf(short) < 0) {
       $("#dept_list").append(remover, selector_span);
