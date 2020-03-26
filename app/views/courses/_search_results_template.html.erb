@@ -219,10 +219,10 @@
             <% end %>
             <td class="profic optional">
               <% if c.proficiencies.blank? %>
-                <%= image_tag("none.png", alt: "None", class: "none prof_png") %>
+                <%= image_pack_tag("none.png", alt: "None", class: "none prof_png") %>
               <% else %>
                 <% prof_string = c.proficiencies.gsub("-", "").split(",").sort.join("-") %>
-                <%= image_tag("#{prof_string}.png", alt: prof_string, title: prof_string, class: "prof_png") %>
+                <%= image_pack_tag("#{prof_string}.png", alt: prof_string, title: prof_string, class: "prof_png") %>
               <% end %>
             </td>
           </tr>
@@ -232,7 +232,7 @@
 
               <div class="desc_spec">
                 <span class="course_id_title"><%= link_to "#{c.dept} #{c.cnum}: #{c.title}".html_safe, hubcourse_path(c.hubcourse.hub_id.gsub(" ", "-")), :target => "_blank" %></span> 
-                <%= link_to(image_tag("obiemaps-logo.png", id: "obiemaps_logo", width: 20, height: 20, title: "Find this course on ObieMaps!"),
+                <%= link_to(image_pack_tag("obiemaps-logo.png", id: "obiemaps_logo", width: 20, height: 20, title: "Find this course on ObieMaps!"),
                             get_link("obiemaps_course", c), target: "_blank") %>
                 <% if !in_mobile_view? && !session[:mobile_view] %>
                   <span class="section">Section <%= c.section %> - <%= c.format %></span>
@@ -264,7 +264,7 @@
                       <% else %>
                         <%= link_to "#{professor.fname} #{professor.lname}", show_professor_path(fname: professor.fname, lname: professor.lname) %>
                       <% end %>
-                      <%= link_to(image_tag("obiemaps-logo.png", id: "obiemaps_logo", width: 20, height: 20, title: "Find this professor on ObieMaps!"),
+                      <%= link_to(image_pack_tag("obiemaps-logo.png", id: "obiemaps_logo", width: 20, height: 20, title: "Find this professor on ObieMaps!"),
                                   get_link("obiemaps_prof", professor), target: "_blank") %>
                     <% end %>
                   <% else %>

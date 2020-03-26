@@ -1,14 +1,12 @@
-require_relative 'boot'
-require 'rails'
+require_relative "boot"
+require "rails"
 # Pick the frameworks you want:
 require "csv"
 require "active_record/railtie"
 require "active_storage/engine"
 require "action_controller/railtie"
 require "action_mailer/railtie"
-require "sprockets/railtie"
-require 'digest/md5'
-
+require "digest/md5"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -82,17 +80,10 @@ module Prestissimo
     # config.active_record.whitelist_attributes = true
 
     # Enable the asset pipeline
-    config.assets.enabled = true
-
-    # Call top level js and css files
-    config.assets.precompile += %w( jquery-1.10.2.js )
-    config.assets.precompile += %w( print.css )
-    config.assets.precompile += %w( print_collapsed.css )
-    config.assets.precompile += %w( print_expanded.css )
-    config.assets.precompile += %w( jquery-ui-1.10.3.custom.css )
+    config.assets.enabled = false
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
+    config.assets.version = "1.0"
 
     # set default host for mailer urls
     config.action_mailer.delivery_method = :sendmail

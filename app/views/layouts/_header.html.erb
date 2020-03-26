@@ -1,10 +1,10 @@
 
 <header>
   <% if !current_user.nil? %>
-    <%= link_to("#{image_tag("LIGHTBULB.png", alt: "Prestissimo is faster than Presto", class: "logo_image", width: 140, height: 140)}#{content_tag :div, 'PRESTISSIMO', class: 'logo_text'}".html_safe, root_path, class: "logo", id: "logo") %>
+    <%= link_to("#{image_pack_tag("LIGHTBULB.png", alt: "Prestissimo is faster than Presto", class: "logo_image", width: 140, height: 140)}#{content_tag :div, "PRESTISSIMO", class: "logo_text"}".html_safe, root_path, class: "logo", id: "logo") %>
   <% else %>
-    <%= link_to("#{image_tag("LIGHTBULB.png", alt: "Prestissimo is faster than Presto", class: "logo_image", width: 140, height: 140)}#{content_tag :div, 'PRESTISSIMO', class: 'logo_text'}".html_safe, signin_path, class: "logo", id: "logo") %>
-      <% #link_to(image_tag("prestissimo_lightsoff.png", alt: "Log in!", class: "logo", width: 800, height: 140, id: "logo"), signin_path ) %>
+    <%= link_to("#{image_pack_tag("LIGHTBULB.png", alt: "Prestissimo is faster than Presto", class: "logo_image", width: 140, height: 140)}#{content_tag :div, "PRESTISSIMO", class: "logo_text"}".html_safe, signin_path, class: "logo", id: "logo") %>
+      <% #link_to(image_pack_tag("prestissimo_lightsoff.png", alt: "Log in!", class: "logo", width: 800, height: 140, id: "logo"), signin_path ) %>
   <% end %>
     <div id="links">
       <ul>
@@ -29,15 +29,15 @@
           </ul>
         </li>
         <% if signed_in? %>
-          <li class="dd_menus"><%= link_to "Account", user_path(current_user.email.split('@')[0]) %>
+          <li class="dd_menus"><%= link_to "Account", user_path(current_user.email.split("@")[0]) %>
             <ul>
               <!-- link_to "My Classes", my_class_path(current_user)  -->
-              <li><%= link_to "Profile", user_path(current_user.email.split('@')[0]) %></li>
+              <li><%= link_to "Profile", user_path(current_user.email.split("@")[0]) %></li>
               <% if current_user && faculty_user?(current_user) %>
-                <li><%= link_to "Edit Profile", edit_professor_path(:fname => current_user.fname, :lname => current_user.lname)  %></li>
+                <li><%= link_to "Edit Profile", edit_professor_path(:fname => current_user.fname, :lname => current_user.lname) %></li>
                 <li><%= link_to "My Courses", professor_courses_path(:fname => current_user.fname, :lname => current_user.lname) %></li>
               <% else %>
-                <li><%= link_to "Settings", settings_path(current_user.email.split('@')[0]) %></li>
+                <li><%= link_to "Settings", settings_path(current_user.email.split("@")[0]) %></li>
               <% end %>
               <li><%= link_to "Sign Out", signout_path, method: "delete" %></li>
               <% if current_user && current_user.admin? %>
@@ -47,7 +47,7 @@
           </li>
           <li><%= link_to "People", users_path %></li>
           <li><%= link_to "Departments", hubcourses_path %></li>
-          <li><%= link_to "Schedule", schedule_path(current_user.email.split('@')[0]) %></li>
+          <li><%= link_to "Schedule", schedule_path(current_user.email.split("@")[0]) %></li>
         <% else %>
           <li><%= link_to "Sign In", signin_path %></li>
         <% end %>

@@ -1,9 +1,9 @@
 <!-- The 500 error page -->
-<%= stylesheet_link_tag "errors" %>
-<%= javascript_include_tag :defaults %>
+<%= stylesheet_pack_tag "errors" %>
+<%= javascript_pack_tag :defaults %>
 <%= csrf_meta_tag %>
 
-<% provide( :title, "Server Error" ) %>
+<% provide(:title, "Server Error") %>
 <div class="dialog">
   <h1>Oops! Something went wrong... :(
 </h1>
@@ -14,8 +14,8 @@
   </p>
 
   <%= button_to("Return to Home Page", root_path) %>
-  <%= button_to("Clear Your Cookies", {action: "clear"}, {onclick: "return confirm('Are you sure? Deleting cookies will sign you out and delete everything in your cart.')", remote: true}) %>
-  <%= button_to "Clear Cart", clear_cart_path(current_cart.cartid), method: 'put', remote: true%>
+  <%= button_to("Clear Your Cookies", { action: "clear" }, { onclick: "return confirm('Are you sure? Deleting cookies will sign you out and delete everything in your cart.')", remote: true }) %>
+  <%= button_to "Clear Cart", clear_cart_path(current_cart.cartid), method: "put", remote: true %>
   <% if signed_in? %>
     <%= button_to("Sign Out", signout_path, method: "delete") %>
   <% end %>

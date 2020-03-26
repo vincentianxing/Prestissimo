@@ -23,7 +23,7 @@
 
           <% if c.semester != semester %>
             <% sems += 1 %>
-            <tr class="sem_creds"><td colspan='3'><%= "#{1.0*semcredits} credits"%></td></tr>
+            <tr class="sem_creds"><td colspan='3'><%= "#{1.0 * semcredits} credits" %></td></tr>
             <% semcredits = 0 %>
             <% semester = c.semester %>
             <tr class="sem_row"><td colspan='3'><%= translate_semester(semester) %></td></tr>
@@ -35,8 +35,8 @@
             <% color = "odd cart_course" %>
           <% end %>
           <% unless c.enroll.nil? || c.csize.nil? || c.csize == 0 %>
-            <% if ((1.0*c.enroll)/c.csize) > 0.8 %>
-              <% color << ' full' %>
+            <% if ((1.0 * c.enroll) / c.csize) > 0.8 %>
+              <% color << " full" %>
             <% end %>
           <% end %>
 
@@ -45,11 +45,11 @@
             <% counter += 1 %>
             <% nums << c.semcrn %>
             <% semcredits += c.crmax %>
-            <tr class="<%=color%>" id=<%="#{c.semcrn}_entry" %>>
+            <tr class="<%= color %>" id=<%= "#{c.semcrn}_entry" %>>
               <td class="car_inf cnum"><%= "#{c.dept} #{c.cnum}" %></td>
-              <% if c.status == 'cancelled' %>
+              <% if c.status == "cancelled" %>
                 <td class="car_inf cname">CANCELLED</td>
-              <% elsif c.status == 'hidden' %>
+              <% elsif c.status == "hidden" %>
                 <td class="car_inf cname">HIDDEN</td>
               <% else %>
                 <td class="car_inf cname"><%= c.short_title %></td>
@@ -57,14 +57,14 @@
               <!-- this link removes the course from the list via ajax -->
               <td>
                 <span id="rem_link">
-                  <%= link_to image_tag('delete_button_91002E.png', height: '14', width: '14', style:"display:block;"), remove_cart_path(current_cart.cartid, c.semcrn), method: 'put', remote: true %>
+                  <%= link_to image_pack_tag("delete_button_91002E.png", height: "14", width: "14", style: "display:block;"), remove_cart_path(current_cart.cartid, c.semcrn), method: "put", remote: true %>
                 </span>
               </td>
             </tr>
           <% end %>
         <% end %>
         <% unless sems == 0 %>
-          <tr class="sem_creds"><td colspan='3'><%= "#{1.0*semcredits} credits"%></td></tr>
+          <tr class="sem_creds"><td colspan='3'><%= "#{1.0 * semcredits} credits" %></td></tr>
         <% end %>
       </table>
 
@@ -74,7 +74,7 @@
           <!-- listing of relevant course info, in a smaller, separate box -->
           <div class="info cart_course" <%= "id=#{c.semcrn}" %>>
             <div>
-              <%= link_to c.hubcourse.hub_id, hubcourse_path(c.hubcourse.hub_id.gsub(' ','-')), :class => "prof_cart_link" %>
+              <%= link_to c.hubcourse.hub_id, hubcourse_path(c.hubcourse.hub_id.gsub(" ", "-")), :class => "prof_cart_link" %>
               <span id="cart_crn"><span class="cart_label">CRN:</span> <%= c.crn %></span>
             </div>
             <% c.professors.each do |p| %>
@@ -88,14 +88,14 @@
             <% end %>
             <!-- display proficiencies in cart dropdowns -->
             <% if c.proficiencies.blank? %>
-              <%= image_tag("none.png", alt: "None", class: "cart_prof_png") %>
+              <%= image_pack_tag("none.png", alt: "None", class: "cart_prof_png") %>
             <% else %>
-              <% prof_string = c.proficiencies.gsub('-','').split(',').sort.join('-') %>
-              <%= image_tag("#{prof_string}.png", alt: prof_string, title: prof_string, class: "cart_prof_png") %>
+              <% prof_string = c.proficiencies.gsub("-", "").split(",").sort.join("-") %>
+              <%= image_pack_tag("#{prof_string}.png", alt: prof_string, title: prof_string, class: "cart_prof_png") %>
             <% end %>
             <div id="cart_cred">
               <% if c.crmax != c.crmin %>
-                <%= c.crmin %> - <%- c.crmax %> Hours
+                <%= c.crmin %> - <% -c.crmax %> Hours
               <% else %>
                 <%= c.crmax %> Hours
               <% end %>
@@ -105,12 +105,12 @@
               <% end %>
             </div>
             <div id="cart_time">
-              <% if c.start_time != nil && c.end_time != nil%>
+              <% if c.start_time != nil && c.end_time != nil %>
                 <span class="cart_label"></span>
                 <%= c.days %>, from 
                 <%= c.start_time.strftime("%I:%M %p") %> to
                 <%= c.end_time.strftime("%I:%M %p") %>
-              <% end%>
+              <% end %>
             </div>
             <div class="cleaner">
             </div>

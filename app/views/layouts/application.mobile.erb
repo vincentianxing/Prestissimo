@@ -4,16 +4,16 @@
     <title><%= full_title(yield(:title)) %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/favicon.ico" rel="shortcut icon" />
-    <%= stylesheet_link_tag "mobile.css" %>
+    <%= stylesheet_pack_tag "application_mobile" %>
     <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
     <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:900' rel='stylesheet' type='text/css'>
-    <%= javascript_include_tag "mobile/application_mobile" %>
+    <%= javascript_pack_tag "application_mobile" %>
 
     <%= csrf_meta_tags %>
   </head>
   <body>
     <div data-role="page" id="whole_page" data-ajax="false">
-      <%= render 'layouts/header' %>
+      <%= render "layouts/header" %>
       <div data-role="content" id="content">
 	<% flash.each do |key, value| %>
 	<div class="ui-bar ui-bar-a alert alert-<%= key %>"><%= value.html_safe %></div>
@@ -21,7 +21,7 @@
 	<%= yield %>
         <div id="push"></div>
       </div>
-      <%= render 'layouts/footer' %>
+      <%= render "layouts/footer" %>
     </div>
   </body>
 </html>

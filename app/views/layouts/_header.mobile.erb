@@ -3,17 +3,17 @@
 
   <a id="menu_button" class="ui-btn ui-corner-all ui-btn-left ui-icon-bars ui-btn-icon-left ui-btn-icon-notext" type="button"></a>
 
-  <h1 id="header_h1"><%= link_to "#{image_tag("LIGHTBULB.png", class: "logo_image")}PRESTISSIMO".html_safe, root_path, class: "ui-btn", id:"logo_text" %></h1>
+  <h1 id="header_h1"><%= link_to "#{image_pack_tag("LIGHTBULB.png", class: "logo_image")}PRESTISSIMO".html_safe, root_path, class: "ui-btn", id: "logo_text" %></h1>
   
 
   <div id="menu_list" data-role="collapsible" data-inset="false" data-collapsed="true" data-iconps="right">
     <ul data-role="listview">
       <li><%= link_to "Home", root_path %></li>
       <% if signed_in? %>
-      <li><%= link_to "Profile", user_path(current_user.email.split('@')[0]) %></li>
+      <li><%= link_to "Profile", user_path(current_user.email.split("@")[0]) %></li>
       <li><%= link_to "People", users_path %></li>
       <li><%= link_to "Departments", hubcourses_path %></li>
-      <li><%= link_to "Settings", settings_path(current_user.email.split('@')[0]) %></li>
+      <li><%= link_to "Settings", settings_path(current_user.email.split("@")[0]) %></li>
       <li><%= link_to "Sign Out", signout_path, method: "delete" %></li>
       <% else %>
       <li><%= link_to "Sign In", signin_path %></li>
@@ -21,7 +21,7 @@
       <% if current_user && current_user.admin? %>
       <li><%= link_to "Admin", admin_page_path %></li>
       <% end %>
-      <li><%= link_to "Help", help_path%></li>
+      <li><%= link_to "Help", help_path %></li>
       <li><%= link_to "About", about_path %></li>
     </ul>
   </div>
