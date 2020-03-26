@@ -1,8 +1,5 @@
 /* eslint no-console:0 */
 
-const images = importAll(require.context('../images', true))
-const imagePath = (name) => images(name, true)
-
 import '../src/javascript/comments.js';
 import '../src/javascript/departments.js';
 import '../src/javascript/header.js';
