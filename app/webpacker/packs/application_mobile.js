@@ -1,6 +1,6 @@
 /* eslint no-console:0 */
 
-const images = require.context('../images', true)
+const images = importAll(require.context('../images', true))
 const imagePath = (name) => images(name, true)
 
 import '../src/javascript/comments.js';
