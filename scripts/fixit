@@ -54,7 +54,7 @@ fi
 # update yarn packages
 echo
 echo "*** Running yarn..."
-sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $YARN -s RAILS_ENV=production"
+sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $YARN -s"
 if [ $? -ne 0 ]; then
     echo "Failed!"
     exit 9
