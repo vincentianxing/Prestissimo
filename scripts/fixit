@@ -6,6 +6,7 @@
 RUBYV="ruby-2.6.3" # Change this for a different ruby version
 WEB_DIR="/var/www/html/oprestissimo.com/"
 GITCMD="/usr/bin/git"
+YARN="/usr/bin/yarn"
 BUNDLE="/usr/share/rvm/rubies/$RUBYV/bin/bundle"
 RAKE="/usr/share/rvm/rubies/$RUBYV/bin/rake"
 RUBYBIN="/usr/share/rvm/rubies/$RUBYV/bin"
@@ -49,6 +50,16 @@ if [ $? -ne 0 ]; then
     echo "Failed!"
     exit 7
 fi
+
+# update yarn packages
+echo
+echo "*** Running yarn..."
+sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $YARN -s RAILS_ENV=production"
+if [ $? -ne 0 ]; then
+    echo "Failed!"
+    exit 9
+fi
+
 
 # update database
 echo
