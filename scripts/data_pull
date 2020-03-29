@@ -27,17 +27,9 @@ DESTDIR="${PRESTISSIMO_HOME}/db"
 DESTFILE="${DESTDIR}/courses.txt"
 DIFFOUT="${DESTDIR}/diffout"
 
-DROPFILE_BAC="${DESTDIR}/coursefile.lis.backup"
-
-CONVERTFILE="${DESTDIR}/converting.txt"
-
 # To handle just the enrollments
 ENROLLFILE="${DESTDIR}/enrollment.txt"
 ENROLLOUT="${DESTDIR}/enrollout"
-
-# Controls Rails status and DB selection
-# ENVIRONMENT="development"
-# ENVIRONMENT="production"
 
 # Where the bad lines file goes
 BADLINES="${DESTDIR}/badlines.txt"
@@ -46,8 +38,10 @@ BADLINES="${DESTDIR}/badlines.txt"
 echo "Starting data_pull:" `date`
 echo
 
-# export RAILS_ENV="${ENVIRONMENT}"
 cd $PRESTISSIMO_HOME
+
+# Run yarn to update packages
+`yarn -s`
 
 # Test semester
 OLDSEM=`rake db:current_semester`
@@ -65,6 +59,9 @@ then
 else
   echo "Reading information from ${DROPFILE}"
 fi
+
+# Make a copy of datadrop for editing
+DROPFILE_BAC="${DESTDIR}/coursefile.lis.backup"
 
 # Get the old date
 OLDDATE=`rake db:courses_last_updated`
@@ -87,7 +84,7 @@ if [ "${OLDDATE}" = "${NEWDATE}" ]
 then
   # Nothing changed
   echo "Timestamp hasn't changed, exiting"
-  exit 0 
+  # exit 0 
 else
   echo "Old timestamp: ${OLDDATE}"
   echo "New timestamp: ${NEWDATE}"
@@ -120,21 +117,18 @@ echo "=============="
 cp ${DROPFILE} ${DROPFILE_BAC}
 CHECK="^[^\|]+\|[^\|]+\|[^\|]+\|[^\|]+\|[^\|]+\|[^\|]*\|[^\|]*\|[^\|]+\|[^\|]+\|[^\|]*\|[^\|]+\|.*$"
 echo "Finding bad lines..."
-egrep -vn $CHECK $DROPFILE > "${BADLINES}"
+egrep -vn $CHECK $DROPFILE_BAC > "${BADLINES}"
 echo "Running Sanity fix..."
-$PRESTISSIMO_HOME/scripts/sanity_check $BADLINES
+$PRESTISSIMO_HOME/scripts/sanity_check $BADLINES $DROPFILE_BAC
 if [ $? != 0 ]
 then
-  echo "Sanity check failed, backup created at ${DROPFILE_BAC}"
+  echo "Sanity check failed"
   exit 55
 fi
 
-# Move file to local dir
-#cp "${DROPFILE}" "${DESTFILE}"
-#cut -d'|' -f1-27,5,5,30- "${DROPFILE}" > "${DESTFILE}" ## UGH, doesn't work with multiple copies of '5'
-#sed -n -r  -e 's/^(([^|]*\|){27})(([^|]*\|){2})(([^|]*\|){7})(([^|]*\|){1})(.*)/\1QQQ|QQQ|\5QQQ|\9/p'  "${DROPFILE}" | sort > "${DESTFILE}"
-cut -d'|' -f1-33,36-45,49-51,55-57,61- "${DROPFILE}" | sort > "${DESTFILE}"
-cut -d'|' -f5,34-35,47,53,59 "${DROPFILE}" | sort -n > "${ENROLLFILE}"
+# Take the columns we need for the database
+cut -d'|' -f1-33,36-45,49-51,55-57,61- "${DROPFILE_BAC}" | sort > "${DESTFILE}"
+cut -d'|' -f5,34-35,47,53,59 "${DROPFILE_BAC}" | sort -n > "${ENROLLFILE}"
 
 # Check in to RCS
 ci -l -m"Auto_Checkin" "${DESTFILE}" 2>&1

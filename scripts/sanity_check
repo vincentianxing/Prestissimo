@@ -7,19 +7,22 @@
 
 import sys
 
+badlines_filename = sys.argv[1]
+datadrop_filename = sys.argv[2]
+
 # Read lines that need changing
-badlines_file = open(sys.argv[1], "r")
+badlines_file = open(badlines_filename, "r")
 badlines = badlines_file.readlines()
 
 if len(badlines) == 0:
 	exit(0)
 
 # Read datadrop file
-with open("/home/datadrop/swrcin3_oprestis.lis", "r") as f:
+with open(datadrop_filename, "r") as f:
 	datadrop = f.readlines()
 
 # Open datadrop file for writing
-datadrop_file = open("/home/datadrop/swrcin3_oprestis.lis", "w")
+datadrop_file = open(datadrop_filename, "w")
 
 # Line numbers that need changing
 bad_extras = []
