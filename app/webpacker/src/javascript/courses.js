@@ -83,7 +83,7 @@ function prettyCredits(credits) {
 
 }
 
-function slideLevel(event, ui) {
+export function slideLevel(event, ui) {
     var min_level = ui.values[0];
     var max_level = ui.values[1];
     $("#max_course_level").val(correctMaxLevel(max_level));
