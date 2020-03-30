@@ -1,62 +1,76 @@
 namespace :db do
-  desc 'remove all f19 courses'
+  desc "remove all f19 courses"
   task :delete_f19, [:you_sure] => [:environment] do |t, args|
     Course.where(semester: "f19").delete_all
   end
 
-  desc 'remove all s20 courses'
+  desc "remove all s20 courses"
   task :delete_s20, [:you_sure] => [:environment] do |t, args|
     Course.where(semester: "s20").delete_all
   end
-	
-  desc 'get/set revision of course DB'
+
+  desc "get/set revision of course DB"
   task :courses_revision, [:revision_no] => [:environment] do |t, args|
     if args[:revision_no].blank?
-      puts Setting.get_val('courses_revision_number')
+      puts Setting.get_val("courses_revision_number")
     else
-      Setting.set('courses_revision_number',args[:revision_no])
+      Setting.set("courses_revision_number", args[:revision_no])
     end
   end
 
-  desc 'get/set curent semester'
+  desc "get/set curent semester"
   task :current_semester, [:semester] => [:environment] do |t, args|
     if args[:semester].blank?
-      puts Setting.get_val('current_semester')
+      puts Setting.get_val("current_semester")
     else
-      Setting.set('current_semester',args[:semester])
+      Setting.set("current_semester", args[:semester])
       # this line was added on 9/10 to prevent duplicate semesters
-      unless (Setting.get_val('semesters').include? args[:semester])
-        Setting.set('semesters',args[:semester]+"|"+Setting.get_val('semesters'))
+      unless (Setting.get_val("semesters").include? args[:semester])
+        Setting.set("semesters", args[:semester] + "|" + Setting.get_val("semesters"))
       end
     end
   end
-  desc 'get/set revision of enrollment DB'
+
+  desc "get/set revision of enrollment DB"
   task :enrollment_revision, [:revision_no] => [:environment] do |t, args|
     if args[:revision_no].blank?
-      puts Setting.get_val('enrollment_revision_number')
+      puts Setting.get_val("enrollment_revision_number")
     else
-      Setting.set('enrollment_revision_number',args[:revision_no])
+      Setting.set("enrollment_revision_number", args[:revision_no])
     end
   end
 
-  desc 'set courses last updated time'
+  desc "set courses last updated time"
   task :courses_last_updated, [:datetime] => [:environment] do |t, args|
     if args[:datetime].blank?
-      puts Setting.get_val('courses_last_updated')
+      puts Setting.get_val("courses_last_updated")
     else
-      Setting.set('courses_last_updated',args[:datetime])
+      Setting.set("courses_last_updated", args[:datetime])
     end
   end
 
-  desc 'match hubcourses and professors to departments'
-  task assign_departments: :environment do
-
-    # hubcourses to departments
+  desc "Remove empty hubcourses"
+  task remove_empty_hubcourses: :environment do
+    puts "Looking at all hubcourses..."
     Hubcourse.all.each do |hc|
       if not hc.courses.first
         puts "Bad hc, deleting #{hc.id} #{hc.cname}"
-	      hc.delete
-	      next
+        hc.delete
+        next
+      end
+    end
+  end
+
+  desc "match hubcourses and professors to departments"
+  task assign_departments: :environment do
+
+    # hubcourses to departments
+    puts "Sarting Hubcourses"
+    Hubcourse.all.each do |hc|
+      if not hc.courses.first
+        puts "Bad hc, deleting #{hc.id} #{hc.cname}"
+        hc.delete
+        next
       end
       unless hc.department
         d = Department.find_by_dept(hc.hub_id[0..3])
@@ -71,6 +85,7 @@ namespace :db do
         d.hubcourses << hc
       end
     end
+    puts "Starting Professors"
     Professor.all.each do |p|
       p.courses.each do |c|
         d = c.hubcourse.department
@@ -79,7 +94,7 @@ namespace :db do
     end
   end
 
-  desc 'update the course database'
+  desc "update the course database"
   task :update_courses, [:course_file, :enrollment_file] => [:environment] do |t, args|
 
     # update the courses
@@ -87,14 +102,14 @@ namespace :db do
       # keep track of cancelled courses that were hidden so that their replacements can also be hidden.
       hidden_courses = []
       f.each_line do |course|
-        delete = (course[0] == '<')
+        delete = (course[0] == "<")
         course = course[2..-1]
         next if course.start_with?("Experimental College", "dept desc")
-        course_arr = course.split('|')
-	if course_arr[4] == ""
-	  puts "Bad crn, #{course_arr[0]}"
-	  next
-	end
+        course_arr = course.split("|")
+        if course_arr[4] == ""
+          puts "Bad crn, #{course_arr[0]}"
+          next
+        end
         c = Course.build(course_arr)
         if delete
           course = Course.where(semcrn: c.semcrn, days: c.days, start_time: c.start_time, end_time: c.end_time, professor: c.professor)[0]
@@ -111,13 +126,13 @@ namespace :db do
           end
         else
           # this is an add
-          matches = Course.where(semcrn: c.semcrn, status: 'cancelled')
+          matches = Course.where(semcrn: c.semcrn, status: "cancelled")
           if matches.size > 0
             # grab info that could differ across different matching sections
-            matches_days = matches.map{|m| m[:days]}
-            matches_start_times = matches.map{|m| m[:start_time]}
-            matches_end_times = matches.map{|m| m[:end_time]}
-            matches_rooms = matches.map{|m| m[:room]}
+            matches_days = matches.map { |m| m[:days] }
+            matches_start_times = matches.map { |m| m[:start_time] }
+            matches_end_times = matches.map { |m| m[:end_time] }
+            matches_rooms = matches.map { |m| m[:room] }
             matches.each do |match|
               # copying over enrollments from old versions
               c.enroll ||= match.enroll
@@ -168,8 +183,8 @@ namespace :db do
                       next if matches_rooms.include?(c.send(k))
                     end
                     unless changed_fields_str.include?(k)
-                      changed_fields_str<<"|" unless changed_fields_str.blank?
-                      changed_fields_str<<k
+                      changed_fields_str << "|" unless changed_fields_str.blank?
+                      changed_fields_str << k
                     end
                   end
                 end
@@ -184,13 +199,13 @@ namespace :db do
               others = Course.where(semcrn: c.semcrn)
               fields = c.changed_fields.split("|")
               others.each do |o|
-                next if o.status == 'cancelled'
+                next if o.status == "cancelled"
                 fields = fields | o.changed_fields.split("|") unless o.changed_fields.blank?
               end
               fields_str = fields.join("|")
               c.changed_fields = fields_str
               others.each do |o|
-                next if o.status == 'cancelled'
+                next if o.status == "cancelled"
                 o.changed_fields = fields_str
                 o.recent_edit = c.recent_edit
                 o.save
@@ -198,7 +213,7 @@ namespace :db do
             end
 
             #Checks if there is a course w/ same crn (such as lecture with lab)
-            #Uses enrollment from that course as enrollment 
+            #Uses enrollment from that course as enrollment
           else
             samecrnmatches = Course.where(semcrn: c.semcrn)
             if samecrnmatches.size > 0
@@ -221,11 +236,11 @@ namespace :db do
             else
               puts("Could not find enrollments for #{c.semcrn} during add.")
               c.enroll = -1
-              c.csize = -1 
+              c.csize = -1
             end
           end
 
-          if c.save
+          if !c.save
             puts "Course #{c.semcrn} created"
           end
           c.generate_relationships(course_arr[10], course_arr[11], course_arr[12])
@@ -236,28 +251,28 @@ namespace :db do
     # enrollment and class size
     File.open(args[:enrollment_file], "r") do |f|
       f.each_line do |entry|
-        if entry[0] == '>'
+        if entry[0] == ">"
           entry = entry[2..-1]
-          next if entry.start_with? 'crn'
-          semester = Setting.get_val('current_semester')
-          sem = ''
+          next if entry.start_with? "crn"
+          semester = Setting.get_val("current_semester")
+          sem = ""
           case semester[0]
-          when 'F'
-            sem = 'f'
-          when 'S'
-            sem = 's'
+          when "F"
+            sem = "f"
+          when "S"
+            sem = "s"
           end
           sem << semester[-2..-1]
-          entry_arr = entry.split('|')
+          entry_arr = entry.split("|")
           semcrn = "#{sem}_#{entry_arr[0]}"
-          puts semcrn
+          # puts semcrn
           total_enroll = entry_arr[2]
-          for i in 3..5 do
+          for i in 3..5
             unless entry_arr[i].blank?
               total_enroll = total_enroll.to_i + entry_arr[i].to_i
             end
           end
-          courses = Course.where(semcrn:semcrn)
+          courses = Course.where(semcrn: semcrn)
           if courses.size > 0
             courses.each do |c|
               c.update_size(entry_arr[1], total_enroll)
@@ -271,4 +286,3 @@ namespace :db do
     end
   end
 end
-

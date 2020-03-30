@@ -189,15 +189,15 @@ then
 fi
 
 # update associations for departments
-echo
-echo "Building associations"
-echo "================"
-rake db:assign_departments
-if [ $? != 0 ]
-then
-    echo "Raketask to build relationships from departments failed"
-    exit 8
-fi
+#echo
+#echo "Building associations"
+#echo "================"
+#rake db:assign_departments
+#if [ $? != 0 ]
+#then
+#    echo "Raketask to build relationships from departments failed"
+#    exit 8
+#fi
 
 # Update revision no in db
 echo
