@@ -41,7 +41,7 @@ echo
 cd $PRESTISSIMO_HOME
 
 # Run yarn to update packages
-`bundle exec yarn -s`
+`bundle exec yarn`
 
 # Test semester
 OLDSEM=`rake db:current_semester`
