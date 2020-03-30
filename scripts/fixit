@@ -51,15 +51,15 @@ if [ $? -ne 0 ]; then
     exit 7
 fi
 
-# update yarn packages
+# Make assets
 echo
-echo "*** Running yarn..."
-sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $YARN -s"
-if [ $? -ne 0 ]; then
+echo "*** Precompiling assets..."
+sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $RAKE assets:precompile RAILS_ENV=production"
+if [ $? -ne 0 ];
+then
     echo "Failed!"
-    exit 9
+    exit 4
 fi
-
 
 # update database
 echo
@@ -77,16 +77,6 @@ fi
 #    echo "Failed!"
 #    exit 6
 #fi
-
-# deploy
-echo
-echo "*** Precompiling assets..."
-sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $RAKE assets:precompile RAILS_ENV=production"
-if [ $? -ne 0 ];
-then
-    echo "Failed!"
-    exit 4
-fi
 
 # restart apache server
 echo
