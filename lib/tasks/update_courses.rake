@@ -59,6 +59,7 @@ namespace :db do
         next
       end
     end
+    puts "Done with hubcourses"
   end
 
   desc "match hubcourses and professors to departments"
