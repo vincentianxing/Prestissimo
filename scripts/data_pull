@@ -232,10 +232,4 @@ fi
 echo
 echo "Successful data_pull:" `date`
 
-CRONOUTFILE="$PRESTISSIMO_HOME/log/data_pull_log"
-if [ -r ${CRONOUTFILE} ]
-then
-  cp "${CRONOUTFILE}" "${CRONOUTFILE}.lastgood"
-fi
-
 # vim: ts=8 sts=2 sw=2 : 
