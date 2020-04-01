@@ -62,6 +62,12 @@ namespace :db do
     puts "Done with hubcourses"
   end
 
+  desc "Remove carts more than 2 years old"
+  task remove_old_carts: :environment do
+    Cart.where("updated_at < ?", 2.years.ago).delete_all
+    puts "Done deleting old carts"
+  end
+
   desc "match hubcourses and professors to departments"
   task assign_departments: :environment do
 

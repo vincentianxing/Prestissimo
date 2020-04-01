@@ -24,7 +24,10 @@
 PATH="/usr/share/rvm/gems/ruby-2.6.3/bin:/usr/share/rvm/gems/ruby-2.6.3@global/bin:/usr/share/rvm/rubies/ruby-2.6.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/share/rvm/bin"
 
 # update the course db, Mon-Fri: 8am, Noon, 4pm, 8pm (When we get the new files)
-0 8,12,16,20 * * 1,2,3,4,5 RAILS_ENV=production /var/www/html/oprestissimo.com/scripts/data_pull >> /var/www/html/oprestissimo.com/log/data_pull_log
+0 8,12,16,20 * * 1,2,3,4,5 RAILS_ENV=production /var/www/html/oprestissimo.com/scripts/data_pull >> /var/www/html/oprestissimo.com/log/data_pull.log
 
 # Remove empty hubcourses at 4am every week day
-0 4 * * 1,2,3,4,5 cd /var/www/html/oprestissimo.com && RAILS_ENV=production /usr/share/rvm/gems/ruby-2.6.3/bin/rake db:remove_empty_hubcourses >> /var/www/html/oprestissimo.com/log/data_pull_log
+0 4 * * 1,2,3,4,5 cd /var/www/html/oprestissimo.com && RAILS_ENV=production /usr/share/rvm/gems/ruby-2.6.3/bin/rake db:remove_empty_hubcourses >> /var/www/html/oprestissimo.com/log/rake_tasks.log
+
+# Remove old carts once a week
+0 4 * * 1 cd /var/www/html/oprestissimo.com && RAILS_ENV=production /usr/share/rvm/gems/ruby-2.6.3/bin/rake db:remove_old_carts >> /var/www/html/oprestissimo.com/log/rake_tasks.log
