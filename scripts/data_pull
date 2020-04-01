@@ -3,6 +3,11 @@
 # Takes the datafile placed in datapull by CIT, checks it in to RCS
 # Does a diff between the 2 most recent checkins and updates the course database
 
+# Set up paths
+YARN="/usr/bin/yarn"
+BUNDLE="/usr/share/rvm/gems/ruby-2.6.3/bin/bundle"
+RAKE="/usr/share/rvm/gems/ruby-2.6.3/bin/rake"
+
 # Where data comes from
 DROPDIR="/home/datadrop"
 #DROPFILE=`ls ${DROPDIR}/oprestissimo_*.lis | tail -1`
@@ -41,10 +46,10 @@ echo
 cd $PRESTISSIMO_HOME
 
 # Run yarn to update packages
-`bundle exec yarn`
+`$BUNDLE exec $YARN`
 
 # Test semester
-OLDSEM=`rake db:current_semester`
+OLDSEM=`$RAKE db:current_semester`
 if [ $? != 0 ]
 then
   echo "Failed to get current semester from db"
@@ -64,7 +69,7 @@ fi
 DROPFILE_BAC="${DESTDIR}/coursefile.lis.backup"
 
 # Get the old date
-OLDDATE=`rake db:courses_last_updated`
+OLDDATE=`$RAKE db:courses_last_updated`
 if [ $? != 0 ]
 then
   echo "Failed to get previous timestamp"
@@ -160,7 +165,7 @@ then
   sed -e 's/^/> /' "${DESTFILE}" > "${DIFFOUT}"
   sed -e 's/^/> /' "${ENROLLFILE}" > "${ENROLLOUT}"
   # update our internal semester list
-  rake db:current_semester["${NEWSEM}"]
+  $RAKE db:current_semester["${NEWSEM}"]
   if [ $? != 0 ]
   then
     echo "Raketask to change current semester from $OLDSEM to $NEWSEM failed"
@@ -169,11 +174,11 @@ then
 else
   # if old semester
   echo "Old Semester $OLDSEM"
-  OLDREV=`rake db:courses_revision`
+  OLDREV=`$RAKE db:courses_revision`
   rcsdiff -r"${OLDREV}" "${DESTFILE}" 2>&1 | egrep '^[<]' > "${DIFFOUT}"
   rcsdiff -r"${OLDREV}" "${DESTFILE}" 2>&1 | egrep '^[>]' >> "${DIFFOUT}"
   # and enrollments too
-  OLDEREV=`rake db:enrollment_revision`
+  OLDEREV=`$RAKE db:enrollment_revision`
   rcsdiff -r"${OLDEREV}" "${ENROLLFILE}" 2>&1 | egrep '^[>]' > "${ENROLLOUT}"
 fi
 
@@ -181,7 +186,7 @@ fi
 echo
 echo "Updating courses"
 echo "================"
-rake db:update_courses["${DIFFOUT}","${ENROLLOUT}"] 
+$RAKE db:update_courses["${DIFFOUT}","${ENROLLOUT}"] 
 if [ $? != 0 ]
 then
   echo "Raketask to update courses from diff files failed"
@@ -203,21 +208,21 @@ fi
 echo
 echo "Updating revision numbers"
 echo "================"
-rake db:courses_revision["${NEWREV}"]
+$RAKE db:courses_revision["${NEWREV}"]
 if [ $? != 0 ]
 then
   echo "Could not change courses revision no. setting in db to: " $NEWREV
   exit 9
 fi
 
-rake db:enrollment_revision["${NEWEREV}"]
+$RAKE db:enrollment_revision["${NEWEREV}"]
 if [ $? != 0 ]
 then
   echo "Could not change enrollment revision no. setting in db to: " $NEWEREV
   exit 10
 fi
 
-rake db:courses_last_updated["${NEWDATE}"]
+$RAKE db:courses_last_updated["${NEWDATE}"]
 if [ $? != 0 ]
 then
   echo "Could not courses_last_updated to ${NEWDATE}"
