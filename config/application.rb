@@ -1,5 +1,5 @@
-require_relative 'boot'
-require 'rails'
+require_relative "boot"
+require "rails"
 # Pick the frameworks you want:
 require "csv"
 require "active_record/railtie"
@@ -7,8 +7,7 @@ require "active_storage/engine"
 require "action_controller/railtie"
 require "action_mailer/railtie"
 require "sprockets/railtie"
-require 'digest/md5'
-
+require "digest/md5"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -91,8 +90,11 @@ module Prestissimo
     config.assets.precompile += %w( print_expanded.css )
     config.assets.precompile += %w( jquery-ui-1.10.3.custom.css )
 
+    # Send sass cache to tmp
+    config.sass.cache_location = Rails.root.join("tmp", ".sass-cache").to_s
+
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
+    config.assets.version = "1.0"
 
     # set default host for mailer urls
     config.action_mailer.delivery_method = :sendmail
