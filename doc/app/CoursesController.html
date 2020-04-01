@@ -8,13 +8,18 @@
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
 </script>
 
-<script src="./js/jquery.js"></script>
-<script src="./js/darkfish.js"></script>
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
 
 <link href="./css/fonts.css" rel="stylesheet">
 <link href="./css/rdoc.css" rel="stylesheet">
+
 
 
 
@@ -113,8 +118,6 @@
   </section>
 
   
-  
-  
   <section id="5Buntitled-5D" class="documentation-section">
     
 
@@ -151,7 +154,7 @@
           
           <div class="method-source-code" id="create-source">
             <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 6</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -183,11 +186,11 @@
           
           <div class="method-source-code" id="edit-source">
             <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 14</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">edit</span>
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">signed_in?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">faculty_user?</span>(<span class="ruby-identifier">current_user</span>)
-  <span class="ruby-ivar">@courses</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">semcrn</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:semcrn</span>])
+  <span class="ruby-ivar">@courses</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">semcrn:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:semcrn</span>])
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">error_404_path</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@courses</span>
-  <span class="ruby-ivar">@sections</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">dept</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@courses</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">dept</span>, <span class="ruby-identifier">cnum</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@courses</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">cnum</span>, <span class="ruby-identifier">semester</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@courses</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">semester</span>)
+  <span class="ruby-ivar">@sections</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">dept:</span> <span class="ruby-ivar">@courses</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">dept</span>, <span class="ruby-value">cnum:</span> <span class="ruby-ivar">@courses</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">cnum</span>, <span class="ruby-value">semester:</span> <span class="ruby-ivar">@courses</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">semester</span>)
   <span class="ruby-ivar">@sections</span>.<span class="ruby-identifier">sort_by!</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">crn</span>}
   <span class="ruby-ivar">@course_arr</span> = [<span class="ruby-ivar">@courses</span>, <span class="ruby-ivar">@sections</span>]
   <span class="ruby-ivar">@course_arr</span>
@@ -222,7 +225,7 @@
           
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 124</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">index</span>
   <span class="ruby-comment">#if !cookies[:mobile_format].nil? &amp;&amp; is_mobile_device?</span>
   <span class="ruby-comment">#   session[:mobile_view] = true</span>
   <span class="ruby-comment">#end</span>
@@ -273,7 +276,7 @@
           
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 10</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">new</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -308,7 +311,7 @@
           
           <div class="method-source-code" id="search-source">
             <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 149</span>
-  <span class="ruby-keyword">def</span> <span class="ruby-identifier">search</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">search</span>
     <span class="ruby-identifier">qs</span> = <span class="ruby-string">&#39;&#39;</span> <span class="ruby-comment"># Query String</span>
 <span class="ruby-comment">#    qs = &#39;SELECT courses.* FROM courses WHERE (&#39; # Query String</span>
 
@@ -350,7 +353,7 @@
       <span class="ruby-comment"># Uses &#39;LIKE&#39; comparison</span>
       <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:dept</span>].<span class="ruby-identifier">blank?</span>)
         <span class="ruby-identifier">dept</span> = <span class="ruby-node">&quot;#{params[:dept]}&quot;</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot; &quot;</span>)
-        <span class="ruby-identifier">asize</span> = <span class="ruby-identifier">dept</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>;
+        <span class="ruby-identifier">asize</span> = <span class="ruby-identifier">dept</span>.<span class="ruby-identifier">length</span><span class="ruby-value">-1</span>;
         (<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">asize</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
           <span class="ruby-keyword">if</span> (<span class="ruby-identifier">asize</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>)
             <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;dept&quot;</span>, <span class="ruby-identifier">dept</span>[<span class="ruby-identifier">c</span>], <span class="ruby-identifier">qs</span>)
@@ -527,7 +530,7 @@
       <span class="ruby-keyword">unless</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:start_hour</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;7&quot;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:start_minute</span>]=<span class="ruby-string">&quot;00&quot;</span> <span class="ruby-operator">&amp;&amp;</span>  <span class="ruby-identifier">params</span>[<span class="ruby-value">:end_hour</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;22&quot;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:end_minute</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;00&quot;</span>)
         <span class="ruby-identifier">start_hour</span> = <span class="ruby-string">&quot;&quot;</span>
         <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:start_hour</span>].<span class="ruby-identifier">blank?</span>)
-          <span class="ruby-identifier">start_hour</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:start_hour</span>]<span class="ruby-operator">+</span><span class="ruby-string">&quot;:&quot;</span>
+          <span class="ruby-identifier">start_hour</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:start_hour</span>]<span class="ruby-string">+&quot;:&quot;</span>
           <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:start_minute</span>].<span class="ruby-identifier">blank?</span>)
             <span class="ruby-identifier">start_hour</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:start_minute</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;:00&quot;</span>
           <span class="ruby-keyword">else</span>
@@ -538,7 +541,7 @@
         <span class="ruby-comment">#End Time Conditionals</span>
         <span class="ruby-identifier">end_hour</span> = <span class="ruby-string">&quot;&quot;</span>
         <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:end_hour</span>].<span class="ruby-identifier">blank?</span>)
-          <span class="ruby-identifier">end_hour</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:end_hour</span>]<span class="ruby-operator">+</span><span class="ruby-string">&quot;:&quot;</span>
+          <span class="ruby-identifier">end_hour</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:end_hour</span>]<span class="ruby-string">+&quot;:&quot;</span>
           <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:end_minute</span>].<span class="ruby-identifier">blank?</span>)
             <span class="ruby-identifier">end_hour</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:end_minute</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;:00&quot;</span>
           <span class="ruby-keyword">else</span>
@@ -594,7 +597,8 @@
         <span class="ruby-identifier">qs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;( #{temp} )  AND &quot;</span>
       <span class="ruby-keyword">end</span>
 
-<span class="ruby-comment">      # courses last altered since
+<span class="ruby-comment">=begin
+      # courses last altered since
       unless params[:date][:year].blank? &amp;&amp; params[:date][:month].blank? &amp;&amp; params[:date][:day].blank?
         querydate = &quot;&quot;
         if params[:date][:year].blank?
@@ -621,7 +625,8 @@
 
         qs = qs + &quot;last_changed &gt;= &#39;#{querydate}&#39; AND &quot;
       end
-</span>
+=end</span>
+
       <span class="ruby-comment"># Removes the trailing &#39; AND &#39; from the query string</span>
       <span class="ruby-value">5</span>.<span class="ruby-identifier">times</span> { <span class="ruby-identifier">qs</span>.<span class="ruby-identifier">chop!</span> }
       <span class="ruby-comment"># Adds &quot;order by&quot; in query string</span>
@@ -629,7 +634,7 @@
       <span class="ruby-comment"># Course.set_scope(&quot;dept, cnum, section&quot;);</span>
       <span class="ruby-comment"># Performs the search, using the built query string</span>
     <span class="ruby-keyword">end</span>
-    <span class="ruby-ivar">@courses</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">all</span>(<span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">qs</span>)
+    <span class="ruby-ivar">@courses</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">qs</span>).<span class="ruby-identifier">to_a</span>
 <span class="ruby-comment">#    @courses = Course.find_by_sql(qs)</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:cart_id</span>]
       <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:cart_id</span>])
@@ -678,15 +683,15 @@
           
           <div class="method-source-code" id="update-source">
             <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 25</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
   <span class="ruby-identifier">had_error</span> = <span class="ruby-keyword">false</span>
   <span class="ruby-ivar">@course</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-ivar">@courses</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">semcrn</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@course</span>.<span class="ruby-identifier">semcrn</span>).<span class="ruby-identifier">to_a</span>
+  <span class="ruby-ivar">@courses</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">semcrn:</span> <span class="ruby-ivar">@course</span>.<span class="ruby-identifier">semcrn</span>).<span class="ruby-identifier">to_a</span>
 
   <span class="ruby-comment">#add checked sections into the courses list</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:sections</span>].<span class="ruby-identifier">nil?</span>
     <span class="ruby-identifier">params</span>[<span class="ruby-value">:sections</span>].<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
-      <span class="ruby-ivar">@courses</span>=<span class="ruby-ivar">@courses</span><span class="ruby-operator">|</span><span class="ruby-constant">Course</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">semcrn</span><span class="ruby-operator">:</span> <span class="ruby-identifier">s</span>).<span class="ruby-identifier">to_a</span>
+      <span class="ruby-ivar">@courses</span>=<span class="ruby-ivar">@courses</span><span class="ruby-operator">|</span><span class="ruby-constant">Course</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">semcrn:</span> <span class="ruby-identifier">s</span>).<span class="ruby-identifier">to_a</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 
@@ -696,7 +701,7 @@
     <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">c</span>.<span class="ruby-identifier">semcrn</span>]=[<span class="ruby-identifier">c</span>.<span class="ruby-identifier">changed_fields</span>,<span class="ruby-identifier">c</span>.<span class="ruby-identifier">notify_profs</span>]
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-identifier">updates</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:course</span>].<span class="ruby-identifier">clone</span>
+  <span class="ruby-identifier">updates</span> = <span class="ruby-identifier">course_params</span>.<span class="ruby-identifier">clone</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">updates</span>[<span class="ruby-value">:display_prof_note</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;0&quot;</span>
     <span class="ruby-identifier">updates</span>[<span class="ruby-value">:display_prof_note</span>]=<span class="ruby-keyword">false</span>;
   <span class="ruby-keyword">else</span>
@@ -709,7 +714,7 @@
 
   <span class="ruby-ivar">@courses</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sec</span><span class="ruby-operator">|</span>
     
-    <span class="ruby-comment">#hide course </span>
+    <span class="ruby-comment">#hide course</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:course</span>][<span class="ruby-value">:status</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;1&quot;</span>
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">status</span>.<span class="ruby-identifier">blank?</span>
         <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">0</span>]<span class="ruby-operator">||=</span><span class="ruby-string">&quot;&quot;</span>
@@ -739,7 +744,7 @@
     <span class="ruby-keyword">end</span>
 
     <span class="ruby-comment">#It won&#39;t change the field if it is the empty string, so this sets it to nil so it can be edited</span>
-    <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">notify_profs</span>=<span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">notify_profs!</span>=<span class="ruby-keyword">nil</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">notify_profs</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">notify_profs</span>=<span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">notify_profs</span><span class="ruby-operator">!=</span><span class="ruby-keyword">nil</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">notify_profs</span>.<span class="ruby-identifier">empty?</span>
 
     <span class="ruby-comment">#Adds/removes the professor to notify profs</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:course</span>][<span class="ruby-value">:notify_profs</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;1&quot;</span>
@@ -764,7 +769,7 @@
   <span class="ruby-ivar">@courses</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">updates</span>[<span class="ruby-value">:changed_fields</span>]=<span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">c</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">0</span>]
     <span class="ruby-identifier">updates</span>[<span class="ruby-value">:notify_profs</span>]=<span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">c</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">1</span>]
-    <span class="ruby-identifier">temp_bool</span>=<span class="ruby-identifier">c</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">updates</span>)
+    <span class="ruby-identifier">temp_bool</span>=<span class="ruby-identifier">c</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">updates</span>)
     <span class="ruby-identifier">had_error</span><span class="ruby-operator">||=</span><span class="ruby-operator">!</span><span class="ruby-identifier">temp_bool</span>
   <span class="ruby-keyword">end</span>
 
@@ -772,7 +777,7 @@
     <span class="ruby-identifier">flash</span>[<span class="ruby-value">:success</span>]=<span class="ruby-string">&quot;Course(s) successfully updated!&quot;</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">course_edit_path</span>(<span class="ruby-ivar">@course</span>.<span class="ruby-identifier">semcrn</span>)
   <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">course_edit_path</span>(<span class="ruby-ivar">@course</span>.<span class="ruby-identifier">semcrn</span>),<span class="ruby-value">:notice=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Course(s) could not be updated. Please contact the prestissimo managers.&quot;</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">course_edit_path</span>(<span class="ruby-ivar">@course</span>.<span class="ruby-identifier">semcrn</span>),<span class="ruby-value">:notice</span><span class="ruby-operator">=&gt;</span><span class="ruby-string">&quot;Course(s) could not be updated. Please contact the prestissimo managers.&quot;</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -788,12 +793,13 @@
     </section>
   
   </section>
+
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
-  <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

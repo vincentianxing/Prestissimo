@@ -8,13 +8,18 @@
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
 </script>
 
-<script src="./js/jquery.js"></script>
-<script src="./js/darkfish.js"></script>
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
 
 <link href="./css/fonts.css" rel="stylesheet">
 <link href="./css/rdoc.css" rel="stylesheet">
+
 
 
 
@@ -96,8 +101,6 @@
   </section>
 
   
-  
-  
   <section id="5Buntitled-5D" class="documentation-section">
     
 
@@ -134,7 +137,7 @@
           
           <div class="method-source-code" id="create-source">
             <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 18</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
         <span class="ruby-ivar">@report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">build_report</span>(<span class="ruby-ivar">@reportable</span>,<span class="ruby-ivar">@user</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:report</span>][<span class="ruby-value">:title</span>],<span class="ruby-identifier">params</span>[<span class="ruby-value">:report</span>][<span class="ruby-value">:body</span>])
         <span class="ruby-comment"># send email</span>
         <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;&quot;</span>
@@ -193,7 +196,7 @@
           
           <div class="method-source-code" id="edit-source">
             <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 48</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">edit</span>
         <span class="ruby-ivar">@report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
         <span class="ruby-ivar">@reportable_changed</span> = <span class="ruby-ivar">@reportable</span>.<span class="ruby-identifier">updated_at</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">created_at</span>
         <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">lock</span>(<span class="ruby-node">&quot;#{@user.fname} #{@user.lname}&quot;</span>)
@@ -234,7 +237,7 @@
           
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 6</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">index</span>
         <span class="ruby-ivar">@resolved</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
         <span class="ruby-ivar">@unresolved</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
         <span class="ruby-constant">Report</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">report</span><span class="ruby-operator">|</span>
@@ -275,7 +278,7 @@
           
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 82</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">new</span>
         <span class="ruby-ivar">@report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">new</span>
         <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reportable_id</span> = <span class="ruby-ivar">@reportable</span>.<span class="ruby-identifier">id</span>
         <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reportable_type</span> = <span class="ruby-ivar">@reportable</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">base_class</span>.<span class="ruby-identifier">name</span>
@@ -310,9 +313,9 @@
           
           <div class="method-source-code" id="update-source">
             <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 60</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
         <span class="ruby-ivar">@report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-        <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">edit_report_path</span>(<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reportable_type</span>.<span class="ruby-identifier">underscore</span>,<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reportable_id</span>,<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">user_id</span>,<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">response</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:response</span>], <span class="ruby-identifier">to_viol</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_viol</span>], <span class="ruby-identifier">message</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Cannot resolve report without informing reporter.&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:resolved</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_comp</span>].<span class="ruby-identifier">blank?</span>
+        <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">edit_report_path</span>(<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reportable_type</span>.<span class="ruby-identifier">underscore</span>,<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reportable_id</span>,<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">user_id</span>,<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">response:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:response</span>], <span class="ruby-value">to_viol:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_viol</span>], <span class="ruby-value">message:</span> <span class="ruby-string">&quot;Cannot resolve report without informing reporter.&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:resolved</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_comp</span>].<span class="ruby-identifier">blank?</span>
 
         <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">unlock</span>
         <span class="ruby-identifier">response</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:response</span>]
@@ -344,12 +347,13 @@
     </section>
   
   </section>
+
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
-  <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

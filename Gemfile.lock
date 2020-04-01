@@ -229,6 +229,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    rdoc (6.2.1)
     redcarpet (3.5.0)
     ref (2.0.0)
     regexp_parser (1.7.0)
@@ -267,6 +268,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    sdoc (1.1.0)
+      rdoc (>= 5.0)
     shellany (0.0.1)
     sprockets (4.0.0)
       concurrent-ruby (~> 1.0)
@@ -345,6 +348,7 @@ DEPENDENCIES
   rspec-rails
   ruby-mysql
   sass-rails
+  sdoc
   sqlite3
   test-unit
   therubyracer

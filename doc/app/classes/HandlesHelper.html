@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HandlesHelper</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="HandlesHelper">
+
+  
+
+    <meta name="keywords" content="HandlesHelper class">
+  
+    <meta name="keywords" content="current_handle">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span>
+            HandlesHelper
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/helpers/handles_helper_rb.html">app/helpers/handles_helper.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-current_handle">current_handle</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-current_handle">
+            
+              <b>current_handle</b>()
+            
+            <a href="../classes/HandlesHelper.html#method-i-current_handle" name="method-i-current_handle" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-current_handle_source')" id="l_method-i-current_handle_source">show</a>
+                
+              </p>
+              <div id="method-i-current_handle_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/handles_helper.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">current_handle</span>
+  <span class="ruby-ivar">@current_handle</span> = <span class="ruby-constant">Handle</span>.<span class="ruby-identifier">find_by_handlekey</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">handlekey</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

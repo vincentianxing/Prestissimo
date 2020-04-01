@@ -8,13 +8,18 @@
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
 </script>
 
-<script src="./js/jquery.js"></script>
-<script src="./js/darkfish.js"></script>
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
 
 <link href="./css/fonts.css" rel="stylesheet">
 <link href="./css/rdoc.css" rel="stylesheet">
+
 
 
 
@@ -58,7 +63,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link">ActiveRecord::Base
+  <p class="link"><a href="ApplicationRecord.html">ApplicationRecord</a>
   
 </div>
 
@@ -100,8 +105,6 @@ dept_long  :string(255)</pre>
   </section>
 
   
-  
-  
   <section id="5Buntitled-5D" class="documentation-section">
     
 
@@ -137,12 +140,12 @@ dept_long  :string(255)</pre>
 
           
           <div class="method-source-code" id="to_csv-source">
-            <pre><span class="ruby-comment"># File app/models/department.rb, line 23</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_csv</span>( <span class="ruby-identifier">enroll</span> )
-  <span class="ruby-identifier">qs</span> = <span class="ruby-string">&#39;( dept LIKE &#39;</span><span class="ruby-operator">+</span><span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-string">&quot;%&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">dept</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;%&quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&#39; AND status!=&quot;cancelled&quot;&#39;</span>
+            <pre><span class="ruby-comment"># File app/models/department.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_csv</span>( <span class="ruby-identifier">enroll</span> )
+  <span class="ruby-identifier">qs</span> = <span class="ruby-string">&#39;( dept LIKE &#39;</span><span class="ruby-operator">+</span><span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-string">&quot;%&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">dept</span><span class="ruby-string">+&quot;%&quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&#39; AND status!=&quot;cancelled&quot;&#39;</span>
   <span class="ruby-identifier">qs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39; AND ( enroll BETWEEN 1 AND 999 )&#39;</span> <span class="ruby-keyword">if</span> (<span class="ruby-identifier">enroll</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>)
   <span class="ruby-identifier">qs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39; )&#39;</span>
-  <span class="ruby-identifier">courses</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">all</span>( <span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">qs</span>).<span class="ruby-identifier">sort</span>
+  <span class="ruby-identifier">courses</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">qs</span>).<span class="ruby-identifier">sort</span>
   <span class="ruby-constant">CSV</span>.<span class="ruby-identifier">generate</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">csv</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Course</span>.<span class="ruby-identifier">csv_headers</span> 
     <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
@@ -179,8 +182,8 @@ dept_long  :string(255)</pre>
 
           
           <div class="method-source-code" id="to_param-source">
-            <pre><span class="ruby-comment"># File app/models/department.rb, line 19</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_param</span>
+            <pre><span class="ruby-comment"># File app/models/department.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_param</span>
    <span class="ruby-identifier">dept</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -196,12 +199,13 @@ dept_long  :string(255)</pre>
     </section>
   
   </section>
+
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
-  <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

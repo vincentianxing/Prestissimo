@@ -196,8 +196,7 @@ c. How do I write more documentation?
    http://rdoc.rubyforge.org/RDoc/Markup.html
    Think of it as javadocs.
 
-   To recompile the documentation, run the following:
-   <code>$ rdoc --main doc/README_FOR_APP -t 'Prestissimo Documentation' doc/README_FOR_APP app/**/*.rb lib/**/*.rb --op doc/app</code>
+   To recompile the documentation, just run <code>rails rdoc</code>.
 
    This reparses all of the docs and rebuilds the nice html pages in 
    oprestissimo.info/app/index.html. The html pages are all in doc/app/

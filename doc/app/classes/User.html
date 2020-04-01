@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="User">
+
+  
+    
+    <meta name="description" content="Schema Information  Table name: users  id              :integer(4)      not null, primary key fname           :string(255) email           :string(255) password_digest :string(255) created_at      :da.">
+    <meta property="og:description" content="Schema Information  Table name: users  id              :integer(4)      not null, primary key fname           :string(255) email           :string(255) password_digest :string(255) created_at      :da.">
+  
+
+    <meta name="keywords" content="User class">
+  
+    <meta name="keywords" content="handlekey, make_admin, unmake_admin, create_cart">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            User
+            
+                <span class="parent">&lt;
+                    
+                    <a href="ApplicationRecord.html">ApplicationRecord</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/models/user_rb.html">app/models/user.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<h2 id="class-User-label-Schema+Information">Schema Information</h2>
+
+<p>Table name: users</p>
+
+<pre><code>id              :integer(4)      not null, primary key
+fname           :string(255)
+email           :string(255)
+password_digest :string(255)
+created_at      :datetime        not null
+updated_at      :datetime        not null
+remember_token  :string(255)
+status          :string(255)     default(&quot;pending&quot;)
+lname           :string(255)
+role            :string(255)
+nickname        :string(255)
+admin           :boolean(1)      default(FALSE)
+year            :string(255)
+privacy_prefs   :text
+major           :string(255)
+notes           :text
+cart_id         :integer(4)
+credits_done    :integer(4)
+double_major    :string(255)
+</code></pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-create_cart">create_cart</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>H</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-handlekey">handlekey</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-make_admin">make_admin</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-unmake_admin">unmake_admin</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">VALID_EMAIL</td>
+            <td>=</td>
+            <td class="attr-value">/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>Ensure the password is at least 6 characters long and the email is of the correct form validates :password, presence: true, length: { minimum: 6 }, :if =&gt; :password_digest_changed?</p></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-create_cart">
+            
+              <b>create_cart</b>()
+            
+            <a href="../classes/User.html#method-i-create_cart" name="method-i-create_cart" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-create_cart_source')" id="l_method-i-create_cart_source">show</a>
+                
+              </p>
+              <div id="method-i-create_cart_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_cart</span>
+  <span class="ruby-identifier">c</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">c</span>.<span class="ruby-identifier">courses</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">c</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">cart</span> = <span class="ruby-identifier">c</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-handlekey">
+            
+              <b>handlekey</b>()
+            
+            <a href="../classes/User.html#method-i-handlekey" name="method-i-handlekey" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>give the key for locating the user&#39;s handle</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-handlekey_source')" id="l_method-i-handlekey_source">show</a>
+                
+              </p>
+              <div id="method-i-handlekey_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">handlekey</span>
+  <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">email</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-make_admin">
+            
+              <b>make_admin</b>()
+            
+            <a href="../classes/User.html#method-i-make_admin" name="method-i-make_admin" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-make_admin_source')" id="l_method-i-make_admin_source">show</a>
+                
+              </p>
+              <div id="method-i-make_admin_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">make_admin</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">admin</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-unmake_admin">
+            
+              <b>unmake_admin</b>()
+            
+            <a href="../classes/User.html#method-i-unmake_admin" name="method-i-unmake_admin" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-unmake_admin_source')" id="l_method-i-unmake_admin_source">show</a>
+                
+              </p>
+              <div id="method-i-unmake_admin_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 98</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unmake_admin</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">admin</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

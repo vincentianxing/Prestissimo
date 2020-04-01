@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JqueryWeekCalendar::Install</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="JqueryWeekCalendar::Install">
+
+  
+
+    <meta name="keywords" content="JqueryWeekCalendar::Install class">
+  
+    <meta name="keywords" content="source_root, copy_calendar">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            JqueryWeekCalendar::Install
+            
+                <span class="parent">&lt;
+                    
+                    Rails::Generators::Base
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/lib/jquery-week-calendar/generators_rb.html">lib/jquery-week-calendar/generators.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-copy_calendar">copy_calendar</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-source_root">source_root</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">JAVASCRIPTS</td>
+            <td>=</td>
+            <td class="attr-value">File.expand_path(&#39;../../../vendor/assets/javascripts&#39;, __FILE__)</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">STYLESHEETS</td>
+            <td>=</td>
+            <td class="attr-value">File.expand_path(&#39;../../../vendor/assets/stylesheets&#39;, __FILE__)</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-source_root">
+            
+              <b>source_root</b>()
+            
+            <a href="../../classes/JqueryWeekCalendar/Install.html#method-c-source_root" name="method-c-source_root" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-c-source_root_source')" id="l_method-c-source_root_source">show</a>
+                
+              </p>
+              <div id="method-c-source_root_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/jquery-week-calendar/generators.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">source_root</span>
+  <span class="ruby-ivar">@source_root</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">JAVASCRIPTS</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-copy_calendar">
+            
+              <b>copy_calendar</b>()
+            
+            <a href="../../classes/JqueryWeekCalendar/Install.html#method-i-copy_calendar" name="method-i-copy_calendar" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-copy_calendar_source')" id="l_method-i-copy_calendar_source">show</a>
+                
+              </p>
+              <div id="method-i-copy_calendar_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/jquery-week-calendar/generators.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">copy_calendar</span>
+  <span class="ruby-constant">Dir</span>[<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">JAVASCRIPTS</span>, <span class="ruby-string">&#39;*.js&#39;</span>)].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">split</span>(<span class="ruby-identifier">file</span>).<span class="ruby-identifier">last</span>
+    <span class="ruby-identifier">copy_file</span> <span class="ruby-identifier">file</span>, <span class="ruby-node">&quot;public/javascripts/#{file}&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-constant">Dir</span>[<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">STYLESHEETS</span>, <span class="ruby-string">&#39;*.css&#39;</span>)].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">split</span>(<span class="ruby-identifier">file</span>).<span class="ruby-identifier">last</span>
+    <span class="ruby-identifier">copy_file</span> <span class="ruby-identifier">file</span>, <span class="ruby-node">&quot;public/stylesheets/#{file}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

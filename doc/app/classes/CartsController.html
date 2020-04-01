@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CartsController</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="CartsController">
+
+  
+
+    <meta name="keywords" content="CartsController class">
+  
+    <meta name="keywords" content="create, destroy, show, update, add, remove, clear, mail_to, search">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            CartsController
+            
+                <span class="parent">&lt;
+                    
+                    <a href="ApplicationController.html">ApplicationController</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/controllers/carts_controller_rb.html">app/controllers/carts_controller.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+    <!-- Sections -->
+    <div class="sectiontitle">Sections</div>
+    <ul>
+      
+        <li><a href="#Adding+Courses+To+Cart">Adding Courses To Cart</a></li>
+      
+    </ul>
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-add">add</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-clear">clear</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-create">create</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-destroy">destroy</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-mail_to">mail_to</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-remove">remove</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-search">search</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-show">show</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-update">update</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-clear">
+            
+              <b>clear</b>()
+            
+            <a href="../classes/CartsController.html#method-i-clear" name="method-i-clear" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>clear cart of courses</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-clear_source')" id="l_method-i-clear_source">show</a>
+                
+              </p>
+              <div id="method-i-clear_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 194</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">clear</span>
+  <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">courses</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">total_credits</span> = <span class="ruby-value">0</span>
+  <span class="ruby-comment"># if cookies[:cart] need to fix this... always tries to merge carts without this...</span>
+  <span class="ruby-comment">#   cookies.delete :cart</span>
+  <span class="ruby-comment"># end</span>
+
+  <span class="ruby-comment"># if statements for dealing with a bug that displayed cart off-screen</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">cookies</span>[<span class="ruby-value">:cartX</span>]
+    <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">:cartX</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">cookies</span>[<span class="ruby-value">:cartY</span>]
+    <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">:cartY</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">save!</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-create">
+            
+              <b>create</b>()
+            
+            <a href="../classes/CartsController.html#method-i-create" name="method-i-create" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>creates a new cart with courses in it</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-create_source')" id="l_method-i-create_source">show</a>
+                
+              </p>
+              <div id="method-i-create_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
+  <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">courses</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:courses</span>]
+    <span class="ruby-identifier">params</span>[<span class="ruby-value">:courses</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>,<span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">courses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39; &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">strip!</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">set_courses</span>(<span class="ruby-identifier">courses</span>)
+  <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">permanent</span>[<span class="ruby-value">:cart</span>] = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">cartid</span>
+    <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">get_courses</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">total_credits</span> = <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@cart_courses</span>
+  <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">save</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-destroy">
+            
+              <b>destroy</b>()
+            
+            <a href="../classes/CartsController.html#method-i-destroy" name="method-i-destroy" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>deletes a cart</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-destroy_source')" id="l_method-i-destroy_source">show</a>
+                
+              </p>
+              <div id="method-i-destroy_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">destroy</span>
+  <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">:cart</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">cookies</span>[<span class="ruby-value">:cart</span>]
+  <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">destroy</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-mail_to">
+            
+              <b>mail_to</b>()
+            
+            <a href="../classes/CartsController.html#method-i-mail_to" name="method-i-mail_to" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>email cart</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-mail_to_source')" id="l_method-i-mail_to_source">show</a>
+                
+              </p>
+              <div id="method-i-mail_to_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 217</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mail_to</span>
+  <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">get_courses</span>
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">inspect</span>
+  <span class="ruby-comment">#if the user is signed in, use default e-mail address, or email address provided</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-ivar">@email</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">email</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>]
+  <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@email</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>]
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@message</span>  = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">verify_email</span> <span class="ruby-ivar">@email</span>
+    <span class="ruby-ivar">@sender</span> = <span class="ruby-identifier">current_user</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
+    <span class="ruby-constant">Interact</span>.<span class="ruby-identifier">mail_cart</span>(<span class="ruby-identifier">request</span>.<span class="ruby-identifier">remote_ip</span>,<span class="ruby-ivar">@cart</span>,<span class="ruby-ivar">@email</span>,<span class="ruby-ivar">@sender</span>).<span class="ruby-identifier">deliver</span>
+    <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;Email Sent&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;Please use a valid email&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-remove">
+            
+              <b>remove</b>()
+            
+            <a href="../classes/CartsController.html#method-i-remove" name="method-i-remove" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>remove a course from cart</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-remove_source')" id="l_method-i-remove_source">show</a>
+                
+              </p>
+              <div id="method-i-remove_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 156</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">remove</span>
+  <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">blank?</span>
+    <span class="ruby-comment"># put word boundaries around params[:semcrn]</span>
+    <span class="ruby-identifier">parts</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">split</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:semcrn</span>])
+    <span class="ruby-identifier">params</span>[<span class="ruby-value">:cart</span>] = {}
+    <span class="ruby-identifier">params</span>[<span class="ruby-value">:cart</span>][<span class="ruby-value">:courses</span>] = <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-identifier">params</span>[<span class="ruby-value">:cart</span>][<span class="ruby-value">:courses</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">parts</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">strip</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">parts</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">blank?</span>
+    <span class="ruby-identifier">params</span>[<span class="ruby-value">:cart</span>][<span class="ruby-value">:courses</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39; &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">parts</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">strip</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">parts</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">blank?</span>
+    <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-ivar">@hours</span> = <span class="ruby-value">0</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">cart_params</span>)
+      <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">get_courses</span>
+      <span class="ruby-identifier">course</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find_by_semcrn</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:semcrn</span>])
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">crmax</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">crmin</span>
+        <span class="ruby-ivar">@hours</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">crmin</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">crmax</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-ivar">@hours</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">crmax</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">total_credits</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">total_credits</span>.<span class="ruby-identifier">to_f</span>
+      <span class="ruby-identifier">total_credits</span> <span class="ruby-operator">-=</span> <span class="ruby-ivar">@hours</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">total_credits</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">total_credits</span> = <span class="ruby-value">0</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">total_credits</span> = <span class="ruby-identifier">total_credits</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">update!</span>(<span class="ruby-value">total_credits:</span> <span class="ruby-identifier">total_credits</span> )
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-keyword">nil</span>
+      <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">destroy</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@cart_courses</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-search">
+            
+              <b>search</b>()
+            
+            <a href="../classes/CartsController.html#method-i-search" name="method-i-search" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-search_source')" id="l_method-i-search_source">show</a>
+                
+              </p>
+              <div id="method-i-search_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 236</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">search</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:value</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;notremote&#39;</span>
+     <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>(<span class="ruby-value">value:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@courses</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">get_courses</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;courses/search&#39;</span> }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-show">
+            
+              <b>show</b>()
+            
+            <a href="../classes/CartsController.html#method-i-show" name="method-i-show" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>gets courses from a cart</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-show_source')" id="l_method-i-show_source">show</a>
+                
+              </p>
+              <div id="method-i-show_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">show</span>
+  <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">error_404_path</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@cart</span>
+  <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">get_courses</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">csv</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">plain:</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">to_csv</span> }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+
+    
+      <div class="contenttitle" id="Adding+Courses+To+Cart">
+        Adding Courses To Cart
+      </div>
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-add">
+            
+              <b>add</b>()
+            
+            <a href="../classes/CartsController.html#method-i-add" name="method-i-add" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>This adds the selected courses to the user&#39;s cart This method only gets called when adding courses from a department page or a HubCourse page. This method is virtually the same as the update method</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-add_source')" id="l_method-i-add_source">show</a>
+                
+              </p>
+              <div id="method-i-add_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 115</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add</span>
+  <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-identifier">courses</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">clone</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">courses</span>
+  <span class="ruby-identifier">courses</span> <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">courses_before_add</span> = <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">clone</span>
+  <span class="ruby-identifier">courses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39; &#39;</span><span class="ruby-operator">+</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:semcrn</span>] <span class="ruby-keyword">unless</span> <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:semcrn</span>]
+  <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">strip!</span>
+  <span class="ruby-ivar">@message</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">16777214</span>
+      <span class="ruby-comment">#chop off the class that was just added</span>
+      <span class="ruby-comment">#courses.gsub!(/ .{7,10}$/, &#39;&#39;)</span>
+
+      <span class="ruby-comment">#message to pass to add.js</span>
+      <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;Too many courses in your cart!&quot;</span>
+      <span class="ruby-identifier">courses</span> = <span class="ruby-identifier">courses_before_add</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@hours</span> = <span class="ruby-value">0</span>
+
+  <span class="ruby-identifier">params</span>[<span class="ruby-value">:courses</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">course</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find_by_semcrn</span>(<span class="ruby-identifier">c</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">crmax</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">crmin</span>
+        (<span class="ruby-ivar">@hours</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">crmin</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">crmax</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">courses_before_add</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:semcrn</span>]
+      <span class="ruby-keyword">else</span>
+        (<span class="ruby-ivar">@hours</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">crmax</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">courses_before_add</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:semcrn</span>]
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">total_credits</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">total_credits</span>.<span class="ruby-identifier">to_f</span>
+  <span class="ruby-identifier">total_credits</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@hours</span>
+  <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">total_credits</span> = <span class="ruby-identifier">total_credits</span>
+  <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">update!</span>(<span class="ruby-value">total_credits:</span> <span class="ruby-identifier">total_credits</span> )
+  <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">set_courses</span>(<span class="ruby-identifier">courses</span>)
+  <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">get_courses</span>
+  <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@cart_courses</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-update">
+            
+              <b>update</b>()
+            
+            <a href="../classes/CartsController.html#method-i-update" name="method-i-update" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>This adds the selected courses to the user&#39;s cart</p>
+
+<p>Parameter: :courses, which are passed in from _search_results_template.html.erb in the submit_tag call. This creates a PUT request to this controller (somehow), which gets routed to this method with :courses being a hashmap of course crns.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-update_source')" id="l_method-i-update_source">show</a>
+                
+              </p>
+              <div id="method-i-update_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
+  <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:courses</span>]
+    <span class="ruby-identifier">error</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-identifier">exceed</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-ivar">@hours</span> = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">courses</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">clone</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">courses</span>
+    <span class="ruby-identifier">courses_before_add</span> = <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">clone</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">courses</span>
+    <span class="ruby-identifier">courses_before_add</span> <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-identifier">params</span>[<span class="ruby-value">:courses</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>,<span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-identifier">courses</span> = <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">dup</span>
+        <span class="ruby-identifier">sem</span> = <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">dup</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">error</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> (<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>)
+        <span class="ruby-identifier">courses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39; &#39;</span><span class="ruby-operator">+</span><span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>
+        <span class="ruby-identifier">sem</span> = <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">dup</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">strip!</span>
+      <span class="ruby-ivar">@message</span> = <span class="ruby-keyword">nil</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">16777214</span>
+        <span class="ruby-comment">#message to pass to update.js</span>
+        <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;Add failed: too many courses in your cart!&quot;</span>
+        <span class="ruby-identifier">courses</span> = <span class="ruby-identifier">courses_before_add</span>.<span class="ruby-identifier">clone</span>
+        <span class="ruby-identifier">exceed</span> = <span class="ruby-keyword">true</span>
+        <span class="ruby-keyword">break</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">course</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find_by_semcrn</span>(<span class="ruby-identifier">sem</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">crmax</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">crmin</span> 
+        (<span class="ruby-ivar">@hours</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">crmin</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">crmax</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">error</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-keyword">else</span>
+        (<span class="ruby-ivar">@hours</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">crmax</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">error</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">error</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">exceed</span>
+      <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">get_courses</span>
+      <span class="ruby-ivar">@cart_courses</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">total_credits</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">total_credits</span>.<span class="ruby-identifier">to_f</span>
+      <span class="ruby-identifier">total_credits</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@hours</span> 
+      <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">total_credits</span> = <span class="ruby-identifier">total_credits</span>
+      <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">update!</span>(<span class="ruby-value">total_credits:</span> <span class="ruby-identifier">total_credits</span> )
+      <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">set_courses</span>(<span class="ruby-identifier">courses</span>)
+      <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">save</span>
+        <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">get_courses</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-keyword">nil</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-ivar">@cart_courses</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">get_courses</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

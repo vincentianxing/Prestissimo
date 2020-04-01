@@ -8,13 +8,18 @@
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
 </script>
 
-<script src="./js/jquery.js"></script>
-<script src="./js/darkfish.js"></script>
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
 
 <link href="./css/fonts.css" rel="stylesheet">
 <link href="./css/rdoc.css" rel="stylesheet">
+
 
 
 
@@ -111,13 +116,10 @@
 
   <section class="description">
     
-<p>A static page has no dynamic content, so each page is essentially just a
-view.</p>
+<p>A static page has no dynamic content, so each page is essentially just a view.</p>
 
   </section>
 
-  
-  
   
   <section id="5Buntitled-5D" class="documentation-section">
     
@@ -155,7 +157,7 @@ view.</p>
           
           <div class="method-source-code" id="about-source">
             <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 4</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">about</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">about</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -187,7 +189,7 @@ view.</p>
           
           <div class="method-source-code" id="accounts-source">
             <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 42</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">accounts</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">accounts</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -219,7 +221,7 @@ view.</p>
           
           <div class="method-source-code" id="advanced-source">
             <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 39</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">advanced</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">advanced</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -251,7 +253,7 @@ view.</p>
           
           <div class="method-source-code" id="basics-source">
             <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 10</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">basics</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">basics</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -283,7 +285,7 @@ view.</p>
           
           <div class="method-source-code" id="cart-source">
             <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 45</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">cart</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">cart</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -315,7 +317,7 @@ view.</p>
           
           <div class="method-source-code" id="editcourse-source">
             <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 52</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">editcourse</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">editcourse</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">help_path</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">in_mobile_view?</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -348,7 +350,7 @@ view.</p>
           
           <div class="method-source-code" id="error_mailer-source">
             <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 27</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">error_mailer</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">error_mailer</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">help_path</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">in_mobile_view?</span>
   <span class="ruby-ivar">@title</span> = <span class="ruby-string">&quot;My Courses Error&quot;</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:message</span>]
@@ -386,7 +388,7 @@ view.</p>
           
           <div class="method-source-code" id="features-source">
             <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 13</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">features</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">features</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -418,7 +420,7 @@ view.</p>
           
           <div class="method-source-code" id="guidelines-source">
             <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 36</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">guidelines</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">guidelines</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -450,7 +452,7 @@ view.</p>
           
           <div class="method-source-code" id="help-source">
             <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 7</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">help</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">help</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -482,7 +484,7 @@ view.</p>
           
           <div class="method-source-code" id="nameerror-source">
             <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 56</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">nameerror</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">nameerror</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">help_path</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">in_mobile_view?</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -515,7 +517,7 @@ view.</p>
           
           <div class="method-source-code" id="professors-source">
             <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 48</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">professors</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">professors</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">help_path</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">in_mobile_view?</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -548,7 +550,7 @@ view.</p>
           
           <div class="method-source-code" id="questions-source">
             <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 16</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">questions</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">questions</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -580,7 +582,7 @@ view.</p>
           
           <div class="method-source-code" id="questions_mailer-source">
             <pre><span class="ruby-comment"># File app/controllers/static_pages_controller.rb, line 19</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">questions_mailer</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">questions_mailer</span>
   <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>]
   <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:message</span>]
   <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
@@ -600,12 +602,13 @@ view.</p>
     </section>
   
   </section>
+
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
-  <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

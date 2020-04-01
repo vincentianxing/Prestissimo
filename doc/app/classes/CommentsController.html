@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CommentsController</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="CommentsController">
+
+  
+
+    <meta name="keywords" content="CommentsController class">
+  
+    <meta name="keywords" content="create, index, destroy, new, edit, update, show, reply_form, reply, hide_remove">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            CommentsController
+            
+                <span class="parent">&lt;
+                    
+                    <a href="ApplicationController.html">ApplicationController</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/controllers/comments_controller_rb.html">app/controllers/comments_controller.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-create">create</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-destroy">destroy</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-edit">edit</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>H</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-hide_remove">hide_remove</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-index">index</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-reply">reply</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-reply_form">reply_form</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-show">show</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-update">update</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-create">
+            
+              <b>create</b>()
+            
+            <a href="../classes/CommentsController.html#method-i-create" name="method-i-create" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-create_source')" id="l_method-i-create_source">show</a>
+                
+              </p>
+              <div id="method-i-create_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:comment</span>][<span class="ruby-value">:body</span>].<span class="ruby-identifier">blank?</span>
+    <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">build_from</span>( <span class="ruby-ivar">@commentable</span>, <span class="ruby-ivar">@handle</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:comment</span>][<span class="ruby-value">:body</span>])
+    <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">inspect</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-comment"># goto index</span>
+      <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">comments_path</span>(<span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">commentable_type</span>.<span class="ruby-identifier">underscore</span>, <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">commentable_id</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value">:failure</span>] = <span class="ruby-string">&quot;Error making comment&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+          <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;Cannot post an empty comment&quot;</span>
+          <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+                  <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+                  <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
+          <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-destroy">
+            
+              <b>destroy</b>()
+            
+            <a href="../classes/CommentsController.html#method-i-destroy" name="method-i-destroy" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-destroy_source')" id="l_method-i-destroy_source">show</a>
+                
+              </p>
+              <div id="method-i-destroy_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">destroy</span>
+  <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">has_children?</span> <span class="ruby-operator">||</span> (<span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">created_at</span> <span class="ruby-operator">+</span> <span class="ruby-value">5</span>.<span class="ruby-identifier">minutes</span>).<span class="ruby-identifier">past?</span>
+    <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&quot;hidden&quot;</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;Couldn&#39;t delete comment. Content has been hidden.&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;Something went wrong&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">destroy</span>
+      <span class="ruby-ivar">@message</span> = <span class="ruby-string">&#39;Comment deleted&#39;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@message</span> = <span class="ruby-string">&#39;Something went wrong&#39;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-comment"># render js that removes comment from page</span>
+  <span class="ruby-ivar">@message</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-edit">
+            
+              <b>edit</b>()
+            
+            <a href="../classes/CommentsController.html#method-i-edit" name="method-i-edit" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-edit_source')" id="l_method-i-edit_source">show</a>
+                
+              </p>
+              <div id="method-i-edit_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">edit</span>
+  <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-hide_remove">
+            
+              <b>hide_remove</b>()
+            
+            <a href="../classes/CommentsController.html#method-i-hide_remove" name="method-i-hide_remove" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-hide_remove_source')" id="l_method-i-hide_remove_source">show</a>
+                
+              </p>
+              <div id="method-i-hide_remove_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 132</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">hide_remove</span>
+        <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+        <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">toggle_status</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:status</span>])
+        <span class="ruby-identifier">params</span>[<span class="ruby-value">:status</span>] 
+        <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">save</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-index">
+            
+              <b>index</b>()
+            
+            <a href="../classes/CommentsController.html#method-i-index" name="method-i-index" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-index_source')" id="l_method-i-index_source">show</a>
+                
+              </p>
+              <div id="method-i-index_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">index</span>
+  <span class="ruby-identifier">all_comments</span> = <span class="ruby-ivar">@commentable</span>.<span class="ruby-identifier">root_comments</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@commentable</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">all_comments</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find_comments_by_user</span>(<span class="ruby-ivar">@commenter</span>)
+  <span class="ruby-identifier">all_comments</span> <span class="ruby-operator">||=</span> []
+  <span class="ruby-comment"># remove all old and hidden comments</span>
+  <span class="ruby-ivar">@comments</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">all_comments</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@comments</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">c</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;removed&quot;</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">old</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@comments</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">sort_by_score</span>(<span class="ruby-ivar">@comments</span>)
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-ivar">@comments</span>
+  <span class="ruby-ivar">@comments</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-new">
+            
+              <b>new</b>()
+            
+            <a href="../classes/CommentsController.html#method-i-new" name="method-i-new" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-new_source')" id="l_method-i-new_source">show</a>
+                
+              </p>
+              <div id="method-i-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">new</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-reply">
+            
+              <b>reply</b>()
+            
+            <a href="../classes/CommentsController.html#method-i-reply" name="method-i-reply" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-reply_source')" id="l_method-i-reply_source">show</a>
+                
+              </p>
+              <div id="method-i-reply_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 112</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reply</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:comment</span>][<span class="ruby-value">:body</span>].<span class="ruby-identifier">blank?</span>
+                <span class="ruby-identifier">parent</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+          <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">build_from</span>( <span class="ruby-ivar">@commentable</span>, <span class="ruby-ivar">@handle</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:comment</span>][<span class="ruby-value">:body</span>] )
+          <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">save</span>
+                <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">move_to_child_of</span>(<span class="ruby-identifier">parent</span>)
+                <span class="ruby-keyword">if</span> <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">save</span>
+                        <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">comments_path</span>(<span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">commentable_type</span>.<span class="ruby-identifier">underscore</span>, <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">commentable_id</span>)
+                <span class="ruby-keyword">else</span>
+                        <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value">:failure</span>] = <span class="ruby-string">&quot;Error making reply&quot;</span>
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">else</span>
+                <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;Cannot post an empty comment&quot;</span>
+                <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+                        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-reply_form">
+            
+              <b>reply_form</b>()
+            
+            <a href="../classes/CommentsController.html#method-i-reply_form" name="method-i-reply_form" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-reply_form_source')" id="l_method-i-reply_form_source">show</a>
+                
+              </p>
+              <div id="method-i-reply_form_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 108</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reply_form</span>
+  <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-show">
+            
+              <b>show</b>()
+            
+            <a href="../classes/CommentsController.html#method-i-show" name="method-i-show" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>shows the previous version of the comment</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-show_source')" id="l_method-i-show_source">show</a>
+                
+              </p>
+              <div id="method-i-show_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 102</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">show</span>
+  <span class="ruby-identifier">new</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">new</span>.<span class="ruby-identifier">prev</span>)
+  <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">div_id</span> = <span class="ruby-identifier">new</span>.<span class="ruby-identifier">id</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-update">
+            
+              <b>update</b>()
+            
+            <a href="../classes/CommentsController.html#method-i-update" name="method-i-update" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-update_source')" id="l_method-i-update_source">show</a>
+                
+              </p>
+              <div id="method-i-update_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
+  <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-comment"># create a new comment to hold the old comment</span>
+  <span class="ruby-ivar">@comment_old</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">build_from</span>( <span class="ruby-ivar">@commentable</span>, <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">user_id</span>, <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">body</span> )
+  <span class="ruby-comment"># need to make the old comment not display on page</span>
+  <span class="ruby-ivar">@comment_old</span>.<span class="ruby-identifier">set_prev</span>(<span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">prev</span>)
+  <span class="ruby-ivar">@comment_old</span>.<span class="ruby-identifier">make_old</span>
+  <span class="ruby-ivar">@comment_old</span>.<span class="ruby-identifier">parent_id</span> = <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">parent_id</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@comment_old</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-comment"># the new (old) comment should have the new content and refer to the old version</span>
+    <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">edit</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:comment</span>][<span class="ruby-value">:body</span>], <span class="ruby-ivar">@comment_old</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-comment"># everything worked</span>
+            <span class="ruby-keyword">if</span> <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">get_upvotes</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+                    <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">get_upvotes</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+                            <span class="ruby-ivar">@comment_old</span>.<span class="ruby-identifier">upvote_from</span> <span class="ruby-constant">Handle</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">v</span>.<span class="ruby-identifier">voter_id</span>)
+                    <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">if</span> <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">get_downvotes</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+                    <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">get_downvotes</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+                            <span class="ruby-ivar">@comment_old</span>.<span class="ruby-identifier">downvote_from</span> <span class="ruby-constant">Handle</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">v</span>.<span class="ruby-identifier">voter_id</span>)
+                    <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-comment"># new comment doesn&#39;t refer to this, so trash it</span>
+      <span class="ruby-ivar">@comment_old</span>.<span class="ruby-identifier">delete</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-comment"># something went wrong</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@comment</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

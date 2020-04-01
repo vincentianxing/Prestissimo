@@ -8,13 +8,18 @@
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
 </script>
 
-<script src="./js/jquery.js"></script>
-<script src="./js/darkfish.js"></script>
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
 
 <link href="./css/fonts.css" rel="stylesheet">
 <link href="./css/rdoc.css" rel="stylesheet">
+
 
 
 
@@ -89,8 +94,6 @@
   </section>
 
   
-  
-  
   <section id="5Buntitled-5D" class="documentation-section">
     
 
@@ -127,7 +130,7 @@
           
           <div class="method-source-code" id="current_semester-source">
             <pre><span class="ruby-comment"># File app/helpers/courses_helper.rb, line 35</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">current_semester</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">current_semester</span>
         <span class="ruby-ivar">@current_semester</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">get_val</span>(<span class="ruby-string">&quot;current_semester&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -160,7 +163,7 @@
           
           <div class="method-source-code" id="find_by_crn-source">
             <pre><span class="ruby-comment"># File app/helpers/courses_helper.rb, line 3</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">find_by_crn</span>(<span class="ruby-identifier">course_list</span>, <span class="ruby-identifier">semcrn</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">find_by_crn</span>(<span class="ruby-identifier">course_list</span>, <span class="ruby-identifier">semcrn</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">Array</span>.<span class="ruby-identifier">try_convert</span>(<span class="ruby-identifier">course_list</span>)
   <span class="ruby-ivar">@course</span>
   <span class="ruby-identifier">course_list</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
@@ -192,15 +195,14 @@
 
         <div class="method-description">
           
-          <p>More efficient link generation using a hash table of previously requested
-links</p>
+          <p>More efficient link generation using a hash table of previously requested links</p>
           
           
 
           
           <div class="method-source-code" id="get_link-source">
             <pre><span class="ruby-comment"># File app/helpers/courses_helper.rb, line 40</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_link</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">value</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_link</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">value</span>)
   <span class="ruby-identifier">key</span> = <span class="ruby-node">&quot;#{type}:#{value}&quot;</span>
   <span class="ruby-ivar">@links</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>()
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@links</span>[<span class="ruby-identifier">key</span>]
@@ -243,7 +245,7 @@ links</p>
           
           <div class="method-source-code" id="translate_mod-source">
             <pre><span class="ruby-comment"># File app/helpers/courses_helper.rb, line 13</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">translate_mod</span>(<span class="ruby-identifier">mod_num</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">translate_mod</span>(<span class="ruby-identifier">mod_num</span>)
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">mod_num</span>
   <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>
     <span class="ruby-identifier">mod</span> = <span class="ruby-string">&quot;First&quot;</span>
@@ -288,7 +290,7 @@ links</p>
           
           <div class="method-source-code" id="translate_semester-source">
             <pre><span class="ruby-comment"># File app/helpers/courses_helper.rb, line 29</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">translate_semester</span>(<span class="ruby-identifier">semester</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">translate_semester</span>(<span class="ruby-identifier">semester</span>)
         <span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;Fall&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">semester</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;f&quot;</span>
         <span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;Spring&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">semester</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;s&quot;</span>
         <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; 20#{semester[1..2]}&quot;</span>
@@ -306,12 +308,13 @@ links</p>
     </section>
   
   </section>
+
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
-  <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 
