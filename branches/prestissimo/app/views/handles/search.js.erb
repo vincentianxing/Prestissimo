@@ -1,6 +1,0 @@
-// render _search partial
-<% if is_mobile_device? %>
-  $('#handle_results').html("<%= escape_javascript(render(partial: 'search', :formats => [:mobile])) %>");
-<% else %>
-  $('#handle_results').html("<%= escape_javascript(render(partial: 'search')) %>");
-<% end %>

@@ -1,6 +1,0 @@
-// render the settings edit form
-<% if is_mobile_device? %>
-  $('#settings_form_div').html("<%= escape_javascript(render(partial: 'change', :formats => [:mobile])) %>");
-<% else %>
-  $('#settings_form_div').html("<%= escape_javascript(render partial: 'change') %>");
-<% end %>

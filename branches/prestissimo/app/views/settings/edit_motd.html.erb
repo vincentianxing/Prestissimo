@@ -1,7 +1,0 @@
-<div id="motd">
-  <div id="motd">Message of the Day:</div>
-  <%= form_tag set_motd_settings_path, method: 'put' do %>
-	<%= text_area_tag :motd, params[:motd], value: @motd, class: "default_inputfield", id: "motd_field" %>
-	<%= submit_tag "Set MOTD" %>
-      <% end %>
-</div>

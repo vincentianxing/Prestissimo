@@ -1,6 +1,0 @@
-// ajax function to load search results (loads in partial)
-<% if is_mobile_device? %>
-  $('#prof_results').html("<%= escape_javascript(render(partial: 'search', :formats => [:mobile])) %>");
-<% else %>
-  $('#prof_results').html("<%= escape_javascript(render(partial: 'search')) %>");
-<% end %>
