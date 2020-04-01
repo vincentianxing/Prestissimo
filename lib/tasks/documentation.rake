@@ -4,7 +4,7 @@ require "sdoc"
 RDoc::Task.new do |rdoc|
   rdoc.rdoc_dir = "doc/app"
   rdoc.title = "Prestissimo Documentation"
-  rdoc.main = "doc/README_FOR_APP" # define README_FOR_APP as index
+  rdoc.main = "README" # define README_FOR_APP as index
 
   rdoc.generator = "sdoc"
   rdoc.template = "rails"
@@ -13,5 +13,5 @@ RDoc::Task.new do |rdoc|
 
   rdoc.rdoc_files.include("app/**/*.rb")
   rdoc.rdoc_files.include("lib/**/*.rb")
-  rdoc.rdoc_files.include("doc/README_FOR_APP")
+  rdoc.rdoc_files.include("README")
 end
