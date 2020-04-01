@@ -124,7 +124,7 @@ CHECK="^[^\|]+\|[^\|]+\|[^\|]+\|[^\|]+\|[^\|]+\|[^\|]*\|[^\|]*\|[^\|]+\|[^\|]+\|
 echo "Finding bad lines..."
 egrep -vn $CHECK $DROPFILE_BAC > "${BADLINES}"
 echo "Running Sanity fix..."
-$PRESTISSIMO_HOME/scripts/sanity_check $BADLINES $DROPFILE_BAC
+$PRESTISSIMO_HOME/script/sanity_check $BADLINES $DROPFILE_BAC
 if [ $? != 0 ]
 then
   echo "Sanity check failed"
