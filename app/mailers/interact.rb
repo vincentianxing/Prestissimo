@@ -24,7 +24,6 @@ class Interact < ActionMailer::Base
     end
     if @sender
       mail(to: email,
-           from: @sender.email,
            "X-Cart-Sent-From" => requestip,
            subject: "OPrestissimo Course Cart")
     else
