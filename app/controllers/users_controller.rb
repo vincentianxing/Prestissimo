@@ -8,10 +8,9 @@
 
 =end
 
-
 class UsersController < ApplicationController
   # need this to authenticate passwords
-#  include BCrypt
+  #  include BCrypt
   include ApplicationHelper
 
 =begin rdoc
@@ -28,7 +27,7 @@ class UsersController < ApplicationController
   # *Permissions*: any browser
 =end
   def show
-    @user = User.find_by_email(params[:email]+'@oberlin.edu')
+    @user = User.find_by_email(params[:email] + "@oberlin.edu")
     return redirect_to error_404_path unless @user
     redirect_to show_professor_path(fname: @user.fname, lname: @user.lname) if faculty_user? @user
   end
@@ -53,19 +52,19 @@ class UsersController < ApplicationController
 
     # Check to see if privacy_prefs have changed
     newprefs = ""
-    if params[:major] == '1'
+    if params[:major] == "1"
       newprefs << "secondmajor"
     end
-    if params[:nickname] == '1'
+    if params[:nickname] == "1"
       newprefs << " nonickname"
     end
-    if params[:year] == '1'
+    if params[:year] == "1"
       newprefs << " noyear"
     end
-    if params[:info] == '1'
+    if params[:info] == "1"
       newprefs << " noinfo"
     end
-    if params[:schedule] == '1'
+    if params[:schedule] == "1"
       newprefs << "noschedule"
     end
     newprefs.strip!
@@ -76,9 +75,9 @@ class UsersController < ApplicationController
       flash[:success] = "Settings successfully changed!"
       sign_in @user
       # go to the user profile
-      redirect_to user_path(@user.email.split('@')[0])
+      redirect_to user_path(@user.email.split("@")[0])
     else # the user could not be saved (for some weird reason)
-      redirect_to settings_path(@user.email.split('@')[0]), :notice => "Settings could not be changed. Please contact the Prestissmo managers!"
+      redirect_to settings_path(@user.email.split("@")[0]), :notice => "Settings could not be changed. Please contact the Prestissmo managers!"
     end
   end
 
@@ -86,12 +85,12 @@ class UsersController < ApplicationController
   #
   # *Permissions* current_user
   def edit
-    @user = User.find_by_email(params[:email]+'@oberlin.edu')
+    @user = User.find_by_email(params[:email] + "@oberlin.edu")
     redirect_to root_path unless @user
     redirect_to edit_professor_path(current_professor.fname, current_professor.lname) if faculty_user?(@user)
     @handle = Handle.find_by_handlekey(@user.handlekey)
     # the user and its handle are passed in a hash
-    @vals = Hash[:user,@user,:handle,@handle]
+    @vals = Hash[:user, @user, :handle, @handle]
   end
 
   # Posts a new user
@@ -107,11 +106,11 @@ class UsersController < ApplicationController
     # connect to the LDAP
     if ldap.bind
       # where to look in the ldap sorta
-      treebase = "ou=people,dc=ad,dc=oberlin,dc=edu" 
+      treebase = "ou=people,dc=ad,dc=oberlin,dc=edu"
       # find the user who's  uid is the one we want
-      filter = Net::LDAP::Filter.eq( "cn", "#{params[:user][:email].split("@")[0]}" )
+      filter = Net::LDAP::Filter.eq("cn", "#{params[:user][:email].split("@")[0]}")
       # search the ldap!
-      result = ldap.search( :base => treebase, :filter => filter )
+      result = ldap.search(:base => treebase, :filter => filter)
       if result.size > 0
         if authenticate(params[:user][:email].split("@")[0], params[:user][:password])
           params[:user].delete(:password)
@@ -124,25 +123,26 @@ class UsersController < ApplicationController
           @user.lname = result.sn.to_s.slice!(2..-3)
           @user.role = result.employeenumber.to_s.slice!(2..-3)
           @user.status = "active"
-          
+
+          @user.create_cart
+
           #If user is faculty, match them to their id
           if @user.role == "Faculty" or @user.role == "FACULTY"
             #Find by ObieID
-            profUser=Professor.find_by_userid(@user.email.split("@")[0])
+            profUser = Professor.find_by_userid(@user.email.split("@")[0])
             if profUser
               @user.prof_id = profUser.id
             else
               #Find by first and last name
-              profUser=Professor.where(fname: @user.fname, lname: @user.lname)[0]
+              profUser = Professor.where(fname: @user.fname, lname: @user.lname)[0]
               if profUser
                 @user.prof_id = profUser.id
               end
             end
           end
-          
 
           # save the user to the db
-          if @user.save
+          if @user.save!
             flash[:success] = "Welcome to OPrestissimo!"
             sign_in @user
             # check for existing handle
@@ -157,11 +157,11 @@ class UsersController < ApplicationController
               # initially has no username
               prng = Random.new
               n = prng.rand(1..5640)
-              @handle.username = get_adj(n)+"Obie"
+              @handle.username = get_adj(n) + "Obie"
               ctr = 0
-              while (Handle.find_by_username(@handle.username) && ctr < 10) do
+              while (Handle.find_by_username(@handle.username) && ctr < 10)
                 n = prng.rand(1..5640)
-                @handle.username = get_adj(n)+"Obie"
+                @handle.username = get_adj(n) + "Obie"
                 ctr += 1
               end
               # save the handle
@@ -169,12 +169,11 @@ class UsersController < ApplicationController
                 redirect_to guidelines_path
               else # the handle was not saved
                 flash[:failure] = "Something went wrong, contact the oprestissimo team"
-                redirect_to user_path(@user.email.split('@')[0]) # they do not have a handle!
+                redirect_to user_path(@user.email.split("@")[0]) # they do not have a handle!
               end
             else
-              redirect_to user_path(@user.email.split('@')[0])
+              redirect_to user_path(@user.email.split("@")[0])
             end
-
           else # the user could not be saved to the db
             flash[:failure] = "Something went wrong, contact the oprestissimo team"
             redirect_to signin_path
@@ -184,8 +183,8 @@ class UsersController < ApplicationController
           redirect_to signin_path
         end
       else # no user found in LDAP to match the flast given
-	      flash[:failure] = "Please use your <strong>ObieID</strong> (flast format) username and <strong>OCPass password</strong>."
-	      #session[:wrong_email_singup] = params[:user][:email]
+        flash[:failure] = "Please use your <strong>ObieID</strong> (flast format) username and <strong>OCPass password</strong>."
+        #session[:wrong_email_singup] = params[:user][:email]
         redirect_to signin_path
       end
     else # LDAP connection failure
@@ -234,7 +233,7 @@ class UsersController < ApplicationController
   #end
 
   # sends a link to reset password of the account with the given email (if such an account exits)
-  # 
+  #
   # *Permissions* any browser
   #def send_forgot_mail
   #  @user = User.find_by_email(params[:email])
@@ -282,7 +281,7 @@ class UsersController < ApplicationController
   #end
 
   # submits a new password for the user
-  # 
+  #
   # *Permissions* any browser
   #def reset_pass
   #  # know the nonce is in the db and unexpired from the edit_pass method
@@ -301,7 +300,6 @@ class UsersController < ApplicationController
   #  end
   #end
 
-
   # renders the new view (signup)
   #
   # *Permissions* any browser
@@ -313,7 +311,7 @@ class UsersController < ApplicationController
   #
   # *Permissions* current_user
   def confirm_destroy
-    @user = User.find_by_email(params[:email] + '@oberlin.edu')
+    @user = User.find_by_email(params[:email] + "@oberlin.edu")
     unless @user
       flash[:failure] = "Could not find user by email"
       redirect_to root_path
@@ -363,20 +361,20 @@ class UsersController < ApplicationController
   # Permissions any user
   def search
     # build a query string
-    usrqs = ''
-    prfqs = ''
-    handqs = ''
+    usrqs = ""
+    prfqs = ""
+    handqs = ""
     # if :finduser has a value
     person = params[:person].strip
     if !(person.blank? || person.gsub(/\W+/, "").length < 1)
       ##### USER SEARCH BIT #####
       # uses function defined in application helper to construct a mysql query string
       usrqs = make_query_string(person.gsub(/['"]/, ""), ["fname", "lname", "email"], false)
-      usrqs << ' AND role LIKE '+ActiveRecord::Base.connection.quote("%student%")
+      usrqs << " AND role LIKE " + ActiveRecord::Base.connection.quote("%student%")
       @usrresults = Array.new
       @usrresults = User.where(usrqs).to_a
       @usrresults.delete(current_user)
-      @usrresults.sort_by! {|u| [u.lname, u.fname]}
+      @usrresults.sort_by! { |u| [u.lname, u.fname] }
       @usrresults = nil if @usrresults.size == 0
 
       ##### COMMENTER SEARCH BIT #####
@@ -384,16 +382,15 @@ class UsersController < ApplicationController
       handqs = make_query_string(person, ["username"], false)
       @handleresults = Handle.where(handqs).to_a
       @handleresults.delete(Handle.find_by_handlekey(current_user.handlekey))
-      @handleresults.sort_by! {|h| h.username}
+      @handleresults.sort_by! { |h| h.username }
       @handleresults = nil if @handleresults.size == 0
 
       ##### PROF PAGE SEARCH BIT #####
       # uses function defined in application helper to construct a mysql query string
       prfqs = make_query_string(person.gsub(/['"]/, ""), ["fname", "lname", "nickname"], false)
       @professors = Professor.where(prfqs).to_a
-      @professors.sort_by! {|p| [p.lname, p.fname]}
+      @professors.sort_by! { |p| [p.lname, p.fname] }
       @professors = nil if @professors.size == 0
-
     else # :finduser does not have a value
       @err_msg = "You must enter at least one letter or number to seach for."
     end
@@ -407,7 +404,7 @@ class UsersController < ApplicationController
   end
 
   def schedule
-    @user = User.find_by_email(params[:email]+'@oberlin.edu')
+    @user = User.find_by_email(params[:email] + "@oberlin.edu")
     redirect_to root_path unless @user
   end
 
@@ -415,24 +412,24 @@ class UsersController < ApplicationController
 
   # Set which params can be updated by update
   def params_user
-    params[:user].permit(:second_major,  :major,  :email, :fname,
-      :nickname, :year, :notes, :privacy_prefs)
+    params[:user].permit(:second_major, :major, :email, :fname,
+                         :nickname, :year, :notes, :privacy_prefs)
   end
 
   # verify that there is a signed in user, uses sessions_helper method signed_in?
   def signed_in_user
     # send away the user unless signed in
-    redirect_to signin_path, notice:"Please sign in." unless signed_in?
+    redirect_to signin_path, notice: "Please sign in." unless signed_in?
   end
 
   # send away the user unless the action they've directed to is on their own account
   def correct_user
     begin
-        # try finding the user by their obie id
-        @user = User.find_by_email!(params[:email] + '@oberlin.edu')
+      # try finding the user by their obie id
+      @user = User.find_by_email!(params[:email] + "@oberlin.edu")
     rescue
-        # if that doesn't work, try finding the user by their id number
-        @user = User.find(params[:id])
+      # if that doesn't work, try finding the user by their id number
+      @user = User.find(params[:id])
     end
     # use current_user? from sessions helper
     redirect_to(root_path) unless current_user?(@user)
@@ -444,10 +441,10 @@ class UsersController < ApplicationController
   end
 
   def get_adj(n)
-    f = File.open("#{Rails.root}/app/assets/adjectives", 'r')
+    f = File.open("#{Rails.root}/app/assets/adjectives", "r")
     if (f)
       n.times { f.gets }
-      adj = ( p $_ ).chop!
+      adj = (p $_).chop!
       adj
     else
       nil
