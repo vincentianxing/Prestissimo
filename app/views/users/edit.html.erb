@@ -19,8 +19,8 @@ the edit action passes a hash containing the user and their handle
 <% unless faculty_user?(@user) %>
   <div id="handle_form_outer">
     <!-- The Handle update form -->
-    <%= form_for(@handle, url: update_handle_path(@handle.id), method: 'post') do |f| %>
-      <%= render 'shared/error_messages' %>
+    <%= form_for(@handle, url: update_handle_path(@handle.id), method: "post") do |f| %>
+      <%= render "shared/error_messages" %>
       <div id="handle_form_inner">
         <span class="su_label">
           <%= f.label :username, "Commenter Name" %>
@@ -36,8 +36,8 @@ the edit action passes a hash containing the user and their handle
 <div class="sign_form" id="usr_update_form">
 
   <!-- The User update form -->
-  <%= form_for(@user, url: update_path(@user.id), method: 'post') do |f| %>
-    <%= render 'shared/error_messages' %>
+  <%= form_for(@user, url: update_path(@user.id), method: "post") do |f| %>
+    <%= render "shared/error_messages" %>
     <div class="su_textfield">
       <span class="su_label">
         <div class="checkbox">
@@ -59,7 +59,7 @@ the edit action passes a hash containing the user and their handle
         <% else %>
           <%= check_box_tag "nickname" %>
         <% end %>
-        <%= label_tag 'nickname', 'Hide' %>
+        <%= label_tag "nickname", "Hide" %>
         <% if !in_mobile_view? %>
         </div>
         <%= f.text_field :nickname, class: "default_inputfield" %>
@@ -86,7 +86,7 @@ the edit action passes a hash containing the user and their handle
             <% else %>
               <%= check_box_tag "year" %>
             <% end %>
-            <%= label_tag 'year', 'Hide' %>
+            <%= label_tag "year", "Hide" %>
             <% if !in_mobile_view? %>
             </div>
             <%= f.text_field :year, class: "default_inputfield" %>
@@ -114,7 +114,7 @@ the edit action passes a hash containing the user and their handle
             <% else %>
               <%= check_box_tag "schedule" %>
             <% end %>
-            <%= label_tag 'schedule', 'Hide' %>
+            <%= label_tag "schedule", "Hide" %>
             <% if !in_mobile_view? %>
             </div>
           </div>
@@ -139,16 +139,16 @@ the edit action passes a hash containing the user and their handle
             <% end %>
             <!-- check privacy preferences to decide whether box should already be checked -->
             <% #if !hasnoprefs && @user.privacy_prefs.include?("secondmajor") %>
-            <%#= check_box_tag "major", 1, true %>
-            <%# else %>
-            <%#= check_box_tag "major" %>
+            <% #= check_box_tag "major", 1, true %>
+            <% # else %>
+            <% #= check_box_tag "major" %>
             <% #end %>
-            <%#=label_tag 'major', 'Second Major?' %>
+            <% #=label_tag 'major', 'Second Major?' %>
             <% if !in_mobile_view? %>
             </div>
             <div class="form" id="dept_div">
               <%= f.collection_select :major, Department.all, :dept, :dept %>
-              <%#= f.collection_select :second_major, Department.all, :dept, :dept %>
+              <% #= f.collection_select :second_major, Department.all, :dept, :dept %>
             </div>
           <% else %>
 
@@ -173,10 +173,10 @@ the edit action passes a hash containing the user and their handle
               <% else %>
                 <%= check_box_tag "info" %>
               <% end %>
-              <%= label_tag 'info', "Hide" %>
+              <%= label_tag "info", "Hide" %>
               <% if !in_mobile_view? %>
               </div>
-              <%= f.text_area :notes, class: "default_inputfield"%>
+              <%= f.text_area :notes, class: "default_inputfield" %>
             </div>
           <% else %>
             <%= f.text_area :notes, class: "settings_inputfield", id: "settings_info" %>
@@ -188,5 +188,5 @@ the edit action passes a hash containing the user and their handle
 </div>
 
 <div id="rem_account_link">
-  <%= link_to "Delete My Account", confirm_destroy_path(@user.email.split('@')[0]) %>
+  <%= link_to "Delete My Account", confirm_destroy_path(@user.email.split("@")[0]) %>
 </div>
