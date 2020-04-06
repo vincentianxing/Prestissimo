@@ -2,7 +2,7 @@
 <%= stylesheet_link_tag "errors" %>
 <%= csrf_meta_tag %>
 
-<% provide( :title, "Page Not Found" ) %>
+<% provide(:title, "Page Not Found") %>
 
 <div class="dialog">
   <h1>The page you were looking for does not exist. :(</h1>
@@ -12,6 +12,6 @@
   <p>If you are sure this page should be here and are getting this error in error, 
     please contact us at <a href=mailto:info@oprestissimo.com>info@oprestissimo.com</a>.
   </p>
-  <%= button_to("Return to Home Page", root_path) %>
+  <%= link_to("Return to Home Page", root_path) %>
 </div>
 </div>

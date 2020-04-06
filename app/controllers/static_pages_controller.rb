@@ -55,6 +55,7 @@ class StaticPagesController < ApplicationController
   end
 
   def nameerror
+    return redirect_to request.referer || root_path, notice: "Please sign in to resolve name errors." unless signed_in?
     redirect_to help_path if in_mobile_view?
   end
 end

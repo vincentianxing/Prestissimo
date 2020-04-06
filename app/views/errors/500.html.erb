@@ -12,11 +12,11 @@
     but if the problem persists, feel free to contact us at <a href=mailto:info@oprestissimo.com>info@oprestissimo.com</a>, or try one of the following options:
   </p>
 
-  <%= button_to("Return to Home Page", root_path) %>
-  <%= button_to("Clear Your Cookies", { action: "clear" }, { onclick: "return confirm('Are you sure? Deleting cookies will sign you out and delete everything in your cart.')", remote: true }) %>
-  <%= button_to "Clear Cart", clear_cart_path(current_cart.cartid), method: "put", remote: true %>
+  <%= link_to("Return to Home Page", root_path) %>
+  <%= link_to("Clear Your Cookies", { action: "clear" }, { onclick: "return confirm('Are you sure? Deleting cookies will sign you out and delete everything in your cart.')", remote: true }) %>
+  <%= link_to "Clear Cart", clear_cart_path(current_cart.cartid), method: "put", remote: true %>
   <% if signed_in? %>
-    <%= button_to("Sign Out", signout_path, method: "delete") %>
+    <%= link_to("Sign Out", signout_path, method: "delete") %>
   <% end %>
 </div>
 </div>
