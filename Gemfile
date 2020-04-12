@@ -21,6 +21,8 @@ gem "redcarpet"
 
 gem "dalli"
 
+gem "ahoy_matey" # For analytics
+
 gem "test-unit" # Added for rails console
 
 gem "bootsnap" # New in Rails 5.2
