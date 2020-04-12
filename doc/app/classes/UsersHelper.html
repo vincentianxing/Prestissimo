@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>UsersHelper</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="UsersHelper">
+
+  
+
+    <meta name="keywords" content="UsersHelper class">
+  
+    <meta name="keywords" content="getUrl">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span>
+            UsersHelper
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/helpers/users_helper_rb.html">app/helpers/users_helper.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>G</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-getUrl">getUrl</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-getUrl">
+            
+              <b>getUrl</b>(major)
+            
+            <a href="../classes/UsersHelper.html#method-i-getUrl" name="method-i-getUrl" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-getUrl_source')" id="l_method-i-getUrl_source">show</a>
+                
+              </p>
+              <div id="method-i-getUrl_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/users_helper.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getUrl</span>(<span class="ruby-identifier">major</span>) <span class="ruby-comment">#this used to just include departments that were also majors, but now includes more, so the &quot;major&quot; tag is a bit misleading</span>
+        <span class="ruby-identifier">links</span> = {<span class="ruby-string">&quot;AAST&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4344&quot;</span>,
+                 <span class="ruby-string">&quot;ANTH&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4345&quot;</span>,
+                 <span class="ruby-string">&quot;ARBC&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4347&quot;</span>,
+                 <span class="ruby-string">&quot;ACHS&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4348&quot;</span>,
+                 <span class="ruby-string">&quot;ARTS&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4349&quot;</span>,
+                 <span class="ruby-string">&quot;APST&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4346&quot;</span>,
+                 <span class="ruby-string">&quot;ASTR&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4460&quot;</span>,
+                 <span class="ruby-string">&quot;ATHL&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4355&quot;</span>,
+                 <span class="ruby-string">&quot;BIOL&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4375&quot;</span>,
+                 <span class="ruby-string">&quot;CHEM&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4376&quot;</span>,
+                 <span class="ruby-string">&quot;CHIN&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4391&quot;</span>,
+                 <span class="ruby-string">&quot;CINE&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4377&quot;</span>,
+                 <span class="ruby-string">&quot;CLAS&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4378&quot;</span>,
+                 <span class="ruby-string">&quot;CAST&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4381&quot;</span>,
+                 <span class="ruby-string">&quot;CMPL&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4382&quot;</span>,
+                 <span class="ruby-string">&quot;CNST&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4386&quot;</span>,
+                 <span class="ruby-string">&quot;CMUS&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4448&quot;</span>,
+                 <span class="ruby-string">&quot;CSCI&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4384&quot;</span>,
+                 <span class="ruby-string">&quot;CRWR&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4388&quot;</span>,
+                 <span class="ruby-string">&quot;COMP&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4356&quot;</span>,
+                 <span class="ruby-string">&quot;DANC&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4389&quot;</span>,
+                 <span class="ruby-string">&quot;EAST&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4391&quot;</span>,
+                 <span class="ruby-string">&quot;ECON&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4392&quot;</span>,
+                 <span class="ruby-string">&quot;EDPR&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4393&quot;</span>,
+                 <span class="ruby-string">&quot;ENTR&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4412&quot;</span>,
+                 <span class="ruby-string">&quot;EDUC&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4393&quot;</span>,
+                 <span class="ruby-string">&quot;EDUA&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4393&quot;</span>,
+                 <span class="ruby-string">&quot;ENGL&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4396&quot;</span>,
+                 <span class="ruby-string">&quot;ESOL&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_entity.php?catoid=35&amp;ent_oid=2875&quot;</span>,
+                 <span class="ruby-string">&quot;ENVS&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4398&quot;</span>,
+                 <span class="ruby-string">&quot;ETHN&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4433&quot;</span>,
+                 <span class="ruby-string">&quot;FYSP&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4400&quot;</span>,
+                 <span class="ruby-string">&quot;FREN&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4401&quot;</span>,
+                 <span class="ruby-string">&quot;ITAL&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4401&quot;</span>,
+                 <span class="ruby-string">&quot;GSFS&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4402&quot;</span>,
+                 <span class="ruby-string">&quot;GEOL&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4403&quot;</span>,
+                 <span class="ruby-string">&quot;GERM&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4404&quot;</span>,
+                 <span class="ruby-string">&quot;GREK&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4378&quot;</span>,
+                 <span class="ruby-string">&quot;HLTH&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4477&quot;</span>,
+                 <span class="ruby-string">&quot;HISP&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4406&quot;</span>,
+                 <span class="ruby-string">&quot;HIST&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4408&quot;</span>,
+                 <span class="ruby-string">&quot;HPRF&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4407&quot;</span>,
+                 <span class="ruby-string">&quot;JAPN&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4391&quot;</span>,
+                 <span class="ruby-string">&quot;INDV&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://new.oberlin.edu/office/dean-of-studies/individual-majors/&quot;</span>,
+                 <span class="ruby-string">&quot;JAZZ&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_entity.php?catoid=35&amp;ent_oid=2863&quot;</span>,
+                 <span class="ruby-string">&quot;JWST&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4415&quot;</span>,
+                 <span class="ruby-string">&quot;LANG&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4416&quot;</span>,
+                 <span class="ruby-string">&quot;LATS&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4417&quot;</span>,
+                 <span class="ruby-string">&quot;LATN&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4378&quot;</span>,
+                 <span class="ruby-string">&quot;LOND&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4420&quot;</span>,
+                 <span class="ruby-string">&quot;LRNS&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4419&quot;</span>,
+                 <span class="ruby-string">&quot;MATH&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4429&quot;</span>,
+                 <span class="ruby-string">&quot;MLIT&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4446&quot;</span>,
+                 <span class="ruby-string">&quot;MUED&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4445&quot;</span>,
+                 <span class="ruby-string">&quot;MUTH&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4360&quot;</span>,
+                <span class="ruby-string">&quot;MHST&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4359&quot;</span>,
+                 <span class="ruby-string">&quot;NSCI&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4450&quot;</span>,
+                 <span class="ruby-string">&quot;OPTH&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4452&quot;</span>,
+                 <span class="ruby-string">&quot;PHIL&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4459&quot;</span>,
+                 <span class="ruby-string">&quot;PHYS&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4460&quot;</span>,
+                 <span class="ruby-string">&quot;POLT&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4461&quot;</span>,
+                 <span class="ruby-string">&quot;PORT&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4482&quot;</span>,
+                 <span class="ruby-string">&quot;PSYC&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4463&quot;</span>,
+                 <span class="ruby-string">&quot;PVST&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4462&quot;</span>,
+                 <span class="ruby-string">&quot;RELG&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4465&quot;</span>,
+                 <span class="ruby-string">&quot;RHET&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4466&quot;</span>,
+                 <span class="ruby-string">&quot;REES&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4467&quot;</span>,
+                 <span class="ruby-string">&quot;RTCP&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4476&quot;</span>,
+                 <span class="ruby-string">&quot;RUSS&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4468&quot;</span>,
+                 <span class="ruby-string">&quot;SOCI&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4469&quot;</span>,
+                 <span class="ruby-string">&quot;STAT&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4473&quot;</span>,
+                 <span class="ruby-string">&quot;TECH&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4470&quot;</span>,
+                 <span class="ruby-string">&quot;THEA&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=35&amp;poid=4471&quot;</span>,
+                 <span class="ruby-string">&quot;TWST&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;http://catalog.oberlin.edu/preview_program.php?catoid=33&amp;poid=4073&amp;returnto=763&quot;</span>,
+        }
+
+        <span class="ruby-keyword">return</span> <span class="ruby-identifier">links</span>[<span class="ruby-identifier">major</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

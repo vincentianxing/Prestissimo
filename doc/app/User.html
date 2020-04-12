@@ -8,13 +8,18 @@
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
 </script>
 
-<script src="./js/jquery.js"></script>
-<script src="./js/darkfish.js"></script>
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
 
 <link href="./css/fonts.css" rel="stylesheet">
 <link href="./css/rdoc.css" rel="stylesheet">
+
 
 
 
@@ -58,7 +63,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link">ActiveRecord::Base
+  <p class="link"><a href="ApplicationRecord.html">ApplicationRecord</a>
   
 </div>
 
@@ -118,8 +123,6 @@ double_major    :string(255)</pre>
   </section>
 
   
-  
-  
   <section id="5Buntitled-5D" class="documentation-section">
     
 
@@ -134,9 +137,7 @@ double_major    :string(255)</pre>
       
         <dt id="VALID_EMAIL">VALID_EMAIL
         
-        <dd><p>Ensure the password is at least 6 characters long and the email is of the
-correct form validates :password, presence: true, length: { minimum: 6 },
-:if =&gt; :password_digest_changed?</p>
+        <dd><p>Ensure the password is at least 6 characters long and the email is of the correct form validates :password, presence: true, length: { minimum: 6 }, :if =&gt; :password_digest_changed?</p>
         
       
       </dl>
@@ -171,8 +172,8 @@ correct form validates :password, presence: true, length: { minimum: 6 },
 
           
           <div class="method-source-code" id="create_cart-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 107</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_cart</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_cart</span>
   <span class="ruby-identifier">c</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-identifier">c</span>.<span class="ruby-identifier">courses</span> = <span class="ruby-string">&quot;&quot;</span>
   <span class="ruby-identifier">c</span>.<span class="ruby-identifier">save</span>
@@ -207,8 +208,8 @@ correct form validates :password, presence: true, length: { minimum: 6 },
 
           
           <div class="method-source-code" id="handlekey-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 93</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">handlekey</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">handlekey</span>
   <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">email</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -240,8 +241,8 @@ correct form validates :password, presence: true, length: { minimum: 6 },
 
           
           <div class="method-source-code" id="make_admin-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 97</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">make_admin</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">make_admin</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">admin</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save</span>
 <span class="ruby-keyword">end</span></pre>
@@ -274,8 +275,8 @@ correct form validates :password, presence: true, length: { minimum: 6 },
 
           
           <div class="method-source-code" id="unmake_admin-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 102</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">unmake_admin</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 98</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unmake_admin</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">admin</span> = <span class="ruby-keyword">false</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save</span>
 <span class="ruby-keyword">end</span></pre>
@@ -292,12 +293,13 @@ correct form validates :password, presence: true, length: { minimum: 6 },
     </section>
   
   </section>
+
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
-  <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

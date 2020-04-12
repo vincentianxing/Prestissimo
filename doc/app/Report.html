@@ -8,13 +8,18 @@
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
 </script>
 
-<script src="./js/jquery.js"></script>
-<script src="./js/darkfish.js"></script>
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
 
 <link href="./css/fonts.css" rel="stylesheet">
 <link href="./css/rdoc.css" rel="stylesheet">
+
 
 
 
@@ -58,7 +63,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link">ActiveRecord::Base
+  <p class="link"><a href="ApplicationRecord.html">ApplicationRecord</a>
   
 </div>
 
@@ -119,8 +124,6 @@ reported_id        :integer(4)</pre>
   </section>
 
   
-  
-  
   <section id="5Buntitled-5D" class="documentation-section">
     
 
@@ -157,7 +160,7 @@ reported_id        :integer(4)</pre>
           
           <div class="method-source-code" id="build_report-source">
             <pre><span class="ruby-comment"># File app/models/report.rb, line 33</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">build_report</span>(<span class="ruby-identifier">reportable</span>,<span class="ruby-identifier">reporter</span>,<span class="ruby-identifier">title</span>,<span class="ruby-identifier">body</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">build_report</span>(<span class="ruby-identifier">reportable</span>,<span class="ruby-identifier">reporter</span>,<span class="ruby-identifier">title</span>,<span class="ruby-identifier">body</span>)
         <span class="ruby-identifier">r</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">new</span>
         <span class="ruby-identifier">r</span>.<span class="ruby-identifier">user</span> = <span class="ruby-identifier">reporter</span>
         <span class="ruby-identifier">r</span>.<span class="ruby-identifier">reportable_type</span> = <span class="ruby-identifier">reportable</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">base_class</span>.<span class="ruby-identifier">name</span>
@@ -223,9 +226,9 @@ reported_id        :integer(4)</pre>
           
           <div class="method-source-code" id="duplicate-3F-source">
             <pre><span class="ruby-comment"># File app/models/report.rb, line 86</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">duplicate?</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">duplicate?</span>
         <span class="ruby-comment"># if a report exists by this user on this object, and the object has not been changed, this is a duplicate</span>
-        <span class="ruby-identifier">report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">reportable_type</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reportable_type</span>, <span class="ruby-identifier">reportable_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reportable_id</span>, <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>)
+        <span class="ruby-identifier">report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">reportable_type:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reportable_type</span>, <span class="ruby-value">reportable_id:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reportable_id</span>, <span class="ruby-value">user_id:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>)
         <span class="ruby-identifier">report</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">report</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">created_at</span> <span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reportable_type</span>.<span class="ruby-identifier">constantize</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">reportable_id</span>).<span class="ruby-identifier">updated_at</span> 
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -258,7 +261,7 @@ reported_id        :integer(4)</pre>
           
           <div class="method-source-code" id="lock-source">
             <pre><span class="ruby-comment"># File app/models/report.rb, line 68</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">lock</span>(<span class="ruby-identifier">name</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">lock</span>(<span class="ruby-identifier">name</span>)
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">locked_by</span> = <span class="ruby-identifier">name</span> 
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -291,7 +294,7 @@ reported_id        :integer(4)</pre>
           
           <div class="method-source-code" id="reported-source">
             <pre><span class="ruby-comment"># File app/models/report.rb, line 82</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">reported</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reported</span>
         <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">reported_id</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -324,7 +327,7 @@ reported_id        :integer(4)</pre>
           
           <div class="method-source-code" id="resolve-source">
             <pre><span class="ruby-comment"># File app/models/report.rb, line 62</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">resolve</span>(<span class="ruby-identifier">admin</span>,<span class="ruby-identifier">response</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">resolve</span>(<span class="ruby-identifier">admin</span>,<span class="ruby-identifier">response</span>)
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">admin_email</span> = <span class="ruby-identifier">admin</span>.<span class="ruby-identifier">email</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">response</span> = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">response</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n\n&quot;</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">resolved</span> = <span class="ruby-keyword">true</span>
@@ -359,7 +362,7 @@ reported_id        :integer(4)</pre>
           
           <div class="method-source-code" id="unlock-source">
             <pre><span class="ruby-comment"># File app/models/report.rb, line 72</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">unlock</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unlock</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">locked_by</span> = <span class="ruby-keyword">nil</span> 
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -392,7 +395,7 @@ reported_id        :integer(4)</pre>
           
           <div class="method-source-code" id="unresolve-source">
             <pre><span class="ruby-comment"># File app/models/report.rb, line 76</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">unresolve</span>(<span class="ruby-identifier">admin</span>,<span class="ruby-identifier">response</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unresolve</span>(<span class="ruby-identifier">admin</span>,<span class="ruby-identifier">response</span>)
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">response</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">response</span> <span class="ruby-operator">+</span> <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;response&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;nn&quot;</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">admin_email</span> = <span class="ruby-identifier">admin</span>.<span class="ruby-identifier">email</span>
         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;DDDDDD&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">response</span>
@@ -410,12 +413,13 @@ reported_id        :integer(4)</pre>
     </section>
   
   </section>
+
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
-  <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

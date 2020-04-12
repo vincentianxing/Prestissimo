@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SessionsHelper</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="SessionsHelper">
+
+  
+
+    <meta name="keywords" content="SessionsHelper class">
+  
+    <meta name="keywords" content="sign_in, signed_in?, current_user=, current_user, current_user?, faculty_user?, current_professor, sign_out, redirect_back_or, store_location, motd, disclaimer, motd_cookie_expired?, disclaimer_cookie_expired?, initialize_ldap_con, authenticate">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span>
+            SessionsHelper
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/helpers/sessions_helper_rb.html">app/helpers/sessions_helper.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-authenticate">authenticate</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-current_professor">current_professor</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-current_user">current_user</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-current_user-3D">current_user=</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-current_user-3F">current_user?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-disclaimer">disclaimer</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-disclaimer_cookie_expired-3F">disclaimer_cookie_expired?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>F</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-faculty_user-3F">faculty_user?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-initialize_ldap_con">initialize_ldap_con</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-motd">motd</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-motd_cookie_expired-3F">motd_cookie_expired?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-redirect_back_or">redirect_back_or</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-sign_in">sign_in</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-sign_out">sign_out</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-signed_in-3F">signed_in?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-store_location">store_location</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-authenticate">
+            
+              <b>authenticate</b>(user, pass)
+            
+            <a href="../classes/SessionsHelper.html#method-i-authenticate" name="method-i-authenticate" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Authenticate a user against the college ldap returns false on failure and an array of matching ldap entries on success</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-authenticate_source')" id="l_method-i-authenticate_source">show</a>
+                
+              </p>
+              <div id="method-i-authenticate_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 110</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">authenticate</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">pass</span>)
+  <span class="ruby-identifier">ldap</span> = <span class="ruby-identifier">initialize_ldap_con</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">ldap</span>.<span class="ruby-identifier">bind</span>
+
+  <span class="ruby-identifier">result</span> = <span class="ruby-identifier">ldap</span>.<span class="ruby-identifier">bind_as</span>(
+    <span class="ruby-value">:filter</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-node">&quot;(cn=#{user})&quot;</span>,
+    <span class="ruby-value">:password</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">pass</span>
+  )
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-current_professor">
+            
+              <b>current_professor</b>()
+            
+            <a href="../classes/SessionsHelper.html#method-i-current_professor" name="method-i-current_professor" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Sets the current professor using the current user&#39;s fname and lname.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-current_professor_source')" id="l_method-i-current_professor_source">show</a>
+                
+              </p>
+              <div id="method-i-current_professor_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">current_professor</span>
+  <span class="ruby-ivar">@current_professor</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Professor</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">prof_id</span>)
+  <span class="ruby-ivar">@current_professor</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Professor</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">userid:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">email</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;@&#39;</span>)[<span class="ruby-value">0</span>])[<span class="ruby-value">0</span>]
+  <span class="ruby-ivar">@current_professor</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Professor</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">fname:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">fname</span>, <span class="ruby-value">lname:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">lname</span>)[<span class="ruby-value">0</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-current_user">
+            
+              <b>current_user</b>()
+            
+            <a href="../classes/SessionsHelper.html#method-i-current_user" name="method-i-current_user" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Sets the current user, if not already set, by using the remember_token cookie we set when the user signed in</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-current_user_source')" id="l_method-i-current_user_source">show</a>
+                
+              </p>
+              <div id="method-i-current_user_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">current_user</span>
+  <span class="ruby-ivar">@current_user</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_remember_token</span>(<span class="ruby-identifier">cookies</span>[<span class="ruby-value">:remember_token</span>])
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-current_user-3D">
+            
+              <b>current_user=</b>(user)
+            
+            <a href="../classes/SessionsHelper.html#method-i-current_user-3D" name="method-i-current_user-3D" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Allows us to set the current user</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-current_user-3D_source')" id="l_method-i-current_user-3D_source">show</a>
+                
+              </p>
+              <div id="method-i-current_user-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">current_user=</span>(<span class="ruby-identifier">user</span>)
+  <span class="ruby-ivar">@current_user</span> = <span class="ruby-identifier">user</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-current_user-3F">
+            
+              <b>current_user?</b>(user)
+            
+            <a href="../classes/SessionsHelper.html#method-i-current_user-3F" name="method-i-current_user-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Check if a given user is equivalent to the current user signed in</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-current_user-3F_source')" id="l_method-i-current_user-3F_source">show</a>
+                
+              </p>
+              <div id="method-i-current_user-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">current_user?</span>(<span class="ruby-identifier">user</span>)
+  <span class="ruby-identifier">user</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">current_user</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-disclaimer">
+            
+              <b>disclaimer</b>()
+            
+            <a href="../classes/SessionsHelper.html#method-i-disclaimer" name="method-i-disclaimer" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-disclaimer_source')" id="l_method-i-disclaimer_source">show</a>
+                
+              </p>
+              <div id="method-i-disclaimer_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">disclaimer</span>
+  <span class="ruby-ivar">@disclaimer</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">find_by_key</span>(<span class="ruby-string">&#39;disclaimer&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-disclaimer_cookie_expired-3F">
+            
+              <b>disclaimer_cookie_expired?</b>()
+            
+            <a href="../classes/SessionsHelper.html#method-i-disclaimer_cookie_expired-3F" name="method-i-disclaimer_cookie_expired-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>something isn&#39;t working right (the updated_at)</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-disclaimer_cookie_expired-3F_source')" id="l_method-i-disclaimer_cookie_expired-3F_source">show</a>
+                
+              </p>
+              <div id="method-i-disclaimer_cookie_expired-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 83</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">disclaimer_cookie_expired?</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">cookies</span>[<span class="ruby-value">:disclaimer</span>]) <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">disclaimer</span>.<span class="ruby-identifier">updated_at</span>
+    <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">:disclaimer</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-faculty_user-3F">
+            
+              <b>faculty_user?</b>(user)
+            
+            <a href="../classes/SessionsHelper.html#method-i-faculty_user-3F" name="method-i-faculty_user-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Check if a given user&#39;s role is &#39;Faculty&#39;</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-faculty_user-3F_source')" id="l_method-i-faculty_user-3F_source">show</a>
+                
+              </p>
+              <div id="method-i-faculty_user-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">faculty_user?</span>(<span class="ruby-identifier">user</span>)
+  <span class="ruby-identifier">user</span>.<span class="ruby-identifier">role</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;faculty&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-initialize_ldap_con">
+            
+              <b>initialize_ldap_con</b>()
+            
+            <a href="../classes/SessionsHelper.html#method-i-initialize_ldap_con" name="method-i-initialize_ldap_con" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>initialize a connection to the college ldap, and return an object representing it</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-initialize_ldap_con_source')" id="l_method-i-initialize_ldap_con_source">show</a>
+                
+              </p>
+              <div id="method-i-initialize_ldap_con_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize_ldap_con</span>
+  <span class="ruby-identifier">credentials</span> = {
+    <span class="ruby-value">:method</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">:simple</span>,
+    <span class="ruby-value">:username</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;cn=pr-oprest,ou=dmanage,dc=ad,dc=oberlin,dc=edu&quot;</span>,
+    <span class="ruby-value">:password</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;OC-2015op&quot;</span>
+  }
+  <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">LDAP</span>.<span class="ruby-identifier">new</span>(
+    <span class="ruby-value">:host</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;ad.oberlin.edu&quot;</span>,
+    <span class="ruby-value">:port</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;636&quot;</span>,
+    <span class="ruby-value">:encryption</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">:simple_tls</span>,
+    <span class="ruby-value">:base</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;ou=people,dc=ad,dc=oberlin,dc=edu&quot;</span>,
+    <span class="ruby-value">:auth</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">credentials</span>
+  )
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-motd">
+            
+              <b>motd</b>()
+            
+            <a href="../classes/SessionsHelper.html#method-i-motd" name="method-i-motd" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-motd_source')" id="l_method-i-motd_source">show</a>
+                
+              </p>
+              <div id="method-i-motd_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">motd</span>
+  <span class="ruby-ivar">@motd</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">find_by_key</span>(<span class="ruby-string">&#39;motd&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-motd_cookie_expired-3F">
+            
+              <b>motd_cookie_expired?</b>()
+            
+            <a href="../classes/SessionsHelper.html#method-i-motd_cookie_expired-3F" name="method-i-motd_cookie_expired-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-motd_cookie_expired-3F_source')" id="l_method-i-motd_cookie_expired-3F_source">show</a>
+                
+              </p>
+              <div id="method-i-motd_cookie_expired-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">motd_cookie_expired?</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">cookies</span>[<span class="ruby-value">:motd</span>]) <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">motd</span>.<span class="ruby-identifier">updated_at</span>
+      <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">:motd</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">ArgumentError</span>
+    <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">:motd</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-redirect_back_or">
+            
+              <b>redirect_back_or</b>(default)
+            
+            <a href="../classes/SessionsHelper.html#method-i-redirect_back_or" name="method-i-redirect_back_or" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Permits friendly forwarding i.e. if a user tries to go to a page that requires a sign in, he&#39;ll be redirected to that page after signing in if possible</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-redirect_back_or_source')" id="l_method-i-redirect_back_or_source">show</a>
+                
+              </p>
+              <div id="method-i-redirect_back_or_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">redirect_back_or</span>(<span class="ruby-identifier">default</span>)
+  <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:return_to</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">default</span>)
+  <span class="ruby-identifier">session</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:return_to</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-sign_in">
+            
+              <b>sign_in</b>(user)
+            
+            <a href="../classes/SessionsHelper.html#method-i-sign_in" name="method-i-sign_in" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Sign in a user with a cookie</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-sign_in_source')" id="l_method-i-sign_in_source">show</a>
+                
+              </p>
+              <div id="method-i-sign_in_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sign_in</span>(<span class="ruby-identifier">user</span>)
+  <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">permanent</span>[<span class="ruby-value">:remember_token</span>] = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">remember_token</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-identifier">user</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-sign_out">
+            
+              <b>sign_out</b>()
+            
+            <a href="../classes/SessionsHelper.html#method-i-sign_out" name="method-i-sign_out" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Sign out the current user</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-sign_out_source')" id="l_method-i-sign_out_source">show</a>
+                
+              </p>
+              <div id="method-i-sign_out_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sign_out</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:remember_token</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-signed_in-3F">
+            
+              <b>signed_in?</b>()
+            
+            <a href="../classes/SessionsHelper.html#method-i-signed_in-3F" name="method-i-signed_in-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Checks if the user is signed in</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-signed_in-3F_source')" id="l_method-i-signed_in-3F_source">show</a>
+                
+              </p>
+              <div id="method-i-signed_in-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">signed_in?</span>
+  <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-store_location">
+            
+              <b>store_location</b>()
+            
+            <a href="../classes/SessionsHelper.html#method-i-store_location" name="method-i-store_location" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Remembers the url of the page the user tried to visit</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-store_location_source')" id="l_method-i-store_location_source">show</a>
+                
+              </p>
+              <div id="method-i-store_location_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">store_location</span>
+  <span class="ruby-identifier">session</span>[<span class="ruby-value">:return_to</span>] = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">fullpath</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

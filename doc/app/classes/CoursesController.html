@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CoursesController</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="CoursesController">
+
+  
+
+    <meta name="keywords" content="CoursesController class">
+  
+    <meta name="keywords" content="create, new, edit, update, index, search">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            CoursesController
+            
+                <span class="parent">&lt;
+                    
+                    <a href="ApplicationController.html">ApplicationController</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/controllers/courses_controller_rb.html">app/controllers/courses_controller.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-create">create</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-edit">edit</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-index">index</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-search">search</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-update">update</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+    <!-- Includes -->
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+      
+        <li>
+          
+            <a href="ApplicationHelper.html">
+              ApplicationHelper
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            ActionView::Helpers::TextHelper
+          
+        </li>
+      
+    </ul>
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-create">
+            
+              <b>create</b>()
+            
+            <a href="../classes/CoursesController.html#method-i-create" name="method-i-create" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>CREATE action: empty</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-create_source')" id="l_method-i-create_source">show</a>
+                
+              </p>
+              <div id="method-i-create_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-edit">
+            
+              <b>edit</b>()
+            
+            <a href="../classes/CoursesController.html#method-i-edit" name="method-i-edit" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>EDIT action: empty</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-edit_source')" id="l_method-i-edit_source">show</a>
+                
+              </p>
+              <div id="method-i-edit_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">edit</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">signed_in?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">faculty_user?</span>(<span class="ruby-identifier">current_user</span>)
+  <span class="ruby-ivar">@courses</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">semcrn:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:semcrn</span>])
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">error_404_path</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@courses</span>
+  <span class="ruby-ivar">@sections</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">dept:</span> <span class="ruby-ivar">@courses</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">dept</span>, <span class="ruby-value">cnum:</span> <span class="ruby-ivar">@courses</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">cnum</span>, <span class="ruby-value">semester:</span> <span class="ruby-ivar">@courses</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">semester</span>)
+  <span class="ruby-ivar">@sections</span>.<span class="ruby-identifier">sort_by!</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">crn</span>}
+  <span class="ruby-ivar">@course_arr</span> = [<span class="ruby-ivar">@courses</span>, <span class="ruby-ivar">@sections</span>]
+  <span class="ruby-ivar">@course_arr</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-index">
+            
+              <b>index</b>()
+            
+            <a href="../classes/CoursesController.html#method-i-index" name="method-i-index" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>INDEX action: used to render the javascript and search results</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-index_source')" id="l_method-i-index_source">show</a>
+                
+              </p>
+              <div id="method-i-index_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 124</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">index</span>
+  <span class="ruby-comment">#if !cookies[:mobile_format].nil? &amp;&amp; is_mobile_device?</span>
+  <span class="ruby-comment">#   session[:mobile_view] = true</span>
+  <span class="ruby-comment">#end</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">cookies</span>[<span class="ruby-value">:cart</span>]
+     <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">permanent</span>[<span class="ruby-value">:cart</span>] = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">cartid</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">total_credits</span> = <span class="ruby-value">0</span>
+    <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:value</span>].<span class="ruby-identifier">blank?</span>
+    <span class="ruby-ivar">@courses</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:value</span>]).<span class="ruby-identifier">get_courses</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">mobile</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-new">
+            
+              <b>new</b>()
+            
+            <a href="../classes/CoursesController.html#method-i-new" name="method-i-new" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>NEW action: empty</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-new_source')" id="l_method-i-new_source">show</a>
+                
+              </p>
+              <div id="method-i-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">new</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-search">
+            
+              <b>search</b>()
+            
+            <a href="../classes/CoursesController.html#method-i-search" name="method-i-search" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>SEARCH action: performs course search</p>
+
+<pre><code>- builds a &#39;query string,&#39; used to query SQL database, based on form
+   field input
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-search_source')" id="l_method-i-search_source">show</a>
+                
+              </p>
+              <div id="method-i-search_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 149</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">search</span>
+    <span class="ruby-identifier">qs</span> = <span class="ruby-string">&#39;&#39;</span> <span class="ruby-comment"># Query String</span>
+<span class="ruby-comment">#    qs = &#39;SELECT courses.* FROM courses WHERE (&#39; # Query String</span>
+
+    <span class="ruby-comment">#CRN Conditional</span>
+    <span class="ruby-comment"># Searches for the course whose CRN = the query</span>
+    <span class="ruby-comment"># Skips other fields when used</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:crn</span>].<span class="ruby-identifier">blank?</span>)
+      <span class="ruby-identifier">qs</span> = <span class="ruby-node">&quot;crn = #{ActiveRecord::Base.connection.quote(&quot;#{params[:crn]}&quot;)} AND &quot;</span>
+
+      <span class="ruby-comment">#Semester Select Conditional</span>
+      <span class="ruby-comment"># Uses &#39;LIKE&#39; comparison</span>
+      <span class="ruby-comment"># Converts from human-readable semester format to table semester shorthand</span>
+      <span class="ruby-comment">#  FORMAT: [First letter of Season][Last two digits of Year]</span>
+      <span class="ruby-comment">#  F12 - Fall 2012</span>
+      <span class="ruby-comment">#  S12 - Spring 2012</span>
+      <span class="ruby-comment">#  and so on</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:semester</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">semester</span> = <span class="ruby-identifier">translate_semester</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:semester</span>])
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;semester&quot;</span>, <span class="ruby-node">&quot;#{semester}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment"># Removes the trailing &#39; AND &#39; from the query string</span>
+      <span class="ruby-value">5</span>.<span class="ruby-identifier">times</span> { <span class="ruby-identifier">qs</span>.<span class="ruby-identifier">chop!</span> }
+    <span class="ruby-keyword">else</span> <span class="ruby-comment"># skips all other fields when a CRN is specified</span>
+
+      <span class="ruby-comment">#Course Name Conditional</span>
+      <span class="ruby-comment"># Uses &#39;LIKE&#39; comparison</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:cname</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;title&quot;</span>, <span class="ruby-node">&quot;#{params[:cname]}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment">#Professor Conditional</span>
+      <span class="ruby-comment"># Uses &#39;LIKE&#39; comparison</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:professor</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;professor&quot;</span>, <span class="ruby-node">&quot;#{params[:professor]}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment">#Department Conditional</span>
+      <span class="ruby-comment"># Uses &#39;LIKE&#39; comparison</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:dept</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">dept</span> = <span class="ruby-node">&quot;#{params[:dept]}&quot;</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot; &quot;</span>)
+        <span class="ruby-identifier">asize</span> = <span class="ruby-identifier">dept</span>.<span class="ruby-identifier">length</span><span class="ruby-value">-1</span>;
+        (<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">asize</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword">if</span> (<span class="ruby-identifier">asize</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>)
+            <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;dept&quot;</span>, <span class="ruby-identifier">dept</span>[<span class="ruby-identifier">c</span>], <span class="ruby-identifier">qs</span>)
+          <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>)
+            <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">orAppend</span>(<span class="ruby-string">&quot;(dept&quot;</span>, <span class="ruby-identifier">dept</span>[<span class="ruby-identifier">c</span>], <span class="ruby-identifier">qs</span>)
+          <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">c</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">asize</span>)
+            <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">orAppend</span>(<span class="ruby-string">&quot;dept&quot;</span>, <span class="ruby-identifier">dept</span>[<span class="ruby-identifier">c</span>], <span class="ruby-identifier">qs</span>)
+          <span class="ruby-keyword">else</span>
+            <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppendMulti</span>(<span class="ruby-string">&quot;dept&quot;</span>, <span class="ruby-identifier">dept</span>[<span class="ruby-identifier">c</span>], <span class="ruby-identifier">qs</span>)
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment">#Semester Select Conditional</span>
+      <span class="ruby-comment"># Uses &#39;LIKE&#39; comparison</span>
+      <span class="ruby-comment"># Converts from human-readable semester format to table semester shorthand</span>
+      <span class="ruby-comment">#  FORMAT: [First letter of Season][Last two digits of Year]</span>
+      <span class="ruby-comment">#  F12 - Fall 2012</span>
+      <span class="ruby-comment">#  S12 - Spring 2012</span>
+      <span class="ruby-comment">#  and so on</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:semester</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">semester</span> = <span class="ruby-identifier">translate_semester</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:semester</span>])
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;semester&quot;</span>, <span class="ruby-node">&quot;#{semester}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment">#Proficiency Conditionals</span>
+      <span class="ruby-comment"># Use &#39;LIKE&#39; comparison</span>
+      <span class="ruby-comment">#  Converts from checkbox &#39;ON&#39;/&#39;OFF&#39; format to string</span>
+      <span class="ruby-comment">#  Profs. stored as a string containing all credited profs,</span>
+      <span class="ruby-comment">#  i.e. &quot;CD,WR&quot;</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:cd</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">cd</span> = <span class="ruby-string">&quot;CD&quot;</span>
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;proficiencies&quot;</span>, <span class="ruby-node">&quot;#{cd}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:wr</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-keyword">if</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:profic</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;wadv&quot;</span>)
+          <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;proficiencies&quot;</span>, <span class="ruby-string">&quot;WAdv&quot;</span>, <span class="ruby-identifier">qs</span>)
+        <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:profic</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;wint&quot;</span>)
+          <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;proficiencies&quot;</span>, <span class="ruby-string">&quot;WInt&quot;</span>, <span class="ruby-identifier">qs</span>)
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">orAppend</span>(<span class="ruby-string">&quot;(proficiencies&quot;</span>, <span class="ruby-string">&quot;WInt&quot;</span>, <span class="ruby-identifier">qs</span>)
+          <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">orAppend</span>(<span class="ruby-string">&quot;proficiencies&quot;</span>, <span class="ruby-string">&quot;WR&quot;</span>, <span class="ruby-identifier">qs</span>)
+          <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppendMulti</span>(<span class="ruby-string">&quot;proficiencies&quot;</span>, <span class="ruby-string">&quot;WAdv&quot;</span>, <span class="ruby-identifier">qs</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:qfr</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">qfr</span> = <span class="ruby-string">&quot;QFR&quot;</span>
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">orAppend</span>(<span class="ruby-string">&quot;(proficiencies&quot;</span>, <span class="ruby-string">&quot;QP&quot;</span>, <span class="ruby-identifier">qs</span>)
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppendMulti</span>(<span class="ruby-string">&quot;proficiencies&quot;</span>, <span class="ruby-node">&quot;#{qfr}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment">#Day of the Week Conditionals</span>
+      <span class="ruby-comment"># Use &#39;LIKE&#39; comparison</span>
+      <span class="ruby-comment">#  Converts from checkbox &#39;ON&#39;/&#39;OFF&#39; format to string,</span>
+      <span class="ruby-comment">#  single letter day notation, using PRESTO standard [MWTRFSU]</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:monday</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">monday</span> = <span class="ruby-string">&quot;M&quot;</span>
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;days&quot;</span>, <span class="ruby-node">&quot;#{monday}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:tuesday</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">tuesday</span> = <span class="ruby-string">&quot;T&quot;</span>
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;days&quot;</span>, <span class="ruby-node">&quot;#{tuesday}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:wednesday</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">wednesday</span> = <span class="ruby-string">&quot;W&quot;</span>
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;days&quot;</span>, <span class="ruby-node">&quot;#{wednesday}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:thursday</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">thursday</span> = <span class="ruby-string">&quot;R&quot;</span>
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;days&quot;</span>, <span class="ruby-node">&quot;#{thursday}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:friday</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">friday</span> = <span class="ruby-string">&quot;F&quot;</span>
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;days&quot;</span>, <span class="ruby-node">&quot;#{friday}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:saturday</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">saturday</span> = <span class="ruby-string">&quot;S&quot;</span>
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;days&quot;</span>, <span class="ruby-node">&quot;#{saturday}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:sunday</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">sunday</span> = <span class="ruby-string">&quot;U&quot;</span>
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;days&quot;</span>, <span class="ruby-node">&quot;#{sunday}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment"># Full Course Conditionals</span>
+      <span class="ruby-comment"># Use &#39;LIKE&#39; comparison</span>
+      <span class="ruby-keyword">if</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:fc</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;fc&quot;</span>)
+        <span class="ruby-identifier">fc</span> = <span class="ruby-string">&quot;Full Course&quot;</span>
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;full_course&quot;</span>, <span class="ruby-node">&quot;#{fc}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:fc</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;hc&quot;</span>)
+        <span class="ruby-identifier">hc</span> = <span class="ruby-string">&quot;Half Course&quot;</span>
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;full_course&quot;</span>, <span class="ruby-node">&quot;#{hc}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:fc</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;cc&quot;</span>)
+        <span class="ruby-identifier">cc</span> = <span class="ruby-string">&quot;Co-Curricular&quot;</span>
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;full_course&quot;</span>, <span class="ruby-node">&quot;#{cc}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment">#Module Conditionals</span>
+      <span class="ruby-comment"># Use &#39;LIKE&#39; comparison</span>
+      <span class="ruby-comment">#  Converts from checkbox &#39;ON&#39;/&#39;OFF&#39; to integers. Modules stored as:</span>
+      <span class="ruby-comment">#  1: first mod</span>
+      <span class="ruby-comment">#  2: second mod</span>
+      <span class="ruby-comment">#  3: full semester</span>
+      <span class="ruby-comment">#  4: special meeting times</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:module</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">mod</span>=<span class="ruby-value">0</span>;
+        <span class="ruby-keyword">if</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:module</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;mod1&quot;</span>)
+          <span class="ruby-identifier">mod</span> = <span class="ruby-value">1</span>
+        <span class="ruby-keyword">elsif</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:module</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;mod2&quot;</span>)
+          <span class="ruby-identifier">mod</span> = <span class="ruby-value">2</span>
+        <span class="ruby-keyword">elsif</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:module</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;full&quot;</span>)
+          <span class="ruby-identifier">mod</span> = <span class="ruby-value">3</span>
+        <span class="ruby-keyword">elsif</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:module</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;spec&quot;</span>)
+          <span class="ruby-identifier">mod</span> = <span class="ruby-value">4</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">if</span>(<span class="ruby-identifier">mod</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span>)
+          <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;mods&quot;</span>, <span class="ruby-node">&quot;#{mod}&quot;</span>, <span class="ruby-identifier">qs</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment">#Attribute Conditionals</span>
+      <span class="ruby-comment">#Assumed: max value is always filled, where credit for attribute is given</span>
+      <span class="ruby-comment"># Uses a numerical comparison, and returns all classes where the selected</span>
+      <span class="ruby-comment">#  attribute gives strictly greater than 0 credits</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ns</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">ns</span> = <span class="ruby-string">&quot;NS&quot;</span>
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;distributions&quot;</span>, <span class="ruby-node">&quot;#{ns}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ss</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">ss</span> = <span class="ruby-string">&quot;SS&quot;</span>
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;distributions&quot;</span>, <span class="ruby-node">&quot;#{ss}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:hu</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">hu</span> = <span class="ruby-string">&quot;HU&quot;</span>
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;distributions&quot;</span>, <span class="ruby-node">&quot;#{hu}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment">#Con Attribute Conditionals</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:cndp</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;distributions&quot;</span>, <span class="ruby-string">&quot;CNDP&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ddhu</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">likeAppend</span>(<span class="ruby-string">&quot;distributions&quot;</span>, <span class="ruby-string">&quot;DDHU&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment">#Number of Credits Conditionals</span>
+      <span class="ruby-comment"># Uses numerical comparisons, and searches in an inclusive range</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:min_credits</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">numAppend</span>(<span class="ruby-string">&quot;crmin&quot;</span>, <span class="ruby-node">&quot;#{params[:min_credits]}&quot;</span>, <span class="ruby-string">&quot;&gt;=&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:max_credits</span>].<span class="ruby-identifier">blank?</span>)
+        <span class="ruby-identifier">params</span>[<span class="ruby-value">:max_credits</span>]=<span class="ruby-string">&quot;99&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:max_credits</span>].<span class="ruby-identifier">to_i</span><span class="ruby-operator">&gt;</span><span class="ruby-value">8</span>
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">numAppend</span>(<span class="ruby-string">&quot;crmax&quot;</span>, <span class="ruby-node">&quot;#{params[:max_credits]}&quot;</span>, <span class="ruby-string">&quot;&lt;=&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment">#Time Conditionals</span>
+      <span class="ruby-comment"># Somewhat more intuitively: if &quot;start after&quot; is entered, will list all classes &gt;= given start time.</span>
+      <span class="ruby-comment"># If &quot;end before&quot; is specified, will list all classes &lt;= the given end time.</span>
+      <span class="ruby-comment">#Start Time Conditionals</span>
+      <span class="ruby-keyword">unless</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:start_hour</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;7&quot;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:start_minute</span>]=<span class="ruby-string">&quot;00&quot;</span> <span class="ruby-operator">&amp;&amp;</span>  <span class="ruby-identifier">params</span>[<span class="ruby-value">:end_hour</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;22&quot;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:end_minute</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;00&quot;</span>)
+        <span class="ruby-identifier">start_hour</span> = <span class="ruby-string">&quot;&quot;</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:start_hour</span>].<span class="ruby-identifier">blank?</span>)
+          <span class="ruby-identifier">start_hour</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:start_hour</span>]<span class="ruby-string">+&quot;:&quot;</span>
+          <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:start_minute</span>].<span class="ruby-identifier">blank?</span>)
+            <span class="ruby-identifier">start_hour</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:start_minute</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;:00&quot;</span>
+          <span class="ruby-keyword">else</span>
+            <span class="ruby-identifier">start_hour</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;00:00&quot;</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-comment">#End Time Conditionals</span>
+        <span class="ruby-identifier">end_hour</span> = <span class="ruby-string">&quot;&quot;</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:end_hour</span>].<span class="ruby-identifier">blank?</span>)
+          <span class="ruby-identifier">end_hour</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:end_hour</span>]<span class="ruby-string">+&quot;:&quot;</span>
+          <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:end_minute</span>].<span class="ruby-identifier">blank?</span>)
+            <span class="ruby-identifier">end_hour</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:end_minute</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;:00&quot;</span>
+          <span class="ruby-keyword">else</span>
+            <span class="ruby-identifier">end_hour</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;00:00&quot;</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-comment">#Build the query string for times</span>
+        <span class="ruby-keyword">if</span> (<span class="ruby-operator">!</span><span class="ruby-identifier">end_hour</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">start_hour</span>.<span class="ruby-identifier">blank?</span>)
+          <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">numAppend</span>(<span class="ruby-string">&quot;start_time&quot;</span>, <span class="ruby-node">&quot;#{start_hour}&quot;</span>, <span class="ruby-string">&quot;&gt;=&quot;</span>, <span class="ruby-identifier">qs</span>)
+          <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">numAppend</span>(<span class="ruby-string">&quot;end_time&quot;</span>, <span class="ruby-node">&quot;#{end_hour}&quot;</span>, <span class="ruby-string">&quot;&lt;=&quot;</span>, <span class="ruby-identifier">qs</span>)
+        <span class="ruby-keyword">elsif</span> (<span class="ruby-operator">!</span><span class="ruby-identifier">end_hour</span>.<span class="ruby-identifier">blank?</span>)
+          <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">numAppend</span>(<span class="ruby-string">&quot;end_time&quot;</span>, <span class="ruby-node">&quot;#{end_hour}&quot;</span>, <span class="ruby-string">&quot;&lt;=&quot;</span>, <span class="ruby-identifier">qs</span>)
+        <span class="ruby-keyword">elsif</span> (<span class="ruby-operator">!</span><span class="ruby-identifier">start_hour</span>.<span class="ruby-identifier">blank?</span>)
+          <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">numAppend</span>(<span class="ruby-string">&quot;start_time&quot;</span>, <span class="ruby-node">&quot;#{start_hour}&quot;</span>, <span class="ruby-string">&quot;&gt;=&quot;</span>, <span class="ruby-identifier">qs</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment">#Course Level Search</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:min_course_level</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:max_course_level</span>].<span class="ruby-identifier">blank?</span>
+        <span class="ruby-identifier">min_level</span> = <span class="ruby-constant">Integer</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:min_course_level</span>])
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">min_level</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+          <span class="ruby-identifier">min_level</span> = <span class="ruby-string">&quot;000&quot;</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">max_level</span> = <span class="ruby-constant">Integer</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:max_course_level</span>])
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">max_level</span> <span class="ruby-operator">==</span> <span class="ruby-value">99</span>
+          <span class="ruby-identifier">max_level</span> = <span class="ruby-string">&quot;099&quot;</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">max_level</span> <span class="ruby-operator">==</span> <span class="ruby-value">1000</span>
+          <span class="ruby-identifier">max_level</span> = <span class="ruby-string">&quot;999&quot;</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">betweenAppend</span>(<span class="ruby-string">&quot;cnum&quot;</span>, <span class="ruby-node">&quot;#{min_level}&quot;</span>, <span class="ruby-node">&quot;#{max_level}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment">#Course Size Search</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:min_course_size</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:max_course_size</span>].<span class="ruby-identifier">blank?</span>
+        <span class="ruby-identifier">min_size</span> = <span class="ruby-constant">Integer</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:min_course_size</span>])
+        <span class="ruby-identifier">max_size</span> = <span class="ruby-constant">Integer</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:max_course_size</span>])
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">betweenAppend</span>(<span class="ruby-string">&quot;csize&quot;</span>, <span class="ruby-node">&quot;#{min_size}&quot;</span>, <span class="ruby-node">&quot;#{max_size}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment">#Course Enrollment Search</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:min_course_enrollment</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:max_course_enrollment</span>].<span class="ruby-identifier">blank?</span>
+        <span class="ruby-identifier">min_enrollment</span> = <span class="ruby-constant">Integer</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:min_course_enrollment</span>])
+        <span class="ruby-identifier">max_enrollment</span> = <span class="ruby-constant">Integer</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:max_course_enrollment</span>])
+        <span class="ruby-identifier">qs</span> = <span class="ruby-identifier">betweenAppend</span>(<span class="ruby-string">&quot;enroll&quot;</span>, <span class="ruby-node">&quot;#{min_enrollment}&quot;</span>, <span class="ruby-node">&quot;#{max_enrollment}&quot;</span>, <span class="ruby-identifier">qs</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment"># Course description and notes keyword search!</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:keyword</span>].<span class="ruby-identifier">blank?</span>
+        <span class="ruby-identifier">temp</span> =<span class="ruby-string">&quot;&quot;</span>
+        <span class="ruby-identifier">temp</span> = <span class="ruby-identifier">make_query_string</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:keyword</span>], [<span class="ruby-string">&quot;descrip&quot;</span>, <span class="ruby-string">&quot;short_title&quot;</span>, <span class="ruby-string">&quot;title&quot;</span>, <span class="ruby-string">&quot;xlist1&quot;</span>, <span class="ruby-string">&quot;xlist2&quot;</span>, <span class="ruby-string">&quot;xlist3&quot;</span>, <span class="ruby-string">&quot;prereqs&quot;</span>, <span class="ruby-string">&quot;dept&quot;</span>, <span class="ruby-string">&quot;dept_long&quot;</span>, <span class="ruby-string">&quot;prof_desc&quot;</span>, <span class="ruby-string">&quot;prof_note&quot;</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:key_button</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;any&quot;</span>)
+        <span class="ruby-identifier">qs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;( #{temp} )  AND &quot;</span>
+      <span class="ruby-keyword">end</span>
+
+<span class="ruby-comment">=begin
+      # courses last altered since
+      unless params[:date][:year].blank? &amp;&amp; params[:date][:month].blank? &amp;&amp; params[:date][:day].blank?
+        querydate = &quot;&quot;
+        if params[:date][:year].blank?
+          querydate &lt;&lt; DateTime.now.year.to_s
+        else
+          querydate &lt;&lt; params[:date][:year]
+        end
+        querydate &lt;&lt; &quot;-&quot;
+        if params[:date][:month].blank?
+          if params[:date][:day].blank?
+            querydate &lt;&lt; &quot;01-01&quot;
+          else
+            querydate &lt;&lt; DateTime.now.month.to_s + &quot;-&quot; + params[:date][:day]
+          end
+        else
+          if params[:date][:day].blank?
+            querydate &lt;&lt; params[:date][:month] + &quot;-01&quot;
+          else
+            querydate &lt;&lt; params[:date][:month] + &quot;-&quot; + params[:date][:day]
+          end
+        end
+        querydate &lt;&lt; &quot; 00:00:00&quot;
+        logger.debug querydate
+
+        qs = qs + &quot;last_changed &gt;= &#39;#{querydate}&#39; AND &quot;
+      end
+=end</span>
+
+      <span class="ruby-comment"># Removes the trailing &#39; AND &#39; from the query string</span>
+      <span class="ruby-value">5</span>.<span class="ruby-identifier">times</span> { <span class="ruby-identifier">qs</span>.<span class="ruby-identifier">chop!</span> }
+      <span class="ruby-comment"># Adds &quot;order by&quot; in query string</span>
+      <span class="ruby-comment"># qs &lt;&lt; &quot;) ORDER BY dept, cnum, section&quot;</span>
+      <span class="ruby-comment"># Course.set_scope(&quot;dept, cnum, section&quot;);</span>
+      <span class="ruby-comment"># Performs the search, using the built query string</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@courses</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">qs</span>).<span class="ruby-identifier">to_a</span>
+<span class="ruby-comment">#    @courses = Course.find_by_sql(qs)</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:cart_id</span>]
+      <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:cart_id</span>])
+      <span class="ruby-ivar">@courses</span> = <span class="ruby-identifier">tag_conflicts</span>(<span class="ruby-ivar">@courses</span>,<span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">get_courses</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">blank?</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-comment"># highlight the keywords from the keyword field in the course results</span>
+    <span class="ruby-ivar">@courses</span> = <span class="ruby-identifier">highlight_keywords</span>(<span class="ruby-ivar">@courses</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:keyword</span>]) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:keyword</span>].<span class="ruby-identifier">blank?</span>
+    <span class="ruby-comment"># Hide cancelled courses unless the crn field was chosen.</span>
+    <span class="ruby-ivar">@courses</span>.<span class="ruby-identifier">delete_if</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;cancelled&quot;</span>} <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:crn</span>].<span class="ruby-identifier">blank?</span>
+    <span class="ruby-ivar">@courses</span>.<span class="ruby-identifier">delete_if</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;hidden&quot;</span>} <span class="ruby-keyword">unless</span> <span class="ruby-identifier">signed_in?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">faculty_user?</span>(<span class="ruby-identifier">current_user</span>)
+    <span class="ruby-ivar">@links</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>()
+    <span class="ruby-comment"># Renders the search results</span>
+    <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">mobile</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-update">
+            
+              <b>update</b>()
+            
+            <a href="../classes/CoursesController.html#method-i-update" name="method-i-update" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>UPDATE action: empty</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-update_source')" id="l_method-i-update_source">show</a>
+                
+              </p>
+              <div id="method-i-update_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
+  <span class="ruby-identifier">had_error</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@course</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@courses</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">semcrn:</span> <span class="ruby-ivar">@course</span>.<span class="ruby-identifier">semcrn</span>).<span class="ruby-identifier">to_a</span>
+
+  <span class="ruby-comment">#add checked sections into the courses list</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:sections</span>].<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">params</span>[<span class="ruby-value">:sections</span>].<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+      <span class="ruby-ivar">@courses</span>=<span class="ruby-ivar">@courses</span><span class="ruby-operator">|</span><span class="ruby-constant">Course</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">semcrn:</span> <span class="ruby-identifier">s</span>).<span class="ruby-identifier">to_a</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment">#All fields get applied to all checked sections except notify_profs and changed_fields</span>
+  <span class="ruby-identifier">section_hash</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@courses</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">c</span>.<span class="ruby-identifier">semcrn</span>]=[<span class="ruby-identifier">c</span>.<span class="ruby-identifier">changed_fields</span>,<span class="ruby-identifier">c</span>.<span class="ruby-identifier">notify_profs</span>]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">updates</span> = <span class="ruby-identifier">course_params</span>.<span class="ruby-identifier">clone</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">updates</span>[<span class="ruby-value">:display_prof_note</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;0&quot;</span>
+    <span class="ruby-identifier">updates</span>[<span class="ruby-value">:display_prof_note</span>]=<span class="ruby-keyword">false</span>;
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">updates</span>[<span class="ruby-value">:display_prof_note</span>]=<span class="ruby-keyword">true</span>;
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">updates</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;status&quot;</span>)
+  <span class="ruby-identifier">updates</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;notify_profs&quot;</span>)
+  <span class="ruby-identifier">sec_update</span>=<span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+
+  <span class="ruby-ivar">@courses</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sec</span><span class="ruby-operator">|</span>
+    
+    <span class="ruby-comment">#hide course</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:course</span>][<span class="ruby-value">:status</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;1&quot;</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">status</span>.<span class="ruby-identifier">blank?</span>
+        <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">0</span>]<span class="ruby-operator">||=</span><span class="ruby-string">&quot;&quot;</span>
+        <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">0</span>]<span class="ruby-operator">&lt;&lt;</span><span class="ruby-string">&quot;|&quot;</span><span class="ruby-keyword">unless</span> <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">0</span>].<span class="ruby-identifier">blank?</span>
+        <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">0</span>]<span class="ruby-operator">&lt;&lt;</span><span class="ruby-string">&quot;status&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;status&quot;</span>)
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">status</span>=<span class="ruby-string">&quot;hidden&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">status</span><span class="ruby-operator">==</span><span class="ruby-string">&quot;cancelled&quot;</span>
+    <span class="ruby-comment">#unhide course</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">status</span><span class="ruby-operator">==</span><span class="ruby-string">&quot;hidden&quot;</span>
+        <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">0</span>]<span class="ruby-operator">||=</span><span class="ruby-string">&quot;&quot;</span>
+        <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">0</span>]<span class="ruby-operator">&lt;&lt;</span><span class="ruby-string">&quot;|&quot;</span><span class="ruby-keyword">unless</span> <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">0</span>].<span class="ruby-identifier">blank?</span>
+        <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">0</span>]<span class="ruby-operator">&lt;&lt;</span><span class="ruby-string">&quot;status&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;status&quot;</span>)
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">status</span>=<span class="ruby-string">&quot;&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">status</span><span class="ruby-operator">==</span><span class="ruby-string">&quot;cancelled&quot;</span> 
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment">#add the fields in the updates hash to the list of changed fields for the section</span>
+    <span class="ruby-identifier">updates</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">updates</span>[<span class="ruby-identifier">k</span>] <span class="ruby-operator">!=</span> <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">k</span>)
+        <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">0</span>]<span class="ruby-operator">||=</span><span class="ruby-string">&quot;&quot;</span>
+        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">k</span>)
+          <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">0</span>]<span class="ruby-operator">&lt;&lt;</span><span class="ruby-string">&quot;|&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">0</span>].<span class="ruby-identifier">blank?</span>
+          <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">0</span>]<span class="ruby-operator">&lt;&lt;</span><span class="ruby-identifier">k</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">0</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">k</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment">#It won&#39;t change the field if it is the empty string, so this sets it to nil so it can be edited</span>
+    <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">notify_profs</span>=<span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">notify_profs</span><span class="ruby-operator">!=</span><span class="ruby-keyword">nil</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">notify_profs</span>.<span class="ruby-identifier">empty?</span>
+
+    <span class="ruby-comment">#Adds/removes the professor to notify profs</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:course</span>][<span class="ruby-value">:notify_profs</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;1&quot;</span>
+      <span class="ruby-identifier">temp_str</span> = <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">notify_profs</span> 
+      <span class="ruby-identifier">temp_str</span><span class="ruby-operator">||=</span><span class="ruby-string">&quot;&quot;</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">temp_str</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">email</span>)
+        <span class="ruby-identifier">temp_str</span><span class="ruby-operator">&lt;&lt;</span><span class="ruby-string">&quot;|&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">temp_str</span>.<span class="ruby-identifier">blank?</span>
+        <span class="ruby-identifier">temp_str</span><span class="ruby-operator">&lt;&lt;</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">email</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">1</span>]=<span class="ruby-identifier">temp_str</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">sec</span>.<span class="ruby-identifier">notify_profs</span>.<span class="ruby-identifier">blank?</span> 
+      <span class="ruby-identifier">temp_arr</span> = <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">notify_profs</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;|&quot;</span>)
+      <span class="ruby-identifier">temp_arr</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">email</span>)
+      <span class="ruby-identifier">temp_str</span>=<span class="ruby-identifier">temp_arr</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;|&quot;</span>)
+      <span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">sec</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">1</span>]=<span class="ruby-identifier">temp_str</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">updates</span>[<span class="ruby-value">:recent_edit</span>]=<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">email</span>
+  
+  <span class="ruby-comment">#Updates the courses</span>
+  <span class="ruby-ivar">@courses</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">updates</span>[<span class="ruby-value">:changed_fields</span>]=<span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">c</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">0</span>]
+    <span class="ruby-identifier">updates</span>[<span class="ruby-value">:notify_profs</span>]=<span class="ruby-identifier">section_hash</span>[<span class="ruby-identifier">c</span>.<span class="ruby-identifier">semcrn</span>][<span class="ruby-value">1</span>]
+    <span class="ruby-identifier">temp_bool</span>=<span class="ruby-identifier">c</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">updates</span>)
+    <span class="ruby-identifier">had_error</span><span class="ruby-operator">||=</span><span class="ruby-operator">!</span><span class="ruby-identifier">temp_bool</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">had_error</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:success</span>]=<span class="ruby-string">&quot;Course(s) successfully updated!&quot;</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">course_edit_path</span>(<span class="ruby-ivar">@course</span>.<span class="ruby-identifier">semcrn</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">course_edit_path</span>(<span class="ruby-ivar">@course</span>.<span class="ruby-identifier">semcrn</span>),<span class="ruby-value">:notice</span><span class="ruby-operator">=&gt;</span><span class="ruby-string">&quot;Course(s) could not be updated. Please contact the prestissimo managers.&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

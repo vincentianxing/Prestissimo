@@ -5,8 +5,8 @@ class CartsController < ApplicationController
     @cart = Cart.new
     courses = ""
     if params[:courses]
-      params[:courses].each do |key,value|
-	courses << ' ' + key.to_s unless courses.include? key.to_s
+      params[:courses].each do |key, value|
+        courses << " " + key.to_s unless courses.include? key.to_s
       end
       courses.strip!
     end
@@ -58,13 +58,13 @@ class CartsController < ApplicationController
       courses = @cart.courses.clone if @cart.courses
       courses_before_add = courses.clone if courses
       courses_before_add ||= ""
-      params[:courses].each do |key,value|
+      params[:courses].each do |key, value|
         if courses.nil?
           courses = key.to_s.dup
           sem = key.to_s.dup
         else
           error = true if (courses.include? key.to_s)
-          courses << ' '+key.to_s unless courses.include? key.to_s
+          courses << " " + key.to_s unless courses.include? key.to_s
           sem = key.to_s.dup
         end
         courses.strip!
@@ -77,7 +77,7 @@ class CartsController < ApplicationController
           break
         end
         course = Course.find_by_semcrn(sem)
-        if course.crmax != course.crmin 
+        if course.crmax != course.crmin
           (@hours += course.crmin - course.crmax) unless error == true
         else
           (@hours += course.crmax) unless error == true
@@ -89,9 +89,9 @@ class CartsController < ApplicationController
         @cart_courses
       else
         total_credits = @cart.total_credits.to_f
-        total_credits += @hours 
+        total_credits += @hours
         @cart.total_credits = total_credits
-        @cart.update!(total_credits: total_credits )
+        @cart.update!(total_credits: total_credits)
         @cart.set_courses(courses)
         @cart_courses = Array.new
         if @cart.save
@@ -117,37 +117,37 @@ class CartsController < ApplicationController
     courses = @cart.courses.clone if @cart.courses
     courses ||= ""
     courses_before_add = courses.clone
-    courses << ' '+params[:semcrn] unless courses.include? params[:semcrn]
+    courses << " " + params[:semcrn] unless courses.include? params[:semcrn]
     courses.strip!
     @message = nil
     if courses.length > 16777214
-        #chop off the class that was just added
-        #courses.gsub!(/ .{7,10}$/, '')
+      #chop off the class that was just added
+      #courses.gsub!(/ .{7,10}$/, '')
 
-        #message to pass to add.js
-        @message = "Too many courses in your cart!"
-        courses = courses_before_add
+      #message to pass to add.js
+      @message = "Too many courses in your cart!"
+      courses = courses_before_add
     end
     @hours = 0
-  
+
     params[:courses].each do |c|
       course = Course.find_by_semcrn(c)
-        if course.crmax != course.crmin
-          (@hours += course.crmin - course.crmax) unless courses_before_add.include? params[:semcrn]
-        else
-          (@hours += course.crmax) unless courses_before_add.include? params[:semcrn]
-        end
+      if course.crmax != course.crmin
+        (@hours += course.crmin - course.crmax) unless courses_before_add.include? params[:semcrn]
+      else
+        (@hours += course.crmax) unless courses_before_add.include? params[:semcrn]
       end
+    end
     total_credits = @cart.total_credits.to_f
     total_credits += @hours
     @cart.total_credits = total_credits
-    @cart.update!(total_credits: total_credits )
+    @cart.update!(total_credits: total_credits)
     @cart.set_courses(courses)
     @cart_courses = Array.new
     if @cart.save
-        @cart_courses = @cart.get_courses
+      @cart_courses = @cart.get_courses
     else
-        @cart_courses = nil
+      @cart_courses = nil
     end
     @cart_courses
   end
@@ -161,7 +161,7 @@ class CartsController < ApplicationController
       params[:cart] = {}
       params[:cart][:courses] = ""
       params[:cart][:courses] << parts[0].strip unless parts[0].blank?
-      params[:cart][:courses] << ' ' + parts[1].strip unless parts[1].blank?
+      params[:cart][:courses] << " " + parts[1].strip unless parts[1].blank?
       @cart_courses = Array.new
       @hours = 0
       if @cart.update(cart_params)
@@ -179,7 +179,7 @@ class CartsController < ApplicationController
         else
           @cart.total_credits = total_credits
         end
-        @cart.update!(total_credits: total_credits )
+        @cart.update!(total_credits: total_credits)
       else
         @cart_courses = nil
         @cart.destroy
@@ -219,14 +219,14 @@ class CartsController < ApplicationController
     logger.debug @cart.inspect
     #if the user is signed in, use default e-mail address, or email address provided
     if !current_user.nil?
-	@email = params[:email].blank? ? current_user.email : params[:email]
+      @email = params[:email].blank? ? current_user.email : params[:email]
     else
-	@email = params[:email]
+      @email = params[:email]
     end
-    @message  = nil
+    @message = nil
     if verify_email @email
       @sender = current_user if current_user
-      Interact.mail_cart(request.remote_ip,@cart,@email,@sender).deliver
+      Interact.mail_cart(request.remote_ip, @cart, @email, @sender).deliver
       @message = "Email Sent"
     else
       @message = "Please use a valid email"
@@ -234,13 +234,13 @@ class CartsController < ApplicationController
   end
 
   def search
-    if params[:value] == 'notremote'
-       return redirect_to root_path(value: params[:id])
+    if params[:value] == "notremote"
+      return redirect_to root_path(value: params[:id])
     end
     @courses = Cart.find_by_cartid(params[:id]).get_courses
     respond_to do |format|
       format.html { redirect_to root_path }
-      format.js { render 'courses/search' }
+      format.js { render "courses/search" }
     end
   end
 

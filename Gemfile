@@ -9,7 +9,6 @@ gem "mail"
 gem "mobile-fu"
 gem "acts_as_commentable_with_threading"
 gem "acts_as_votable"
-
 gem "jquery_mobile_rails"
 gem "jquery-week-calendar"
 
@@ -27,6 +26,8 @@ gem "bootsnap" # New in Rails 5.2
 gem "webpacker" # New in Rails 6.0
 
 gem "net-ldap"
+
+gem "sdoc" # Need this for docs in Rails >5
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

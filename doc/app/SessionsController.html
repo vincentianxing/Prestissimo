@@ -8,13 +8,18 @@
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
 </script>
 
-<script src="./js/jquery.js"></script>
-<script src="./js/darkfish.js"></script>
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
 
 <link href="./css/fonts.css" rel="stylesheet">
 <link href="./css/rdoc.css" rel="stylesheet">
+
 
 
 
@@ -104,8 +109,6 @@
   </section>
 
   
-  
-  
   <section id="5Buntitled-5D" class="documentation-section">
     
 
@@ -142,7 +145,7 @@
           
           <div class="method-source-code" id="click_mobile_format-source">
             <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 121</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">click_mobile_format</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">click_mobile_format</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">cookies</span>[<span class="ruby-value">:mobile_format</span>].<span class="ruby-identifier">nil?</span>
     <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">permanent</span>[<span class="ruby-value">:mobile_format</span>] = <span class="ruby-string">&quot;true&quot;</span>
     <span class="ruby-identifier">session</span>[<span class="ruby-value">:mobile_view</span>] = <span class="ruby-keyword">true</span>
@@ -182,15 +185,15 @@
           
           <div class="method-source-code" id="create-source">
             <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 23</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
   <span class="ruby-identifier">email</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:session</span>][<span class="ruby-value">:email</span>]
   <span class="ruby-keyword">if</span> (<span class="ruby-identifier">email</span>[<span class="ruby-regexp">/@oberlin\.edu$/</span>]<span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>)
-    <span class="ruby-identifier">email</span> = <span class="ruby-identifier">email</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;@oberlin.edu&quot;</span>
+    <span class="ruby-identifier">email</span> = <span class="ruby-identifier">email</span><span class="ruby-string">+&quot;@oberlin.edu&quot;</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@obie_email</span> = <span class="ruby-identifier">email</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email</span>(<span class="ruby-identifier">email</span>)
   <span class="ruby-comment"># create a new user if one doesn&#39;t already exist</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">create_user_path</span>(<span class="ruby-value">:user=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:session</span>]) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">create_user_path</span>(<span class="ruby-value">:user</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:session</span>].<span class="ruby-identifier">permit</span>(<span class="ruby-value">:email</span>, <span class="ruby-value">:password</span>)) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span>
   <span class="ruby-identifier">result</span> = <span class="ruby-identifier">authenticate</span>(<span class="ruby-identifier">user</span>.<span class="ruby-identifier">email</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;@&#39;</span>)[<span class="ruby-value">0</span>],<span class="ruby-identifier">params</span>[<span class="ruby-value">:session</span>][<span class="ruby-value">:password</span>])
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">result</span>
     <span class="ruby-comment">#we get a list of results, but we only care about the first one</span>
@@ -198,7 +201,7 @@
     <span class="ruby-comment">#If the user exists and gave the correct password, we sign them in and redirect them</span>
     <span class="ruby-comment">#to whatever page they was trying to get to (friendly forwarding)</span>
     <span class="ruby-comment">#check for a cart stored in a cookie</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">cookies</span>[<span class="ruby-value">:cart</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span>(<span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">cookies</span>[<span class="ruby-value">:cart</span>]).<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">nil?</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">cookies</span>[<span class="ruby-value">:cart</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span>(<span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">cookies</span>[<span class="ruby-value">:cart</span>]).<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">nil?</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span>(<span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">cookies</span>[<span class="ruby-value">:cart</span>]).<span class="ruby-identifier">total_credits</span>.<span class="ruby-identifier">nil?</span>)
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">cart</span>.<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">nil?</span>
         <span class="ruby-identifier">old_cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">cookies</span>[<span class="ruby-value">:cart</span>]).<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39; &#39;</span>)
         <span class="ruby-identifier">cart</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">cart</span>.<span class="ruby-identifier">courses</span>
@@ -224,7 +227,7 @@
       <span class="ruby-keyword">end</span>
       <span class="ruby-identifier">user</span>.<span class="ruby-identifier">cart</span>.<span class="ruby-identifier">set_courses</span>(<span class="ruby-identifier">cart</span>)
       <span class="ruby-comment">#total_credits = Cart.find_by_cartid(cookies[:cart]).total_credits</span>
-      <span class="ruby-comment">#user.cart.update_attributes(total_credits: total_credits)</span>
+      <span class="ruby-comment">#user.cart.update(total_credits: total_credits)</span>
       <span class="ruby-identifier">user</span>.<span class="ruby-identifier">cart</span>.<span class="ruby-identifier">save</span>
       <span class="ruby-comment"># clear the cookie cart, deleting is bad... keep cookie cart always for unsigned in cart activities...</span>
       <span class="ruby-identifier">c_cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">cookies</span>[<span class="ruby-value">:cart</span>]) <span class="ruby-comment">#cookie_cart</span>
@@ -239,15 +242,15 @@
     <span class="ruby-comment"># Update the user&#39;s information based on the ldap</span>
     <span class="ruby-identifier">user</span>.<span class="ruby-identifier">fname</span> = <span class="ruby-identifier">result</span>.<span class="ruby-identifier">givenname</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">-3</span>)
     <span class="ruby-identifier">user</span>.<span class="ruby-identifier">lname</span> = <span class="ruby-identifier">result</span>.<span class="ruby-identifier">sn</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">-3</span>)
-    <span class="ruby-identifier">user</span>.<span class="ruby-identifier">role</span> = <span class="ruby-identifier">result</span>.<span class="ruby-identifier">o</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">-3</span>)
+    <span class="ruby-identifier">user</span>.<span class="ruby-identifier">role</span> = <span class="ruby-identifier">result</span>.<span class="ruby-identifier">employeenumber</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">-3</span>)
     <span class="ruby-identifier">user</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&quot;active&quot;</span>
     
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">role</span><span class="ruby-operator">==</span><span class="ruby-string">&quot;Faculty&quot;</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Faculty&quot;</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;FACULTY&quot;</span>
       <span class="ruby-identifier">profId</span> = <span class="ruby-constant">Professor</span>.<span class="ruby-identifier">find_by_userid</span>(<span class="ruby-identifier">user</span>.<span class="ruby-identifier">email</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;@&quot;</span>)[<span class="ruby-value">0</span>])
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">profId</span>
         <span class="ruby-identifier">user</span>.<span class="ruby-identifier">prof_id</span> = <span class="ruby-identifier">profId</span>.<span class="ruby-identifier">id</span>
       <span class="ruby-keyword">else</span>
-        <span class="ruby-identifier">profId</span> = <span class="ruby-constant">Professor</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">fname</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">fname</span>,  <span class="ruby-identifier">lname</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">lname</span>)[<span class="ruby-value">0</span>]
+        <span class="ruby-identifier">profId</span> = <span class="ruby-constant">Professor</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">fname:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">fname</span>,  <span class="ruby-value">lname:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">lname</span>)[<span class="ruby-value">0</span>]
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">profId</span>
           <span class="ruby-identifier">user</span>.<span class="ruby-identifier">prof_id</span> = <span class="ruby-identifier">profId</span>.<span class="ruby-identifier">id</span>
         <span class="ruby-keyword">end</span>
@@ -298,7 +301,7 @@
           
           <div class="method-source-code" id="destroy-source">
             <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 113</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">destroy</span>
   <span class="ruby-identifier">sign_out</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>
 <span class="ruby-keyword">end</span></pre>
@@ -332,7 +335,7 @@
           
           <div class="method-source-code" id="hide_disclaimer-source">
             <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 148</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">hide_disclaimer</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">hide_disclaimer</span>
   <span class="ruby-comment">#create cookie related to disclaimer</span>
   <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">permanent</span>[<span class="ruby-value">:disclaimer</span>] = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -370,7 +373,7 @@
           
           <div class="method-source-code" id="hide_motd-source">
             <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 139</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">hide_motd</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">hide_motd</span>
   <span class="ruby-comment"># create cookie related to motd</span>
   <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">permanent</span>[<span class="ruby-value">:motd</span>] = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -408,7 +411,7 @@
           
           <div class="method-source-code" id="mobile_format-source">
             <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 135</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">mobile_format</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mobile_format</span>
   <span class="ruby-identifier">redirect_back_or</span>(<span class="ruby-identifier">root_path</span>) 
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -434,15 +437,14 @@
 
         <div class="method-description">
           
-          <p>Action associated with displaying an html form for creating a new session
-i.e. sign_up/sign_in</p>
+          <p>Action associated with displaying an html form for creating a new session i.e. sign_up/sign_in</p>
           
           
 
           
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 17</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">new</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -457,12 +459,13 @@ i.e. sign_up/sign_in</p>
     </section>
   
   </section>
+
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
-  <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HubcoursesController</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="HubcoursesController">
+
+  
+
+    <meta name="keywords" content="HubcoursesController class">
+  
+    <meta name="keywords" content="show, index, search">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            HubcoursesController
+            
+                <span class="parent">&lt;
+                    
+                    <a href="ApplicationController.html">ApplicationController</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/controllers/hubcourses_controller_rb.html">app/controllers/hubcourses_controller.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-index">index</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-search">search</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-show">show</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-index">
+            
+              <b>index</b>()
+            
+            <a href="../classes/HubcoursesController.html#method-i-index" name="method-i-index" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-index_source')" id="l_method-i-index_source">show</a>
+                
+              </p>
+              <div id="method-i-index_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/hubcourses_controller.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">index</span>
+              <span class="ruby-ivar">@depts</span> = <span class="ruby-constant">Department</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">to_a</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-search">
+            
+              <b>search</b>()
+            
+            <a href="../classes/HubcoursesController.html#method-i-search" name="method-i-search" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-search_source')" id="l_method-i-search_source">show</a>
+                
+              </p>
+              <div id="method-i-search_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/hubcourses_controller.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">search</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:dept</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:comparator</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:course_level</span>].<span class="ruby-identifier">blank?</span>)
+    <span class="ruby-identifier">qs</span> = <span class="ruby-string">&#39;&#39;</span>
+    <span class="ruby-identifier">qs</span> = <span class="ruby-string">&#39;hub_id LIKE &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-string">&quot;%&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:dept</span>]<span class="ruby-string">+&quot;%&quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&#39; AND &#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:dept</span>].<span class="ruby-identifier">blank?</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:comparator</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:course_level</span>].<span class="ruby-identifier">blank?</span>
+      <span class="ruby-value">5</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">qs</span>.<span class="ruby-identifier">chop!</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span> <span class="ruby-comment"># both comparator and course_level have been set</span>
+      <span class="ruby-identifier">level</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:course_level</span>][<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>]
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:comparator</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;=&#39;</span>
+        <span class="ruby-identifier">above</span> = <span class="ruby-identifier">level</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-value">99</span>
+        <span class="ruby-identifier">qs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;cnum BETWEEN &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-identifier">level</span>)<span class="ruby-string">+&#39; AND &#39;</span><span class="ruby-operator">+</span><span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-identifier">above</span>.<span class="ruby-identifier">to_s</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:comparator</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;&lt;=&#39;</span>
+          <span class="ruby-identifier">level</span> = <span class="ruby-identifier">level</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-value">99</span> 
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">level</span> = <span class="ruby-identifier">level</span>.<span class="ruby-identifier">to_i</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">qs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;cnum &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:comparator</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&#39; &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-identifier">level</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@hubcourses</span> = <span class="ruby-constant">Hubcourse</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">qs</span>).<span class="ruby-identifier">to_a</span>
+    <span class="ruby-ivar">@hubcourses</span> = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@hubcourses</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@err_msg</span> = <span class="ruby-string">&quot;Please select an option from the drop-down before searching.&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-show">
+            
+              <b>show</b>()
+            
+            <a href="../classes/HubcoursesController.html#method-i-show" name="method-i-show" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-show_source')" id="l_method-i-show_source">show</a>
+                
+              </p>
+              <div id="method-i-show_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/hubcourses_controller.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">show</span>
+  <span class="ruby-ivar">@hubcourse</span> = <span class="ruby-constant">Hubcourse</span>.<span class="ruby-identifier">find_by_hub_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&#39;-&#39;</span>, <span class="ruby-string">&#39; &#39;</span>))
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">error_404_path</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@hubcourse</span>
+  <span class="ruby-identifier">all_comments</span> = <span class="ruby-ivar">@hubcourse</span>.<span class="ruby-identifier">root_comments</span>
+  <span class="ruby-ivar">@comments</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">all_comments</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+          <span class="ruby-ivar">@comments</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">c</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;removed&quot;</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">old</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@comments</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">sort_by_score</span>(<span class="ruby-ivar">@comments</span>)
+  <span class="ruby-ivar">@courses</span> = <span class="ruby-ivar">@hubcourse</span>.<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">sort</span>
+  <span class="ruby-identifier">semcrns</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>()
+  <span class="ruby-ivar">@courses</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">semcrns</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">semcrn</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">semcrns</span>.<span class="ruby-identifier">length</span><span class="ruby-value">-1</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">semcrns</span>.<span class="ruby-identifier">count</span>(<span class="ruby-identifier">semcrns</span>[<span class="ruby-identifier">i</span>]) <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">semcrns</span>.<span class="ruby-identifier">delete_at</span>(<span class="ruby-identifier">i</span>);
+      <span class="ruby-ivar">@courses</span>.<span class="ruby-identifier">delete_at</span>(<span class="ruby-identifier">i</span>);
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@professors</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@courses</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@professors</span>.<span class="ruby-identifier">concat</span>(<span class="ruby-identifier">c</span>.<span class="ruby-identifier">professors</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@professors</span>.<span class="ruby-identifier">uniq!</span>
+  <span class="ruby-ivar">@vals</span> = {}
+  <span class="ruby-ivar">@vals</span>[<span class="ruby-value">:hubcourse</span>] = <span class="ruby-ivar">@hubcourse</span>
+  <span class="ruby-ivar">@vals</span>[<span class="ruby-value">:comments</span>] = <span class="ruby-ivar">@comments</span>
+  <span class="ruby-ivar">@vals</span>[<span class="ruby-value">:courses</span>] = <span class="ruby-ivar">@courses</span>
+  <span class="ruby-ivar">@vals</span>[<span class="ruby-value">:professors</span>] = <span class="ruby-ivar">@professors</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">csv</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">plain:</span> <span class="ruby-ivar">@hubcourse</span>.<span class="ruby-identifier">to_csv</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:enroll</span>]<span class="ruby-operator">||=</span><span class="ruby-value">0</span>) }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

@@ -82,6 +82,9 @@ module Prestissimo
     # Enable the asset pipeline
     config.assets.enabled = false
 
+    # Send sass cache to tmp
+    config.sass.cache_location = Rails.root.join("tmp", ".sass-cache").to_s
+
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = "1.0"
 

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HandlesController</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="HandlesController">
+
+  
+
+    <meta name="keywords" content="HandlesController class">
+  
+    <meta name="keywords" content="index, search, show, update, mute, reveal">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            HandlesController
+            
+                <span class="parent">&lt;
+                    
+                    <a href="ApplicationController.html">ApplicationController</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/controllers/handles_controller_rb.html">app/controllers/handles_controller.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-index">index</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-mute">mute</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-reveal">reveal</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-search">search</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-show">show</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-update">update</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-index">
+            
+              <b>index</b>()
+            
+            <a href="../classes/HandlesController.html#method-i-index" name="method-i-index" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-index_source')" id="l_method-i-index_source">show</a>
+                
+              </p>
+              <div id="method-i-index_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/handles_controller.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">index</span>
+  <span class="ruby-ivar">@handle</span> = <span class="ruby-identifier">current_handle</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-mute">
+            
+              <b>mute</b>()
+            
+            <a href="../classes/HandlesController.html#method-i-mute" name="method-i-mute" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-mute_source')" id="l_method-i-mute_source">show</a>
+                
+              </p>
+              <div id="method-i-mute_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/handles_controller.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mute</span>
+  <span class="ruby-ivar">@handle</span> = <span class="ruby-constant">Handle</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@handle</span>.<span class="ruby-identifier">toggle</span>(<span class="ruby-value">:is_mute</span>)
+  <span class="ruby-ivar">@handle</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-ivar">@handle</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-reveal">
+            
+              <b>reveal</b>()
+            
+            <a href="../classes/HandlesController.html#method-i-reveal" name="method-i-reveal" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-reveal_source')" id="l_method-i-reveal_source">show</a>
+                
+              </p>
+              <div id="method-i-reveal_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/handles_controller.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reveal</span>
+        <span class="ruby-ivar">@handle</span> = <span class="ruby-constant">Handle</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+        <span class="ruby-ivar">@admin</span> = <span class="ruby-identifier">current_user</span>
+        <span class="ruby-ivar">@user</span>
+        <span class="ruby-constant">User</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">u</span><span class="ruby-operator">|</span>
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">handlekey</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@handle</span>.<span class="ruby-identifier">handlekey</span>
+                        <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">u</span>
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-constant">Interact</span>.<span class="ruby-identifier">reveal_handle_user</span>(<span class="ruby-ivar">@user</span>, <span class="ruby-ivar">@admin</span>, <span class="ruby-ivar">@handle</span>).<span class="ruby-identifier">deliver</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-search">
+            
+              <b>search</b>()
+            
+            <a href="../classes/HandlesController.html#method-i-search" name="method-i-search" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-search_source')" id="l_method-i-search_source">show</a>
+                
+              </p>
+              <div id="method-i-search_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/handles_controller.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">search</span>
+  <span class="ruby-ivar">@handles</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:username</span>].<span class="ruby-identifier">blank?</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:all</span>]
+    <span class="ruby-ivar">@handles</span> = <span class="ruby-constant">Handle</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@handles</span> = <span class="ruby-constant">Handle</span>.<span class="ruby-identifier">where</span>(<span class="ruby-node">&quot;username LIKE &#39;%#{params[:username]}%&#39;&quot;</span>).<span class="ruby-identifier">to_a</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@handles</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">current_handle</span>)
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-show">
+            
+              <b>show</b>()
+            
+            <a href="../classes/HandlesController.html#method-i-show" name="method-i-show" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-show_source')" id="l_method-i-show_source">show</a>
+                
+              </p>
+              <div id="method-i-show_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/handles_controller.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">show</span>
+  <span class="ruby-ivar">@handle</span> = <span class="ruby-constant">Handle</span>.<span class="ruby-identifier">find_by_username</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:username</span>])
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">error_404_path</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@handle</span>
+  <span class="ruby-identifier">all_comments</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find_comments_by_user</span>(<span class="ruby-ivar">@handle</span>)
+  <span class="ruby-ivar">@comments</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">all_comments</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+          <span class="ruby-ivar">@comments</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">c</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;removed&quot;</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">old</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@vals</span> = {}
+  <span class="ruby-ivar">@vals</span>[<span class="ruby-value">:handle</span>] = <span class="ruby-ivar">@handle</span>
+  <span class="ruby-ivar">@vals</span>[<span class="ruby-value">:comments</span>] = <span class="ruby-ivar">@comments</span>
+  <span class="ruby-ivar">@vals</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-update">
+            
+              <b>update</b>()
+            
+            <a href="../classes/HandlesController.html#method-i-update" name="method-i-update" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-update_source')" id="l_method-i-update_source">show</a>
+                
+              </p>
+              <div id="method-i-update_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/handles_controller.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
+  <span class="ruby-ivar">@handle</span> = <span class="ruby-constant">Handle</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:handle</span>][<span class="ruby-value">:username</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:handle</span>][<span class="ruby-value">:username</span>].<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">17</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:failure</span>] = <span class="ruby-string">&quot;Please enter a username between 1 and 16 characters long&quot;</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span>(<span class="ruby-regexp">/^[\w\-]+$/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:handle</span>][<span class="ruby-value">:username</span>])
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:failure</span>] = <span class="ruby-string">&quot;Please enter a username using only letters, numbers, and underscores&quot;</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@handle</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">params_handle</span>)
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:success</span>] = <span class="ruby-string">&quot;Updated username&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:failure</span>] = <span class="ruby-string">&quot;Username not valid or already taken&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">settings_path</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">email</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;@&#39;</span>)[<span class="ruby-value">0</span>])
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

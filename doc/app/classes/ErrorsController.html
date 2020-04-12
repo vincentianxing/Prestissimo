@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ErrorsController</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ErrorsController">
+
+  
+
+    <meta name="keywords" content="ErrorsController class">
+  
+    <meta name="keywords" content="not_found, server_error, clear, get_exception">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            ErrorsController
+            
+                <span class="parent">&lt;
+                    
+                    <a href="ApplicationController.html">ApplicationController</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/controllers/errors_controller_rb.html">app/controllers/errors_controller.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-clear">clear</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>G</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-get_exception">get_exception</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-not_found">not_found</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-server_error">server_error</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-clear">
+            
+              <b>clear</b>()
+            
+            <a href="../classes/ErrorsController.html#method-i-clear" name="method-i-clear" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>clear cookies, used on 500 error pages</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-clear_source')" id="l_method-i-clear_source">show</a>
+                
+              </p>
+              <div id="method-i-clear_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/errors_controller.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">clear</span>
+  <span class="ruby-identifier">clear_cookies</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-not_found">
+            
+              <b>not_found</b>()
+            
+            <a href="../classes/ErrorsController.html#method-i-not_found" name="method-i-not_found" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>renders 404 error page</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-not_found_source')" id="l_method-i-not_found_source">show</a>
+                
+              </p>
+              <div id="method-i-not_found_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/errors_controller.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">not_found</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:file</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;errors/404&#39;</span>, <span class="ruby-value">:status</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">404</span>, <span class="ruby-value">:formats</span> <span class="ruby-operator">=&gt;</span> [<span class="ruby-value">:html</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-server_error">
+            
+              <b>server_error</b>()
+            
+            <a href="../classes/ErrorsController.html#method-i-server_error" name="method-i-server_error" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>renders 500 error page</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-server_error_source')" id="l_method-i-server_error_source">show</a>
+                
+              </p>
+              <div id="method-i-server_error_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/errors_controller.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">server_error</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">get_exception</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">e</span> = <span class="ruby-identifier">get_exception</span>
+    <span class="ruby-ivar">@message</span> = <span class="ruby-node">&quot;#{e.class} (#{e.message})\n\t#{Rails.backtrace_cleaner.clean(e.backtrace).join(&quot;\n\t&quot;)}&quot;</span><span class="ruby-comment">#more info that could be useful, but can be quite verbose# \nRequest was a #{request.method}.\n\nRequest_parameters() :\n\t#{request.request_parameters}\n\nQuery_parameters() :\n\t#{request.query_parameters}\n\nPath_parameters() :\n\t#{request.path_parameters}\n\nRaw_post() :\n\t#{request.raw_post}\n\nHeaders() :&quot;</span>
+    
+    <span class="ruby-comment">### Also more info, usually not that useful, always very verbose.</span>
+    <span class="ruby-comment">##add the HTML headers to the message in a slightly more readable format than simply headers.inspect</span>
+    <span class="ruby-comment">#request.headers.each do |key, value|</span>
+    <span class="ruby-comment">#  if value.is_a?(Hash)</span>
+    <span class="ruby-comment">#    value.each do |a, b|</span>
+    <span class="ruby-comment">#      @message &lt;&lt; &quot;\n\t\t#{a.inspect} : #{b.inspect}&quot;</span>
+    <span class="ruby-comment">#    end</span>
+    <span class="ruby-comment">#  else</span>
+    <span class="ruby-comment">#    @message &lt;&lt; &quot;\n\t#{key.inspect} : #{value.inspect}&quot;</span>
+    <span class="ruby-comment">#  end</span>
+    <span class="ruby-comment">#end</span>
+    <span class="ruby-comment">#send email</span>
+    <span class="ruby-constant">Interact</span>.<span class="ruby-identifier">error_report</span>(<span class="ruby-ivar">@message</span>, <span class="ruby-identifier">request</span>.<span class="ruby-identifier">original_url</span>, <span class="ruby-identifier">request</span>.<span class="ruby-identifier">env</span>[<span class="ruby-string">&#39;HTTP_USER_AGENT&#39;</span>]).<span class="ruby-identifier">deliver</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:file</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;errors/500&#39;</span>, <span class="ruby-value">:status</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">500</span>, <span class="ruby-value">:formats</span> <span class="ruby-operator">=&gt;</span> [<span class="ruby-value">:html</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+      <div class="sectiontitle">Instance Protected methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-get_exception">
+            
+              <b>get_exception</b>()
+            
+            <a href="../classes/ErrorsController.html#method-i-get_exception" name="method-i-get_exception" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-get_exception_source')" id="l_method-i-get_exception_source">show</a>
+                
+              </p>
+              <div id="method-i-get_exception_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/errors_controller.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_exception</span>
+  <span class="ruby-ivar">@exception</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">env</span>[<span class="ruby-string">&quot;action_dispatch.exception&quot;</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

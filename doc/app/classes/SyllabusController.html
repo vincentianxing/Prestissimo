@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SyllabusController</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="SyllabusController">
+
+  
+
+    <meta name="keywords" content="SyllabusController class">
+  
+    <meta name="keywords" content="new, show, create">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            SyllabusController
+            
+                <span class="parent">&lt;
+                    
+                    <a href="ApplicationController.html">ApplicationController</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/controllers/syllabus_controller_rb.html">app/controllers/syllabus_controller.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-create">create</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-show">show</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-create">
+            
+              <b>create</b>()
+            
+            <a href="../classes/SyllabusController.html#method-i-create" name="method-i-create" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-create_source')" id="l_method-i-create_source">show</a>
+                
+              </p>
+              <div id="method-i-create_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/syllabus_controller.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
+  <span class="ruby-ivar">@syllabus</span> = <span class="ruby-constant">Syllabus</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@syllabus</span>.<span class="ruby-identifier">path</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:syllabus</span>][<span class="ruby-value">:path</span>] <span class="ruby-comment"># passes syllabus as an argument</span>
+  <span class="ruby-comment"># should check to make sure the path is valid</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@syllabus</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:success</span>] = <span class="ruby-string">&quot;You have successfully uploaded the syllabus!&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@syllabus</span>.<span class="ruby-identifier">path</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-new">
+            
+              <b>new</b>()
+            
+            <a href="../classes/SyllabusController.html#method-i-new" name="method-i-new" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-new_source')" id="l_method-i-new_source">show</a>
+                
+              </p>
+              <div id="method-i-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/syllabus_controller.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">new</span>
+  <span class="ruby-ivar">@course</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@course</span>.<span class="ruby-identifier">syllabus</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-ivar">@syllabus</span> = <span class="ruby-constant">Syllabus</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-ivar">@course</span>.<span class="ruby-identifier">syllabus</span> = <span class="ruby-ivar">@syllabus</span>
+    <span class="ruby-ivar">@syllabus</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@syllabus</span> = <span class="ruby-ivar">@course</span>.<span class="ruby-identifier">syllabus</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-show">
+            
+              <b>show</b>()
+            
+            <a href="../classes/SyllabusController.html#method-i-show" name="method-i-show" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-show_source')" id="l_method-i-show_source">show</a>
+                
+              </p>
+              <div id="method-i-show_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/syllabus_controller.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">show</span>
+  <span class="ruby-ivar">@syllabus</span> = <span class="ruby-constant">Syllabus</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@syllabus</span>.<span class="ruby-identifier">path</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

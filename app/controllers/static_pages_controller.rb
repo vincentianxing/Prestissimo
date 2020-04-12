@@ -14,6 +14,7 @@ class StaticPagesController < ApplicationController
   end
 
   def questions
+    return redirect_to request.referer || root_path, notice: "Please sign in to send questions." unless signed_in?
   end
 
   def questions_mailer
@@ -32,13 +33,13 @@ class StaticPagesController < ApplicationController
     Interact.send_e(@title, @message, @user).deliver
     redirect_to root_path
   end
-  
+
   def guidelines
   end
 
   def advanced
   end
-  
+
   def accounts
   end
 
@@ -48,13 +49,13 @@ class StaticPagesController < ApplicationController
   def professors
     redirect_to help_path if in_mobile_view?
   end
-  
+
   def editcourse
     redirect_to help_path if in_mobile_view?
   end
 
   def nameerror
+    return redirect_to request.referer || root_path, notice: "Please sign in to resolve name errors." unless signed_in?
     redirect_to help_path if in_mobile_view?
   end
-
 end

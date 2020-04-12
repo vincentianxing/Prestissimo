@@ -8,13 +8,18 @@
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
 </script>
 
-<script src="./js/jquery.js"></script>
-<script src="./js/darkfish.js"></script>
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
 
 <link href="./css/fonts.css" rel="stylesheet">
 <link href="./css/rdoc.css" rel="stylesheet">
+
 
 
 
@@ -94,8 +99,6 @@
   </section>
 
   
-  
-  
   <section id="5Buntitled-5D" class="documentation-section">
     
 
@@ -132,7 +135,7 @@
           
           <div class="method-source-code" id="clear-source">
             <pre><span class="ruby-comment"># File app/controllers/errors_controller.rb, line 33</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">clear</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">clear</span>
   <span class="ruby-identifier">clear_cookies</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>
 <span class="ruby-keyword">end</span></pre>
@@ -166,8 +169,8 @@
           
           <div class="method-source-code" id="not_found-source">
             <pre><span class="ruby-comment"># File app/controllers/errors_controller.rb, line 5</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">not_found</span>
-  <span class="ruby-identifier">render</span> <span class="ruby-value">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;errors/404&#39;</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">404</span>, <span class="ruby-value">:formats</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">:html</span>]
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">not_found</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:file</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;errors/404&#39;</span>, <span class="ruby-value">:status</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">404</span>, <span class="ruby-value">:formats</span> <span class="ruby-operator">=&gt;</span> [<span class="ruby-value">:html</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -199,7 +202,7 @@
           
           <div class="method-source-code" id="server_error-source">
             <pre><span class="ruby-comment"># File app/controllers/errors_controller.rb, line 10</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">server_error</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">server_error</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">get_exception</span>.<span class="ruby-identifier">nil?</span>
     <span class="ruby-identifier">e</span> = <span class="ruby-identifier">get_exception</span>
     <span class="ruby-ivar">@message</span> = <span class="ruby-node">&quot;#{e.class} (#{e.message})\n\t#{Rails.backtrace_cleaner.clean(e.backtrace).join(&quot;\n\t&quot;)}&quot;</span><span class="ruby-comment">#more info that could be useful, but can be quite verbose# \nRequest was a #{request.method}.\n\nRequest_parameters() :\n\t#{request.request_parameters}\n\nQuery_parameters() :\n\t#{request.query_parameters}\n\nPath_parameters() :\n\t#{request.path_parameters}\n\nRaw_post() :\n\t#{request.raw_post}\n\nHeaders() :&quot;</span>
@@ -218,7 +221,7 @@
     <span class="ruby-comment">#send email</span>
     <span class="ruby-constant">Interact</span>.<span class="ruby-identifier">error_report</span>(<span class="ruby-ivar">@message</span>, <span class="ruby-identifier">request</span>.<span class="ruby-identifier">original_url</span>, <span class="ruby-identifier">request</span>.<span class="ruby-identifier">env</span>[<span class="ruby-string">&#39;HTTP_USER_AGENT&#39;</span>]).<span class="ruby-identifier">deliver</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">render</span> <span class="ruby-value">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;errors/500&#39;</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">500</span>, <span class="ruby-value">:formats</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">:html</span>]
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:file</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;errors/500&#39;</span>, <span class="ruby-value">:status</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">500</span>, <span class="ruby-value">:formats</span> <span class="ruby-operator">=&gt;</span> [<span class="ruby-value">:html</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -258,7 +261,7 @@
           
           <div class="method-source-code" id="get_exception-source">
             <pre><span class="ruby-comment"># File app/controllers/errors_controller.rb, line 40</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_exception</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_exception</span>
   <span class="ruby-ivar">@exception</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">env</span>[<span class="ruby-string">&quot;action_dispatch.exception&quot;</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -274,12 +277,13 @@
     </section>
   
   </section>
+
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
-  <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

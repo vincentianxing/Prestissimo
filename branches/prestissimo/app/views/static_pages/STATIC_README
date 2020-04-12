@@ -1,4 +1,0 @@
-All of these views are essentially plain html.
-
-Ruby is used to link to different help pages and to provide the title of each page
-	to the application's view.

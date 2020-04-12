@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ReportsController</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ReportsController">
+
+  
+
+    <meta name="keywords" content="ReportsController class">
+  
+    <meta name="keywords" content="index, create, edit, update, new">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            ReportsController
+            
+                <span class="parent">&lt;
+                    
+                    <a href="ApplicationController.html">ApplicationController</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/controllers/reports_controller_rb.html">app/controllers/reports_controller.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-create">create</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-edit">edit</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-index">index</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-update">update</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-create">
+            
+              <b>create</b>()
+            
+            <a href="../classes/ReportsController.html#method-i-create" name="method-i-create" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-create_source')" id="l_method-i-create_source">show</a>
+                
+              </p>
+              <div id="method-i-create_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
+        <span class="ruby-ivar">@report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">build_report</span>(<span class="ruby-ivar">@reportable</span>,<span class="ruby-ivar">@user</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:report</span>][<span class="ruby-value">:title</span>],<span class="ruby-identifier">params</span>[<span class="ruby-value">:report</span>][<span class="ruby-value">:body</span>])
+        <span class="ruby-comment"># send email</span>
+        <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;&quot;</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">duplicate?</span>
+                <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;Cannot file a report more than once&quot;</span>
+        <span class="ruby-keyword">else</span>
+                <span class="ruby-keyword">if</span> <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">save</span>
+                        <span class="ruby-keyword">case</span> <span class="ruby-ivar">@reportable</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">underscore</span>
+                        <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;handle&quot;</span>
+                                <span class="ruby-ivar">@message</span> = <span class="ruby-node">&quot;You have filed a report against #{@reportable.username}&quot;</span>
+                        <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;user&quot;</span>
+                                <span class="ruby-ivar">@message</span> = <span class="ruby-node">&quot;You have filed a report against #{@reportable.fname} #{@reportable.lname}&quot;</span>
+                        <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;comment&quot;</span>
+                                <span class="ruby-ivar">@message</span> = <span class="ruby-node">&quot;You have filed a report against a comment by #{@reportable.handle}&quot;</span>
+                        <span class="ruby-keyword">else</span>
+                                <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;You have filed a report&quot;</span>
+                        <span class="ruby-keyword">end</span>
+                        <span class="ruby-constant">Interact</span>.<span class="ruby-identifier">report_confirmation</span>(<span class="ruby-ivar">@user</span>, <span class="ruby-ivar">@report</span>).<span class="ruby-identifier">deliver</span>
+                        <span class="ruby-constant">Interact</span>.<span class="ruby-identifier">admin_report_notice</span>(<span class="ruby-ivar">@user</span>, <span class="ruby-ivar">@report</span>).<span class="ruby-identifier">deliver</span>
+                <span class="ruby-keyword">else</span>
+                        <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;Something went wrong&quot;</span>
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-ivar">@message</span>
+        <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-edit">
+            
+              <b>edit</b>()
+            
+            <a href="../classes/ReportsController.html#method-i-edit" name="method-i-edit" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-edit_source')" id="l_method-i-edit_source">show</a>
+                
+              </p>
+              <div id="method-i-edit_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">edit</span>
+        <span class="ruby-ivar">@report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+        <span class="ruby-ivar">@reportable_changed</span> = <span class="ruby-ivar">@reportable</span>.<span class="ruby-identifier">updated_at</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">created_at</span>
+        <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">lock</span>(<span class="ruby-node">&quot;#{@user.fname} #{@user.lname}&quot;</span>)
+        <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">save</span>
+        <span class="ruby-ivar">@to_comp</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_comp</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_comp</span>] 
+        <span class="ruby-ivar">@to_viol</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_viol</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_viol</span>]
+        <span class="ruby-ivar">@response</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:response</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:response</span>]
+        <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:message</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:message</span>]
+        <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-ivar">@message</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-index">
+            
+              <b>index</b>()
+            
+            <a href="../classes/ReportsController.html#method-i-index" name="method-i-index" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-index_source')" id="l_method-i-index_source">show</a>
+                
+              </p>
+              <div id="method-i-index_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">index</span>
+        <span class="ruby-ivar">@resolved</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-ivar">@unresolved</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-constant">Report</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">report</span><span class="ruby-operator">|</span>
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">report</span>.<span class="ruby-identifier">resolved</span>
+                        <span class="ruby-ivar">@resolved</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">report</span>
+                <span class="ruby-keyword">else</span>
+                        <span class="ruby-ivar">@unresolved</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">report</span>
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-new">
+            
+              <b>new</b>()
+            
+            <a href="../classes/ReportsController.html#method-i-new" name="method-i-new" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-new_source')" id="l_method-i-new_source">show</a>
+                
+              </p>
+              <div id="method-i-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">new</span>
+        <span class="ruby-ivar">@report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reportable_id</span> = <span class="ruby-ivar">@reportable</span>.<span class="ruby-identifier">id</span>
+        <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reportable_type</span> = <span class="ruby-ivar">@reportable</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">base_class</span>.<span class="ruby-identifier">name</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-update">
+            
+              <b>update</b>()
+            
+            <a href="../classes/ReportsController.html#method-i-update" name="method-i-update" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-update_source')" id="l_method-i-update_source">show</a>
+                
+              </p>
+              <div id="method-i-update_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
+        <span class="ruby-ivar">@report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+        <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">edit_report_path</span>(<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reportable_type</span>.<span class="ruby-identifier">underscore</span>,<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reportable_id</span>,<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">user_id</span>,<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">response:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:response</span>], <span class="ruby-value">to_viol:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_viol</span>], <span class="ruby-value">message:</span> <span class="ruby-string">&quot;Cannot resolve report without informing reporter.&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:resolved</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_comp</span>].<span class="ruby-identifier">blank?</span>
+
+        <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">unlock</span>
+        <span class="ruby-identifier">response</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:response</span>]
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_comp</span>]
+                <span class="ruby-identifier">response</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\n\nMessage to Complainant:\n#{params[:to_comp]}&quot;</span>        
+                <span class="ruby-constant">Interact</span>.<span class="ruby-identifier">to_reporter</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">user_id</span>), <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_comp</span>], <span class="ruby-ivar">@report</span>).<span class="ruby-identifier">deliver</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_viol</span>]
+                <span class="ruby-identifier">response</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\n\nMessage to Violator:\n#{params[:to_viol]}&quot;</span>
+                <span class="ruby-constant">Interact</span>.<span class="ruby-identifier">to_reported</span>(<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reported</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_viol</span>], <span class="ruby-ivar">@report</span>).<span class="ruby-identifier">deliver</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:resolved</span>]
+                <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">resolve</span>(<span class="ruby-identifier">current_user</span>, <span class="ruby-identifier">response</span>)
+        <span class="ruby-keyword">else</span>
+                <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">unresolve</span>(<span class="ruby-identifier">current_user</span>, <span class="ruby-identifier">response</span>)
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">save</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

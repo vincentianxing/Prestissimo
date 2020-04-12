@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Professor</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="Professor">
+
+  
+    
+    <meta name="description" content="Schema Information  Table name: professors  id         :integer(4)      not null, primary key created_at :datetime        not null updated_at :datetime        not null email      :string(255) fname   .">
+    <meta property="og:description" content="Schema Information  Table name: professors  id         :integer(4)      not null, primary key created_at :datetime        not null updated_at :datetime        not null email      :string(255) fname   .">
+  
+
+    <meta name="keywords" content="Professor class">
+  
+    <meta name="keywords" content="toggle_status, to_csv">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            Professor
+            
+                <span class="parent">&lt;
+                    
+                    <a href="ApplicationRecord.html">ApplicationRecord</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/models/professor_rb.html">app/models/professor.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<h2 id="class-Professor-label-Schema+Information">Schema Information</h2>
+
+<p>Table name: professors</p>
+
+<pre><code>id         :integer(4)      not null, primary key
+created_at :datetime        not null
+updated_at :datetime        not null
+email      :string(255)
+fname      :string(255)
+lname      :string(255)
+nickname   :string(255)
+status     :string(255)     default(&quot;active&quot;)
+office     :string(255)
+phone      :string(255)
+contact    :string(255)
+url        :string(255)
+content    :text
+</code></pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>T</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-to_csv">to_csv</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-toggle_status">toggle_status</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-to_csv">
+            
+              <b>to_csv</b>(enroll)
+            
+            <a href="../classes/Professor.html#method-i-to_csv" name="method-i-to_csv" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-to_csv_source')" id="l_method-i-to_csv_source">show</a>
+                
+              </p>
+              <div id="method-i-to_csv_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/professor.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_csv</span>(<span class="ruby-identifier">enroll</span>)
+  <span class="ruby-constant">CSV</span>.<span class="ruby-identifier">generate</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">csv</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Course</span>.<span class="ruby-identifier">csv_headers</span> 
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Course</span>.<span class="ruby-identifier">to_csv_row</span>(<span class="ruby-identifier">c</span>) <span class="ruby-keyword">unless</span> ((<span class="ruby-identifier">enroll</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">c</span>.<span class="ruby-identifier">enroll</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>)) <span class="ruby-operator">||</span> (<span class="ruby-identifier">c</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;cancelled&quot;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-toggle_status">
+            
+              <b>toggle_status</b>()
+            
+            <a href="../classes/Professor.html#method-i-toggle_status" name="method-i-toggle_status" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Changes status of a professor</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-toggle_status_source')" id="l_method-i-toggle_status_source">show</a>
+                
+              </p>
+              <div id="method-i-toggle_status_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/professor.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">toggle_status</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;dark&quot;</span>)
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&quot;active&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&quot;dark&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

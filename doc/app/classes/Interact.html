@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Interact</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="Interact">
+
+  
+
+    <meta name="keywords" content="Interact class">
+  
+    <meta name="keywords" content="reveal_handle_user, mail_cart, report_confirmation, admin_report_notice, to_reporter, to_reported, send_q, send_e, error_report, notify_professor">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            Interact
+            
+                <span class="parent">&lt;
+                    
+                    ActionMailer::Base
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/mailers/interact_rb.html">app/mailers/interact.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-admin_report_notice">admin_report_notice</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-error_report">error_report</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-mail_cart">mail_cart</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-notify_professor">notify_professor</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-report_confirmation">report_confirmation</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-reveal_handle_user">reveal_handle_user</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-send_e">send_e</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-send_q">send_q</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>T</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-to_reported">to_reported</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-to_reporter">to_reporter</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-admin_report_notice">
+            
+              <b>admin_report_notice</b>(sender, report)
+            
+            <a href="../classes/Interact.html#method-i-admin_report_notice" name="method-i-admin_report_notice" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-admin_report_notice_source')" id="l_method-i-admin_report_notice_source">show</a>
+                
+              </p>
+              <div id="method-i-admin_report_notice_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">admin_report_notice</span>(<span class="ruby-identifier">sender</span>, <span class="ruby-identifier">report</span>)
+  <span class="ruby-ivar">@sender</span> = <span class="ruby-identifier">sender</span>
+  <span class="ruby-ivar">@report</span> = <span class="ruby-identifier">report</span>
+  <span class="ruby-identifier">admins</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">admin:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">to_a</span>
+  <span class="ruby-identifier">admin_list</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">admins</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">admin_list</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">email</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">mail</span>(<span class="ruby-value">to:</span> <span class="ruby-identifier">admin_list</span>,
+       <span class="ruby-value">subject:</span> <span class="ruby-string">&quot;New Report: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">report</span>.<span class="ruby-identifier">title</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-error_report">
+            
+              <b>error_report</b>(message, page, browser)
+            
+            <a href="../classes/Interact.html#method-i-error_report" name="method-i-error_report" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-error_report_source')" id="l_method-i-error_report_source">show</a>
+                
+              </p>
+              <div id="method-i-error_report_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 95</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">error_report</span>(<span class="ruby-identifier">message</span>, <span class="ruby-identifier">page</span>, <span class="ruby-identifier">browser</span>)
+  <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">message</span>
+  <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">page</span>
+  <span class="ruby-ivar">@browser</span> = <span class="ruby-identifier">browser</span>
+  <span class="ruby-identifier">mail</span>(<span class="ruby-value">to:</span> <span class="ruby-string">&quot;info@oprestissimo.com&quot;</span>,
+       <span class="ruby-value">subject:</span> <span class="ruby-string">&quot;A 500 server error has occurred!&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-mail_cart">
+            
+              <b>mail_cart</b>(requestip,cart,email,sender)
+            
+            <a href="../classes/Interact.html#method-i-mail_cart" name="method-i-mail_cart" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-mail_cart_source')" id="l_method-i-mail_cart_source">show</a>
+                
+              </p>
+              <div id="method-i-mail_cart_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mail_cart</span>(<span class="ruby-identifier">requestip</span>,<span class="ruby-identifier">cart</span>,<span class="ruby-identifier">email</span>,<span class="ruby-identifier">sender</span>)
+  <span class="ruby-ivar">@cart</span> = <span class="ruby-identifier">cart</span>
+  <span class="ruby-ivar">@email</span> = <span class="ruby-identifier">email</span>
+  <span class="ruby-ivar">@sender</span> = <span class="ruby-identifier">sender</span>
+  <span class="ruby-identifier">attachments</span>[<span class="ruby-string">&quot;cart.csv&quot;</span>] = <span class="ruby-constant">CSV</span>.<span class="ruby-identifier">generate</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">csv</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Course</span>.<span class="ruby-identifier">csv_headers</span>
+    <span class="ruby-identifier">cart</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Course</span>.<span class="ruby-identifier">to_csv_row</span>(<span class="ruby-identifier">c</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@sender</span>
+    <span class="ruby-identifier">mail</span>(<span class="ruby-value">to:</span> <span class="ruby-identifier">email</span>,
+         <span class="ruby-value">from:</span> <span class="ruby-ivar">@sender</span>.<span class="ruby-identifier">email</span>,
+         <span class="ruby-string">&#39;X-Cart-Sent-From&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">requestip</span>,
+         <span class="ruby-value">subject:</span> <span class="ruby-string">&quot;OPrestissimo Course Cart&quot;</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">mail</span>(<span class="ruby-value">to:</span> <span class="ruby-identifier">email</span>,
+         <span class="ruby-string">&#39;X-Cart-Sent-From&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">requestip</span>,
+         <span class="ruby-value">subject:</span> <span class="ruby-string">&quot;OPrestissimo Course Cart&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-notify_professor">
+            
+              <b>notify_professor</b>(course, email)
+            
+            <a href="../classes/Interact.html#method-i-notify_professor" name="method-i-notify_professor" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-notify_professor_source')" id="l_method-i-notify_professor_source">show</a>
+                
+              </p>
+              <div id="method-i-notify_professor_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">notify_professor</span>(<span class="ruby-identifier">course</span>, <span class="ruby-identifier">email</span>)
+
+  <span class="ruby-comment">#Put changed fields in a formatted hash for the email</span>
+  <span class="ruby-identifier">diff_fields</span> = <span class="ruby-identifier">course</span>.<span class="ruby-identifier">changed_fields</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;|&quot;</span>) 
+  <span class="ruby-identifier">notify_fields</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+
+  <span class="ruby-comment">#Fields professors get notified about</span>
+  <span class="ruby-comment">#&#39;cancelled&#39; is added to changed fields when course is cancelled but not readded during update</span>
+  <span class="ruby-identifier">important_fields</span> = [<span class="ruby-string">&quot;building&quot;</span>,<span class="ruby-string">&quot;room&quot;</span>,<span class="ruby-string">&quot;start_time&quot;</span>,<span class="ruby-string">&quot;end_time&quot;</span>,<span class="ruby-string">&quot;days&quot;</span>,<span class="ruby-string">&quot;descrip&quot;</span>,<span class="ruby-string">&quot;dean_consent&quot;</span>,
+    <span class="ruby-string">&quot;instruct_consent&quot;</span>,<span class="ruby-string">&quot;status&quot;</span>,<span class="ruby-string">&quot;cancelled&quot;</span>,<span class="ruby-string">&quot;prof_desc&quot;</span>,<span class="ruby-string">&quot;which_desc&quot;</span>,<span class="ruby-string">&quot;prof_note&quot;</span>,<span class="ruby-string">&quot;display_prof_note&quot;</span>]
+  <span class="ruby-identifier">diff_fields</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">important_fields</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">f</span>)
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">f</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;building&quot;</span>,<span class="ruby-string">&quot;room&quot;</span>
+      <span class="ruby-identifier">notify_fields</span>[<span class="ruby-string">&quot;Location&quot;</span>] = <span class="ruby-node">&quot;#{course.building} #{course.room}&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;start_time&quot;</span>,<span class="ruby-string">&quot;end_time&quot;</span>,<span class="ruby-string">&quot;days&quot;</span>
+      <span class="ruby-identifier">notify_fields</span>[<span class="ruby-string">&quot;Time&quot;</span>] = <span class="ruby-node">&quot;#{course.days}: #{course.start_time.strftime(&quot;%I:%M %p&quot;)} - #{course.end_time.strftime(&quot;%I:%M %p&quot;)}&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;status&quot;</span>,<span class="ruby-string">&quot;cancelled&quot;</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">status</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;cancelled&quot;</span>
+        <span class="ruby-identifier">notify_fields</span>[<span class="ruby-string">&quot;Status&quot;</span>] = <span class="ruby-string">&quot;Cancelled&quot;</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;hidden&quot;</span>
+        <span class="ruby-identifier">notify_fields</span>[<span class="ruby-string">&quot;Status&quot;</span>] = <span class="ruby-string">&quot;Hidden from search&quot;</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">notify_fields</span>[<span class="ruby-string">&quot;Status&quot;</span>] = <span class="ruby-string">&quot;Course displaying as normal (not hidden or cancelled)&quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;descrip&quot;</span>
+      <span class="ruby-identifier">notify_fields</span>[<span class="ruby-string">&quot;Course description from CIT&quot;</span>] = <span class="ruby-identifier">course</span>.<span class="ruby-identifier">descrip</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;prof_desc&quot;</span>
+      <span class="ruby-identifier">notify_fields</span>[<span class="ruby-string">&quot;Course description from faculty&quot;</span>] = <span class="ruby-identifier">course</span>.<span class="ruby-identifier">prof_desc</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;which_desc&quot;</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">which_desc</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;both&quot;</span>
+        <span class="ruby-identifier">notify_fields</span>[<span class="ruby-string">&quot;Displayed description&quot;</span>] = <span class="ruby-string">&quot;Displaying both discription from CIT and discription from faculty&quot;</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;professor&quot;</span>
+        <span class="ruby-identifier">notify_fields</span>[<span class="ruby-string">&quot;Displayed description&quot;</span>] = <span class="ruby-string">&quot;Displaying discription from faculty&quot;</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">notify_fields</span>[<span class="ruby-string">&quot;Displayed description&quot;</span>] = <span class="ruby-string">&quot;Displaying description from CIT&quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;prof_note&quot;</span>
+      <span class="ruby-identifier">notify_fields</span>[<span class="ruby-string">&quot;Faculty note&quot;</span>] = <span class="ruby-identifier">course</span>.<span class="ruby-identifier">prof_note</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">prof_note</span>.<span class="ruby-identifier">blank?</span>
+      <span class="ruby-identifier">notify_fields</span>[<span class="ruby-string">&quot;Faculty note&quot;</span>] = <span class="ruby-string">&quot;Note has been removed&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">prof_note</span>.<span class="ruby-identifier">blank?</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;display_prof_note&quot;</span>
+      <span class="ruby-identifier">notify_fields</span>[<span class="ruby-string">&quot;Faculty note status&quot;</span>] = <span class="ruby-identifier">course</span>.<span class="ruby-identifier">display_prof_note</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;Displayed&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;Hidden&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;dean_consent&quot;</span>,<span class="ruby-string">&quot;instruct_consent&quot;</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">diff_fields</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">dean_consent</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">diff_fields</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">instruct_consent</span>)
+        <span class="ruby-identifier">notify_fields</span>[<span class="ruby-string">&quot;Consent&quot;</span>] = <span class="ruby-string">&quot;Requires both consent of dean and consent of instructor&quot;</span>
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">diff_fields</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">dean_consent</span>)
+        <span class="ruby-identifier">notify_fields</span>[<span class="ruby-string">&quot;Consent&quot;</span>] = <span class="ruby-string">&quot;Requires consent of instructor&quot;</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">notify_fields</span>[<span class="ruby-string">&quot;Consent&quot;</span>] =  <span class="ruby-string">&quot;Requires consent of dean&quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+     <span class="ruby-keyword">next</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span> 
+
+  <span class="ruby-ivar">@fields</span> = <span class="ruby-identifier">notify_fields</span>
+  <span class="ruby-ivar">@course</span> = <span class="ruby-identifier">course</span>
+  <span class="ruby-identifier">mail</span>(<span class="ruby-value">to:</span> <span class="ruby-identifier">email</span>,
+       <span class="ruby-value">from:</span> <span class="ruby-string">&quot;info@oprestissimo.com&quot;</span>,
+       <span class="ruby-value">subject:</span> <span class="ruby-node">&quot;#{course.dept} #{course.cnum} has been updated in the Prestissimo database&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-report_confirmation">
+            
+              <b>report_confirmation</b>(sender, report)
+            
+            <a href="../classes/Interact.html#method-i-report_confirmation" name="method-i-report_confirmation" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-report_confirmation_source')" id="l_method-i-report_confirmation_source">show</a>
+                
+              </p>
+              <div id="method-i-report_confirmation_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">report_confirmation</span>(<span class="ruby-identifier">sender</span>, <span class="ruby-identifier">report</span>)
+  <span class="ruby-ivar">@sender</span> = <span class="ruby-identifier">sender</span>
+  <span class="ruby-ivar">@report</span> = <span class="ruby-identifier">report</span>
+  <span class="ruby-identifier">mail</span>(<span class="ruby-value">from:</span> <span class="ruby-string">&quot;info@oprestissimo.com&quot;</span>,
+       <span class="ruby-value">to:</span> <span class="ruby-identifier">sender</span>.<span class="ruby-identifier">email</span>,
+       <span class="ruby-value">subject:</span> <span class="ruby-string">&quot;OPrestissimo Report Confirmation&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-reveal_handle_user">
+            
+              <b>reveal_handle_user</b>(user, admin, handle)
+            
+            <a href="../classes/Interact.html#method-i-reveal_handle_user" name="method-i-reveal_handle_user" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-reveal_handle_user_source')" id="l_method-i-reveal_handle_user_source">show</a>
+                
+              </p>
+              <div id="method-i-reveal_handle_user_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reveal_handle_user</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">admin</span>, <span class="ruby-identifier">handle</span>)
+  <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
+  <span class="ruby-ivar">@admin</span> = <span class="ruby-identifier">admin</span>
+  <span class="ruby-ivar">@handle</span> = <span class="ruby-identifier">handle</span>
+  <span class="ruby-identifier">mail</span>(<span class="ruby-value">from:</span> <span class="ruby-string">&quot;info@oprestissimo.com&quot;</span>,
+       <span class="ruby-value">to:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">email</span>,
+       <span class="ruby-value">bcc:</span> <span class="ruby-string">&quot;info@oprestissimo.com&quot;</span>,
+       <span class="ruby-value">subject:</span> <span class="ruby-string">&quot;OPrestissimo Commenter Nickname Revealed&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-send_e">
+            
+              <b>send_e</b>(title, message, user)
+            
+            <a href="../classes/Interact.html#method-i-send_e" name="method-i-send_e" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-send_e_source')" id="l_method-i-send_e_source">show</a>
+                
+              </p>
+              <div id="method-i-send_e_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 85</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">send_e</span>(<span class="ruby-identifier">title</span>, <span class="ruby-identifier">message</span>, <span class="ruby-identifier">user</span>)
+  <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
+  <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">message</span>
+  <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
+  <span class="ruby-identifier">mail</span>(<span class="ruby-value">to:</span> <span class="ruby-string">&quot;info@oprestissimo.com&quot;</span>,
+       <span class="ruby-value">from:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email</span>,
+       <span class="ruby-value">return_path:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email</span>,
+       <span class="ruby-value">subject:</span> <span class="ruby-node">&quot;#{title}: #{@user.fname} #{@user.lname}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-send_q">
+            
+              <b>send_q</b>(title, message, user)
+            
+            <a href="../classes/Interact.html#method-i-send_q" name="method-i-send_q" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-send_q_source')" id="l_method-i-send_q_source">show</a>
+                
+              </p>
+              <div id="method-i-send_q_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">send_q</span>(<span class="ruby-identifier">title</span>, <span class="ruby-identifier">message</span>, <span class="ruby-identifier">user</span>)
+  <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
+  <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">message</span>
+  <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
+  <span class="ruby-identifier">mail</span>(<span class="ruby-value">to:</span> <span class="ruby-string">&quot;info@oprestissimo.com&quot;</span>,
+       <span class="ruby-value">from:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email</span>,
+       <span class="ruby-value">return_path:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email</span>,
+       <span class="ruby-value">subject:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">fname</span><span class="ruby-string">+&quot; &quot;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@user</span>.<span class="ruby-identifier">lname</span><span class="ruby-string">+&quot; has asked a question about Prestissimo!&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-to_reported">
+            
+              <b>to_reported</b>(reported, message, report)
+            
+            <a href="../classes/Interact.html#method-i-to_reported" name="method-i-to_reported" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-to_reported_source')" id="l_method-i-to_reported_source">show</a>
+                
+              </p>
+              <div id="method-i-to_reported_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_reported</span>(<span class="ruby-identifier">reported</span>, <span class="ruby-identifier">message</span>, <span class="ruby-identifier">report</span>)
+  <span class="ruby-ivar">@reported</span> = <span class="ruby-identifier">reported</span>
+  <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">message</span>
+  <span class="ruby-ivar">@report</span> = <span class="ruby-identifier">report</span>
+  <span class="ruby-identifier">mail</span>(<span class="ruby-value">to:</span> <span class="ruby-identifier">reported</span>.<span class="ruby-identifier">email</span>,
+       <span class="ruby-value">bcc:</span> <span class="ruby-string">&quot;info@oprestissimo.com&quot;</span>,
+       <span class="ruby-value">subject:</span> <span class="ruby-string">&quot;Your activity on Prestissimo has been reported.&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-to_reporter">
+            
+              <b>to_reporter</b>(reporter, message, report)
+            
+            <a href="../classes/Interact.html#method-i-to_reporter" name="method-i-to_reporter" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-to_reporter_source')" id="l_method-i-to_reporter_source">show</a>
+                
+              </p>
+              <div id="method-i-to_reporter_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/mailers/interact.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_reporter</span>(<span class="ruby-identifier">reporter</span>, <span class="ruby-identifier">message</span>, <span class="ruby-identifier">report</span>)
+  <span class="ruby-ivar">@reporter</span> = <span class="ruby-identifier">reporter</span>
+  <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">message</span>
+  <span class="ruby-ivar">@report</span> = <span class="ruby-identifier">report</span>
+  <span class="ruby-identifier">mail</span>(<span class="ruby-value">to:</span> <span class="ruby-identifier">reporter</span>.<span class="ruby-identifier">email</span>,
+       <span class="ruby-value">bcc:</span> <span class="ruby-string">&quot;info@oprestissimo.com&quot;</span>,
+       <span class="ruby-value">subject:</span> <span class="ruby-string">&quot;Your report at Prestissimo has been resolved!&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

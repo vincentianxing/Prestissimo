@@ -8,13 +8,18 @@
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
 </script>
 
-<script src="./js/jquery.js"></script>
-<script src="./js/darkfish.js"></script>
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
 
 <link href="./css/fonts.css" rel="stylesheet">
 <link href="./css/rdoc.css" rel="stylesheet">
+
 
 
 
@@ -115,8 +120,6 @@
   </section>
 
   
-  
-  
   <section id="5Buntitled-5D" class="documentation-section">
     
 
@@ -153,7 +156,7 @@
           
           <div class="method-source-code" id="clear-source">
             <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 194</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">clear</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">clear</span>
   <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">courses</span> = <span class="ruby-keyword">nil</span>
   <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">total_credits</span> = <span class="ruby-value">0</span>
@@ -204,7 +207,7 @@
           
           <div class="method-source-code" id="create-source">
             <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 4</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
   <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-identifier">courses</span> = <span class="ruby-string">&quot;&quot;</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:courses</span>]
@@ -255,7 +258,7 @@
           
           <div class="method-source-code" id="destroy-source">
             <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 27</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">destroy</span>
   <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">:cart</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">cookies</span>[<span class="ruby-value">:cart</span>]
   <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">destroy</span>
@@ -290,7 +293,7 @@
           
           <div class="method-source-code" id="mail_to-source">
             <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 217</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">mail_to</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mail_to</span>
   <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">get_courses</span>
   <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">inspect</span>
   <span class="ruby-comment">#if the user is signed in, use default e-mail address, or email address provided</span>
@@ -338,7 +341,7 @@
           
           <div class="method-source-code" id="remove-source">
             <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 156</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">remove</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">remove</span>
   <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">blank?</span>
     <span class="ruby-comment"># put word boundaries around params[:semcrn]</span>
@@ -349,7 +352,7 @@
     <span class="ruby-identifier">params</span>[<span class="ruby-value">:cart</span>][<span class="ruby-value">:courses</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39; &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">parts</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">strip</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">parts</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">blank?</span>
     <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
     <span class="ruby-ivar">@hours</span> = <span class="ruby-value">0</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:cart</span>])
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">cart_params</span>)
       <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">get_courses</span>
       <span class="ruby-identifier">course</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find_by_semcrn</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:semcrn</span>])
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">crmax</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">crmin</span>
@@ -364,7 +367,7 @@
       <span class="ruby-keyword">else</span>
         <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">total_credits</span> = <span class="ruby-identifier">total_credits</span>
       <span class="ruby-keyword">end</span>
-      <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">update_attributes!</span>(<span class="ruby-identifier">total_credits</span><span class="ruby-operator">:</span> <span class="ruby-identifier">total_credits</span> )
+      <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">update!</span>(<span class="ruby-value">total_credits:</span> <span class="ruby-identifier">total_credits</span> )
     <span class="ruby-keyword">else</span>
       <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-keyword">nil</span>
       <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">destroy</span>
@@ -404,9 +407,9 @@
           
           <div class="method-source-code" id="search-source">
             <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 236</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">search</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">search</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:value</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;notremote&#39;</span>
-     <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>(<span class="ruby-identifier">value</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+     <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>(<span class="ruby-value">value:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@courses</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">get_courses</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -444,14 +447,14 @@
           
           <div class="method-source-code" id="show-source">
             <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 34</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">show</span>
   <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">error_404_path</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@cart</span>
   <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">get_courses</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span> }
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">csv</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">text</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">to_csv</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">csv</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">plain:</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">to_csv</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -468,8 +471,6 @@
   
   </section>
 
-  
-  
   <section id="Adding+Courses+To+Cart" class="documentation-section">
     
     <header class="documentation-section-title">
@@ -508,16 +509,14 @@
 
         <div class="method-description">
           
-          <p>This adds the selected courses to the user&#39;s cart This method only gets
-called when adding courses from a department page or a HubCourse page. This
-method is virtually the same as the update method</p>
+          <p>This adds the selected courses to the user&#39;s cart This method only gets called when adding courses from a department page or a HubCourse page. This method is virtually the same as the update method</p>
           
           
 
           
           <div class="method-source-code" id="add-source">
             <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 115</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">add</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add</span>
   <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">courses</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">clone</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">courses</span>
   <span class="ruby-identifier">courses</span> <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;&quot;</span>
@@ -546,7 +545,7 @@ method is virtually the same as the update method</p>
   <span class="ruby-identifier">total_credits</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">total_credits</span>.<span class="ruby-identifier">to_f</span>
   <span class="ruby-identifier">total_credits</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@hours</span>
   <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">total_credits</span> = <span class="ruby-identifier">total_credits</span>
-  <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">update_attributes!</span>(<span class="ruby-identifier">total_credits</span><span class="ruby-operator">:</span> <span class="ruby-identifier">total_credits</span> )
+  <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">update!</span>(<span class="ruby-value">total_credits:</span> <span class="ruby-identifier">total_credits</span> )
   <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">set_courses</span>(<span class="ruby-identifier">courses</span>)
   <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">save</span>
@@ -581,17 +580,14 @@ method is virtually the same as the update method</p>
           
           <p>This adds the selected courses to the user&#39;s cart</p>
 
-<p>Parameter: :courses, which are passed in from
-_search_results_template.html.erb in the submit_tag call. This creates a
-PUT request to this controller (somehow), which gets routed to this method
-with :courses being a hashmap of course crns.</p>
+<p>Parameter: :courses, which are passed in from _search_results_template.html.erb in the submit_tag call. This creates a PUT request to this controller (somehow), which gets routed to this method with :courses being a hashmap of course crns.</p>
           
           
 
           
           <div class="method-source-code" id="update-source">
             <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 52</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
   <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:courses</span>]
     <span class="ruby-identifier">error</span> = <span class="ruby-keyword">false</span>
@@ -633,7 +629,7 @@ with :courses being a hashmap of course crns.</p>
       <span class="ruby-identifier">total_credits</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">total_credits</span>.<span class="ruby-identifier">to_f</span>
       <span class="ruby-identifier">total_credits</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@hours</span> 
       <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">total_credits</span> = <span class="ruby-identifier">total_credits</span>
-      <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">update_attributes!</span>(<span class="ruby-identifier">total_credits</span><span class="ruby-operator">:</span> <span class="ruby-identifier">total_credits</span> )
+      <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">update!</span>(<span class="ruby-value">total_credits:</span> <span class="ruby-identifier">total_credits</span> )
       <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">set_courses</span>(<span class="ruby-identifier">courses</span>)
       <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
       <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">save</span>
@@ -660,12 +656,13 @@ with :courses being a hashmap of course crns.</p>
     </section>
   
   </section>
+
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
-  <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

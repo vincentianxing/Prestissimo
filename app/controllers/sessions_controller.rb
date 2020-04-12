@@ -5,7 +5,6 @@
 
 =end
 
-
 class SessionsController < ApplicationController
 
   #If a non-ruby method is included, it is probably in the sessions helper file
@@ -22,14 +21,14 @@ class SessionsController < ApplicationController
 =end
   def create
     email = params[:session][:email]
-    if (email[/@oberlin\.edu$/]== nil)
-      email = email+"@oberlin.edu"
+    if (email[/@oberlin\.edu$/] == nil)
+      email = email + "@oberlin.edu"
     end
     @obie_email = email
     user = User.find_by_email(email)
     # create a new user if one doesn't already exist
     return redirect_to create_user_path(:user => params[:session].permit(:email, :password)) unless user
-    result = authenticate(user.email.split('@')[0],params[:session][:password])
+    result = authenticate(user.email.split("@")[0], params[:session][:password])
     if result
       #we get a list of results, but we only care about the first one
       result = result.first
@@ -38,7 +37,7 @@ class SessionsController < ApplicationController
       #check for a cart stored in a cookie
       if cookies[:cart] && !(Cart.find_by_cartid(cookies[:cart]).courses.nil?) && !(Cart.find_by_cartid(cookies[:cart]).total_credits.nil?)
         if user.cart.courses.nil?
-          old_cart = Cart.find_by_cartid(cookies[:cart]).courses.split(' ')
+          old_cart = Cart.find_by_cartid(cookies[:cart]).courses.split(" ")
           cart = user.cart.courses
           old_cart.each do |semcrn|
             if cart.nil?
@@ -50,13 +49,13 @@ class SessionsController < ApplicationController
           user.cart.total_credits = Cart.find_by_cartid(cookies[:cart]).total_credits
         else
           # need to merge the user's cart with the cookie one
-          old_cart = Cart.find_by_cartid(cookies[:cart]).courses.split(' ')
+          old_cart = Cart.find_by_cartid(cookies[:cart]).courses.split(" ")
           cart = user.cart.courses.clone
           old_cart.each do |semcrn|
             cart << " #{semcrn}" unless cart.include? semcrn
           end
           total_credits = user.cart.total_credits
-          total_credits ||= 0;
+          total_credits ||= 0
           total_credits += Cart.find_by_cartid(cookies[:cart]).total_credits
           user.cart.total_credits = total_credits
         end
@@ -79,31 +78,36 @@ class SessionsController < ApplicationController
       user.lname = result.sn.to_s.slice!(2..-3)
       user.role = result.employeenumber.to_s.slice!(2..-3)
       user.status = "active"
-      
+
       if user.role == "Faculty" or user.role == "FACULTY"
         profId = Professor.find_by_userid(user.email.split("@")[0])
         if profId
           user.prof_id = profId.id
         else
-          profId = Professor.where(fname: user.fname,  lname: user.lname)[0]
+          profId = Professor.where(fname: user.fname, lname: user.lname)[0]
           if profId
             user.prof_id = profId.id
           end
         end
       end
-        
+
       user.save
       sign_in user
       if session[:return_to] == signin_path
-	redirect_to user_path(user.email.split('@')[0])
+        redirect_to user_path(user.email.split("@")[0])
       else
-	redirect_back_or user_path(user.email.split('@')[0])
+        redirect_back_or user_path(user.email.split("@")[0])
       end
     else
       # error and re-render sign in
-      flash[:failure] = 'Invalid email/password combination: Please use your <strong>ObieID</strong> (flast format) username and <strong>OCPass password</strong>.'
-      @user = User.new 
-      redirect_to signin_path 
+      flash[:failure] = "Invalid email/password combination: Please use your <strong>ObieID</strong> (flast format) username and <strong>OCPass password</strong>."
+      @user = User.new
+      redirect_to signin_path
+    end
+
+    if user.cart.nil?
+      user.create_cart
+      user.save
     end
   end
 
@@ -133,7 +137,7 @@ class SessionsController < ApplicationController
   Render javascript to change format
 =end
   def mobile_format
-    redirect_back_or(root_path) 
+    redirect_back_or(root_path)
   end
 
   def hide_motd
@@ -153,5 +157,4 @@ class SessionsController < ApplicationController
       format.js
     end
   end
-
 end
