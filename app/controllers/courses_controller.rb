@@ -492,7 +492,7 @@ class CoursesController < ApplicationController
     if d
       perams_dept_long = d[:dept_long]
     else
-      perams_dept_long = ""
+      perams_dept_long = "No Dept."
     end
     ahoy.track "Course search", dept: params[:dept].strip, dept_long: perams_dept_long,
                                 crn: params[:crn], cname: params[:cname],
