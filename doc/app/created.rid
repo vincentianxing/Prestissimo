@@ -1,21 +1,21 @@
-Wed, 01 Apr 2020 14:01:22 -0400
+Mon, 13 Apr 2020 10:42:44 -0400
 app/controllers/admins_controller.rb	Tue, 25 Feb 2020 15:11:44 -0500
 app/controllers/application_controller.rb	Tue, 25 Feb 2020 15:11:44 -0500
-app/controllers/carts_controller.rb	Tue, 25 Feb 2020 15:11:44 -0500
+app/controllers/carts_controller.rb	Sun, 12 Apr 2020 15:51:30 -0400
 app/controllers/comments_controller.rb	Tue, 24 Mar 2020 22:03:03 -0400
 app/controllers/courses_controller.rb	Tue, 25 Feb 2020 15:11:44 -0500
 app/controllers/departments_controller.rb	Tue, 25 Feb 2020 15:11:44 -0500
-app/controllers/errors_controller.rb	Wed, 15 Jan 2020 14:09:25 -0500
+app/controllers/errors_controller.rb	Sun, 12 Apr 2020 15:51:30 -0400
 app/controllers/handles_controller.rb	Tue, 25 Feb 2020 15:11:44 -0500
 app/controllers/hubcourses_controller.rb	Tue, 25 Feb 2020 15:11:44 -0500
 app/controllers/my_classes_controller.rb	Wed, 15 Jan 2020 14:09:25 -0500
 app/controllers/professors_controller.rb	Tue, 25 Feb 2020 15:11:44 -0500
 app/controllers/reports_controller.rb	Tue, 25 Feb 2020 15:11:44 -0500
-app/controllers/sessions_controller.rb	Tue, 24 Mar 2020 23:55:31 -0400
+app/controllers/sessions_controller.rb	Sun, 12 Apr 2020 15:51:30 -0400
 app/controllers/settings_controller.rb	Wed, 15 Jan 2020 14:09:25 -0500
-app/controllers/static_pages_controller.rb	Wed, 15 Jan 2020 14:09:25 -0500
+app/controllers/static_pages_controller.rb	Sun, 12 Apr 2020 15:51:30 -0400
 app/controllers/syllabus_controller.rb	Wed, 15 Jan 2020 14:09:25 -0500
-app/controllers/users_controller.rb	Tue, 25 Feb 2020 15:11:44 -0500
+app/controllers/users_controller.rb	Sun, 12 Apr 2020 15:51:30 -0400
 app/controllers/votes_controller.rb	Tue, 25 Feb 2020 15:11:44 -0500
 app/helpers/admins_helper.rb	Wed, 15 Jan 2020 14:09:25 -0500
 app/helpers/application_helper.rb	Wed, 15 Jan 2020 14:09:25 -0500
@@ -35,11 +35,13 @@ app/helpers/static_pages_helper.rb	Wed, 15 Jan 2020 14:09:25 -0500
 app/helpers/syllabus_helper.rb	Wed, 15 Jan 2020 14:09:25 -0500
 app/helpers/users_helper.rb	Wed, 15 Jan 2020 14:09:25 -0500
 app/helpers/votes_helper.rb	Wed, 15 Jan 2020 14:09:25 -0500
-app/mailers/interact.rb	Mon, 17 Feb 2020 17:29:55 -0500
+app/mailers/interact.rb	Sun, 12 Apr 2020 15:51:30 -0400
+app/models/ahoy/event.rb	Mon, 13 Apr 2020 10:41:03 -0400
+app/models/ahoy/visit.rb	Mon, 13 Apr 2020 10:41:03 -0400
 app/models/application_record.rb	Tue, 25 Feb 2020 15:11:44 -0500
 app/models/cart.rb	Tue, 25 Feb 2020 15:11:44 -0500
 app/models/comment.rb	Tue, 24 Mar 2020 22:03:03 -0400
-app/models/course.rb	Mon, 30 Mar 2020 13:25:49 -0400
+app/models/course.rb	Sun, 12 Apr 2020 15:51:30 -0400
 app/models/department.rb	Tue, 25 Feb 2020 15:11:44 -0500
 app/models/handle.rb	Tue, 25 Feb 2020 15:11:44 -0500
 app/models/hubcourse.rb	Tue, 25 Feb 2020 15:11:44 -0500
@@ -52,4 +54,4 @@ lib/jquery-week-calendar.rb	Wed, 15 Jan 2020 14:09:25 -0500
 lib/jquery-week-calendar/engine.rb	Wed, 15 Jan 2020 14:09:25 -0500
 lib/jquery-week-calendar/generators.rb	Wed, 15 Jan 2020 14:09:25 -0500
 lib/jquery-week-calendar/railtie.rb	Wed, 15 Jan 2020 14:09:25 -0500
-README	Wed, 01 Apr 2020 14:00:57 -0400
+README	Sun, 12 Apr 2020 15:51:30 -0400
