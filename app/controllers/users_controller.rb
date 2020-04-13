@@ -145,6 +145,7 @@ class UsersController < ApplicationController
           if @user.save!
             flash[:success] = "Welcome to OPrestissimo!"
             sign_in @user
+            ahoy.authenticate(@user)
             # check for existing handle
             @handle = Handle.find_by_handlekey(@user.handlekey)
             # create the handle if there isn't one
