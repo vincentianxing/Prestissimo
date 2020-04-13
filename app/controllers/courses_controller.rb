@@ -488,7 +488,13 @@ class CoursesController < ApplicationController
     end
 
     # Add event to ahoy for tracking
-    ahoy.track "Course search", dept: params[:dept].strip, dept_long: Department.find_by_dept(params[:dept]).dept_long,
+    d = Department.find_by_dept(params[:dept])
+    if d
+      perams_dept_long = d[:dept_long]
+    else
+      perams_dept_long = ""
+    end
+    ahoy.track "Course search", dept: params[:dept].strip, dept_long: perams_dept_long,
                                 crn: params[:crn], cname: params[:cname],
                                 professor: params[:professor], semester: params[:semester], keyword: params[:keyword],
                                 key_button: params[:key_button], min_credits: params[:min_credits], max_credits: params[:max_credits],
