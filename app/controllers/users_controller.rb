@@ -76,6 +76,7 @@ class UsersController < ApplicationController
       sign_in @user
       # go to the user profile
       redirect_to user_path(@user.email.split("@")[0])
+      ahoy.track "Update user settings"
     else # the user could not be saved (for some weird reason)
       redirect_to settings_path(@user.email.split("@")[0]), :notice => "Settings could not be changed. Please contact the Prestissmo managers!"
     end
@@ -406,7 +407,8 @@ class UsersController < ApplicationController
 
   def schedule
     @user = User.find_by_email(params[:email] + "@oberlin.edu")
-    redirect_to root_path unless @user
+    return redirect_to root_path unless @user
+    ahoy.track "View schedule"
   end
 
   private
