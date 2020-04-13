@@ -23,6 +23,7 @@ gem "dalli"
 
 gem "ahoy_matey" # For analytics
 gem "chartkick" # For pretty graphs
+gem "groupdate" # Sorting graphs by date
 
 gem "test-unit" # Added for rails console
 
