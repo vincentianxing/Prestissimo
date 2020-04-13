@@ -14,3 +14,5 @@
 //= require jquery_ujs
 //= require_directory .
 //= jquery-week-calendar
+//= require chartkick
+//= require Chart.bundle
