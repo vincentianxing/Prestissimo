@@ -8,7 +8,7 @@ WEB_DIR="/var/www/html/oprestissimo.com/"
 GITCMD="/usr/bin/git"
 YARN="/usr/bin/yarn"
 BUNDLE="/usr/share/rvm/rubies/$RUBYV/bin/bundle"
-RAKE="/usr/share/rvm/rubies/$RUBYV/bin/rake"
+RAILS="/usr/share/rvm/rubies/$RUBYV/bin/rails"
 RUBYBIN="/usr/share/rvm/rubies/$RUBYV/bin"
 SUPARAMS="export PATH=\$PATH:$RUBYBIN;"
 WEBUSER="oprestissimo"
@@ -54,7 +54,7 @@ fi
 # Make assets
 echo
 echo "*** Precompiling assets..."
-sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $RAKE assets:precompile RAILS_ENV=production"
+sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $RAILS assets:precompile RAILS_ENV=production"
 if [ $? -ne 0 ];
 then
     echo "Failed!"
@@ -64,7 +64,7 @@ fi
 # update database
 echo
 echo "*** Updating database..."
-sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $RAKE db:migrate RAILS_ENV=production" # Need to specify RAILS_ENV for production
+sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $RAILS db:migrate RAILS_ENV=production" # Need to specify RAILS_ENV for production
 if [ $? -ne 0 ]; then
     echo "Failed!"
     exit 3
@@ -72,7 +72,7 @@ fi
 
 #echo
 #echo "*** Updating documentation files..."
-#sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $RAKE doc:app"
+#sudo su $WEBUSER -c "$SUPARAMS $BUNDLE exec $RAILS rdoc"
 #if [ $? -ne 0 ]; then
 #    echo "Failed!"
 #    exit 6
