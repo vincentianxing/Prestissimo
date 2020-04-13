@@ -93,6 +93,7 @@ class SessionsController < ApplicationController
 
       user.save
       sign_in user
+      ahoy.authenticate(user)
       if session[:return_to] == signin_path
         redirect_to user_path(user.email.split("@")[0])
       else

@@ -1,6 +1,6 @@
 class DepartmentsController < ApplicationController
-
   before_action :signed_in_user
+
   def index
     @depts = Department.all.to_a
   end
@@ -16,14 +16,15 @@ class DepartmentsController < ApplicationController
     @comments = Comment.sort_by_score(@comments)
     respond_to do |format|
       format.html
-      format.csv { render plain: @department.to_csv(params[:enroll]||=0) }
+      format.csv { render plain: @department.to_csv(params[:enroll] ||= 0) }
     end
+    ahoy.track "Visit department page", dept: @department[:dept], dept_long: @department[:dept_long]
   end
 
   private
 
   # check if there is a user
   def signed_in_user
-    redirect_to signin_path, notice:"Please sign in." unless signed_in?
+    redirect_to signin_path, notice: "Please sign in." unless signed_in?
   end
 end

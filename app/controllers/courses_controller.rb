@@ -16,7 +16,7 @@ class CoursesController < ApplicationController
     @courses = Course.where(semcrn: params[:semcrn])
     return redirect_to error_404_path unless @courses
     @sections = Course.where(dept: @courses.first.dept, cnum: @courses.first.cnum, semester: @courses.first.semester)
-    @sections.sort_by!{|c| c.crn}
+    @sections.sort_by! { |c| c.crn }
     @course_arr = [@courses, @sections]
     @course_arr
   end
@@ -30,93 +30,93 @@ class CoursesController < ApplicationController
     #add checked sections into the courses list
     unless params[:sections].nil?
       params[:sections].keys.each do |s|
-        @courses=@courses|Course.where(semcrn: s).to_a
+        @courses = @courses | Course.where(semcrn: s).to_a
       end
     end
 
     #All fields get applied to all checked sections except notify_profs and changed_fields
     section_hash = Hash.new
     @courses.each do |c|
-      section_hash[c.semcrn]=[c.changed_fields,c.notify_profs]
+      section_hash[c.semcrn] = [c.changed_fields, c.notify_profs]
     end
 
     updates = course_params.clone
-    if updates[:display_prof_note]=="0"
-      updates[:display_prof_note]=false;
+    if updates[:display_prof_note] == "0"
+      updates[:display_prof_note] = false
     else
-      updates[:display_prof_note]=true;
+      updates[:display_prof_note] = true
     end
 
     updates.delete("status")
     updates.delete("notify_profs")
-    sec_update=Hash.new
+    sec_update = Hash.new
 
     @courses.each do |sec|
-      
-      #hide course 
-      if params[:course][:status]=="1"
+
+      #hide course
+      if params[:course][:status] == "1"
         if sec.status.blank?
-          section_hash[sec.semcrn][0]||=""
-          section_hash[sec.semcrn][0]<<"|"unless section_hash[sec.semcrn][0].blank?
-          section_hash[sec.semcrn][0]<<"status" unless section_hash[sec.semcrn][0].include?("status")
+          section_hash[sec.semcrn][0] ||= ""
+          section_hash[sec.semcrn][0] << "|" unless section_hash[sec.semcrn][0].blank?
+          section_hash[sec.semcrn][0] << "status" unless section_hash[sec.semcrn][0].include?("status")
         end
-        sec.status="hidden" unless sec.status=="cancelled"
-      #unhide course
+        sec.status = "hidden" unless sec.status == "cancelled"
+        #unhide course
       else
-        if sec.status=="hidden"
-          section_hash[sec.semcrn][0]||=""
-          section_hash[sec.semcrn][0]<<"|"unless section_hash[sec.semcrn][0].blank?
-          section_hash[sec.semcrn][0]<<"status" unless section_hash[sec.semcrn][0].include?("status")
+        if sec.status == "hidden"
+          section_hash[sec.semcrn][0] ||= ""
+          section_hash[sec.semcrn][0] << "|" unless section_hash[sec.semcrn][0].blank?
+          section_hash[sec.semcrn][0] << "status" unless section_hash[sec.semcrn][0].include?("status")
         end
-        sec.status="" unless sec.status=="cancelled" 
+        sec.status = "" unless sec.status == "cancelled"
       end
 
       #add the fields in the updates hash to the list of changed fields for the section
       updates.keys.each do |k|
         if updates[k] != sec.send(k)
-          section_hash[sec.semcrn][0]||=""
+          section_hash[sec.semcrn][0] ||= ""
           unless section_hash[sec.semcrn][0].include?(k)
-            section_hash[sec.semcrn][0]<<"|" unless section_hash[sec.semcrn][0].blank?
-            section_hash[sec.semcrn][0]<<k unless section_hash[sec.semcrn][0].include?(k)
+            section_hash[sec.semcrn][0] << "|" unless section_hash[sec.semcrn][0].blank?
+            section_hash[sec.semcrn][0] << k unless section_hash[sec.semcrn][0].include?(k)
           end
         end
       end
 
       #It won't change the field if it is the empty string, so this sets it to nil so it can be edited
-      sec.notify_profs=nil if sec.notify_profs!=nil && sec.notify_profs.empty?
+      sec.notify_profs = nil if sec.notify_profs != nil && sec.notify_profs.empty?
 
       #Adds/removes the professor to notify profs
-      if params[:course][:notify_profs]=="1"
-        temp_str = sec.notify_profs 
-        temp_str||=""
+      if params[:course][:notify_profs] == "1"
+        temp_str = sec.notify_profs
+        temp_str ||= ""
         unless temp_str.include?(current_user.email)
-          temp_str<<"|" unless temp_str.blank?
-          temp_str<<current_user.email
+          temp_str << "|" unless temp_str.blank?
+          temp_str << current_user.email
         end
-        section_hash[sec.semcrn][1]=temp_str
-      elsif !sec.notify_profs.blank? 
+        section_hash[sec.semcrn][1] = temp_str
+      elsif !sec.notify_profs.blank?
         temp_arr = sec.notify_profs.split("|")
         temp_arr.delete(current_user.email)
-        temp_str=temp_arr.join("|")
-        section_hash[sec.semcrn][1]=temp_str
+        temp_str = temp_arr.join("|")
+        section_hash[sec.semcrn][1] = temp_str
       end
     end
 
-    updates[:recent_edit]=current_user.email
-    
+    updates[:recent_edit] = current_user.email
+
     #Updates the courses
     @courses.each do |c|
-      updates[:changed_fields]=section_hash[c.semcrn][0]
-      updates[:notify_profs]=section_hash[c.semcrn][1]
-      temp_bool=c.update(updates)
-      had_error||=!temp_bool
+      updates[:changed_fields] = section_hash[c.semcrn][0]
+      updates[:notify_profs] = section_hash[c.semcrn][1]
+      temp_bool = c.update(updates)
+      had_error ||= !temp_bool
     end
 
     if !had_error
-      flash[:success]="Course(s) successfully updated!"
+      flash[:success] = "Course(s) successfully updated!"
       redirect_to course_edit_path(@course.semcrn)
     else
-      redirect_to course_edit_path(@course.semcrn),:notice=>"Course(s) could not be updated. Please contact the prestissimo managers."
+      redirect_to course_edit_path(@course.semcrn), :notice => "Course(s) could not be updated. Please contact the prestissimo managers."
     end
   end
 
@@ -126,7 +126,7 @@ class CoursesController < ApplicationController
     #	session[:mobile_view] = true
     #end
     unless cookies[:cart]
-       @cart = Cart.new
+      @cart = Cart.new
       if @cart.save
         cookies.permanent[:cart] = @cart.cartid
       end
@@ -147,8 +147,8 @@ class CoursesController < ApplicationController
   #  - builds a 'query string,' used to query SQL database, based on form
   #     field input
   def search
-    qs = '' # Query String
-#    qs = 'SELECT courses.* FROM courses WHERE (' # Query String
+    qs = "" # Query String
+    #    qs = 'SELECT courses.* FROM courses WHERE (' # Query String
 
     #CRN Conditional
     # Searches for the course whose CRN = the query
@@ -188,7 +188,7 @@ class CoursesController < ApplicationController
       # Uses 'LIKE' comparison
       if !(params[:dept].blank?)
         dept = "#{params[:dept]}".to_s.split(" ")
-        asize = dept.length-1;
+        asize = dept.length - 1
         (0..asize).each do |c|
           if (asize == 0)
             qs = likeAppend("dept", dept[c], qs)
@@ -226,9 +226,9 @@ class CoursesController < ApplicationController
       end
 
       if !(params[:wr].blank?)
-        if (params[:profic]=="wadv")
+        if (params[:profic] == "wadv")
           qs = likeAppend("proficiencies", "WAdv", qs)
-        elsif (params[:profic]=="wint")
+        elsif (params[:profic] == "wint")
           qs = likeAppend("proficiencies", "WInt", qs)
         else
           qs = orAppend("(proficiencies", "WInt", qs)
@@ -284,13 +284,13 @@ class CoursesController < ApplicationController
 
       # Full Course Conditionals
       # Use 'LIKE' comparison
-      if (params[:fc]=="fc")
+      if (params[:fc] == "fc")
         fc = "Full Course"
         qs = likeAppend("full_course", "#{fc}", qs)
-      elsif (params[:fc]=="hc")
+      elsif (params[:fc] == "hc")
         hc = "Half Course"
         qs = likeAppend("full_course", "#{hc}", qs)
-      elsif (params[:fc]=="cc")
+      elsif (params[:fc] == "cc")
         cc = "Co-Curricular"
         qs = likeAppend("full_course", "#{cc}", qs)
       end
@@ -303,17 +303,17 @@ class CoursesController < ApplicationController
       #  3: full semester
       #  4: special meeting times
       if !(params[:module].blank?)
-        mod=0;
-        if(params[:module]=="mod1")
+        mod = 0
+        if (params[:module] == "mod1")
           mod = 1
-        elsif(params[:module]=="mod2")
+        elsif (params[:module] == "mod2")
           mod = 2
-        elsif(params[:module]=="full")
+        elsif (params[:module] == "full")
           mod = 3
-        elsif(params[:module]=="spec")
+        elsif (params[:module] == "spec")
           mod = 4
         end
-        if(mod>0)
+        if (mod > 0)
           qs = likeAppend("mods", "#{mod}", qs)
         end
       end
@@ -352,9 +352,8 @@ class CoursesController < ApplicationController
         qs = numAppend("crmin", "#{params[:min_credits]}", ">=", qs)
       end
 
-      
       if !(params[:max_credits].blank?)
-        params[:max_credits]="99" if params[:max_credits].to_i>8
+        params[:max_credits] = "99" if params[:max_credits].to_i > 8
         qs = numAppend("crmax", "#{params[:max_credits]}", "<=", qs)
       end
 
@@ -362,10 +361,10 @@ class CoursesController < ApplicationController
       # Somewhat more intuitively: if "start after" is entered, will list all classes >= given start time.
       # If "end before" is specified, will list all classes <= the given end time.
       #Start Time Conditionals
-      unless (params[:start_hour]=="7" && params[:start_minute]="00" &&  params[:end_hour]=="22" && params[:end_minute]=="00")
+      unless (params[:start_hour] == "7" && params[:start_minute] = "00" && params[:end_hour] == "22" && params[:end_minute] == "00")
         start_hour = ""
         if !(params[:start_hour].blank?)
-          start_hour << params[:start_hour]+":"
+          start_hour << params[:start_hour] + ":"
           if !(params[:start_minute].blank?)
             start_hour << params[:start_minute] << ":00"
           else
@@ -376,7 +375,7 @@ class CoursesController < ApplicationController
         #End Time Conditionals
         end_hour = ""
         if !(params[:end_hour].blank?)
-          end_hour << params[:end_hour]+":"
+          end_hour << params[:end_hour] + ":"
           if !(params[:end_minute].blank?)
             end_hour << params[:end_minute] << ":00"
           else
@@ -427,7 +426,7 @@ class CoursesController < ApplicationController
 
       # Course description and notes keyword search!
       unless params[:keyword].blank?
-        temp =""
+        temp = ""
         temp = make_query_string(params[:keyword], ["descrip", "short_title", "title", "xlist1", "xlist2", "xlist3", "prereqs", "dept", "dept_long", "prof_desc", "prof_note"], params[:key_button] == "any")
         qs << "( #{temp} )  AND "
       end
@@ -470,16 +469,16 @@ class CoursesController < ApplicationController
       # Performs the search, using the built query string
     end
     @courses = Course.where(qs).to_a
-#    @courses = Course.find_by_sql(qs)
+    #    @courses = Course.find_by_sql(qs)
     if params[:cart_id]
       @cart = Cart.find_by_cartid(params[:cart_id])
-      @courses = tag_conflicts(@courses,@cart.get_courses) unless @cart.courses.blank?
+      @courses = tag_conflicts(@courses, @cart.get_courses) unless @cart.courses.blank?
     end
     # highlight the keywords from the keyword field in the course results
     @courses = highlight_keywords(@courses, params[:keyword]) unless params[:keyword].blank?
     # Hide cancelled courses unless the crn field was chosen.
-    @courses.delete_if {|c| c.status == "cancelled"} if params[:crn].blank?
-    @courses.delete_if {|c| c.status == "hidden"} unless signed_in? && faculty_user?(current_user)
+    @courses.delete_if { |c| c.status == "cancelled" } if params[:crn].blank?
+    @courses.delete_if { |c| c.status == "hidden" } unless signed_in? && faculty_user?(current_user)
     @links = Hash.new()
     # Renders the search results
     respond_to do |format|
@@ -487,20 +486,33 @@ class CoursesController < ApplicationController
       format.html { redirect_to root_path }
       format.js
     end
+
+    # Add event to ahoy for tracking
+    ahoy.track "Course search", dept: params[:dept].strip, dept_long: Department.find_by_dept(params[:dept]).dept_long,
+                                crn: params[:crn], cname: params[:cname],
+                                professor: params[:professor], semester: params[:semester], keyword: params[:keyword],
+                                key_button: params[:key_button], min_credits: params[:min_credits], max_credits: params[:max_credits],
+                                start_hour: params[:start_hour], start_minute: params[:start_minute], end_hour: params[:end_hour],
+                                end_minute: params[:end_minute], min_course_level: params[:min_course_level],
+                                max_course_level: params[:max_course_level], min_course_size: params[:min_course_size],
+                                max_course_size: params[:max_course_size], min_course_enrollment: params[:min_course_enrollment],
+                                max_course_enrollment: params[:max_course_enrollment], qfr: params[:qfr], cd: params[:cd],
+                                wr: params[:wr], profic: params[:profic], monday: params[:monday], tuesday: params[:tuesday],
+                                wednesday: params[:wednesday], thursday: params[:thursday], friday: params[:friday],
+                                saturday: params[:saturday], sunday: params[:sunday], fc: params[:fc], module: params[:module],
+                                ns: params[:ns], ss: params[:ss], hu: params[:hu], cndp: params[:cndp], ddhu: params[:ddhu]
   end ##END SEARCH##
-
-
 
   private ####### Private helper methods ########
   #NOTE:
-  # All Append methods escape/quote user-input values, using packaged ruby 
+  # All Append methods escape/quote user-input values, using packaged ruby
   #  methods.
 
   # Sets which params can be updated in the database from a call to update
   def course_params
     params[:course].permit(:conflict, :syllabus, :dept, :cname, :professor, :proficiencies,
-      :building, :room, :cnum, :crn, :title, :semcrn, :prof_note, :display_prof_note,
-      :prof_desc, :which_desc, :new_desc_action, :notify_profs, :changed_fields, :recent_edit)
+                           :building, :room, :cnum, :crn, :title, :semcrn, :prof_note, :display_prof_note,
+                           :prof_desc, :which_desc, :new_desc_action, :notify_profs, :changed_fields, :recent_edit)
   end
 
   # Appends a 'LIKE' comparison to the end of the specified query string
@@ -509,11 +521,11 @@ class CoursesController < ApplicationController
   #  value: value used for comparison, can be any type
   # Returns a string
   def likeAppend(field, value, qs)
-    qs << field+' LIKE '+ActiveRecord::Base.connection.quote("%"+value+"%")+' AND '
+    qs << field + " LIKE " + ActiveRecord::Base.connection.quote("%" + value + "%") + " AND "
   end
-  
+
   def likeAppendMulti(field, value, qs)
-    qs << field+' LIKE '+ActiveRecord::Base.connection.quote("%"+value+"%")+') AND '
+    qs << field + " LIKE " + ActiveRecord::Base.connection.quote("%" + value + "%") + ") AND "
   end
 
   # Appends an 'OR' comparison to the end of the specified query string
@@ -522,7 +534,7 @@ class CoursesController < ApplicationController
   #  value: value used for comparion, can be any type
   # Returns a string
   def orAppend(field, value, qs)
-    qs << field+' LIKE '+ActiveRecord::Base.connection.quote("%"+value+"%")+' OR '
+    qs << field + " LIKE " + ActiveRecord::Base.connection.quote("%" + value + "%") + " OR "
   end
 
   # Appends a numerical comparison to the end of the specified query string
@@ -532,7 +544,7 @@ class CoursesController < ApplicationController
   #  comparator: a numerical comparison operator, i.e. >, <, >=, etc.
   # Returns a string
   def numAppend(field, value, comparator, qs)
-    qs << field+' '+comparator+' '+ActiveRecord::Base.connection.quote(value)+' AND '
+    qs << field + " " + comparator + " " + ActiveRecord::Base.connection.quote(value) + " AND "
   end
 
   # Appends a 'BETWEEN' comparison to the end of the specified query string
@@ -542,7 +554,7 @@ class CoursesController < ApplicationController
   #  val2: the larger/second of the two values used for comparison
   # Returns a string
   def betweenAppend(field, val1, val2, qs)
-    qs << field+' BETWEEN '+ActiveRecord::Base.connection.quote(val1)+' AND '+ActiveRecord::Base.connection.quote(val2)+' AND '
+    qs << field + " BETWEEN " + ActiveRecord::Base.connection.quote(val1) + " AND " + ActiveRecord::Base.connection.quote(val2) + " AND "
   end
 
   def correct_prof_user
@@ -558,50 +570,50 @@ class CoursesController < ApplicationController
   end
 
   # compares the search results to the user's cart and tags the conflicting courses
-  def tag_conflicts(courses,cart_courses)
+  def tag_conflicts(courses, cart_courses)
     # compare each course and cart entry for conflicts
 
     courses.each do |result|
-      temp_descrip=""
-      temp_prof_desc=""
+      temp_descrip = ""
+      temp_prof_desc = ""
       cart_courses.each do |cart|
-	next if result.semester != cart.semester
-	# they are not a conflict if they're the same course
-        conflict_message = "<span class=\'course_in_cart\'>This course is already in your cart.</span><br>" 
-	if result.crn == cart.crn
+        next if result.semester != cart.semester
+        # they are not a conflict if they're the same course
+        conflict_message = "<span class=\'course_in_cart\'>This course is already in your cart.</span><br>"
+        if result.crn == cart.crn
           if result.which_desc == "professor"
-	    unless temp_prof_desc.include?("This course is already in your cart")
-	      temp_prof_desc << conflict_message
+            unless temp_prof_desc.include?("This course is already in your cart")
+              temp_prof_desc << conflict_message
             end
             next
           else
-	    unless temp_descrip.include?("This course is already in your cart")
-	      temp_descrip << conflict_message
-	    end
-	    next
+            unless temp_descrip.include?("This course is already in your cart")
+              temp_descrip << conflict_message
+            end
+            next
           end
-	end
-	# no conflict if times are nil
-	next if (result.start_time.nil?) || (result.end_time.nil?) || (cart.start_time.nil?) || (cart.end_time.nil?)
-	# if they're in different modules, there is no conflict
-	next if result.mods == 1 && cart.mods == 2
-	next if result.mods == 2 && cart.mods == 1
-	# if they occur at the same time, should compare days
-	next unless (result.start_time >= cart.start_time && result.start_time <= cart.end_time) || (result.end_time >= cart.start_time && result.end_time <= cart.end_time) || (result.start_time < cart.start_time && result.end_time > cart.end_time)
-	# compare the days                
-	result.days.each_char do |day|
-	  if cart.days.include? day
-            if result.which_desc == "professor" && !temp_prof_desc.include?("This course conflicts with #{cart.dept}-#{cart.cnum}") 
+        end
+        # no conflict if times are nil
+        next if (result.start_time.nil?) || (result.end_time.nil?) || (cart.start_time.nil?) || (cart.end_time.nil?)
+        # if they're in different modules, there is no conflict
+        next if result.mods == 1 && cart.mods == 2
+        next if result.mods == 2 && cart.mods == 1
+        # if they occur at the same time, should compare days
+        next unless (result.start_time >= cart.start_time && result.start_time <= cart.end_time) || (result.end_time >= cart.start_time && result.end_time <= cart.end_time) || (result.start_time < cart.start_time && result.end_time > cart.end_time)
+        # compare the days
+        result.days.each_char do |day|
+          if cart.days.include? day
+            if result.which_desc == "professor" && !temp_prof_desc.include?("This course conflicts with #{cart.dept}-#{cart.cnum}")
               temp_prof_desc << "<span class=\"course_conflict\">This course conflicts with #{cart.dept}-#{cart.cnum}.</span><br>"
-            break
+              break
             elsif !temp_descrip.include?("This course conflicts with #{cart.dept}-#{cart.cnum}")
               temp_descrip << "<span class=\"course_conflict\">This course conflicts with #{cart.dept}-#{cart.cnum}.</span><br>"
               break
             end
-	  end
-	end
+          end
+        end
       end
-      
+
       unless temp_prof_desc.blank?
         temp_prof_desc << "<span class=\"expanded_course_header\">Professor Description:</span>"
         temp_prof_desc << simple_format(result.prof_desc)
@@ -614,7 +626,6 @@ class CoursesController < ApplicationController
         temp_descrip << "</p>"
         result.descrip = temp_descrip
       end
-
     end
     courses
   end
@@ -622,10 +633,10 @@ class CoursesController < ApplicationController
   # highlights the keywords searched for in course results
   def highlight_keywords(courses, keywords)
     keywords.strip!
-    keys = keywords.scan(/'.+?'|".+?"|[^ ]+/).map { |e| e.gsub /^['"]|['"]$/, '' }.map { |k| Regexp.escape(k) }
+    keys = keywords.scan(/'.+?'|".+?"|[^ ]+/).map { |e| e.gsub /^['"]|['"]$/, "" }.map { |k| Regexp.escape(k) }
     courses.each do |result|
       [:descrip, :short_title, :title, :xlist1, :xlist2, :xlist3, :prereqs, :dept, :dept_long, :prof_desc, :prof_note].each do |field|
-        result.send(field).gsub!(/#{keys.join('|')}/i, '<span class=highlight>\0</span>') unless result.send(field).blank?
+        result.send(field).gsub!(/#{keys.join("|")}/i, '<span class=highlight>\0</span>') unless result.send(field).blank?
       end
     end
     courses
