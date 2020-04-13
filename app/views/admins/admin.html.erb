@@ -8,7 +8,7 @@
 </div>
 
 <div id="reports">
-  <%= link_to "Manage Reports", reports_path(nil,nil,nil), remote: true %>
+  <%= link_to "Manage Reports", reports_path(nil, nil, nil), remote: true %>
   <div id="report_index">
   </div>
 </div>
@@ -18,5 +18,17 @@
 </div>
 
 <div id="sessions">
-  <%= link_to "Expire all non-admin login sessions", expire_sessions_path, :data => {:confirm => 'are you sure?'} %>
+  <%= link_to "Expire all non-admin login sessions", expire_sessions_path, :data => { :confirm => "are you sure?" } %>
+</div>
+<br>
+<div id="analytics">
+  <h2>Site Analytics</h2>
+  <div id="analytics_new_users">
+    <h3>New Users</h3>
+    <%= line_chart User.group_by_day(:created_at, range: 1.months.ago..Time.now).count %>
+  </div>
+  <div id="analytics_site_visits">
+    <h3>Visits</h3>
+    <%= line_chart Ahoy::Visit.group_by_day(:started_at, range: 1.months.ago..Time.now).count %>
+  </div>
 </div>
