@@ -31,6 +31,10 @@ class ChartsController < ApplicationController
     render json: Ahoy::Event.where(name: "Course search").group_by_day(:time, range: 1.months.ago..Time.now).count
   end
 
+  def visitor_location
+    render json: Ahoy::Visit.group(:region).count
+  end
+
   private
 
   def signed_in_user
