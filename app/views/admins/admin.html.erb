@@ -33,10 +33,10 @@
   </div>
   <div id="analytics_searches_by_dept">
     <h3>Searches by department</h3>
-    <%= pie_chart Ahoy::Event.where_event("Course search").group("JSON_UNQUOTE(properties -> '$.dept_long')").count %>
+    <%= pie_chart Ahoy::Event.where(name: "Course search").group("JSON_UNQUOTE(properties -> '$.dept_long')").count %>
   </div>
   <div id="analytics_searches_over_time">
     <h3>Searches by volume</h3>
-    <%= line_chart Ahoy::Event.where_event("Course, search").group_by_day(:time, range: 1.months.ago..Time.now).count %>
+    <%= line_chart Ahoy::Event.where(name: "Course search").group_by_day(:time, range: 1.months.ago..Time.now).count %>
   </div>  
 </div>
