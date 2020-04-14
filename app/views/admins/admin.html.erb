@@ -25,18 +25,18 @@
   <h2>Site Analytics</h2>
   <div id="analytics_new_users">
     <h3>New Users</h3>
-    <%= line_chart User.group_by_day(:created_at, range: 1.months.ago..Time.now).count %>
+    <%= line_chart charts_new_users_path %>
   </div>
   <div id="analytics_site_visits">
     <h3>Visits</h3>
-    <%= line_chart Ahoy::Visit.group_by_day(:started_at, range: 1.months.ago..Time.now).count %>
+    <%= line_chart charts_site_visits_path %>
   </div>
   <div id="analytics_searches_by_dept">
     <h3>Searches by department</h3>
-    <%= pie_chart Ahoy::Event.where(name: "Course search").group("JSON_UNQUOTE(properties -> '$.dept_long')").count %>
+    <%= pie_chart charts_searches_dept_path %>
   </div>
   <div id="analytics_searches_over_time">
     <h3>Searches by volume</h3>
-    <%= line_chart Ahoy::Event.where(name: "Course search").group_by_day(:time, range: 1.months.ago..Time.now).count %>
+    <%= line_chart charts_searches_volume_path %>
   </div>  
 </div>

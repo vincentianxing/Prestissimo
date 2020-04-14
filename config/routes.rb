@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   #example of what 'resources :users' would create automatically
   #
   #HTTP	URI		action	    path			purpose
@@ -171,6 +170,12 @@ Rails.application.routes.draw do
   get "/500", to: "errors#server_error"
   # Random route for clearing cookies,
   match "/clear_cookies", to: "errors#clear", as: :clear_cookies, via: [:get, :post]
+
+  # Routes for charts
+  get "charts/new_users", to: "charts#new_users"
+  get "charts/site_visits", to: "charts#site_visits"
+  get "charts/searches_dept", to: "charts#searches_dept"
+  get "charts/searches_volume", to: "charts#searches_volume"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
