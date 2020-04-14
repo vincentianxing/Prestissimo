@@ -12,15 +12,15 @@ class ChartsController < ApplicationController
 
   def searches_dept
     searches = Ahoy::Event.where(name: "Course search")
-    cutoff_size = searches.size * 0.05
-    groups_all = searches.group("JSON_UNQUOTE(properties -> '$.dept_long')").count
+    other_size = searches.size * 0.15
+    groups_all = searches.group("JSON_UNQUOTE(properties -> '$.dept_long')").count.sort_by { |dept, num| num }
     groups_new = { "Other" => 0 }
 
     groups_all.each do |e|
-      if e[1] > cutoff_size
+      if e[1] > other_size || groups_new["Other"] > other_size
         groups_new[e[0]] = e[1]
       else
-        groups_new["Other"] += 1
+        groups_new["Other"] += e[1]
       end
     end
 
