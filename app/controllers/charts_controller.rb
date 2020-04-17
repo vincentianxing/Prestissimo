@@ -35,6 +35,10 @@ class ChartsController < ApplicationController
     render json: Ahoy::Visit.group(:region).count
   end
 
+  def referrals
+    render json: Ahoy::Visit.where("referring_domain IS NOT NULL").group(:referring_domain).count
+  end
+
   private
 
   def signed_in_user

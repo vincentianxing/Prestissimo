@@ -177,6 +177,7 @@ Rails.application.routes.draw do
   get "charts/searches_dept", to: "charts#searches_dept"
   get "charts/searches_volume", to: "charts#searches_volume"
   get "charts/visitor_location", to: "charts#visitor_location"
+  get "charts/referrals", to: "charts#referrals"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
