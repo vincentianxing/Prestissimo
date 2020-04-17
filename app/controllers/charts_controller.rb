@@ -36,7 +36,7 @@ class ChartsController < ApplicationController
   end
 
   def referrals
-    render json: Ahoy::Visit.where("referring_domain IS NOT NULL").group(:referring_domain).count.sort_by { |d, n| n }
+    render json: Ahoy::Visit.where("referring_domain IS NOT NULL").group(:referring_domain).count.sort_by { |d, n| n }.reverse
   end
 
   private
