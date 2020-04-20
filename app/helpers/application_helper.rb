@@ -22,21 +22,30 @@ module ApplicationHelper
       false
     end
   end
+
   # variable to hold the current number of users
-  def user_count 
-    @user_count ||= Setting.get_val('user_count')
+  def user_count
+    @user_count ||= User.all.count
   end
 
   def comment_count
-    @comment_count ||= Setting.get_val('comment_count')
+    @comment_count ||= Comment.all.count
+  end
+
+  def hubcourse_count
+    @hubcourse_count ||= Hubcourse.all.count
+  end
+
+  def visit_count
+    @visit_count ||= Ahoy::Visit.where(started_at: 1.weeks.ago..Time.now).count
   end
 
   def courses_last_updated
-    @courses_last_updated ||= Setting.get_val('courses_last_updated')
+    @courses_last_updated ||= Setting.get_val("courses_last_updated")
   end
 
   def motd
-    @motd ||= Setting.get_val('motd')
+    @motd ||= Setting.get_val("motd")
   end
 
   # builds a MYSQL query string based on user input
@@ -46,26 +55,26 @@ module ApplicationHelper
   #
   # note: a field called "email" is a special case and uses regexps to ignore stuff after the '@' in the email
   def make_query_string(str, fields, any)
-    raise ArgumentError.new 'empty search string' if str.blank?
+    raise ArgumentError.new "empty search string" if str.blank?
     cond = "AND"
     cond = "OR" if any
 
     str.strip! #remove leading/trailing whitespace from user input.
-    qs = '('
-    str.scan(/'.+?'|".+?"|[^ ]+/).map { |e| e.gsub /^['"]|['"]$/, '' }.each do |s|
-      qs << ") #{cond} (" unless qs.eql? '('
+    qs = "("
+    str.scan(/'.+?'|".+?"|[^ ]+/).map { |e| e.gsub /^['"]|['"]$/, "" }.each do |s|
+      qs << ") #{cond} (" unless qs.eql? "("
       # search by all fields
-      fs = ''
+      fs = ""
       fields.each do |f|
-        fs << ' OR ' unless fs.blank?
-        if f.eql? 'email'
-          fs << ' email RLIKE '+ActiveRecord::Base.connection.quote("^[^\@]*"+Regexp.escape(s))
+        fs << " OR " unless fs.blank?
+        if f.eql? "email"
+          fs << " email RLIKE " + ActiveRecord::Base.connection.quote("^[^\@]*" + Regexp.escape(s))
         else
-          fs << " #{f} LIKE "+ActiveRecord::Base.connection.quote("%"+s+"%")
+          fs << " #{f} LIKE " + ActiveRecord::Base.connection.quote("%" + s + "%")
         end
       end
       qs << fs
     end
-    qs << ')'
+    qs << ")"
   end
 end
