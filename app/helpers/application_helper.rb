@@ -40,6 +40,10 @@ module ApplicationHelper
     @visit_count ||= Ahoy::Visit.where(started_at: 1.weeks.ago..Time.now).count
   end
 
+  def search_count
+    @search_count ||= Ahoy::Event.where(name: "Course search", time: 1.weeks.ago..Time.now).count
+  end
+
   def courses_last_updated
     @courses_last_updated ||= Setting.get_val("courses_last_updated")
   end
