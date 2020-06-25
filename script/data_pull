@@ -104,16 +104,21 @@ then
 fi
 FILEYEAR=`echo "${FILESEM}" | cut -c 1-4`
 FILEMONTH=`echo "${FILESEM}" | cut -c 5-6`
-if [ "${FILEMONTH}" = "02" ]
-then
+case ${FILEMONTH} in
+0[2-4])
   NEWSEM="Spring ${FILEYEAR}"
-elif [ "${FILEMONTH}" = "09" ]
-then
+  ;;
+0[5-7])
+  NEWSEM="Summer ${FILEYEAR}"
+  ;;
+0[8-9])
   NEWSEM="Fall ${FILEYEAR}"
-else
+  ;;
+*)
   echo "New Semester: " $NEWSEM
   exit 3
-fi
+  ;;
+esac
 
 # Do a Sanity Check
 echo

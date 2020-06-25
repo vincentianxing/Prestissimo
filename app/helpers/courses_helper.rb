@@ -29,6 +29,7 @@ module CoursesHelper
   def translate_semester(semester)
           s = "Fall" if semester[0] == "f"
           s = "Spring" if semester[0] == "s"
+          s = "Summer" if semester[0] == "u"
           s << " 20#{semester[1..2]}"
   end
 
