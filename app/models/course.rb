@@ -551,16 +551,25 @@ class Course < ApplicationRecord
   #Overiding comparaison operator so spring semesters will come before fall semesters when
   #comparing two course objects
   def <=>(other)
-    if self.semester.at(0) == "f"
+
+    case self.semester.at(0)
+    when "Fa"
       sem1 = self.semester[1..self.semester.length] + "9"
-    else
+    when "Sp"
       sem1 = self.semester[1..self.semester.length] + "2"
+    when "Su"
+      sem1 = self.semester[1..self.semester.length] + "5"
     end
-    if other.semester.at(0) == "f"
-      sem2 = other.semester[1..other.semester.length] + "9"
-    else
-      sem2 = other.semester[1..other.semester.length] + "2"
+
+    case other.semester.at(0)
+    when "Fa"
+      sem2 = self.semester[1..self.semester.length] + "9"
+    when "Sp"
+      sem2 = self.semester[1..self.semester.length] + "2"
+    when "Su"
+      sem2 = self.semester[1..self.semester.length] + "5"
     end
+    
     if sem1.to_i < sem2.to_i
       return 1
     elsif sem1.to_i > sem2.to_i

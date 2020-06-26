@@ -263,11 +263,13 @@ namespace :db do
           next if entry.start_with? "crn"
           semester = Setting.get_val("current_semester")
           sem = ""
-          case semester[0]
-          when "F"
+          case semester[0..1]
+          when "Fa"
             sem = "f"
-          when "S"
+          when "Sp"
             sem = "s"
+          when "Su"
+            sem = "u"
           end
           sem << semester[-2..-1]
           entry_arr = entry.split("|")
