@@ -1,0 +1,48 @@
+<!-- Display of REMOTE
+			- input: checkbox
+			- fields: ip, hy, fr
+			- displayed as a table
+			-->
+<% if in_mobile_view? %>
+	<div data-role="fieldcontain" class="field_group">
+		<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" class="mobile_fieldset">
+			<legend>Remote:</legend>
+                        <div class="ui-corner-all field_box btn_width_third">
+			<%= check_box_tag :ip, params[:ip]%>
+			<%= label_tag 'ip', 'IP' %>
+			<%= check_box_tag :hy, params[:hy]%>
+			<%= label_tag 'hy', 'HY' %>
+			<%= check_box_tag :fr, params[:fr]%>
+                        <%= label_tag 'fr', 'FR' %>
+                        </div>
+		</fieldset>
+	</div>
+<% else %>
+<div class="form" id="remote_div">
+	<span class="label search_label">Remote:</span>
+	<table id="remote_table">
+		<tr>
+			<td>
+				IP
+			</td>
+			<td>
+				HY
+			</td>
+			<td>
+				FR
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= check_box_tag :ip, params[:ip], false, class: "search_tag" %>
+			</td>
+			<td>
+				<%= check_box_tag :hy, params[:hy], false, class: "search_tag" %>
+			</td>
+			<td>
+				<%= check_box_tag :fr, params[:fr, false, class: "search_tag" %>
+			</td>
+		</tr>
+	</table>
+</div>
+<% end %>

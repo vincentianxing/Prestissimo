@@ -319,6 +319,7 @@ $(document).ready(function() {
     $('#days_div1').button( { icons: {primary:'ui-icon-gear', secondary:'null'}});
     $('#proficiencies_div').buttonset();
     $('#attributes_div').buttonset();
+    $('#remote_div').buttonset();
     $('#modules_div').buttonset();
     $('#full_course_div').buttonset();
     $('#wr_profic_div').buttonset();
@@ -717,6 +718,12 @@ $(document).ready(function() {
         $('#ss').button("refresh");
         $('#hu').removeAttr('checked');
         $('#hu').button("refresh");
+        $('#ip').removeAttr('checked');
+        $('#ip').button("refresh");
+        $('#hy').removeAttr('checked');
+        $('#hy').button("refresh");
+        $('#fr').removeAttr('checked');
+        $('#fr').button("refresh");
         $('#cd').removeAttr('checked');
         $('#cd').button("refresh");
         $('#qfr').removeAttr('checked');
