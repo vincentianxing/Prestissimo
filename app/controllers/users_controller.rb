@@ -32,8 +32,10 @@ class UsersController < ApplicationController
     redirect_to show_professor_path(fname: @user.fname, lname: @user.lname) if faculty_user? @user
 
     #For schedule semester checking
-    @semester = params[:sem] ? translate_semester(params[:sem]) : @user.cart.get_courses().sort()[0].semester
-    @semester_long = expand_semester(@semester)
+    if not @user.cart.get_courses.empty?
+      @semester = params[:sem] ? translate_semester(params[:sem]) : @user.cart.get_courses().sort()[0].semester
+      @semester_long = expand_semester(@semester)
+    end
   end
 
 =begin rdoc
