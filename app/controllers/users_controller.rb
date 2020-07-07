@@ -412,8 +412,10 @@ class UsersController < ApplicationController
   def schedule
     @user = User.find_by_email(params[:email] + "@oberlin.edu")
     return redirect_to root_path unless @user
-    @semester = params[:sem] ? translate_semester(params[:sem]) : @user.cart.get_courses().sort()[0].semester
-    @semester_long = expand_semester(@semester)
+    if not @user.cart.get_courses.empty?
+      @semester = params[:sem] ? translate_semester(params[:sem]) : @user.cart.get_courses().sort()[0].semester
+      @semester_long = expand_semester(@semester)
+    end
     ahoy.track "View schedule"
   end
 
