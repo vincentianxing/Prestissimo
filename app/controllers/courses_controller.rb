@@ -159,9 +159,10 @@ class CoursesController < ApplicationController
       #Semester Select Conditional
       # Uses 'LIKE' comparison
       # Converts from human-readable semester format to table semester shorthand
-      #  FORMAT: [First letter of Season][Last two digits of Year]
+      #  FORMAT: [Indicator letter for Season][Last two digits of Year]
       #  F12 - Fall 2012
       #  S12 - Spring 2012
+      #  U12 - Summer 2012
       #  and so on
       if !(params[:semester].blank?)
         semester = translate_semester(params[:semester])
@@ -205,9 +206,10 @@ class CoursesController < ApplicationController
       #Semester Select Conditional
       # Uses 'LIKE' comparison
       # Converts from human-readable semester format to table semester shorthand
-      #  FORMAT: [First letter of Season][Last two digits of Year]
+      #  FORMAT: [Indicator letter for Season][Last two digits of Year]
       #  F12 - Fall 2012
       #  S12 - Spring 2012
+      #  U12 - Summer 2012
       #  and so on
       if !(params[:semester].blank?)
         semester = translate_semester(params[:semester])
@@ -572,6 +574,7 @@ class CoursesController < ApplicationController
     sem = semester.split(" ")
     ret = "f" if sem[0] == "Fall"
     ret = "s" if sem[0] == "Spring"
+    ret = "u" if sem[0] == "Summer"
     ret << sem[1][2..3]
   end
 

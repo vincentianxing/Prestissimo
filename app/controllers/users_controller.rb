@@ -30,6 +30,10 @@ class UsersController < ApplicationController
     @user = User.find_by_email(params[:email] + "@oberlin.edu")
     return redirect_to error_404_path unless @user
     redirect_to show_professor_path(fname: @user.fname, lname: @user.lname) if faculty_user? @user
+
+    #For schedule semester checking
+    @semester = params[:sem] ? translate_semester(params[:sem]) : @user.cart.get_courses().sort()[0].semester
+    @semester_long = expand_semester(@semester)
   end
 
 =begin rdoc
@@ -408,6 +412,8 @@ class UsersController < ApplicationController
   def schedule
     @user = User.find_by_email(params[:email] + "@oberlin.edu")
     return redirect_to root_path unless @user
+    @semester = params[:sem] ? translate_semester(params[:sem]) : @user.cart.get_courses().sort()[0].semester
+    @semester_long = expand_semester(@semester)
     ahoy.track "View schedule"
   end
 
@@ -452,5 +458,21 @@ class UsersController < ApplicationController
     else
       nil
     end
+  end
+
+  def translate_semester(semester)
+    return "" if semester.nil?
+    sem = semester.split(" ")
+    ret = "f" if sem[0] == "Fall"
+    ret = "s" if sem[0] == "Spring"
+    ret = "u" if sem[0] == "Summer"
+    ret << sem[1][2..3]
+  end
+
+  def expand_semester(semester)
+    s = "Fall" if semester[0] == "f"
+    s = "Spring" if semester[0] == "s"
+    s = "Summer" if semester[0] == "u"
+    s << " 20#{semester[1..2]}"
   end
 end

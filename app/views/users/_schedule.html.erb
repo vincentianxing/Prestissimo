@@ -5,8 +5,21 @@
     <% if !@user.cart.courses.blank? %>
       <div id="schedule">
 
-        <h1 class="schedule_info">Schedule:</h1>
+        <h1 class="schedule_info">Schedule: <%=@semester_long%></h1>
         <p>&nbsp;</p>
+        <div id="semester_div">
+        <%= form_with(local: true) do |f| %>
+          <% dropdown = "" %>
+          <% get_semesters.each do |sem| %>
+            <% dropdown << "<option>#{sem}</option>" %>
+          <% end %>
+          <%= select_tag :sem,
+            dropdown.html_safe,
+            id: "semester_drop"
+          %>
+            <%= f.submit "Go"%>
+        <% end %>
+        </div>
         <div id="schedule_classes">
           <!-- SCHEDULER GO -->
           <div id="class_list">
@@ -188,10 +201,9 @@
                     events : [
                     <% cartcourses = current_user.cart.get_courses().sort() %>
                     <% unless cartcourses.empty? %>
-                      <% recentsem = cartcourses[0].semester %>
                       <% index = 1 %>
                       <% cartcourses.each do |c| %>
-                        <% if c.semester == recentsem %>
+                        <% if c.semester == @semester %>
                           <% c.days.each_char do |d| %>
                             {
                               "id": <%=index%> ,

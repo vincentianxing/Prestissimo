@@ -447,9 +447,11 @@ class Course < ApplicationRecord
   def self.text_semester(semester)
     s = "Fall" if semester[0] == "f"
     s = "Spring" if semester[0] == "s"
+    s = "Summer" if semester[0] == "u"
     s << " 20#{semester[1..2]}"
   end
 
+  #TODO Summer: This assumes semesters always start with the same month
   def self.translate_semester(year_month)
     year = year_month[2..3]
     month = year_month[4..5]
@@ -459,6 +461,8 @@ class Course < ApplicationRecord
       sem = "f"
     when "02"
       sem = "s"
+    when "05"
+      sem = "u"
     end
     sem << year
     sem
@@ -543,19 +547,29 @@ class Course < ApplicationRecord
     row
   end
 
+  #TODO Summer: Allow for Summer semester
   #Overiding comparaison operator so spring semesters will come before fall semesters when
   #comparing two course objects
   def <=>(other)
-    if self.semester.at(0) == "f"
+
+    case self.semester.at(0)
+    when "Fa"
       sem1 = self.semester[1..self.semester.length] + "9"
-    else
+    when "Sp"
       sem1 = self.semester[1..self.semester.length] + "2"
+    when "Su"
+      sem1 = self.semester[1..self.semester.length] + "5"
     end
-    if other.semester.at(0) == "f"
-      sem2 = other.semester[1..other.semester.length] + "9"
-    else
-      sem2 = other.semester[1..other.semester.length] + "2"
+
+    case other.semester.at(0)
+    when "Fa"
+      sem2 = self.semester[1..self.semester.length] + "9"
+    when "Sp"
+      sem2 = self.semester[1..self.semester.length] + "2"
+    when "Su"
+      sem2 = self.semester[1..self.semester.length] + "5"
     end
+    
     if sem1.to_i < sem2.to_i
       return 1
     elsif sem1.to_i > sem2.to_i

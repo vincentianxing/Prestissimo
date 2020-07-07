@@ -26,9 +26,11 @@ module CoursesHelper
     mod
   end
 
+  #TODO: This is contrary to other uses of the name translate_semester. Rename accordingly (expand_semester?)
   def translate_semester(semester)
           s = "Fall" if semester[0] == "f"
           s = "Spring" if semester[0] == "s"
+          s = "Summer" if semester[0] == "u"
           s << " 20#{semester[1..2]}"
   end
 
