@@ -1,14 +1,15 @@
-<!-- display of SEMESTER
+<!-- display of SCHOOL YEAR
 			- input: drop down menu
-			- field: semester
+			- field: year
 			-->
-<div class="form ui-alt-icon" id="semester_div">
-	<span class="label search_label">Semester:</span>
+<div class="form ui-alt-icon" id="Year_div">
+	<span class="label search_label">Year:</span>
 	<% dropdown = "" %>
 	<% get_semesters.each do |sem| %>
-		<% dropdown << "<option>#{sem}</option>" %>
+		<%year = sem_to_school_year(sem)%>
+		<% dropdown << "<option>#{year}</option>" unless dropdown.include? year%>
 	<% end %>
-	<%= select_tag :semester,
+	<%= select_tag :year,
 		dropdown.html_safe,
 		class: "search_tag",
 		id: "year_drop"

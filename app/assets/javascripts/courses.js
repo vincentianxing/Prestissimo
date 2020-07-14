@@ -704,8 +704,8 @@ $(document).ready(function() {
 
         $("#professor_field").val("");
         var year_drop = $("#year_drop option");
-        var cur_semester = year_drop[0].text;
-        $("#year_drop").val(cur_semester);
+        var cur_year = year_drop[0].text;
+        $("#year_drop").val(cur_year);
         
         // TODO select current semester OR search default current semester
         $('#fa').removeAttr('checked');

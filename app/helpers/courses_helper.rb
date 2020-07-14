@@ -52,4 +52,11 @@ module CoursesHelper
     end
     @links[key]
   end
+
+  def sem_to_school_year(sem)
+    year = sem.delete("^0-9").to_i
+    return sem unless year
+    year -= 1 unless sem.starts_with?("Fall")
+    "#{year}-#{year + 1}"
+  end
 end

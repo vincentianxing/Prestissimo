@@ -1,14 +1,15 @@
-<!-- display of SEMESTER
+<!-- display of SCHOOL YEAR
 - input: drop down menu
-- field: semester
+- field: year
 -->
-<div class="form" id="year_div" title="<%="Search by semester; some past semesters are available for viewing.\nPrestissimo updates to the new catalog when it becomes available midway through the preceding semester."%>">
-  <span class="label search_label">Semester:</span>
+<div class="form" id="year_div" title="<%="Search by school year; some past school years are available for viewing.\nPrestissimo updates to the new catalog when it becomes available midway through the preceding semester."%>">
+  <span class="label search_label">Year:</span>
   <% dropdown = "" %>
   <% get_semesters.each do |sem| %>
-    <% dropdown << "<option>#{sem}</option>" %>
+    <%year = sem_to_school_year(sem)%>
+    <% dropdown << "<option>#{year}</option>" unless dropdown.include? year%>
   <% end %>
-  <%= select_tag :semester,
+  <%= select_tag :year,
     dropdown.html_safe,
     class: "search_tag",
       id: "year_drop"
