@@ -1,0 +1,16 @@
+<!-- display of SEMESTER
+			- input: drop down menu
+			- field: semester
+			-->
+<div class="form ui-alt-icon" id="semester_div">
+	<span class="label search_label">Semester:</span>
+	<% dropdown = "" %>
+	<% get_semesters.each do |sem| %>
+		<% dropdown << "<option>#{sem}</option>" %>
+	<% end %>
+	<%= select_tag :semester,
+		dropdown.html_safe,
+		class: "search_tag",
+		id: "year_drop"
+	%>
+</div>

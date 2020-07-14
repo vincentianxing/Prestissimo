@@ -14,7 +14,7 @@
 
 #search_form_upper_right {
   width: 600px;
-  height: 212px;
+  height: 252px;
   float: right;
 }
 
@@ -80,7 +80,7 @@
   margin-left: 0;
   margin-top: 3px;
   margin-bottom: 9px;
-  height: 102px;
+  height: 142px;
   width: 176px;
   border: 2px solid $deptSelectionListBackground;
   border-radius: 5px;
@@ -823,6 +823,9 @@ tr.selected	{
 #ns_checkbox,
 #ss_checkbox,
 #hu_checkbox,
+#fa_checkbox,
+#sp_checkbox,
+#su_checkbox,
 {
   font-size: small;
   font-family: $labelFont;
@@ -943,7 +946,7 @@ tr.selected	{
 
 #courselevel_drop,
 #coursenumber_drop,
-#semester_drop,
+#year_drop,
 #time_drop,
 #date_div select {
   //background-color:#ededed;
@@ -954,15 +957,22 @@ tr.selected	{
   float: left;
 }
 
-#semester_drop {
+#year_drop {
   width: 101px;
 }
 
-#semester_div {
+#year_div {
 //  width: 166px;
   display: inline-block;
   float: right;
 }
+
+#semesters_div {
+    width: 590px;
+    display: inline-block;
+    float: right;
+    margin-bottom: 5px;
+  }
 
 #date_div .separator {
   //position:relative;

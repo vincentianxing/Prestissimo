@@ -317,6 +317,7 @@ $(document).ready(function() {
     //$( ".day_buttonset").buttonset();
     $('#days_div').buttonset();
     $('#days_div1').button( { icons: {primary:'ui-icon-gear', secondary:'null'}});
+    $('#semesters_div').buttonset();
     $('#proficiencies_div').buttonset();
     $('#attributes_div').buttonset();
     $('#modules_div').buttonset();
@@ -653,9 +654,9 @@ $(document).ready(function() {
         $("#crn_field").val("");
         $("#dept_drop").val("");
         $("#keyword_field").val("");
-	$("#dept_text").empty();
+	    $("#dept_text").empty();
         $("#dept_list").empty();
-	$("#dept_list").text("No departments selected");
+	    $("#dept_list").text("No departments selected");
         $("#time_sliderdiv").slider('values', 0, 480);
         $("#time_sliderdiv").slider('values', 1, 1260);
         $( "#end_hour").val( "");
@@ -702,9 +703,17 @@ $(document).ready(function() {
         $( "#min_credits").val(min_credits);
 
         $("#professor_field").val("");
-        var semester_drop = $("#semester_drop option");
-        var cur_semester = semester_drop[0].text;
-        $("#semester_drop").val(cur_semester);
+        var year_drop = $("#year_drop option");
+        var cur_semester = year_drop[0].text;
+        $("#year_drop").val(cur_semester);
+        
+        // TODO select current semester OR search default current semester
+        $('#fa').removeAttr('checked');
+        $('#fa').button("refresh");
+        $('#sp').removeAttr('checked');
+        $('#sp').button("refresh");
+        $('#su').removeAttr('checked');
+        $('#su').button("refresh");
         
         $('#key_button_all').attr('checked', 'checked');
         $('#key_button_all').button("refresh");

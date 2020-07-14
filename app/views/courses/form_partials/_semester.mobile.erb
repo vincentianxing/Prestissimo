@@ -2,15 +2,46 @@
 			- input: drop down menu
 			- field: semester
 			-->
-<div class="form ui-alt-icon" id="semester_div">
-	<span class="label search_label">Semester:</span>
-	<% dropdown = "" %>
-	<% get_semesters.each do |sem| %>
-		<% dropdown << "<option>#{sem}</option>" %>
-	<% end %>
-	<%= select_tag :semester,
-		dropdown.html_safe,
-		class: "search_tag",
-		id: "semester_drop"
-	%>
+<% if in_mobile_view? %>
+	<div data-role="fieldcontain" class="field_group">
+		<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" class="mobile_fieldset">
+			<legend>Semesters:</legend>
+                        <div class="ui-corner-all field_box btn_width_third">
+                        <%= check_box_tag :fa, params[:fa]%>
+						<%= label_tag 'fa', 'FA' %>
+						<%= check_box_tag :sp, params[:sp]%>
+						<%= label_tag 'sp', 'SP' %>
+						<%= check_box_tag :su, params[:su]%>
+                        <%= label_tag 'su', 'SU' %>
+                        </div>
+		</fieldset>
+	</div>
+<% else %>
+<div class="form" id="semesters_div">
+	<span class="label search_label">Semesters:</span>
+	<table id="semesters_table">
+		<tr>
+			<td>
+				FA
+			</td>
+			<td>
+				SP
+			</td>
+			<td>
+				SU
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= check_box_tag :fa, params[:fa], false, class: "search_tag" %>
+			</td>
+			<td>
+				<%= check_box_tag :sp, params[:sp], false, class: "search_tag" %>
+			</td>
+			<td>
+				<%= check_box_tag :su, params[:su], false, class: "search_tag" %>
+			</td>
+		</tr>
+	</table>
 </div>
+<% end %>

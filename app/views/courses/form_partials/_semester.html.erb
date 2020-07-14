@@ -2,15 +2,25 @@
 - input: drop down menu
 - field: semester
 -->
-<div class="form" id="semester_div" title="<%="Search by semester; some past semesters are available for viewing.\nPrestissimo updates to the new catalog when it becomes available midway through the preceding semester."%>">
-  <span class="label search_label">Semester:</span>
-  <% dropdown = "" %>
-  <% get_semesters.each do |sem| %>
-    <% dropdown << "<option>#{sem}</option>" %>
-  <% end %>
-  <%= select_tag :semester,
-    dropdown.html_safe,
-    class: "search_tag",
-      id: "semester_drop"
-  %>
-</div>
+<% if in_mobile_view? %>
+	<div data-role="fieldcontain" class="field_group">
+		<fieldset data-role="controlgroup" data-type="horizontal">
+			<legend>Semesters:</legend>
+			<%= check_box_tag :fa, params[:fa]%>
+			<%= label_tag 'fa', 'FA' %>
+			<%= check_box_tag :sp, params[:sp]%>
+			<%= label_tag 'sp', 'SP' %>
+			<%= check_box_tag :su, params[:su]%>
+			<%= label_tag 'su', 'SU' %>
+		</fieldset>
+	</div>
+<% else %>
+    <div class="form" id="semesters_div", title='Search by semester. If more than one semester is selected, then courses that are in all selected semesters will be shown.'>
+      <%= check_box_tag :fa, params[:fa], false, class: "search_tag" %>
+      <label for="fa" id="fa_checkbox">Fall</label>
+      <%= check_box_tag :sp, params[:sp], false, class: "search_tag" %>
+      <label for="sp" id="sp_checkbox">Spring</label>
+      <%= check_box_tag :su, params[:su], false, class: "search_tag" %>
+      <label for="su" id="su_checkbox">Summer</label>
+    </div>
+<% end %>
