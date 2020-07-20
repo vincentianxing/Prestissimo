@@ -164,8 +164,8 @@ class CoursesController < ApplicationController
       #  S12 - Spring 2012
       #  U12 - Summer 2012
       #  and so on
-      if !(params[:semester].blank?)
-        semester = translate_semester(params[:semester])
+      if !(params[:semester].blank? || params[:year].blank?)
+        semester = translate_semester_year(params[:semester], params[:year])
         qs = likeAppend("semester", "#{semester}", qs)
       end
 
@@ -211,8 +211,8 @@ class CoursesController < ApplicationController
       #  S12 - Spring 2012
       #  U12 - Summer 2012
       #  and so on
-      if !(params[:semester].blank?)
-        semester = translate_semester(params[:semester])
+      if !(params[:semester].blank? || params[:year].blank?)
+        semester = translate_semester_year(params[:semester], params[:year])
         qs = likeAppend("semester", "#{semester}", qs)
       end
 
@@ -576,6 +576,13 @@ class CoursesController < ApplicationController
     ret = "s" if sem[0] == "Spring"
     ret = "u" if sem[0] == "Summer"
     ret << sem[1][2..3]
+  end
+
+  def translate_semester_year(semester, year)
+    ret = "f#{year[2..3]}" if semester == "Fall"
+    ret = "s#{year[7..8]}" if semester == "Spring"
+    ret = "u#{year[7..8]}" if semester == "Summer"
+    return ret | semester+year
   end
 
   # compares the search results to the user's cart and tags the conflicting courses
