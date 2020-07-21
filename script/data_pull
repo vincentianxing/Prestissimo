@@ -9,7 +9,10 @@ BUNDLE="/usr/share/rvm/gems/ruby-2.6.3/bin/bundle"
 RAKE="/usr/share/rvm/gems/ruby-2.6.3/bin/rake"
 
 # Where data comes from
-DROPDIR="/home/datadrop"
+
+#TEMPORARY: CHANGE BACK
+#DROPDIR="/home/datadrop"
+DROPDIR="/home/bsimon/tempdumps"
 #DROPFILE=`ls ${DROPDIR}/oprestissimo_*.lis | tail -1`
 DROPFILE=`ls -t1 ${DROPDIR}/*.lis | head -1`
 #DROPFILE="/tmp/bktest.txt"
