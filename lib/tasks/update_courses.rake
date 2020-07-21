@@ -9,6 +9,11 @@ namespace :db do
     Course.where(semester: "s20").delete_all
   end
 
+  desc "remove all f20 courses"
+  task :delete_f20, [:you_sure] => [:environment] do |t, args|
+    Course.where(semester: "f20").delete_all
+  end
+
   desc "get/set revision of course DB"
   task :courses_revision, [:revision_no] => [:environment] do |t, args|
     if args[:revision_no].blank?

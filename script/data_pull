@@ -137,8 +137,8 @@ then
 fi
 
 # Take the columns we need for the database
-cut -d'|' -f1-33,36-45,49-51,55-57,61- "${DROPFILE_BAC}" | sort > "${DESTFILE}"
-cut -d'|' -f5,34-35,47,53,59 "${DROPFILE_BAC}" | sort -n > "${ENROLLFILE}"
+cut -d'|' -f1-16,18-34,37-46,50-52,56-58,62- "${DROPFILE_BAC}" | sort > "${DESTFILE}"
+cut -d'|' -f5,35-36,48,54,60 "${DROPFILE_BAC}" | sort -n > "${ENROLLFILE}"
 
 # Check in to RCS
 ci -l -m"Auto_Checkin" "${DESTFILE}" 2>&1
