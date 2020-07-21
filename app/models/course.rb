@@ -461,7 +461,7 @@ class Course < ApplicationRecord
       sem = "f"
     when "02"
       sem = "s"
-    when "05"
+    when "06"
       sem = "u"
     end
     sem << year
