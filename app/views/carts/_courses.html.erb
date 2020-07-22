@@ -1,9 +1,9 @@
 <% courses = @cart_courses if @cart_courses %>
-<% courses = courses.sort_by{|e| e.semester}%>
 <% unless courses.nil? %>
   <% if courses.size > 0 %>
     <div id="courses_scroller">
       <table class="courses">
+        <% courses = courses.sort_by{|e| e.semester}%>
         <% nums = Array.new %>
 
         <!-- For gradient row backgrounds:
