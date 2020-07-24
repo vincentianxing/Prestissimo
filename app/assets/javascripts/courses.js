@@ -722,8 +722,8 @@ $(document).ready(function() {
         $('#ip').button("refresh");
         $('#hy').removeAttr('checked');
         $('#hy').button("refresh");
-        $('#fr').removeAttr('checked');
-        $('#fr').button("refresh");
+        $('#ro').removeAttr('checked');
+        $('#ro').button("refresh");
         $('#cd').removeAttr('checked');
         $('#cd').button("refresh");
         $('#qfr').removeAttr('checked');

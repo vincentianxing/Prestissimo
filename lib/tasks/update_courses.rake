@@ -145,6 +145,7 @@ namespace :db do
             matches_start_times = matches.map { |m| m[:start_time] }
             matches_end_times = matches.map { |m| m[:end_time] }
             matches_rooms = matches.map { |m| m[:room] }
+            matches_remote = matches.map { |m| m[:remote] }
             matches.each do |match|
               # copying over enrollments from old versions
               c.enroll ||= match.enroll
@@ -193,6 +194,8 @@ namespace :db do
                       next if matches_end_times.include?(c.send(k))
                     when "room"
                       next if matches_rooms.include?(c.send(k))
+                    when "remote"
+                      next if matches_remote.include?(c.send(k))
                     end
                     unless changed_fields_str.include?(k)
                       changed_fields_str << "|" unless changed_fields_str.blank?

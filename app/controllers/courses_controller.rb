@@ -349,19 +349,30 @@ class CoursesController < ApplicationController
       end
 
       #Remote Conditionals
-      if !(params[:ip].blank?)
-        ip = "IP"
-        qs = likeAppend("distributions", "#{ip}", qs)
-      end
+      if !(params[:ip].blank? && params[:hy].blank? && params[:ro].blank?)
 
-      if !(params[:hy].blank?)
-        hy = "HY"
-        qs = likeAppend("distributions", "#{hy}", qs)
-      end
+        sub = ""
+        num = 0
+        if !(params[:ip].blank?)
+          sub = orAppend("remote", "INPRS", sub)
+          num = num + 1
+        end
+  
+        if !(params[:hy].blank?)
+          sub = orAppend("remote", "HYBRD", sub)
+          num = num + 1
+        end
+  
+        if !(params[:ro].blank?)
+          sub = orAppend("remote", "RMOTE", sub)
+          num = num + 1
+        end
 
-      if !(params[:fr].blank?)
-        fr = "FR"
-        qs = likeAppend("distributions", "#{fr}", qs)
+        4.times { sub.chop! }
+        if (num > 1)
+          sub = "(" + sub + ")"
+        end
+        qs << sub + " AND "
       end
 
       #Number of Credits Conditionals

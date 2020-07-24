@@ -1,6 +1,6 @@
 <!-- Display of REMOTE
 			- input: checkbox
-			- fields: ip, hy, fr
+			- fields: ip, hy, ro
 			- displayed as a table
 			-->
 <% if in_mobile_view? %>
@@ -12,8 +12,8 @@
 			<%= label_tag 'ip', 'IP' %>
 			<%= check_box_tag :hy, params[:hy]%>
 			<%= label_tag 'hy', 'HY' %>
-			<%= check_box_tag :fr, params[:fr]%>
-                        <%= label_tag 'fr', 'FR' %>
+			<%= check_box_tag :ro, params[:ro]%>
+                        <%= label_tag 'ro', 'RO' %>
                         </div>
 		</fieldset>
 	</div>
@@ -29,7 +29,7 @@
 				HY
 			</td>
 			<td>
-				FR
+				RO
 			</td>
 		</tr>
 		<tr>
@@ -40,7 +40,7 @@
 				<%= check_box_tag :hy, params[:hy], false, class: "search_tag" %>
 			</td>
 			<td>
-				<%= check_box_tag :fr, params[:fr, false, class: "search_tag" %>
+				<%= check_box_tag :ro, params[:ro, false, class: "search_tag" %>
 			</td>
 		</tr>
 	</table>

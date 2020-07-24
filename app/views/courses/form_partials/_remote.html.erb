@@ -1,6 +1,6 @@
 <!-- Display of REMOTE
 			- input: checkbox
-			- fields: ip, hy, fr
+			- fields: ip, hy, ro
 			- displayed as a table
 			-->
 <% if in_mobile_view? %>
@@ -11,17 +11,17 @@
 			<%= label_tag 'ip', 'IP' %>
 			<%= check_box_tag :hy, params[:hy]%>
 			<%= label_tag 'hy', 'HY' %>
-			<%= check_box_tag :fr, params[:fr]%>
-			<%= label_tag 'fr', 'FR' %>
+			<%= check_box_tag :ro, params[:ro]%>
+			<%= label_tag 'ro', 'RO' %>
 		</fieldset>
 	</div>
 <% else %>
-    <div class="form" id="remote_div", title='Search by remote status. If more than one status is selected, then only courses that are in all selected divisions will be shown.'>
+    <div class="form" id="remote_div", title='Search by remote status. If more than one status is selected, then courses that meet any will be shown. Note that some courses have no set status'>
       <%= check_box_tag :ip, params[:ip], false, class: "search_tag" %>
       <label for="ip" id="ip_checkbox">In Person</label>
       <%= check_box_tag :hy, params[:hy], false, class: "search_tag" %>
       <label for="hy" id="hy_checkbox">Hybrid</label>
-      <%= check_box_tag :fr, params[:fr], false, class: "search_tag" %>
-      <label for="fr" id="fr_checkbox">Full Remote</label>
+      <%= check_box_tag :ro, params[:ro], false, class: "search_tag" %>
+      <label for="ro" id="ro_checkbox">Remote Only</label>
     </div>
 <% end %>

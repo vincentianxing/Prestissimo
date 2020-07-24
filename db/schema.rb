@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_21_213312) do
+ActiveRecord::Schema.define(version: 2020_07_24_180231) do
 
   create_table "ahoy_events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "visit_id"
@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 2020_07_21_213312) do
     t.string "notify_profs"
     t.string "recent_edit"
     t.string "changed_fields"
+    t.string "remote"
     t.index ["semcrn"], name: "index_courses_on_semcrn"
   end
 
