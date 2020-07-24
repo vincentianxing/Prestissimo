@@ -348,6 +348,33 @@ class CoursesController < ApplicationController
         qs = likeAppend("distributions", "DDHU", qs)
       end
 
+      #Remote Conditionals
+      if !(params[:ip].blank? && params[:hy].blank? && params[:ro].blank?)
+
+        sub = ""
+        num = 0
+        if !(params[:ip].blank?)
+          sub = orAppend("remote", "INPRS", sub)
+          num = num + 1
+        end
+  
+        if !(params[:hy].blank?)
+          sub = orAppend("remote", "HYBRD", sub)
+          num = num + 1
+        end
+  
+        if !(params[:ro].blank?)
+          sub = orAppend("remote", "RMOTE", sub)
+          num = num + 1
+        end
+
+        4.times { sub.chop! }
+        if (num > 1)
+          sub = "(" + sub + ")"
+        end
+        qs << sub + " AND "
+      end
+
       #Number of Credits Conditionals
       # Uses numerical comparisons, and searches in an inclusive range
       if !(params[:min_credits].blank?)

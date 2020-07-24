@@ -44,6 +44,7 @@
 #  distributions    :string(255)
 #  dept_long        :string(255)     default("")
 #  page             :integer(4)      default(0)
+#  remote           :string(255)     default("INPRS")
 #
 
 class Course < ApplicationRecord
@@ -315,6 +316,9 @@ class Course < ApplicationRecord
     # description and prereqs
     c.descrip = course_arr[49] || ""
     c.prereqs = course_arr[50] || ""
+
+    # instruction status
+    c.remote = course_arr[51] || "INPRS"
 
     # semcrn
     c.semcrn = "#{c.semester}_#{c.crn}"
