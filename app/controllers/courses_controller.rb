@@ -348,6 +348,22 @@ class CoursesController < ApplicationController
         qs = likeAppend("distributions", "DDHU", qs)
       end
 
+      #Remote Conditionals
+      if !(params[:ip].blank?)
+        ip = "IP"
+        qs = likeAppend("distributions", "#{ip}", qs)
+      end
+
+      if !(params[:hy].blank?)
+        hy = "HY"
+        qs = likeAppend("distributions", "#{hy}", qs)
+      end
+
+      if !(params[:fr].blank?)
+        fr = "FR"
+        qs = likeAppend("distributions", "#{fr}", qs)
+      end
+
       #Number of Credits Conditionals
       # Uses numerical comparisons, and searches in an inclusive range
       if !(params[:min_credits].blank?)

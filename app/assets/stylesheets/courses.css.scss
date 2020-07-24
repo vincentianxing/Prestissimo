@@ -451,7 +451,7 @@ td.enroll span.cur_enroll {
   padding:20px;
 }
 
-div#content div.desc_spec, {
+div#content div.desc_spec {
   clear: both;
 
   margin:4px 6px;
@@ -843,6 +843,9 @@ tr.selected	{
 #fc_radio,
 #hc_radio,
 #cc_radio,
+#ip_checkbox,
+#hy_checkbox,
+#fr_checkbox
 #all_terms_radio,
 #any_terms_radio
 {
@@ -855,7 +858,9 @@ tr.selected	{
   width: 85px;
 }
 
-#fc_radio, #hc_radio, #cc_radio {
+#fc_radio, #hc_radio, #cc_radio, #ip_checkbox,
+#hy_checkbox,
+#fr_checkbox {
   width: 114px;
 }
 
@@ -900,6 +905,11 @@ tr.selected	{
   padding-top: 0;
 }
 
+#remote_div {
+  text-align: right;
+  width: 356px;
+  margin-top: 12px;
+}
 
 #con_attributes_div {
   float:left;
@@ -921,6 +931,13 @@ tr.selected	{
 }
 
 #attributes_table td {
+  text-align:center;
+  padding:0;
+  padding-right:5px;
+  margin:0;
+}
+
+#remote_table td {
   text-align:center;
   padding:0;
   padding-right:5px;
@@ -978,6 +995,7 @@ tr.selected	{
 #cname_div,
 #modules_div,
 #full_course_div,
+#remote_div,
 #con_attributes_div{
   margin-bottom: 6px;
 }
