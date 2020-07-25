@@ -215,9 +215,9 @@ val2: the larger/second of the two values used for comparison
                 
               </p>
               <div id="method-i-betweenAppend_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 544</span>
+                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 591</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">betweenAppend</span>(<span class="ruby-identifier">field</span>, <span class="ruby-identifier">val1</span>, <span class="ruby-identifier">val2</span>, <span class="ruby-identifier">qs</span>)
-  <span class="ruby-identifier">qs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">field</span><span class="ruby-string">+&#39; BETWEEN &#39;</span><span class="ruby-operator">+</span><span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-identifier">val1</span>)<span class="ruby-string">+&#39; AND &#39;</span><span class="ruby-operator">+</span><span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-identifier">val2</span>)<span class="ruby-string">+&#39; AND &#39;</span>
+  <span class="ruby-identifier">qs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">field</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; BETWEEN &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-identifier">val1</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot; AND &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-identifier">val2</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot; AND &quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -252,7 +252,7 @@ val2: the larger/second of the two values used for comparison
                 
               </p>
               <div id="method-i-correct_prof_user_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 548</span>
+                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 595</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">correct_prof_user</span>
   <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">root_path</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">signed_in?</span>
   <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">root_path</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">faculty_user?</span>(<span class="ruby-identifier">current_user</span>)
@@ -290,13 +290,13 @@ val2: the larger/second of the two values used for comparison
                 
               </p>
               <div id="method-i-highlight_keywords_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 623</span>
+                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 670</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">highlight_keywords</span>(<span class="ruby-identifier">courses</span>, <span class="ruby-identifier">keywords</span>)
   <span class="ruby-identifier">keywords</span>.<span class="ruby-identifier">strip!</span>
-  <span class="ruby-identifier">keys</span> = <span class="ruby-identifier">keywords</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/&#39;.+?&#39;|&quot;.+?&quot;|[^ ]+/</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">gsub</span> <span class="ruby-regexp">/^[&#39;&quot;]|[&#39;&quot;]$/</span>, <span class="ruby-string">&#39;&#39;</span> }.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">k</span>) }
+  <span class="ruby-identifier">keys</span> = <span class="ruby-identifier">keywords</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/&#39;.+?&#39;|&quot;.+?&quot;|[^ ]+/</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">gsub</span> <span class="ruby-regexp">/^[&#39;&quot;]|[&#39;&quot;]$/</span>, <span class="ruby-string">&quot;&quot;</span> }.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">k</span>) }
   <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">result</span><span class="ruby-operator">|</span>
     [<span class="ruby-value">:descrip</span>, <span class="ruby-value">:short_title</span>, <span class="ruby-value">:title</span>, <span class="ruby-value">:xlist1</span>, <span class="ruby-value">:xlist2</span>, <span class="ruby-value">:xlist3</span>, <span class="ruby-value">:prereqs</span>, <span class="ruby-value">:dept</span>, <span class="ruby-value">:dept_long</span>, <span class="ruby-value">:prof_desc</span>, <span class="ruby-value">:prof_note</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">field</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">result</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">field</span>).<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">/#{keys.join(&#39;|&#39;)}/i</span>, <span class="ruby-string">&#39;&lt;span class=highlight&gt;\0&lt;/span&gt;&#39;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">field</span>).<span class="ruby-identifier">blank?</span>
+      <span class="ruby-identifier">result</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">field</span>).<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">/#{keys.join(&quot;|&quot;)}/i</span>, <span class="ruby-string">&#39;&lt;span class=highlight&gt;\0&lt;/span&gt;&#39;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">field</span>).<span class="ruby-identifier">blank?</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">courses</span>
@@ -341,9 +341,9 @@ value: value used for comparison, can be any type
                 
               </p>
               <div id="method-i-likeAppend_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 511</span>
+                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 558</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">likeAppend</span>(<span class="ruby-identifier">field</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">qs</span>)
-  <span class="ruby-identifier">qs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">field</span><span class="ruby-string">+&#39; LIKE &#39;</span><span class="ruby-operator">+</span><span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-string">&quot;%&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">value</span><span class="ruby-string">+&quot;%&quot;</span>)<span class="ruby-string">+&#39; AND &#39;</span>
+  <span class="ruby-identifier">qs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">field</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; LIKE &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-string">&quot;%&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;%&quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot; AND &quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -378,9 +378,9 @@ value: value used for comparison, can be any type
                 
               </p>
               <div id="method-i-likeAppendMulti_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 515</span>
+                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 562</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">likeAppendMulti</span>(<span class="ruby-identifier">field</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">qs</span>)
-  <span class="ruby-identifier">qs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">field</span><span class="ruby-string">+&#39; LIKE &#39;</span><span class="ruby-operator">+</span><span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-string">&quot;%&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">value</span><span class="ruby-string">+&quot;%&quot;</span>)<span class="ruby-string">+&#39;) AND &#39;</span>
+  <span class="ruby-identifier">qs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">field</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; LIKE &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-string">&quot;%&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;%&quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;) AND &quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -423,9 +423,9 @@ comparator: a numerical comparison operator, i.e. &gt;, &lt;, &gt;=, etc.
                 
               </p>
               <div id="method-i-numAppend_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 534</span>
+                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 581</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">numAppend</span>(<span class="ruby-identifier">field</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">comparator</span>, <span class="ruby-identifier">qs</span>)
-  <span class="ruby-identifier">qs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">field</span><span class="ruby-string">+&#39; &#39;</span><span class="ruby-operator">+</span><span class="ruby-identifier">comparator</span><span class="ruby-string">+&#39; &#39;</span><span class="ruby-operator">+</span><span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-identifier">value</span>)<span class="ruby-string">+&#39; AND &#39;</span>
+  <span class="ruby-identifier">qs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">field</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">comparator</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-identifier">value</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot; AND &quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -467,9 +467,9 @@ value: value used for comparion, can be any type
                 
               </p>
               <div id="method-i-orAppend_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 524</span>
+                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 571</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">orAppend</span>(<span class="ruby-identifier">field</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">qs</span>)
-  <span class="ruby-identifier">qs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">field</span><span class="ruby-string">+&#39; LIKE &#39;</span><span class="ruby-operator">+</span><span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-string">&quot;%&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">value</span><span class="ruby-string">+&quot;%&quot;</span>)<span class="ruby-string">+&#39; OR &#39;</span>
+  <span class="ruby-identifier">qs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">field</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; LIKE &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-string">&quot;%&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;%&quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot; OR &quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -479,7 +479,7 @@ value: value used for comparion, can be any type
         <div class="method">
           <div class="title method-title" id="method-i-tag_conflicts">
             
-              <b>tag_conflicts</b>(courses,cart_courses)
+              <b>tag_conflicts</b>(courses, cart_courses)
             
             <a href="../classes/Object.html#method-i-tag_conflicts" name="method-i-tag_conflicts" class="permalink">Link</a>
           </div>
@@ -504,17 +504,17 @@ value: value used for comparion, can be any type
                 
               </p>
               <div id="method-i-tag_conflicts_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 561</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tag_conflicts</span>(<span class="ruby-identifier">courses</span>,<span class="ruby-identifier">cart_courses</span>)
+                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 609</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tag_conflicts</span>(<span class="ruby-identifier">courses</span>, <span class="ruby-identifier">cart_courses</span>)
   <span class="ruby-comment"># compare each course and cart entry for conflicts</span>
 
   <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">result</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">temp_descrip</span>=<span class="ruby-string">&quot;&quot;</span>
-    <span class="ruby-identifier">temp_prof_desc</span>=<span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-identifier">temp_descrip</span> = <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-identifier">temp_prof_desc</span> = <span class="ruby-string">&quot;&quot;</span>
     <span class="ruby-identifier">cart_courses</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cart</span><span class="ruby-operator">|</span>
       <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">semester</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">cart</span>.<span class="ruby-identifier">semester</span>
       <span class="ruby-comment"># they are not a conflict if they&#39;re the same course</span>
-      <span class="ruby-identifier">conflict_message</span> = <span class="ruby-string">&quot;&lt;span class=\&#39;course_in_cart\&#39;&gt;This course is already in your cart.&lt;/span&gt;&lt;br&gt;&quot;</span> 
+      <span class="ruby-identifier">conflict_message</span> = <span class="ruby-string">&quot;&lt;span class=\&#39;course_in_cart\&#39;&gt;This course is already in your cart.&lt;/span&gt;&lt;br&gt;&quot;</span>
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">crn</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">cart</span>.<span class="ruby-identifier">crn</span>
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">which_desc</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;professor&quot;</span>
           <span class="ruby-keyword">unless</span> <span class="ruby-identifier">temp_prof_desc</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;This course is already in your cart&quot;</span>)
@@ -538,9 +538,9 @@ value: value used for comparion, can be any type
       <span class="ruby-comment"># compare the days</span>
       <span class="ruby-identifier">result</span>.<span class="ruby-identifier">days</span>.<span class="ruby-identifier">each_char</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">day</span><span class="ruby-operator">|</span>
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">cart</span>.<span class="ruby-identifier">days</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">day</span>
-          <span class="ruby-keyword">if</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">which_desc</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;professor&quot;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">temp_prof_desc</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-node">&quot;This course conflicts with #{cart.dept}-#{cart.cnum}&quot;</span>) 
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">which_desc</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;professor&quot;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">temp_prof_desc</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-node">&quot;This course conflicts with #{cart.dept}-#{cart.cnum}&quot;</span>)
             <span class="ruby-identifier">temp_prof_desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;span class=\&quot;course_conflict\&quot;&gt;This course conflicts with #{cart.dept}-#{cart.cnum}.&lt;/span&gt;&lt;br&gt;&quot;</span>
-          <span class="ruby-keyword">break</span>
+            <span class="ruby-keyword">break</span>
           <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">temp_descrip</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-node">&quot;This course conflicts with #{cart.dept}-#{cart.cnum}&quot;</span>)
             <span class="ruby-identifier">temp_descrip</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;span class=\&quot;course_conflict\&quot;&gt;This course conflicts with #{cart.dept}-#{cart.cnum}.&lt;/span&gt;&lt;br&gt;&quot;</span>
             <span class="ruby-keyword">break</span>
@@ -548,7 +548,7 @@ value: value used for comparion, can be any type
         <span class="ruby-keyword">end</span>
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
-    
+
     <span class="ruby-keyword">unless</span> <span class="ruby-identifier">temp_prof_desc</span>.<span class="ruby-identifier">blank?</span>
       <span class="ruby-identifier">temp_prof_desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;&lt;span class=\&quot;expanded_course_header\&quot;&gt;Professor Description:&lt;/span&gt;&quot;</span>
       <span class="ruby-identifier">temp_prof_desc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">simple_format</span>(<span class="ruby-identifier">result</span>.<span class="ruby-identifier">prof_desc</span>)
@@ -561,7 +561,6 @@ value: value used for comparion, can be any type
       <span class="ruby-identifier">temp_descrip</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;&lt;/p&gt;&quot;</span>
       <span class="ruby-identifier">result</span>.<span class="ruby-identifier">descrip</span> = <span class="ruby-identifier">temp_descrip</span>
     <span class="ruby-keyword">end</span>
-
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">courses</span>
 <span class="ruby-keyword">end</span></pre>
@@ -598,11 +597,12 @@ value: value used for comparion, can be any type
                 
               </p>
               <div id="method-i-translate_semester_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 553</span>
+                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 600</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">translate_semester</span>(<span class="ruby-identifier">semester</span>)
   <span class="ruby-identifier">sem</span> = <span class="ruby-identifier">semester</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot; &quot;</span>)
   <span class="ruby-identifier">ret</span> = <span class="ruby-string">&quot;f&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">sem</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Fall&quot;</span>
   <span class="ruby-identifier">ret</span> = <span class="ruby-string">&quot;s&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">sem</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Spring&quot;</span>
+  <span class="ruby-identifier">ret</span> = <span class="ruby-string">&quot;u&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">sem</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Summer&quot;</span>
   <span class="ruby-identifier">ret</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sem</span>[<span class="ruby-value">1</span>][<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>]
 <span class="ruby-keyword">end</span></pre>
               </div>

@@ -247,7 +247,7 @@
                 
               </p>
               <div id="method-i-confirm_destroy_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 313</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 321</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">confirm_destroy</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&quot;@oberlin.edu&quot;</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@user</span>
@@ -290,7 +290,7 @@
                 
               </p>
               <div id="method-i-create_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 99</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 106</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
   <span class="ruby-comment"># Sets up an object representing the LDAP db to connect to</span>
   <span class="ruby-identifier">ldap</span> = <span class="ruby-identifier">initialize_ldap_con</span>
@@ -340,6 +340,7 @@
         <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save!</span>
           <span class="ruby-identifier">flash</span>[<span class="ruby-value">:success</span>] = <span class="ruby-string">&quot;Welcome to OPrestissimo!&quot;</span>
           <span class="ruby-identifier">sign_in</span> <span class="ruby-ivar">@user</span>
+          <span class="ruby-identifier">ahoy</span>.<span class="ruby-identifier">authenticate</span>(<span class="ruby-ivar">@user</span>)
           <span class="ruby-comment"># check for existing handle</span>
           <span class="ruby-ivar">@handle</span> = <span class="ruby-constant">Handle</span>.<span class="ruby-identifier">find_by_handlekey</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">handlekey</span>)
           <span class="ruby-comment"># create the handle if there isn&#39;t one</span>
@@ -422,7 +423,7 @@
                 
               </p>
               <div id="method-i-destroy_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 339</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 347</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">destroy</span>
   <span class="ruby-comment"># get the user and its handle</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
@@ -468,7 +469,7 @@
                 
               </p>
               <div id="method-i-edit_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 87</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 94</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">edit</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&quot;@oberlin.edu&quot;</span>)
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@user</span>
@@ -512,7 +513,7 @@
                 
               </p>
               <div id="method-i-index_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 353</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 361</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">index</span>
   <span class="ruby-ivar">@users</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
@@ -551,7 +552,7 @@
                 
               </p>
               <div id="method-i-new_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 306</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 314</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">new</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -588,10 +589,15 @@
                 
               </p>
               <div id="method-i-schedule_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 406</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 414</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">schedule</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&quot;@oberlin.edu&quot;</span>)
-  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@user</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@user</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">cart</span>.<span class="ruby-identifier">get_courses</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-ivar">@semester</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:sem</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">translate_semester</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:sem</span>]) <span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">cart</span>.<span class="ruby-identifier">get_courses</span>().<span class="ruby-identifier">sort</span>()[<span class="ruby-value">0</span>].<span class="ruby-identifier">semester</span>
+    <span class="ruby-ivar">@semester_long</span> = <span class="ruby-identifier">expand_semester</span>(<span class="ruby-ivar">@semester</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">ahoy</span>.<span class="ruby-identifier">track</span> <span class="ruby-string">&quot;View schedule&quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -628,7 +634,7 @@
                 
               </p>
               <div id="method-i-search_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 362</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 370</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">search</span>
   <span class="ruby-comment"># build a query string</span>
   <span class="ruby-identifier">usrqs</span> = <span class="ruby-string">&quot;&quot;</span>
@@ -707,7 +713,7 @@
                 
               </p>
               <div id="method-i-self_destroy_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 324</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 332</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">self_destroy</span>
   <span class="ruby-comment"># get the user and its handle</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
@@ -759,6 +765,12 @@
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&quot;@oberlin.edu&quot;</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">error_404_path</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@user</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">show_professor_path</span>(<span class="ruby-value">fname:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">fname</span>, <span class="ruby-value">lname:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">lname</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">faculty_user?</span> <span class="ruby-ivar">@user</span>
+
+  <span class="ruby-comment">#For schedule semester checking</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">cart</span>.<span class="ruby-identifier">get_courses</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-ivar">@semester</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:sem</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">translate_semester</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:sem</span>]) <span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">cart</span>.<span class="ruby-identifier">get_courses</span>().<span class="ruby-identifier">sort</span>()[<span class="ruby-value">0</span>].<span class="ruby-identifier">semester</span>
+    <span class="ruby-ivar">@semester_long</span> = <span class="ruby-identifier">expand_semester</span>(<span class="ruby-ivar">@semester</span>)
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -797,7 +809,7 @@
                 
               </p>
               <div id="method-i-update_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 45</span>
+                <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 
@@ -832,6 +844,7 @@
     <span class="ruby-identifier">sign_in</span> <span class="ruby-ivar">@user</span>
     <span class="ruby-comment"># go to the user profile</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">user_path</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;@&quot;</span>)[<span class="ruby-value">0</span>])
+    <span class="ruby-identifier">ahoy</span>.<span class="ruby-identifier">track</span> <span class="ruby-string">&quot;Update user settings&quot;</span>
   <span class="ruby-keyword">else</span> <span class="ruby-comment"># the user could not be saved (for some weird reason)</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">settings_path</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;@&quot;</span>)[<span class="ruby-value">0</span>]), <span class="ruby-value">:notice</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;Settings could not be changed. Please contact the Prestissmo managers!&quot;</span>
   <span class="ruby-keyword">end</span>

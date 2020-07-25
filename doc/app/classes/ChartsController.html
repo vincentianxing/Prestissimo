@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ChartsController</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ChartsController">
+
+  
+
+    <meta name="keywords" content="ChartsController class">
+  
+    <meta name="keywords" content="new_users, site_visits, searches_dept, searches_volume, visitor_location, referrals">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            ChartsController
+            
+                <span class="parent">&lt;
+                    
+                    <a href="ApplicationController.html">ApplicationController</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/controllers/charts_controller_rb.html">app/controllers/charts_controller.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-new_users">new_users</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-referrals">referrals</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-searches_dept">searches_dept</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-searches_volume">searches_volume</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-site_visits">site_visits</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>V</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-visitor_location">visitor_location</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-new_users">
+            
+              <b>new_users</b>()
+            
+            <a href="../classes/ChartsController.html#method-i-new_users" name="method-i-new_users" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-new_users_source')" id="l_method-i-new_users_source">show</a>
+                
+              </p>
+              <div id="method-i-new_users_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">new_users</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">group_by_day</span>(<span class="ruby-value">:created_at</span>, <span class="ruby-value">range:</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">months</span>.<span class="ruby-identifier">ago</span><span class="ruby-operator">..</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>).<span class="ruby-identifier">count</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-referrals">
+            
+              <b>referrals</b>()
+            
+            <a href="../classes/ChartsController.html#method-i-referrals" name="method-i-referrals" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-referrals_source')" id="l_method-i-referrals_source">show</a>
+                
+              </p>
+              <div id="method-i-referrals_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">referrals</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-constant">Ahoy</span><span class="ruby-operator">::</span><span class="ruby-constant">Visit</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;referring_domain IS NOT NULL&quot;</span>).<span class="ruby-identifier">group</span>(<span class="ruby-value">:referring_domain</span>).<span class="ruby-identifier">count</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">d</span>, <span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">n</span> }.<span class="ruby-identifier">reverse</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-searches_dept">
+            
+              <b>searches_dept</b>()
+            
+            <a href="../classes/ChartsController.html#method-i-searches_dept" name="method-i-searches_dept" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-searches_dept_source')" id="l_method-i-searches_dept_source">show</a>
+                
+              </p>
+              <div id="method-i-searches_dept_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">searches_dept</span>
+  <span class="ruby-identifier">searches</span> = <span class="ruby-constant">Ahoy</span><span class="ruby-operator">::</span><span class="ruby-constant">Event</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">name:</span> <span class="ruby-string">&quot;Course search&quot;</span>)
+  <span class="ruby-identifier">other_size</span> = <span class="ruby-identifier">searches</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">*</span> <span class="ruby-value">0.25</span>
+  <span class="ruby-identifier">groups_all</span> = <span class="ruby-identifier">searches</span>.<span class="ruby-identifier">group</span>(<span class="ruby-string">&quot;JSON_UNQUOTE(properties -&gt; &#39;$.dept_long&#39;)&quot;</span>).<span class="ruby-identifier">count</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dept</span>, <span class="ruby-identifier">num</span><span class="ruby-operator">|</span> <span class="ruby-identifier">num</span> }
+  <span class="ruby-identifier">groups_new</span> = { <span class="ruby-string">&quot;Other&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">0</span> }
+
+  <span class="ruby-identifier">groups_all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">e</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">other_size</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">groups_new</span>[<span class="ruby-string">&quot;Other&quot;</span>] <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">other_size</span>
+      <span class="ruby-identifier">groups_new</span>[<span class="ruby-identifier">e</span>[<span class="ruby-value">0</span>]] = <span class="ruby-identifier">e</span>[<span class="ruby-value">1</span>]
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">groups_new</span>[<span class="ruby-string">&quot;Other&quot;</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">e</span>[<span class="ruby-value">1</span>]
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-identifier">groups_new</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-searches_volume">
+            
+              <b>searches_volume</b>()
+            
+            <a href="../classes/ChartsController.html#method-i-searches_volume" name="method-i-searches_volume" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-searches_volume_source')" id="l_method-i-searches_volume_source">show</a>
+                
+              </p>
+              <div id="method-i-searches_volume_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">searches_volume</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-constant">Ahoy</span><span class="ruby-operator">::</span><span class="ruby-constant">Event</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">name:</span> <span class="ruby-string">&quot;Course search&quot;</span>).<span class="ruby-identifier">group_by_day</span>(<span class="ruby-value">:time</span>, <span class="ruby-value">range:</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">months</span>.<span class="ruby-identifier">ago</span><span class="ruby-operator">..</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>).<span class="ruby-identifier">count</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-site_visits">
+            
+              <b>site_visits</b>()
+            
+            <a href="../classes/ChartsController.html#method-i-site_visits" name="method-i-site_visits" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-site_visits_source')" id="l_method-i-site_visits_source">show</a>
+                
+              </p>
+              <div id="method-i-site_visits_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">site_visits</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-constant">Ahoy</span><span class="ruby-operator">::</span><span class="ruby-constant">Visit</span>.<span class="ruby-identifier">group_by_day</span>(<span class="ruby-value">:started_at</span>, <span class="ruby-value">range:</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">months</span>.<span class="ruby-identifier">ago</span><span class="ruby-operator">..</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>).<span class="ruby-identifier">count</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-visitor_location">
+            
+              <b>visitor_location</b>()
+            
+            <a href="../classes/ChartsController.html#method-i-visitor_location" name="method-i-visitor_location" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-visitor_location_source')" id="l_method-i-visitor_location_source">show</a>
+                
+              </p>
+              <div id="method-i-visitor_location_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">visitor_location</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-constant">Ahoy</span><span class="ruby-operator">::</span><span class="ruby-constant">Visit</span>.<span class="ruby-identifier">group</span>(<span class="ruby-value">:region</span>).<span class="ruby-identifier">count</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

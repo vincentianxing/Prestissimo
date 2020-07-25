@@ -96,6 +96,7 @@ status           :string(255)     default(&quot;&quot;)
 distributions    :string(255)
 dept_long        :string(255)     default(&quot;&quot;)
 page             :integer(4)      default(0)
+remote           :string(255)     default(&quot;INPRS&quot;)
 </code></pre>
 
     </div>
@@ -308,7 +309,7 @@ page             :integer(4)      default(0)
                 
               </p>
               <div id="method-c-build_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 77</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 78</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">build</span>(<span class="ruby-identifier">course_arr</span>)
   <span class="ruby-identifier">c</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">new</span>
 
@@ -551,6 +552,9 @@ page             :integer(4)      default(0)
   <span class="ruby-identifier">c</span>.<span class="ruby-identifier">descrip</span> = <span class="ruby-identifier">course_arr</span>[<span class="ruby-value">49</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&quot;&quot;</span>
   <span class="ruby-identifier">c</span>.<span class="ruby-identifier">prereqs</span> = <span class="ruby-identifier">course_arr</span>[<span class="ruby-value">50</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&quot;&quot;</span>
 
+  <span class="ruby-comment"># instruction status</span>
+  <span class="ruby-identifier">c</span>.<span class="ruby-identifier">remote</span> = <span class="ruby-identifier">course_arr</span>[<span class="ruby-value">51</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&quot;INPRS&quot;</span>
+
   <span class="ruby-comment"># semcrn</span>
   <span class="ruby-identifier">c</span>.<span class="ruby-identifier">semcrn</span> = <span class="ruby-node">&quot;#{c.semester}_#{c.crn}&quot;</span>
 
@@ -595,7 +599,7 @@ page             :integer(4)      default(0)
                 
               </p>
               <div id="method-c-csv_headers_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 467</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 475</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">csv_headers</span>
   [<span class="ruby-string">&quot;CRN&quot;</span>, <span class="ruby-string">&quot;No.&quot;</span>, <span class="ruby-string">&quot;Dept.&quot;</span>, <span class="ruby-string">&quot;Semester&quot;</span>, <span class="ruby-string">&quot;Course Name&quot;</span>, <span class="ruby-string">&quot;Instructor&quot;</span>, <span class="ruby-string">&quot;Days&quot;</span>, <span class="ruby-string">&quot;Start Time&quot;</span>, <span class="ruby-string">&quot;End Time&quot;</span>, <span class="ruby-string">&quot;Room&quot;</span>, <span class="ruby-string">&quot;Enroll.&quot;</span>, <span class="ruby-string">&quot;Size&quot;</span>, <span class="ruby-string">&quot;Profic.&quot;</span>, <span class="ruby-string">&quot;Section&quot;</span>, <span class="ruby-string">&quot;Format&quot;</span>, <span class="ruby-string">&quot;Module&quot;</span>, <span class="ruby-string">&quot;Credits&quot;</span>, <span class="ruby-string">&quot;Distributions&quot;</span>, <span class="ruby-string">&quot;Full/Half&quot;</span>, <span class="ruby-string">&quot;P/NP&quot;</span>, <span class="ruby-string">&quot;X-Listings&quot;</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -632,10 +636,11 @@ page             :integer(4)      default(0)
                 
               </p>
               <div id="method-c-text_semester_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 447</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 451</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">text_semester</span>(<span class="ruby-identifier">semester</span>)
   <span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;Fall&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">semester</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;f&quot;</span>
   <span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;Spring&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">semester</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;s&quot;</span>
+  <span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;Summer&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">semester</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;u&quot;</span>
   <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; 20#{semester[1..2]}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -671,7 +676,7 @@ page             :integer(4)      default(0)
                 
               </p>
               <div id="method-c-to_csv_row_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 471</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 479</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">to_csv_row</span>(<span class="ruby-identifier">c</span>)
   <span class="ruby-identifier">row</span> = [<span class="ruby-identifier">c</span>.<span class="ruby-identifier">crn</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">cnum</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">dept</span>]
   <span class="ruby-identifier">row</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">text_semester</span>(<span class="ruby-identifier">c</span>.<span class="ruby-identifier">semester</span>)
@@ -761,7 +766,7 @@ page             :integer(4)      default(0)
 
           
             <div class="description">
-              
+              <p>TODO Summer: This assumes semesters always start with the same month</p>
             </div>
           
 
@@ -779,7 +784,7 @@ page             :integer(4)      default(0)
                 
               </p>
               <div id="method-c-translate_semester_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 453</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 459</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">translate_semester</span>(<span class="ruby-identifier">year_month</span>)
   <span class="ruby-identifier">year</span> = <span class="ruby-identifier">year_month</span>[<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>]
   <span class="ruby-identifier">month</span> = <span class="ruby-identifier">year_month</span>[<span class="ruby-value">4</span><span class="ruby-operator">..</span><span class="ruby-value">5</span>]
@@ -789,6 +794,8 @@ page             :integer(4)      default(0)
     <span class="ruby-identifier">sem</span> = <span class="ruby-string">&quot;f&quot;</span>
   <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;02&quot;</span>
     <span class="ruby-identifier">sem</span> = <span class="ruby-string">&quot;s&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;06&quot;</span>
+    <span class="ruby-identifier">sem</span> = <span class="ruby-string">&quot;u&quot;</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">sem</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">year</span>
   <span class="ruby-identifier">sem</span>
@@ -812,7 +819,7 @@ page             :integer(4)      default(0)
 
           
             <div class="description">
-              <p>Overiding comparaison operator so spring semesters will come before fall semesters when comparing two course objects</p>
+              <p>TODO Summer: Allow for Summer semester Overiding comparaison operator so spring semesters will come before fall semesters when comparing two course objects</p>
             </div>
           
 
@@ -830,18 +837,27 @@ page             :integer(4)      default(0)
                 
               </p>
               <div id="method-i-3C-3D-3E_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 548</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 557</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">&lt;=&gt;</span>(<span class="ruby-identifier">other</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">semester</span>.<span class="ruby-identifier">at</span>(<span class="ruby-value">0</span>) <span class="ruby-operator">==</span> <span class="ruby-string">&quot;f&quot;</span>
+
+  <span class="ruby-keyword">case</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">semester</span>.<span class="ruby-identifier">at</span>(<span class="ruby-value">0</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Fa&quot;</span>
     <span class="ruby-identifier">sem1</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">semester</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">semester</span>.<span class="ruby-identifier">length</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&quot;9&quot;</span>
-  <span class="ruby-keyword">else</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Sp&quot;</span>
     <span class="ruby-identifier">sem1</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">semester</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">semester</span>.<span class="ruby-identifier">length</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&quot;2&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Su&quot;</span>
+    <span class="ruby-identifier">sem1</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">semester</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">semester</span>.<span class="ruby-identifier">length</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&quot;5&quot;</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">semester</span>.<span class="ruby-identifier">at</span>(<span class="ruby-value">0</span>) <span class="ruby-operator">==</span> <span class="ruby-string">&quot;f&quot;</span>
-    <span class="ruby-identifier">sem2</span> = <span class="ruby-identifier">other</span>.<span class="ruby-identifier">semester</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">other</span>.<span class="ruby-identifier">semester</span>.<span class="ruby-identifier">length</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&quot;9&quot;</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">sem2</span> = <span class="ruby-identifier">other</span>.<span class="ruby-identifier">semester</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">other</span>.<span class="ruby-identifier">semester</span>.<span class="ruby-identifier">length</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&quot;2&quot;</span>
+
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">semester</span>.<span class="ruby-identifier">at</span>(<span class="ruby-value">0</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Fa&quot;</span>
+    <span class="ruby-identifier">sem2</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">semester</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">semester</span>.<span class="ruby-identifier">length</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&quot;9&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Sp&quot;</span>
+    <span class="ruby-identifier">sem2</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">semester</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">semester</span>.<span class="ruby-identifier">length</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&quot;2&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Su&quot;</span>
+    <span class="ruby-identifier">sem2</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">semester</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">semester</span>.<span class="ruby-identifier">length</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&quot;5&quot;</span>
   <span class="ruby-keyword">end</span>
+  
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">sem1</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">sem2</span>.<span class="ruby-identifier">to_i</span>
     <span class="ruby-keyword">return</span> <span class="ruby-value">1</span>
   <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">sem1</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">sem2</span>.<span class="ruby-identifier">to_i</span>
@@ -887,7 +903,7 @@ page             :integer(4)      default(0)
                 
               </p>
               <div id="method-i-cancel_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 414</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 418</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">cancel</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&quot;cancelled&quot;</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">changed_fields</span> <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;&quot;</span>
@@ -932,7 +948,7 @@ end
                 
               </p>
               <div id="method-i-fix_gaps_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 71</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">fix_gaps</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">short_title</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span>.<span class="ruby-identifier">blank?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">short_title</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">short_title</span>.<span class="ruby-identifier">blank?</span>
@@ -971,7 +987,7 @@ end
                 
               </p>
               <div id="method-i-generate_relationships_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 343</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 347</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">generate_relationships</span>(<span class="ruby-identifier">prim_instructor</span> = <span class="ruby-string">&quot;&quot;</span>, <span class="ruby-identifier">prim_userid</span> = <span class="ruby-string">&quot;&quot;</span>, <span class="ruby-identifier">prim_email</span> = <span class="ruby-string">&quot;&quot;</span>)
   <span class="ruby-identifier">hubid</span> = <span class="ruby-node">&quot;#{self.dept} #{self.cnum}&quot;</span>
   <span class="ruby-identifier">hc</span> = <span class="ruby-constant">Hubcourse</span>.<span class="ruby-identifier">find_by_hub_id</span>(<span class="ruby-identifier">hubid</span>)
@@ -1075,7 +1091,7 @@ end
                 
               </p>
               <div id="method-i-get_module_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 432</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 436</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_module</span>
   <span class="ruby-identifier">ret</span> = <span class="ruby-string">&quot;&quot;</span>
   <span class="ruby-keyword">case</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">mods</span>
@@ -1123,7 +1139,7 @@ end
                 
               </p>
               <div id="method-i-notify_prof_set_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 421</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 425</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">notify_prof_set</span>(<span class="ruby-identifier">profemail</span>)
   <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;premodel change: #{self.notify_profs}&quot;</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">notify_profs</span> <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;&quot;</span>
@@ -1167,7 +1183,7 @@ end
                 
               </p>
               <div id="method-i-sever_relationships_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 337</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 341</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sever_relationships</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">professors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-comment">#self.syllabus.clear</span>
@@ -1206,7 +1222,7 @@ end
                 
               </p>
               <div id="method-i-update_size_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 331</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 335</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update_size</span>(<span class="ruby-identifier">csize</span>, <span class="ruby-identifier">enroll</span>)
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">csize</span> = <span class="ruby-identifier">csize</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">enroll</span> = <span class="ruby-identifier">enroll</span>

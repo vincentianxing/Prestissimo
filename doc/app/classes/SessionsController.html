@@ -195,7 +195,7 @@
                 
               </p>
               <div id="method-i-click_mobile_format_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 125</span>
+                <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 126</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">click_mobile_format</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">cookies</span>[<span class="ruby-value">:mobile_format</span>].<span class="ruby-identifier">nil?</span>
     <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">permanent</span>[<span class="ruby-value">:mobile_format</span>] = <span class="ruby-string">&quot;true&quot;</span>
@@ -314,6 +314,7 @@
 
     <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
     <span class="ruby-identifier">sign_in</span> <span class="ruby-identifier">user</span>
+    <span class="ruby-identifier">ahoy</span>.<span class="ruby-identifier">authenticate</span>(<span class="ruby-identifier">user</span>)
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:return_to</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">signin_path</span>
       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">user_path</span>(<span class="ruby-identifier">user</span>.<span class="ruby-identifier">email</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;@&quot;</span>)[<span class="ruby-value">0</span>])
     <span class="ruby-keyword">else</span>
@@ -364,7 +365,7 @@
                 
               </p>
               <div id="method-i-destroy_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 117</span>
+                <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 118</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">destroy</span>
   <span class="ruby-identifier">sign_out</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>
@@ -402,7 +403,7 @@
                 
               </p>
               <div id="method-i-hide_disclaimer_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 152</span>
+                <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 153</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">hide_disclaimer</span>
   <span class="ruby-comment">#create cookie related to disclaimer</span>
   <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">permanent</span>[<span class="ruby-value">:disclaimer</span>] = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span>
@@ -444,7 +445,7 @@
                 
               </p>
               <div id="method-i-hide_motd_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 143</span>
+                <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 144</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">hide_motd</span>
   <span class="ruby-comment"># create cookie related to motd</span>
   <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">permanent</span>[<span class="ruby-value">:motd</span>] = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span>
@@ -486,7 +487,7 @@
                 
               </p>
               <div id="method-i-mobile_format_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 139</span>
+                <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 140</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mobile_format</span>
   <span class="ruby-identifier">redirect_back_or</span>(<span class="ruby-identifier">root_path</span>)
 <span class="ruby-keyword">end</span></pre>
