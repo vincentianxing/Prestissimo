@@ -473,7 +473,7 @@ class Course < ApplicationRecord
   end
 
   def self.csv_headers
-    ["CRN", "No.", "Dept.", "Semester", "Course Name", "Instructor", "Days", "Start Time", "End Time", "Room", "Enroll.", "Size", "Profic.", "Section", "Format", "Module", "Credits", "Distributions", "Full/Half", "P/NP", "X-Listings"]
+    ["CRN", "No.", "Dept.", "Semester", "Course Name", "Instructor", "Days", "Start Time", "End Time", "Room", "Enroll.", "Size", "Profic.", "Section", "Format", "Module", "Credits", "Distributions", "Full/Half", "P/NP", "X-Listings", "Instruction Status"]
   end
 
   def self.to_csv_row(c)
@@ -548,6 +548,7 @@ class Course < ApplicationRecord
     else
       row << ""
     end
+    row << translate_status(c.remote)
     row
   end
 
@@ -586,6 +587,14 @@ class Course < ApplicationRecord
       return self.section <=> other.section
     end
   end
+end
+
+
+def translate_status(status)
+  s = "In Person" if status == "INPRS"
+  s = "Hybrid" if status == "HYBRD"
+  s = "Remote Only" if status == "RMOTE"
+  s ||= "Not Specified"
 end
 
 # 0 	dept desc
