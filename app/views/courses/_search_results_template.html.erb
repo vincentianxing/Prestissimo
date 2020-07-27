@@ -316,6 +316,7 @@
                 <span class="enrollment"><% if c.enroll %><span class="enrollment_cur">Current Enrollment: <%= c.enroll %></span><% end %><% if c.csize %><span class="enrollment_max">Max Enrollment: <%= c.csize %></span><% end %></span>
                 <% unless c.building.blank? && c.room.blank? %>
                   <span class="location">Room: <%= "#{c.building}  #{c.room}" %></span>
+                <span class="remote">Instruction Status: <%= "#{translate_status(c.remote)}" %></span>
                 <% end %>
 
                 <% if signed_in? && faculty_user?(current_user) %>

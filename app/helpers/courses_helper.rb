@@ -34,6 +34,13 @@ module CoursesHelper
           s << " 20#{semester[1..2]}"
   end
 
+  def translate_status(status)
+    s = "In Person" if status == "INPRS"
+    s = "Hybrid" if status == "HYBRD"
+    s = "Remote Only" if status == "RMOTE"
+    s ||= "Not Specified"
+  end
+
   def current_semester
           @current_semester ||= Setting.get_val("current_semester")
   end
