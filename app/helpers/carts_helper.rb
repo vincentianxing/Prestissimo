@@ -26,17 +26,15 @@ module CartsHelper
   end
 
   def get_courses
-    courses = Array.new
+    courses = []
     if !current_cart.courses.blank?
 	    current_cart.courses.split(' ').each do |semcrn|
 		course = Course.find_by_semcrn(semcrn)
-		#if course != nil
-		courses << course
-		#end
+        courses << course unless course.nil?
 	    end
     else
 	    courses = nil
     end
-    courses.sort unless courses.nil?
+    courses.sort unless courses.empty?
   end
 end
