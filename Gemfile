@@ -42,10 +42,6 @@ group :development, :test do
   gem "sqlite3"
   gem "rspec-rails"
   gem "annotate"
-
-  # Can add a console to any page
-  # Provides a free console on all error pages
-  gem "web-console"
 end
 
 group :test do
@@ -57,6 +53,9 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem "meta_request"
+  # Can add a console to any page
+  # Provides a free console on all error pages
+  gem "web-console"
 end
 
 gem "mysql2"
