@@ -162,7 +162,7 @@
               <div id="method-i-current_semester_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/helpers/courses_helper.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">current_semester</span>
-        <span class="ruby-ivar">@current_semester</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">get_val</span>(<span class="ruby-string">&quot;current_semester&quot;</span>)
+  <span class="ruby-ivar">@current_semester</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">get_val</span>(<span class="ruby-string">&#39;current_semester&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -197,12 +197,13 @@
                 
               </p>
               <div id="method-i-find_by_crn_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/courses_helper.rb, line 3</span>
+                <pre><span class="ruby-comment"># File app/helpers/courses_helper.rb, line 2</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">find_by_crn</span>(<span class="ruby-identifier">course_list</span>, <span class="ruby-identifier">semcrn</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">Array</span>.<span class="ruby-identifier">try_convert</span>(<span class="ruby-identifier">course_list</span>)
+
   <span class="ruby-ivar">@course</span>
   <span class="ruby-identifier">course_list</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
-    <span class="ruby-ivar">@course</span> = <span class="ruby-identifier">c</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">semcrn</span> = <span class="ruby-identifier">semcrn</span>
+    <span class="ruby-ivar">@course</span> = <span class="ruby-identifier">c</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">semcrn</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">semcrn</span>
     <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@course</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@course</span>
@@ -243,13 +244,13 @@
                 <pre><span class="ruby-comment"># File app/helpers/courses_helper.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_link</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">value</span>)
   <span class="ruby-identifier">key</span> = <span class="ruby-node">&quot;#{type}:#{value}&quot;</span>
-  <span class="ruby-ivar">@links</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>()
+  <span class="ruby-ivar">@links</span> <span class="ruby-operator">||=</span> {}
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@links</span>[<span class="ruby-identifier">key</span>]
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">type</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;obiemaps_prof&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;obiemaps_prof&#39;</span>
       <span class="ruby-ivar">@links</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-node">&quot;http://obiemaps.oberlin.edu/faculty/#{value.fname.downcase}-#{value.lname.downcase}&quot;</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;obiemaps_course&quot;</span>
-      <span class="ruby-ivar">@links</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-string">&quot;http://obiemaps.oberlin.edu/courses/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">title</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/[:,]/</span>, <span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\s+/</span>, <span class="ruby-string">&#39;-&#39;</span>).<span class="ruby-identifier">downcase</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;obiemaps_course&#39;</span>
+      <span class="ruby-ivar">@links</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-string">&#39;http://obiemaps.oberlin.edu/courses/&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">title</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/[:,]/</span>, <span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\s+/</span>, <span class="ruby-string">&#39;-&#39;</span>).<span class="ruby-identifier">downcase</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@links</span>[<span class="ruby-identifier">key</span>]
@@ -289,18 +290,18 @@
               <div id="method-i-translate_mod_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/helpers/courses_helper.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">translate_mod</span>(<span class="ruby-identifier">mod_num</span>)
-  <span class="ruby-keyword">case</span> <span class="ruby-identifier">mod_num</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>
-    <span class="ruby-identifier">mod</span> = <span class="ruby-string">&quot;First&quot;</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">2</span>
-    <span class="ruby-identifier">mod</span> = <span class="ruby-string">&quot;Second&quot;</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">3</span>
-    <span class="ruby-identifier">mod</span> = <span class="ruby-string">&quot;Full&quot;</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">4</span>
-    <span class="ruby-identifier">mod</span> = <span class="ruby-string">&quot;Special&quot;</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">mod</span> = <span class="ruby-string">&quot;&quot;</span>
-  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">mod</span> = <span class="ruby-keyword">case</span> <span class="ruby-identifier">mod_num</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>
+          <span class="ruby-string">&#39;First&#39;</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-value">2</span>
+          <span class="ruby-string">&#39;Second&#39;</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-value">3</span>
+          <span class="ruby-string">&#39;Full&#39;</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-value">4</span>
+          <span class="ruby-string">&#39;Special&#39;</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-string">&#39;&#39;</span>
+        <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">mod</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -338,10 +339,10 @@
               <div id="method-i-translate_semester_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/helpers/courses_helper.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">translate_semester</span>(<span class="ruby-identifier">semester</span>)
-        <span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;Fall&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">semester</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;f&quot;</span>
-        <span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;Spring&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">semester</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;s&quot;</span>
-        <span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;Summer&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">semester</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;u&quot;</span>
-        <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; 20#{semester[1..2]}&quot;</span>
+  <span class="ruby-identifier">s</span> = <span class="ruby-string">&#39;Fall&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">semester</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;f&#39;</span>
+  <span class="ruby-identifier">s</span> = <span class="ruby-string">&#39;Spring&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">semester</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;s&#39;</span>
+  <span class="ruby-identifier">s</span> = <span class="ruby-string">&#39;Summer&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">semester</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;u&#39;</span>
+  <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; 20#{semester[1..2]}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

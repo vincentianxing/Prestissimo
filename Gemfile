@@ -1,89 +1,89 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "rails", "~> 6.0"
-gem "therubyracer"
-gem "libv8"
-gem "faker"
-gem "bcrypt"
-gem "mail"
-gem "mobile-fu"
-gem "acts_as_commentable_with_threading"
-gem "acts_as_votable"
-gem "jquery-rails"
-gem "jquery_mobile_rails"
-gem "jquery-week-calendar"
-gem "jquery-ui-themes"
+gem 'acts_as_commentable_with_threading'
+gem 'acts_as_votable'
+gem 'bcrypt'
+gem 'faker'
+gem 'jquery_mobile_rails'
+gem 'jquery-rails'
+gem 'jquery-ui-themes'
+gem 'jquery-week-calendar'
+gem 'libv8'
+gem 'mail'
+gem 'mobile-fu'
+gem 'rails', '~> 6.0'
+gem 'therubyracer'
 
-gem "rack-utf8_sanitizer"
-gem "utf8-cleaner"
+gem 'rack-utf8_sanitizer'
+gem 'utf8-cleaner'
 
-gem "redcarpet"
+gem 'redcarpet'
 
-gem "dalli"
+gem 'dalli'
 
-gem "ahoy_matey" # For analytics
-gem "chartkick" # For pretty graphs
-gem "groupdate" # Sorting graphs by date
+gem 'ahoy_matey' # For analytics
+gem 'chartkick' # For pretty graphs
+gem 'groupdate' # Sorting graphs by date
 
-gem "test-unit" # Added for rails console
+gem 'test-unit' # Added for rails console
 
-gem "bootsnap" # New in Rails 5.2
+gem 'bootsnap' # New in Rails 5.2
 
-gem "webpacker" # New in Rails 6.0
+gem 'webpacker' # New in Rails 6.0
 
-gem "net-ldap"
+gem 'net-ldap'
 
-gem "sdoc" # Need this for docs in Rails >5
+gem 'sdoc' # Need this for docs in Rails >5
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
-  #gem 'bcrypt-ruby', '3.0.1'
-  gem "sqlite3"
-  gem "rspec-rails"
-  gem "annotate"
+  # gem 'bcrypt-ruby', '3.0.1'
+  gem 'annotate'
+  gem 'rspec-rails'
+  gem 'sqlite3'
 end
 
 group :test do
-  gem "capybara"
-  gem "factory_girl_rails"
+  gem 'capybara'
+  gem 'factory_girl_rails'
 end
 
 group :development do
-  gem "better_errors"
-  gem "binding_of_caller"
-  gem "meta_request"
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
   # Can add a console to any page
   # Provides a free console on all error pages
-  gem "web-console"
+  gem 'web-console'
 end
 
-gem "mysql2"
-gem "activerecord-native_db_types_override"
+gem 'activerecord-native_db_types_override'
+gem 'mysql2'
 
 # gem 'protected_attributes' # Needs to be removed by Rails 5
 
-gem "ruby-mysql"
+gem 'ruby-mysql'
 
-gem "json"
+gem 'json'
 
-gem "guard" # For testing
-gem "guard-rspec"
-gem "listen"
+gem 'guard' # For testing
+gem 'guard-rspec'
+gem 'listen'
 
 # Required in Rails 4.2 to use respond_to methods
-gem "responders"
+gem 'responders'
 
 # Gems used only for assets and not required
 # in production environments by default.
-gem "sass-rails"
-gem "coffee-rails"
-gem "jquery-ui-rails"
+gem 'coffee-rails'
+gem 'jquery-ui-rails'
+gem 'sass-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', :platforms => :ruby
 
-gem "uglifier"
+gem 'uglifier'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

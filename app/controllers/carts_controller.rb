@@ -33,6 +33,7 @@ class CartsController < ApplicationController
   def show
     @cart = Cart.find_by_cartid(params[:id])
     return redirect_to error_404_path unless @cart
+
     @cart_courses = @cart.get_courses
     respond_to do |format|
       format.html { redirect_to root_path }
@@ -63,7 +64,7 @@ class CartsController < ApplicationController
           sem = key.to_s.dup
         else
           error = true if courses.include? key.to_s
-          courses << " " + key.to_s unless courses.include? key.to_s
+          courses << ' ' + key.to_s unless courses.include? key.to_s
           sem = key.to_s.dup
         end
         courses.strip!
@@ -114,9 +115,9 @@ class CartsController < ApplicationController
   def add
     @cart = Cart.find_by_cartid(params[:id])
     courses = @cart.courses.clone if @cart.courses
-    courses ||= ""
+    courses ||= ''
     courses_before_add = courses.clone
-    courses << " " + params[:semcrn] unless courses.include? params[:semcrn]
+    courses << ' ' + params[:semcrn] unless courses.include? params[:semcrn]
     courses.strip!
     @message = nil
     if courses.length > 16777214
@@ -158,10 +159,10 @@ class CartsController < ApplicationController
       # put word boundaries around params[:semcrn]
       parts = @cart.courses.split(params[:semcrn])
       params[:cart] = {}
-      params[:cart][:courses] = ""
+      params[:cart][:courses] = ''
       params[:cart][:courses] << parts[0].strip unless parts[0].blank?
-      params[:cart][:courses] << " " + parts[1].strip unless parts[1].blank?
-      @cart_courses = Array.new
+      params[:cart][:courses] << ' ' + parts[1].strip unless parts[1].blank?
+      @cart_courses = []
       @hours = 0
       if @cart.update(cart_params)
         @cart_courses = @cart.get_courses
@@ -226,9 +227,9 @@ class CartsController < ApplicationController
     if verify_email @email
       @sender = current_user if current_user
       Interact.mail_cart(request.remote_ip, @cart, @email, @sender).deliver
-      @message = "Email Sent"
+      @message = 'Email Sent'
     else
-      @message = "Please use a valid email"
+      @message = 'Please use a valid email'
     end
   end
 

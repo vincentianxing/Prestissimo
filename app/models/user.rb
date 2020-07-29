@@ -2,25 +2,26 @@
 #
 # Table name: users
 #
-#  id              :integer(4)      not null, primary key
-#  fname           :string(255)
-#  email           :string(255)
-#  password_digest :string(255)
-#  created_at      :datetime        not null
-#  updated_at      :datetime        not null
-#  remember_token  :string(255)
-#  status          :string(255)     default("pending")
-#  lname           :string(255)
-#  role            :string(255)
-#  nickname        :string(255)
-#  admin           :boolean(1)      default(FALSE)
-#  year            :string(255)
-#  privacy_prefs   :text
-#  major           :string(255)
-#  notes           :text
-#  cart_id         :integer(4)
-#  credits_done    :integer(4)
-#  double_major    :string(255)
+#  id             :integer          not null, primary key
+#  fname          :string(255)
+#  email          :string(255)
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  remember_token :string(255)
+#  status         :string(255)      default("pending")
+#  lname          :string(255)
+#  role           :string(255)
+#  nickname       :string(255)
+#  admin          :boolean          default("0")
+#  year           :string(255)
+#  notes          :text(65535)
+#  privacy_prefs  :text(65535)
+#  cart_id        :integer
+#  second_major   :string(255)
+#  double_major   :string(255)
+#  major          :string(255)
+#  prof_id        :integer
+#
 
 class User < ApplicationRecord
   # Means that a user can create reports

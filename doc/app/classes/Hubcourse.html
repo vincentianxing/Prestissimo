@@ -15,8 +15,8 @@
 
   
     
-    <meta name="description" content="Schema Information  Table name: hubcourses  id            :integer(4)      not null, primary key hub_id        :string(255) created_at    :datetime        not null updated_at    :datetime        not n.">
-    <meta property="og:description" content="Schema Information  Table name: hubcourses  id            :integer(4)      not null, primary key hub_id        :string(255) created_at    :datetime        not null updated_at    :datetime        not n.">
+    <meta name="description" content="Schema Information  Table name: hubcourses  id            :integer          not null, primary key hub_id        :string(255) created_at    :datetime         not null updated_at    :datetime         no.">
+    <meta property="og:description" content="Schema Information  Table name: hubcourses  id            :integer          not null, primary key hub_id        :string(255) created_at    :datetime         not null updated_at    :datetime         no.">
   
 
     <meta name="keywords" content="Hubcourse class">
@@ -54,12 +54,12 @@
 
 <p>Table name: hubcourses</p>
 
-<pre><code>id            :integer(4)      not null, primary key
+<pre><code>id            :integer          not null, primary key
 hub_id        :string(255)
-created_at    :datetime        not null
-updated_at    :datetime        not null
-department_id :integer(4)
-cnum          :integer(4)
+created_at    :datetime         not null
+updated_at    :datetime         not null
+department_id :integer
+cnum          :integer
 cname         :string(255)
 </code></pre>
 
@@ -162,7 +162,7 @@ cname         :string(255)
                 
               </p>
               <div id="method-c-build_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/hubcourse.rb, line 22</span>
+                <pre><span class="ruby-comment"># File app/models/hubcourse.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">build</span>(<span class="ruby-identifier">hub_id</span>, <span class="ruby-identifier">cnum</span>)
   <span class="ruby-identifier">h</span> = <span class="ruby-constant">Hubcourse</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-identifier">h</span>.<span class="ruby-identifier">hub_id</span> = <span class="ruby-identifier">hub_id</span>
@@ -206,12 +206,12 @@ cname         :string(255)
                 
               </p>
               <div id="method-i-to_csv_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/hubcourse.rb, line 33</span>
+                <pre><span class="ruby-comment"># File app/models/hubcourse.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_csv</span>(<span class="ruby-identifier">enroll</span>)
   <span class="ruby-constant">CSV</span>.<span class="ruby-identifier">generate</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">csv</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Course</span>.<span class="ruby-identifier">csv_headers</span> 
-    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Course</span>.<span class="ruby-identifier">to_csv_row</span>(<span class="ruby-identifier">c</span>) <span class="ruby-keyword">unless</span> ((<span class="ruby-identifier">enroll</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">c</span>.<span class="ruby-identifier">enroll</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>)) <span class="ruby-operator">||</span> (<span class="ruby-identifier">c</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;cancelled&quot;</span>)
+    <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Course</span>.<span class="ruby-identifier">csv_headers</span>
+    <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Course</span>.<span class="ruby-identifier">to_csv_row</span>(<span class="ruby-identifier">c</span>) <span class="ruby-keyword">unless</span> (<span class="ruby-identifier">enroll</span>.<span class="ruby-identifier">zero?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">enroll</span>.<span class="ruby-identifier">zero?</span>) <span class="ruby-operator">||</span> (<span class="ruby-identifier">c</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;cancelled&#39;</span>)
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -248,9 +248,9 @@ cname         :string(255)
                 
               </p>
               <div id="method-i-to_param_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/hubcourse.rb, line 29</span>
+                <pre><span class="ruby-comment"># File app/models/hubcourse.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_param</span>
-  <span class="ruby-node">&quot;#{hub_id}&quot;</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&#39; &#39;</span>, <span class="ruby-string">&#39;-&#39;</span>)
+  <span class="ruby-identifier">hub_id</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&#39; &#39;</span>, <span class="ruby-string">&#39;-&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

@@ -2,20 +2,20 @@
 #
 # Table name: reports
 #
-#  id                 :integer(4)      not null, primary key
+#  id                 :integer          not null, primary key
 #  title              :string(255)
-#  body               :text
-#  reportable_id      :integer(4)
+#  body               :text(65535)
+#  reportable_id      :integer
 #  reportable_type    :string(255)
-#  created_at         :datetime        not null
-#  updated_at         :datetime        not null
-#  response           :text
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  response           :text(65535)
 #  admin_email        :string(255)
-#  resolved           :boolean(1)      default(FALSE)
-#  user_id            :integer(4)
-#  reportable_content :text
+#  resolved           :boolean          default("0")
+#  user_id            :integer
+#  reportable_content :text(65535)
 #  locked_by          :string(255)
-#  reported_id        :integer(4)
+#  reported_id        :integer
 #
 
 class Report < ApplicationRecord

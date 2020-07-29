@@ -2,11 +2,11 @@
 #
 # Table name: handles
 #
-#  id         :integer(4)      not null, primary key
+#  id         :integer          not null, primary key
 #  username   :string(255)
-#  is_mute    :boolean(1)      default(FALSE)
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
+#  is_mute    :boolean          default("0")
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #  handlekey  :string(255)
 #
 

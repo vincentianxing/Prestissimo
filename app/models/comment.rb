@@ -2,24 +2,24 @@
 #
 # Table name: comments
 #
-#  id                 :integer(4)      not null, primary key
-#  commentable_id     :integer(4)      default(0)
-#  commentable_type   :string(255)     default("")
-#  title              :string(255)     default("")
-#  body               :text
-#  subject            :string(255)     default("")
-#  user_id            :integer(4)      default(0), not null
-#  parent_id          :integer(4)
-#  lft                :integer(4)
-#  rgt                :integer(4)
-#  created_at         :datetime        not null
-#  updated_at         :datetime        not null
-#  status             :string(255)     default("active")
-#  prev               :integer(4)
-#  cached_votes_total :integer(4)      default(0)
-#  cached_votes_up    :integer(4)      default(0)
-#  cached_votes_down  :integer(4)      default(0)
-#  old                :boolean(1)      default(FALSE)
+#  id                 :integer          not null, primary key
+#  commentable_id     :integer          default("0")
+#  commentable_type   :string(255)      default("")
+#  title              :string(255)      default("")
+#  body               :text(65535)
+#  subject            :string(255)      default("")
+#  user_id            :integer          default("0"), not null
+#  parent_id          :integer
+#  lft                :integer
+#  rgt                :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  status             :string(255)      default("active")
+#  prev               :integer
+#  cached_votes_total :integer          default("0")
+#  cached_votes_up    :integer          default("0")
+#  cached_votes_down  :integer          default("0")
+#  old                :boolean          default("0")
 #
 
 class Comment < ApplicationRecord

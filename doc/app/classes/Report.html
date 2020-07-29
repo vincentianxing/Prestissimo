@@ -15,8 +15,8 @@
 
   
     
-    <meta name="description" content="Schema Information  Table name: reports  id                 :integer(4)      not null, primary key title              :string(255) body               :text reportable_id      :integer(4) reportable_ty.">
-    <meta property="og:description" content="Schema Information  Table name: reports  id                 :integer(4)      not null, primary key title              :string(255) body               :text reportable_id      :integer(4) reportable_ty.">
+    <meta name="description" content="Schema Information  Table name: reports  id                 :integer          not null, primary key title              :string(255) body               :text(65535) reportable_id      :integer reportab.">
+    <meta property="og:description" content="Schema Information  Table name: reports  id                 :integer          not null, primary key title              :string(255) body               :text(65535) reportable_id      :integer reportab.">
   
 
     <meta name="keywords" content="Report class">
@@ -54,20 +54,20 @@
 
 <p>Table name: reports</p>
 
-<pre><code>id                 :integer(4)      not null, primary key
+<pre><code>id                 :integer          not null, primary key
 title              :string(255)
-body               :text
-reportable_id      :integer(4)
+body               :text(65535)
+reportable_id      :integer
 reportable_type    :string(255)
-created_at         :datetime        not null
-updated_at         :datetime        not null
-response           :text
+created_at         :datetime         not null
+updated_at         :datetime         not null
+response           :text(65535)
 admin_email        :string(255)
-resolved           :boolean(1)      default(FALSE)
-user_id            :integer(4)
-reportable_content :text
+resolved           :boolean          default(&quot;0&quot;)
+user_id            :integer
+reportable_content :text(65535)
 locked_by          :string(255)
-reported_id        :integer(4)
+reported_id        :integer
 </code></pre>
 
     </div>
@@ -185,7 +185,7 @@ reported_id        :integer(4)
         <div class="method">
           <div class="title method-title" id="method-c-build_report">
             
-              <b>build_report</b>(reportable,reporter,title,body)
+              <b>build_report</b>(reportable, reporter, title, body)
             
             <a href="../classes/Report.html#method-c-build_report" name="method-c-build_report" class="permalink">Link</a>
           </div>
@@ -210,34 +210,30 @@ reported_id        :integer(4)
                 
               </p>
               <div id="method-c-build_report_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/report.rb, line 33</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">build_report</span>(<span class="ruby-identifier">reportable</span>,<span class="ruby-identifier">reporter</span>,<span class="ruby-identifier">title</span>,<span class="ruby-identifier">body</span>)
-        <span class="ruby-identifier">r</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">new</span>
-        <span class="ruby-identifier">r</span>.<span class="ruby-identifier">user</span> = <span class="ruby-identifier">reporter</span>
-        <span class="ruby-identifier">r</span>.<span class="ruby-identifier">reportable_type</span> = <span class="ruby-identifier">reportable</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">base_class</span>.<span class="ruby-identifier">name</span>
-        <span class="ruby-identifier">r</span>.<span class="ruby-identifier">reportable_id</span> = <span class="ruby-identifier">reportable</span>.<span class="ruby-identifier">id</span>
-        <span class="ruby-keyword">case</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">reportable_type</span>
-        <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Comment&quot;</span>
-                <span class="ruby-identifier">handle</span> = <span class="ruby-constant">Handle</span>.<span class="ruby-identifier">find_by_username</span>(<span class="ruby-identifier">reportable</span>.<span class="ruby-identifier">handle</span>)
-                <span class="ruby-constant">User</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">u</span><span class="ruby-operator">|</span>
-                        <span class="ruby-keyword">if</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">handlekey</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">handle</span>.<span class="ruby-identifier">handlekey</span>
-                                <span class="ruby-identifier">r</span>.<span class="ruby-identifier">reported_id</span> = <span class="ruby-identifier">u</span>.<span class="ruby-identifier">id</span>
-                        <span class="ruby-keyword">end</span>
-                <span class="ruby-keyword">end</span>
-        <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Handle&quot;</span>
-                <span class="ruby-constant">User</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">u</span><span class="ruby-operator">|</span>
-                        <span class="ruby-keyword">if</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">handlekey</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">reportable</span>.<span class="ruby-identifier">handlekey</span>
-                                <span class="ruby-identifier">r</span>.<span class="ruby-identifier">reported_id</span> = <span class="ruby-identifier">u</span>.<span class="ruby-identifier">id</span>
-                        <span class="ruby-keyword">end</span>
-                <span class="ruby-keyword">end</span>
-        <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;User&quot;</span>
-                <span class="ruby-identifier">r</span>.<span class="ruby-identifier">reported_id</span> = <span class="ruby-identifier">reportable</span>.<span class="ruby-identifier">id</span>
-        <span class="ruby-keyword">end</span>
-        <span class="ruby-identifier">r</span>.<span class="ruby-identifier">reportable_content</span> = <span class="ruby-identifier">reportable</span>.<span class="ruby-identifier">inspect</span>.<span class="ruby-identifier">to_s</span>
-        <span class="ruby-identifier">r</span>.<span class="ruby-identifier">body</span> = <span class="ruby-identifier">body</span>
-        <span class="ruby-identifier">r</span>.<span class="ruby-identifier">title</span> = <span class="ruby-identifier">title</span>
-        <span class="ruby-identifier">r</span>.<span class="ruby-identifier">response</span> = <span class="ruby-string">&quot;&quot;</span>
-        <span class="ruby-identifier">r</span>
+                <pre><span class="ruby-comment"># File app/models/report.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">build_report</span>(<span class="ruby-identifier">reportable</span>, <span class="ruby-identifier">reporter</span>, <span class="ruby-identifier">title</span>, <span class="ruby-identifier">body</span>)
+  <span class="ruby-identifier">r</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">r</span>.<span class="ruby-identifier">user</span> = <span class="ruby-identifier">reporter</span>
+  <span class="ruby-identifier">r</span>.<span class="ruby-identifier">reportable_type</span> = <span class="ruby-identifier">reportable</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">base_class</span>.<span class="ruby-identifier">name</span>
+  <span class="ruby-identifier">r</span>.<span class="ruby-identifier">reportable_id</span> = <span class="ruby-identifier">reportable</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">reportable_type</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;Comment&#39;</span>
+    <span class="ruby-identifier">handle</span> = <span class="ruby-constant">Handle</span>.<span class="ruby-identifier">find_by_username</span>(<span class="ruby-identifier">reportable</span>.<span class="ruby-identifier">handle</span>)
+    <span class="ruby-constant">User</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">u</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">r</span>.<span class="ruby-identifier">reported_id</span> = <span class="ruby-identifier">u</span>.<span class="ruby-identifier">id</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">handlekey</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">handle</span>.<span class="ruby-identifier">handlekey</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;Handle&#39;</span>
+    <span class="ruby-constant">User</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">u</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">r</span>.<span class="ruby-identifier">reported_id</span> = <span class="ruby-identifier">u</span>.<span class="ruby-identifier">id</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">handlekey</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">reportable</span>.<span class="ruby-identifier">handlekey</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;User&#39;</span>
+    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">reported_id</span> = <span class="ruby-identifier">reportable</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">r</span>.<span class="ruby-identifier">reportable_content</span> = <span class="ruby-identifier">reportable</span>.<span class="ruby-identifier">inspect</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">r</span>.<span class="ruby-identifier">body</span> = <span class="ruby-identifier">body</span>
+  <span class="ruby-identifier">r</span>.<span class="ruby-identifier">title</span> = <span class="ruby-identifier">title</span>
+  <span class="ruby-identifier">r</span>.<span class="ruby-identifier">response</span> = <span class="ruby-string">&#39;&#39;</span>
+  <span class="ruby-identifier">r</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -276,11 +272,11 @@ reported_id        :integer(4)
                 
               </p>
               <div id="method-i-duplicate-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/report.rb, line 86</span>
+                <pre><span class="ruby-comment"># File app/models/report.rb, line 81</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">duplicate?</span>
-        <span class="ruby-comment"># if a report exists by this user on this object, and the object has not been changed, this is a duplicate</span>
-        <span class="ruby-identifier">report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">reportable_type:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reportable_type</span>, <span class="ruby-value">reportable_id:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reportable_id</span>, <span class="ruby-value">user_id:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>)
-        <span class="ruby-identifier">report</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">report</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">created_at</span> <span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reportable_type</span>.<span class="ruby-identifier">constantize</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">reportable_id</span>).<span class="ruby-identifier">updated_at</span> 
+  <span class="ruby-comment"># if a report exists by this user on this object, and the object has not been changed, this is a duplicate</span>
+  <span class="ruby-identifier">report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">reportable_type:</span> <span class="ruby-identifier">reportable_type</span>, <span class="ruby-value">reportable_id:</span> <span class="ruby-identifier">reportable_id</span>, <span class="ruby-value">user_id:</span> <span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">report</span>.<span class="ruby-identifier">!</span><span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">report</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">created_at</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">reportable_type</span>.<span class="ruby-identifier">constantize</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">reportable_id</span>).<span class="ruby-identifier">updated_at</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -315,9 +311,9 @@ reported_id        :integer(4)
                 
               </p>
               <div id="method-i-lock_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/report.rb, line 68</span>
+                <pre><span class="ruby-comment"># File app/models/report.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">lock</span>(<span class="ruby-identifier">name</span>)
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">locked_by</span> = <span class="ruby-identifier">name</span> 
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">locked_by</span> = <span class="ruby-identifier">name</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -352,9 +348,9 @@ reported_id        :integer(4)
                 
               </p>
               <div id="method-i-reported_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/report.rb, line 82</span>
+                <pre><span class="ruby-comment"># File app/models/report.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reported</span>
-        <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">reported_id</span>)
+  <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">reported_id</span>)
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -364,7 +360,7 @@ reported_id        :integer(4)
         <div class="method">
           <div class="title method-title" id="method-i-resolve">
             
-              <b>resolve</b>(admin,response)
+              <b>resolve</b>(admin, response)
             
             <a href="../classes/Report.html#method-i-resolve" name="method-i-resolve" class="permalink">Link</a>
           </div>
@@ -389,11 +385,11 @@ reported_id        :integer(4)
                 
               </p>
               <div id="method-i-resolve_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/report.rb, line 62</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">resolve</span>(<span class="ruby-identifier">admin</span>,<span class="ruby-identifier">response</span>)
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">admin_email</span> = <span class="ruby-identifier">admin</span>.<span class="ruby-identifier">email</span>
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">response</span> = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">response</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n\n&quot;</span>
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">resolved</span> = <span class="ruby-keyword">true</span>
+                <pre><span class="ruby-comment"># File app/models/report.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">resolve</span>(<span class="ruby-identifier">admin</span>, <span class="ruby-identifier">response</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">admin_email</span> = <span class="ruby-identifier">admin</span>.<span class="ruby-identifier">email</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">response</span> = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">response</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n\n&quot;</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">resolved</span> = <span class="ruby-keyword">true</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -428,9 +424,9 @@ reported_id        :integer(4)
                 
               </p>
               <div id="method-i-unlock_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/report.rb, line 72</span>
+                <pre><span class="ruby-comment"># File app/models/report.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unlock</span>
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">locked_by</span> = <span class="ruby-keyword">nil</span> 
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">locked_by</span> = <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -440,7 +436,7 @@ reported_id        :integer(4)
         <div class="method">
           <div class="title method-title" id="method-i-unresolve">
             
-              <b>unresolve</b>(admin,response)
+              <b>unresolve</b>(admin, _response)
             
             <a href="../classes/Report.html#method-i-unresolve" name="method-i-unresolve" class="permalink">Link</a>
           </div>
@@ -465,11 +461,11 @@ reported_id        :integer(4)
                 
               </p>
               <div id="method-i-unresolve_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/report.rb, line 76</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unresolve</span>(<span class="ruby-identifier">admin</span>,<span class="ruby-identifier">response</span>)
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">response</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">response</span> <span class="ruby-operator">+</span> <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;response&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;nn&quot;</span>
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">admin_email</span> = <span class="ruby-identifier">admin</span>.<span class="ruby-identifier">email</span>
-        <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;DDDDDD&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">response</span>
+                <pre><span class="ruby-comment"># File app/models/report.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unresolve</span>(<span class="ruby-identifier">admin</span>, <span class="ruby-identifier">_response</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">response</span> = <span class="ruby-identifier">response</span> <span class="ruby-operator">+</span> <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;n&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;response&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;nn&#39;</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">admin_email</span> = <span class="ruby-identifier">admin</span>.<span class="ruby-identifier">email</span>
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&#39;DDDDDD&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">response</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

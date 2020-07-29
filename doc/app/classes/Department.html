@@ -15,8 +15,8 @@
 
   
     
-    <meta name="description" content="Schema Information  Table name: departments  id         :integer(4)      not null, primary key dept       :string(255) created_at :datetime        not null updated_at :datetime        not null dept_lo.">
-    <meta property="og:description" content="Schema Information  Table name: departments  id         :integer(4)      not null, primary key dept       :string(255) created_at :datetime        not null updated_at :datetime        not null dept_lo.">
+    <meta name="description" content="Schema Information  Table name: departments  id         :integer          not null, primary key dept       :string(255) created_at :datetime         not null updated_at :datetime         not null dept.">
+    <meta property="og:description" content="Schema Information  Table name: departments  id         :integer          not null, primary key dept       :string(255) created_at :datetime         not null updated_at :datetime         not null dept.">
   
 
     <meta name="keywords" content="Department class">
@@ -54,10 +54,10 @@
 
 <p>Table name: departments</p>
 
-<pre><code>id         :integer(4)      not null, primary key
+<pre><code>id         :integer          not null, primary key
 dept       :string(255)
-created_at :datetime        not null
-updated_at :datetime        not null
+created_at :datetime         not null
+updated_at :datetime         not null
 dept_long  :string(255)
 </code></pre>
 
@@ -124,7 +124,7 @@ dept_long  :string(255)
         <div class="method">
           <div class="title method-title" id="method-i-to_csv">
             
-              <b>to_csv</b>( enroll )
+              <b>to_csv</b>(enroll)
             
             <a href="../classes/Department.html#method-i-to_csv" name="method-i-to_csv" class="permalink">Link</a>
           </div>
@@ -149,14 +149,14 @@ dept_long  :string(255)
                 
               </p>
               <div id="method-i-to_csv_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/department.rb, line 22</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_csv</span>( <span class="ruby-identifier">enroll</span> )
-  <span class="ruby-identifier">qs</span> = <span class="ruby-string">&#39;( dept LIKE &#39;</span><span class="ruby-operator">+</span><span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-string">&quot;%&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">dept</span><span class="ruby-string">+&quot;%&quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&#39; AND status!=&quot;cancelled&quot;&#39;</span>
-  <span class="ruby-identifier">qs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39; AND ( enroll BETWEEN 1 AND 999 )&#39;</span> <span class="ruby-keyword">if</span> (<span class="ruby-identifier">enroll</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>)
+                <pre><span class="ruby-comment"># File app/models/department.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_csv</span>(<span class="ruby-identifier">enroll</span>)
+  <span class="ruby-identifier">qs</span> = <span class="ruby-string">&#39;( dept LIKE &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-string">&#39;%&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">dept</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;%&#39;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&#39; AND status!=&quot;cancelled&quot;&#39;</span>
+  <span class="ruby-identifier">qs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39; AND ( enroll BETWEEN 1 AND 999 )&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">enroll</span>.<span class="ruby-identifier">zero?</span>
   <span class="ruby-identifier">qs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39; )&#39;</span>
   <span class="ruby-identifier">courses</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">qs</span>).<span class="ruby-identifier">sort</span>
   <span class="ruby-constant">CSV</span>.<span class="ruby-identifier">generate</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">csv</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Course</span>.<span class="ruby-identifier">csv_headers</span> 
+    <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Course</span>.<span class="ruby-identifier">csv_headers</span>
     <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
       <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Course</span>.<span class="ruby-identifier">to_csv_row</span>(<span class="ruby-identifier">c</span>)
     <span class="ruby-keyword">end</span>
@@ -195,9 +195,9 @@ dept_long  :string(255)
                 
               </p>
               <div id="method-i-to_param_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/department.rb, line 18</span>
+                <pre><span class="ruby-comment"># File app/models/department.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_param</span>
-   <span class="ruby-identifier">dept</span>
+  <span class="ruby-identifier">dept</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

@@ -2,11 +2,11 @@
 #
 # Table name: settings
 #
-#  id         :integer(4)      not null, primary key
+#  id         :integer          not null, primary key
 #  key        :string(255)
-#  value      :string(255)
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
+#  value      :text(65535)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 class Setting < ApplicationRecord
