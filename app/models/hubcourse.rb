@@ -11,7 +11,6 @@
 #  cname         :string(255)
 #
 
-
 class Hubcourse < ApplicationRecord
   has_many :courses
   belongs_to :department
@@ -27,14 +26,14 @@ class Hubcourse < ApplicationRecord
   end
 
   def to_param
-    "#{hub_id}".gsub(' ', '-')
+    hub_id.to_s.gsub(' ', '-')
   end
 
   def to_csv(enroll)
     CSV.generate do |csv|
-      csv << Course.csv_headers 
-      self.courses.sort.each do |c|
-        csv << Course.to_csv_row(c) unless ((enroll == 0) && (c.enroll == 0)) || (c.status == "cancelled")
+      csv << Course.csv_headers
+      courses.sort.each do |c|
+        csv << Course.to_csv_row(c) unless (enroll.zero? && c.enroll.zero?) || (c.status == 'cancelled')
       end
     end
   end

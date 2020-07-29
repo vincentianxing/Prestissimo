@@ -31,9 +31,9 @@ class UsersController < ApplicationController
     return redirect_to error_404_path unless @user
     redirect_to show_professor_path(fname: @user.fname, lname: @user.lname) if faculty_user? @user
 
-    #For schedule semester checking
-    if not @user.cart.get_courses.empty?
-      @semester = params[:sem] ? translate_semester(params[:sem]) : @user.cart.get_courses().sort()[0].semester
+    # For schedule semester checking
+    if !@user.cart.get_courses.empty?
+      @semester = params[:sem] ? translate_semester(params[:sem]) : @user.cart.get_courses.min.semester
       @semester_long = expand_semester(@semester)
     end
   end
@@ -84,7 +84,7 @@ class UsersController < ApplicationController
       redirect_to user_path(@user.email.split("@")[0])
       ahoy.track "Update user settings"
     else # the user could not be saved (for some weird reason)
-      redirect_to settings_path(@user.email.split("@")[0]), :notice => "Settings could not be changed. Please contact the Prestissmo managers!"
+      redirect_to settings_path(@user.email.split("@")[0]), :notice => 'Settings could not be changed. Please contact the Prestissmo managers!'
     end
   end
 
@@ -113,12 +113,12 @@ class UsersController < ApplicationController
     # connect to the LDAP
     if ldap.bind
       # where to look in the ldap sorta
-      treebase = "ou=people,dc=ad,dc=oberlin,dc=edu"
+      treebase = 'ou=people,dc=ad,dc=oberlin,dc=edu'
       # find the user who's  uid is the one we want
-      filter = Net::LDAP::Filter.eq("cn", "#{params[:user][:email].split("@")[0]}")
+      filter = Net::LDAP::Filter.eq('cn', "#{params[:user][:email].split('@')[0]}")
       # search the ldap!
       result = ldap.search(:base => treebase, :filter => filter)
-      if result.size > 0
+      if result.!empty?
         if authenticate(params[:user][:email].split("@")[0], params[:user][:password])
           params[:user].delete(:password)
           @user = User.new(params_user)
@@ -133,14 +133,14 @@ class UsersController < ApplicationController
 
           @user.create_cart
 
-          #If user is faculty, match them to their id
-          if @user.role == "Faculty" or @user.role == "FACULTY"
-            #Find by ObieID
-            profUser = Professor.find_by_userid(@user.email.split("@")[0])
+          # If user is faculty, match them to their id
+          if @user.role == 'Faculty' || @user.role == 'FACULTY'
+            # Find by ObieID
+            profUser = Professor.find_by_userid(@user.email.split('@')[0])
             if profUser
               @user.prof_id = profUser.id
             else
-              #Find by first and last name
+              # Find by first and last name
               profUser = Professor.where(fname: @user.fname, lname: @user.lname)[0]
               if profUser
                 @user.prof_id = profUser.id
@@ -321,7 +321,7 @@ class UsersController < ApplicationController
   def confirm_destroy
     @user = User.find_by_email(params[:email] + "@oberlin.edu")
     unless @user
-      flash[:failure] = "Could not find user by email"
+      flash[:failure] = 'Could not find user by email'
       redirect_to root_path
     end
   end
@@ -337,7 +337,7 @@ class UsersController < ApplicationController
     @user.destroy
     @handle.mute
     @handle.save
-    flash[:success] = "Account deleted"
+    flash[:success] = 'Account deleted'
     redirect_to root_path
   end
 
@@ -374,33 +374,33 @@ class UsersController < ApplicationController
     handqs = ""
     # if :finduser has a value
     person = params[:person].strip
-    if !(person.blank? || person.gsub(/\W+/, "").length < 1)
+    if !(person.blank? || person.gsub(/\W+/, "").empty?)
       ##### USER SEARCH BIT #####
       # uses function defined in application helper to construct a mysql query string
       usrqs = make_query_string(person.gsub(/['"]/, ""), ["fname", "lname", "email"], false)
       usrqs << " AND role LIKE " + ActiveRecord::Base.connection.quote("%student%")
-      @usrresults = Array.new
+      @usrresults = []
       @usrresults = User.where(usrqs).to_a
       @usrresults.delete(current_user)
       @usrresults.sort_by! { |u| [u.lname, u.fname] }
-      @usrresults = nil if @usrresults.size == 0
+      @usrresults = nil if @usrresults.empty?
 
       ##### COMMENTER SEARCH BIT #####
       # uses function defined in application helper to construct a mysql query string
-      handqs = make_query_string(person, ["username"], false)
+      handqs = make_query_string(person, ['username'], false)
       @handleresults = Handle.where(handqs).to_a
       @handleresults.delete(Handle.find_by_handlekey(current_user.handlekey))
       @handleresults.sort_by! { |h| h.username }
-      @handleresults = nil if @handleresults.size == 0
+      @handleresults = nil if @handleresults.empty?
 
       ##### PROF PAGE SEARCH BIT #####
       # uses function defined in application helper to construct a mysql query string
       prfqs = make_query_string(person.gsub(/['"]/, ""), ["fname", "lname", "nickname"], false)
       @professors = Professor.where(prfqs).to_a
       @professors.sort_by! { |p| [p.lname, p.fname] }
-      @professors = nil if @professors.size == 0
+      @professors = nil if @professors.empty?
     else # :finduser does not have a value
-      @err_msg = "You must enter at least one letter or number to seach for."
+      @err_msg = 'You must enter at least one letter or number to seach for.'
     end
     # perform the search query, remove the current user from results
     # format to js and html
@@ -412,13 +412,13 @@ class UsersController < ApplicationController
   end
 
   def schedule
-    @user = User.find_by_email(params[:email] + "@oberlin.edu")
+    @user = User.find_by_email(params[:email] + '@oberlin.edu')
     return redirect_to root_path unless @user
-    if not @user.cart.get_courses.empty?
-      @semester = params[:sem] ? translate_semester(params[:sem]) : @user.cart.get_courses().sort()[0].semester
+    if !@user.cart.get_courses.empty?
+      @semester = params[:sem] ? translate_semester(params[:sem]) : @user.cart.get_courses.min.semester
       @semester_long = expand_semester(@semester)
     end
-    ahoy.track "View schedule"
+    ahoy.track 'View schedule'
   end
 
   private
@@ -432,14 +432,14 @@ class UsersController < ApplicationController
   # verify that there is a signed in user, uses sessions_helper method signed_in?
   def signed_in_user
     # send away the user unless signed in
-    redirect_to signin_path, notice: "Please sign in." unless signed_in?
+    redirect_to signin_path, notice: 'Please sign in.' unless signed_in?
   end
 
   # send away the user unless the action they've directed to is on their own account
   def correct_user
     begin
       # try finding the user by their obie id
-      @user = User.find_by_email!(params[:email] + "@oberlin.edu")
+      @user = User.find_by_email!(params[:email] + '@oberlin.edu')
     rescue
       # if that doesn't work, try finding the user by their id number
       @user = User.find(params[:id])
@@ -454,29 +454,28 @@ class UsersController < ApplicationController
   end
 
   def get_adj(n)
-    f = File.open("#{Rails.root}/app/assets/adjectives", "r")
-    if (f)
+    f = File.open("#{Rails.root}/app/assets/adjectives", 'r')
+    if f
       n.times { f.gets }
       adj = (p $_).chop!
       adj
-    else
-      nil
     end
   end
 
   def translate_semester(semester)
-    return "" if semester.nil?
-    sem = semester.split(" ")
-    ret = "f" if sem[0] == "Fall"
-    ret = "s" if sem[0] == "Spring"
-    ret = "u" if sem[0] == "Summer"
+    return '' if semester.nil?
+
+    sem = semester.split(' ')
+    ret = 'f' if sem[0] == 'Fall'
+    ret = 's' if sem[0] == 'Spring'
+    ret = 'u' if sem[0] == 'Summer'
     ret << sem[1][2..3]
   end
 
   def expand_semester(semester)
-    s = "Fall" if semester[0] == "f"
-    s = "Spring" if semester[0] == "s"
-    s = "Summer" if semester[0] == "u"
+    s = 'Fall' if semester[0] == 'f'
+    s = 'Spring' if semester[0] == 's'
+    s = 'Summer' if semester[0] == 'u'
     s << " 20#{semester[1..2]}"
   end
 end

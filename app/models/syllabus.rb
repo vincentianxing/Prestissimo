@@ -1,9 +1,7 @@
 class Syllabus < ApplicationRecord
   belongs_to :course
 
-  def add
-  end
-
+  def add; end
 end
 # == Schema Information
 #
@@ -15,4 +13,3 @@ end
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
 #
-

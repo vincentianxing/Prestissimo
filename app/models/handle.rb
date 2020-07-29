@@ -13,11 +13,11 @@
 class Handle < ApplicationRecord
   acts_as_voter
 
-	# A handle can be reported by other users
-	has_many :reports, as: :reportable
+  # A handle can be reported by other users
+  has_many :reports, as: :reportable
 
-  #Unless handlekey is non-nil and the username is unique (ignoring case),
-  #saving a handle instance will fail and return false.
+  # Unless handlekey is non-nil and the username is unique (ignoring case),
+  # saving a handle instance will fail and return false.
   validates :handlekey, presence: true
   validates :username, uniqueness: { case_sensitive: false }
 
