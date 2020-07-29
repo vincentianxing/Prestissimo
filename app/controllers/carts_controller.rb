@@ -1,17 +1,16 @@
 class CartsController < ApplicationController
-
   # creates a new cart with courses in it
   def create
     @cart = Cart.new
-    courses = ""
+    courses = ''
     if params[:courses]
       params[:courses].each do |key, value|
-        courses << " " + key.to_s unless courses.include? key.to_s
+        courses << ' ' + key.to_s unless courses.include? key.to_s
       end
       courses.strip!
     end
     @cart.set_courses(courses)
-    @cart_courses = Array.new
+    @cart_courses = []
     if @cart.save
       cookies.permanent[:cart] = @cart.cartid
       @cart_courses = @cart.get_courses
@@ -57,21 +56,21 @@ class CartsController < ApplicationController
       @hours = 0
       courses = @cart.courses.clone if @cart.courses
       courses_before_add = courses.clone if courses
-      courses_before_add ||= ""
+      courses_before_add ||= ''
       params[:courses].each do |key, value|
         if courses.nil?
           courses = key.to_s.dup
           sem = key.to_s.dup
         else
-          error = true if (courses.include? key.to_s)
+          error = true if courses.include? key.to_s
           courses << " " + key.to_s unless courses.include? key.to_s
           sem = key.to_s.dup
         end
         courses.strip!
         @message = nil
         if courses.length > 16777214
-          #message to pass to update.js
-          @message = "Add failed: too many courses in your cart!"
+          # message to pass to update.js
+          @message = 'Add failed: too many courses in your cart!'
           courses = courses_before_add.clone
           exceed = true
           break
@@ -93,7 +92,7 @@ class CartsController < ApplicationController
         @cart.total_credits = total_credits
         @cart.update!(total_credits: total_credits)
         @cart.set_courses(courses)
-        @cart_courses = Array.new
+        @cart_courses = []
         if @cart.save
           @cart_courses = @cart.get_courses
         else
@@ -121,11 +120,11 @@ class CartsController < ApplicationController
     courses.strip!
     @message = nil
     if courses.length > 16777214
-      #chop off the class that was just added
-      #courses.gsub!(/ .{7,10}$/, '')
+      # chop off the class that was just added
+      # courses.gsub!(/ .{7,10}$/, '')
 
-      #message to pass to add.js
-      @message = "Too many courses in your cart!"
+      # message to pass to add.js
+      @message = 'Too many courses in your cart!'
       courses = courses_before_add
     end
     @hours = 0
@@ -143,7 +142,7 @@ class CartsController < ApplicationController
     @cart.total_credits = total_credits
     @cart.update!(total_credits: total_credits)
     @cart.set_courses(courses)
-    @cart_courses = Array.new
+    @cart_courses = []
     if @cart.save
       @cart_courses = @cart.get_courses
     else
@@ -217,7 +216,7 @@ class CartsController < ApplicationController
   def mail_to
     @cart = Cart.find_by_cartid(params[:id]).get_courses
     logger.debug @cart.inspect
-    #if the user is signed in, use default e-mail address, or email address provided
+    # if the user is signed in, use default e-mail address, or email address provided
     if !current_user.nil?
       @email = params[:email].blank? ? current_user.email : params[:email]
     else
@@ -234,13 +233,13 @@ class CartsController < ApplicationController
   end
 
   def search
-    if params[:value] == "notremote"
+    if params[:value] == 'notremote'
       return redirect_to root_path(value: params[:id])
     end
     @courses = Cart.find_by_cartid(params[:id]).get_courses
     respond_to do |format|
       format.html { redirect_to root_path }
-      format.js { render "courses/search" }
+      format.js { render 'courses/search' }
     end
   end
 

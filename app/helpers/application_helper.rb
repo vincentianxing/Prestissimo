@@ -1,8 +1,7 @@
 module ApplicationHelper
-
   # builds the title for each page (title must be provided in each page)
   def full_title(page_title)
-    base_title = "Prestissimo"
+    base_title = 'Prestissimo'
     if page_title.empty?
       base_title
     else
@@ -12,7 +11,7 @@ module ApplicationHelper
 
   def display_cart?
     if !current_user.nil?
-      logger.debug "called display_cart?"
+      logger.debug 'called display_cart?'
       action = current_page?(root_path)
       logger.debug "course#index? #{action}"
       is_list = !current_user.course_list.blank?
@@ -41,15 +40,15 @@ module ApplicationHelper
   end
 
   def search_count
-    @search_count ||= Ahoy::Event.where(name: "Course search", time: 1.weeks.ago..Time.now).count
+    @search_count ||= Ahoy::Event.where(name: 'Course search', time: 1.weeks.ago..Time.now).count
   end
 
   def courses_last_updated
-    @courses_last_updated ||= Setting.get_val("courses_last_updated")
+    @courses_last_updated ||= Setting.get_val('courses_last_updated')
   end
 
   def motd
-    @motd ||= Setting.get_val("motd")
+    @motd ||= Setting.get_val('motd')
   end
 
   # builds a MYSQL query string based on user input
@@ -59,26 +58,27 @@ module ApplicationHelper
   #
   # note: a field called "email" is a special case and uses regexps to ignore stuff after the '@' in the email
   def make_query_string(str, fields, any)
-    raise ArgumentError.new "empty search string" if str.blank?
-    cond = "AND"
-    cond = "OR" if any
+    raise ArgumentError, 'empty search string' if str.blank?
 
-    str.strip! #remove leading/trailing whitespace from user input.
-    qs = "("
-    str.scan(/'.+?'|".+?"|[^ ]+/).map { |e| e.gsub /^['"]|['"]$/, "" }.each do |s|
-      qs << ") #{cond} (" unless qs.eql? "("
+    cond = 'AND'
+    cond = 'OR' if any
+
+    str.strip! # remove leading/trailing whitespace from user input.
+    qs = '('
+    str.scan(/'.+?'|".+?"|[^ ]+/).map { |e| e.gsub(/^['"]|['"]$/, '') }.each do |s|
+      qs << ") #{cond} (" unless qs.eql? '('
       # search by all fields
-      fs = ""
+      fs = ''
       fields.each do |f|
-        fs << " OR " unless fs.blank?
-        if f.eql? "email"
-          fs << " email RLIKE " + ActiveRecord::Base.connection.quote("^[^\@]*" + Regexp.escape(s))
-        else
-          fs << " #{f} LIKE " + ActiveRecord::Base.connection.quote("%" + s + "%")
-        end
+        fs << ' OR ' unless fs.blank?
+        fs << if f.eql? 'email'
+                ' email RLIKE ' + ActiveRecord::Base.connection.quote("^[^\@]*" + Regexp.escape(s))
+              else
+                " #{f} LIKE " + ActiveRecord::Base.connection.quote('%' + s + '%')
+              end
       end
       qs << fs
     end
-    qs << ")"
+    qs << ')'
   end
 end

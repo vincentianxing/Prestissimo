@@ -19,7 +19,6 @@
 #
 
 class Report < ApplicationRecord
-
   validates :body, presence: true
   validates :user_id, presence: true
   validates :title, presence: true
@@ -30,62 +29,58 @@ class Report < ApplicationRecord
   # - report has many parents
   belongs_to :reportable, polymorphic: true
 
-  def self.build_report(reportable,reporter,title,body)
-	  r = Report.new
-	  r.user = reporter
-	  r.reportable_type = reportable.class.base_class.name
-	  r.reportable_id = reportable.id
-	  case r.reportable_type
-	  when "Comment"
-		  handle = Handle.find_by_username(reportable.handle)
-		  User.all.each do |u|
-			  if u.handlekey == handle.handlekey
-				  r.reported_id = u.id
-			  end
-		  end
-	  when "Handle"
-		  User.all.each do |u|
-			  if u.handlekey == reportable.handlekey
-				  r.reported_id = u.id
-			  end
-		  end
-	  when "User"
-		  r.reported_id = reportable.id
-	  end
-	  r.reportable_content = reportable.inspect.to_s
-	  r.body = body
-	  r.title = title
-	  r.response = ""
-	  r
+  def self.build_report(reportable, reporter, title, body)
+    r = Report.new
+    r.user = reporter
+    r.reportable_type = reportable.class.base_class.name
+    r.reportable_id = reportable.id
+    case r.reportable_type
+    when 'Comment'
+      handle = Handle.find_by_username(reportable.handle)
+      User.all.each do |u|
+        r.reported_id = u.id if u.handlekey == handle.handlekey
+      end
+    when 'Handle'
+      User.all.each do |u|
+        r.reported_id = u.id if u.handlekey == reportable.handlekey
+      end
+    when 'User'
+      r.reported_id = reportable.id
+    end
+    r.reportable_content = reportable.inspect.to_s
+    r.body = body
+    r.title = title
+    r.response = ''
+    r
   end
 
-  def resolve(admin,response)
-	  self.admin_email = admin.email
-	  self.response = DateTime.now.to_s + "\n" + response + "\n\n"
-	  self.resolved = true
+  def resolve(admin, response)
+    self.admin_email = admin.email
+    self.response = DateTime.now.to_s + "\n" + response + "\n\n"
+    self.resolved = true
   end
-  
+
   def lock(name)
-	  self.locked_by = name 
+    self.locked_by = name
   end
 
   def unlock
-	  self.locked_by = nil 
+    self.locked_by = nil
   end
 
-  def unresolve(admin,response)
-	  self.response = self.response + DateTime.now.to_s + "n" + "response" + "nn"
-	  self.admin_email = admin.email
-	  logger.debug "DDDDDD" + self.response
+  def unresolve(admin, _response)
+    self.response = response + DateTime.now.to_s + 'n' + 'response' + 'nn'
+    self.admin_email = admin.email
+    logger.debug 'DDDDDD' + response
   end
 
   def reported
-	  User.find(self.reported_id)
+    User.find(reported_id)
   end
 
   def duplicate?
-	  # if a report exists by this user on this object, and the object has not been changed, this is a duplicate
-	  report = Report.where(reportable_type: self.reportable_type, reportable_id: self.reportable_id, user_id: self.user_id)
-	  report.size > 0 && report.last.created_at > self.reportable_type.constantize.find(self.reportable_id).updated_at 
+    # if a report exists by this user on this object, and the object has not been changed, this is a duplicate
+    report = Report.where(reportable_type: reportable_type, reportable_id: reportable_id, user_id: user_id)
+    report.!empty? && report.last.created_at > reportable_type.constantize.find(reportable_id).updated_at
   end
 end

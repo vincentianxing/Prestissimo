@@ -11,13 +11,13 @@
 
 class Setting < ApplicationRecord
   def self.get_val(key)
-	  Setting.find_by_key(key).value
+    Setting.find_by_key(key).value
   end
 
-  def self.set(key,value)
-	  s = Setting.find_by_key(key)
-	  s.value = value
-	  s.save
-	  s
+  def self.set(key, value)
+    s = Setting.find_by_key(key)
+    s.value = value
+    s.save
+    s
   end
 end

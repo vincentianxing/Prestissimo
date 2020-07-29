@@ -3,14 +3,14 @@ class ErrorsController < ApplicationController
 
   # renders 404 error page
   def not_found
-    render :file => "errors/404", :status => 404, :formats => [:html]
+    render :file => 'errors/404', :status => 404, :formats => [:html]
   end
 
   # renders 500 error page
   def server_error
     unless get_exception.nil?
       e = get_exception
-      @message = "#{e.class} (#{e.message})\n\t#{Rails.backtrace_cleaner.clean(e.backtrace).join("\n\t")}" #more info that could be useful, but can be quite verbose# \nRequest was a #{request.method}.\n\nRequest_parameters() :\n\t#{request.request_parameters}\n\nQuery_parameters() :\n\t#{request.query_parameters}\n\nPath_parameters() :\n\t#{request.path_parameters}\n\nRaw_post() :\n\t#{request.raw_post}\n\nHeaders() :"
+      @message = "#{e.class} (#{e.message})\n\t#{Rails.backtrace_cleaner.clean(e.backtrace).join("\n\t")}" # more info that could be useful, but can be quite verbose# \nRequest was a #{request.method}.\n\nRequest_parameters() :\n\t#{request.request_parameters}\n\nQuery_parameters() :\n\t#{request.query_parameters}\n\nPath_parameters() :\n\t#{request.path_parameters}\n\nRaw_post() :\n\t#{request.raw_post}\n\nHeaders() :"
 
       ### Also more info, usually not that useful, always very verbose.
       ##add the HTML headers to the message in a slightly more readable format than simply headers.inspect
@@ -24,7 +24,7 @@ class ErrorsController < ApplicationController
       #  end
       #end
       #send email
-      Interact.error_report(@message, request.original_url, request.env["HTTP_USER_AGENT"]).deliver
+      Interact.error_report(@message, request.original_url, request.env['HTTP_USER_AGENT']).deliver
     end
     render :file => "errors/500", :status => 500, :formats => [:html]
   end
@@ -38,7 +38,7 @@ class ErrorsController < ApplicationController
   protected
 
   def get_exception
-    @exception ||= request.env["action_dispatch.exception"]
+    @exception ||= request.env['action_dispatch.exception']
   end
 
   private
