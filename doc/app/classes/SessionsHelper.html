@@ -243,14 +243,14 @@
                 
               </p>
               <div id="method-i-authenticate_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 110</span>
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 107</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">authenticate</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">pass</span>)
   <span class="ruby-identifier">ldap</span> = <span class="ruby-identifier">initialize_ldap_con</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">ldap</span>.<span class="ruby-identifier">bind</span>
 
   <span class="ruby-identifier">result</span> = <span class="ruby-identifier">ldap</span>.<span class="ruby-identifier">bind_as</span>(
-    <span class="ruby-value">:filter</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-node">&quot;(cn=#{user})&quot;</span>,
-    <span class="ruby-value">:password</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">pass</span>
+    <span class="ruby-value">filter:</span> <span class="ruby-node">&quot;(cn=#{user})&quot;</span>,
+    <span class="ruby-value">password:</span> <span class="ruby-identifier">pass</span>
   )
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -286,7 +286,7 @@
                 
               </p>
               <div id="method-i-current_professor_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 36</span>
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">current_professor</span>
   <span class="ruby-ivar">@current_professor</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Professor</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">prof_id</span>)
   <span class="ruby-ivar">@current_professor</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Professor</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">userid:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">email</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;@&#39;</span>)[<span class="ruby-value">0</span>])[<span class="ruby-value">0</span>]
@@ -325,7 +325,7 @@
                 
               </p>
               <div id="method-i-current_user_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 21</span>
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">current_user</span>
   <span class="ruby-ivar">@current_user</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_remember_token</span>(<span class="ruby-identifier">cookies</span>[<span class="ruby-value">:remember_token</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -362,7 +362,7 @@
                 
               </p>
               <div id="method-i-current_user-3D_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 15</span>
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">current_user=</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-ivar">@current_user</span> = <span class="ruby-identifier">user</span>
 <span class="ruby-keyword">end</span></pre>
@@ -399,7 +399,7 @@
                 
               </p>
               <div id="method-i-current_user-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 26</span>
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">current_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">user</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">current_user</span>
 <span class="ruby-keyword">end</span></pre>
@@ -436,7 +436,7 @@
                 
               </p>
               <div id="method-i-disclaimer_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 64</span>
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">disclaimer</span>
   <span class="ruby-ivar">@disclaimer</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">find_by_key</span>(<span class="ruby-string">&#39;disclaimer&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -473,13 +473,13 @@
                 
               </p>
               <div id="method-i-disclaimer_cookie_expired-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 83</span>
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 80</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">disclaimer_cookie_expired?</span>
   <span class="ruby-keyword">if</span> <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">cookies</span>[<span class="ruby-value">:disclaimer</span>]) <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">disclaimer</span>.<span class="ruby-identifier">updated_at</span>
     <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">:disclaimer</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">true</span>
   <span class="ruby-keyword">else</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">false</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -515,7 +515,7 @@
                 
               </p>
               <div id="method-i-faculty_user-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 31</span>
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">faculty_user?</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">user</span>.<span class="ruby-identifier">role</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;faculty&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -552,19 +552,19 @@
                 
               </p>
               <div id="method-i-initialize_ldap_con_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 93</span>
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 90</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize_ldap_con</span>
   <span class="ruby-identifier">credentials</span> = {
-    <span class="ruby-value">:method</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">:simple</span>,
-    <span class="ruby-value">:username</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;cn=pr-oprest,ou=dmanage,dc=ad,dc=oberlin,dc=edu&quot;</span>,
-    <span class="ruby-value">:password</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;OC-2015op&quot;</span>
+    <span class="ruby-value">method:</span> <span class="ruby-value">:simple</span>,
+    <span class="ruby-value">username:</span> <span class="ruby-string">&#39;cn=pr-oprest,ou=dmanage,dc=ad,dc=oberlin,dc=edu&#39;</span>,
+    <span class="ruby-value">password:</span> <span class="ruby-string">&#39;OC-2015op&#39;</span>
   }
   <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">LDAP</span>.<span class="ruby-identifier">new</span>(
-    <span class="ruby-value">:host</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;ad.oberlin.edu&quot;</span>,
-    <span class="ruby-value">:port</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;636&quot;</span>,
-    <span class="ruby-value">:encryption</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">:simple_tls</span>,
-    <span class="ruby-value">:base</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;ou=people,dc=ad,dc=oberlin,dc=edu&quot;</span>,
-    <span class="ruby-value">:auth</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">credentials</span>
+    <span class="ruby-value">host:</span> <span class="ruby-string">&#39;ad.oberlin.edu&#39;</span>,
+    <span class="ruby-value">port:</span> <span class="ruby-string">&#39;636&#39;</span>,
+    <span class="ruby-value">encryption:</span> <span class="ruby-value">:simple_tls</span>,
+    <span class="ruby-value">base:</span> <span class="ruby-string">&#39;ou=people,dc=ad,dc=oberlin,dc=edu&#39;</span>,
+    <span class="ruby-value">auth:</span> <span class="ruby-identifier">credentials</span>
   )
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -600,7 +600,7 @@
                 
               </p>
               <div id="method-i-motd_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 60</span>
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">motd</span>
   <span class="ruby-ivar">@motd</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">find_by_key</span>(<span class="ruby-string">&#39;motd&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -637,19 +637,17 @@
                 
               </p>
               <div id="method-i-motd_cookie_expired-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 68</span>
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">motd_cookie_expired?</span>
-  <span class="ruby-keyword">begin</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">cookies</span>[<span class="ruby-value">:motd</span>]) <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">motd</span>.<span class="ruby-identifier">updated_at</span>
-      <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">:motd</span>
-      <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
-    <span class="ruby-keyword">else</span>
-      <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">ArgumentError</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">cookies</span>[<span class="ruby-value">:motd</span>]) <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">motd</span>.<span class="ruby-identifier">updated_at</span>
     <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">:motd</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">false</span>
   <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">ArgumentError</span>
+  <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">:motd</span>
+  <span class="ruby-keyword">true</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -684,7 +682,7 @@
                 
               </p>
               <div id="method-i-redirect_back_or_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 50</span>
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">redirect_back_or</span>(<span class="ruby-identifier">default</span>)
   <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:return_to</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">default</span>)
   <span class="ruby-identifier">session</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:return_to</span>)
@@ -722,7 +720,7 @@
                 
               </p>
               <div id="method-i-sign_in_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 4</span>
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 3</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sign_in</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">permanent</span>[<span class="ruby-value">:remember_token</span>] = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">remember_token</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-identifier">user</span>
@@ -760,7 +758,7 @@
                 
               </p>
               <div id="method-i-sign_out_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 43</span>
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sign_out</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-keyword">nil</span>
   <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:remember_token</span>)
@@ -798,7 +796,7 @@
                 
               </p>
               <div id="method-i-signed_in-3F_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 10</span>
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">signed_in?</span>
   <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -835,7 +833,7 @@
                 
               </p>
               <div id="method-i-store_location_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 56</span>
+                <pre><span class="ruby-comment"># File app/helpers/sessions_helper.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">store_location</span>
   <span class="ruby-identifier">session</span>[<span class="ruby-value">:return_to</span>] = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">fullpath</span>
 <span class="ruby-keyword">end</span></pre>

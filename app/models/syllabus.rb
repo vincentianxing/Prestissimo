@@ -7,9 +7,9 @@ end
 #
 # Table name: syllabuses
 #
-#  id         :integer(4)      not null, primary key
+#  id         :integer          not null, primary key
 #  path       :string(255)
-#  course_id  :integer(4)
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
+#  course_id  :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #

@@ -27,12 +27,13 @@ class UsersController < ApplicationController
   # *Permissions*: any browser
 =end
   def show
-    @user = User.find_by_email(params[:email] + "@oberlin.edu")
+    @user = User.find_by_email(params[:email] + '@oberlin.edu')
     return redirect_to error_404_path unless @user
+
     redirect_to show_professor_path(fname: @user.fname, lname: @user.lname) if faculty_user? @user
 
     # For schedule semester checking
-    if !@user.cart.get_courses.empty?
+    unless @user.cart.get_courses.empty?
       @semester = params[:sem] ? translate_semester(params[:sem]) : @user.cart.get_courses.min.semester
       @semester_long = expand_semester(@semester)
     end
@@ -52,39 +53,27 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     # Make sure privacy_prefs isn't nil
-    if @user.privacy_prefs.nil?
-      @user.privacy_prefs = ""
-    end
+    @user.privacy_prefs = '' if @user.privacy_prefs.nil?
 
     # Check to see if privacy_prefs have changed
-    newprefs = ""
-    if params[:major] == "1"
-      newprefs << "secondmajor"
-    end
-    if params[:nickname] == "1"
-      newprefs << " nonickname"
-    end
-    if params[:year] == "1"
-      newprefs << " noyear"
-    end
-    if params[:info] == "1"
-      newprefs << " noinfo"
-    end
-    if params[:schedule] == "1"
-      newprefs << "noschedule"
-    end
+    newprefs = ''
+    newprefs << 'secondmajor' if params[:major] == '1'
+    newprefs << ' nonickname' if params[:nickname] == '1'
+    newprefs << ' noyear' if params[:year] == '1'
+    newprefs << ' noinfo' if params[:info] == '1'
+    newprefs << 'noschedule' if params[:schedule] == '1'
     newprefs.strip!
     params[:user][:privacy_prefs] = newprefs
 
     # update the user, there is no old_password field, so it needs to be removed from the hash
     if @user.update(params_user)
-      flash[:success] = "Settings successfully changed!"
+      flash[:success] = 'Settings successfully changed!'
       sign_in @user
       # go to the user profile
-      redirect_to user_path(@user.email.split("@")[0])
-      ahoy.track "Update user settings"
+      redirect_to user_path(@user.email.split('@')[0])
+      ahoy.track 'Update user settings'
     else # the user could not be saved (for some weird reason)
-      redirect_to settings_path(@user.email.split("@")[0]), :notice => 'Settings could not be changed. Please contact the Prestissmo managers!'
+      redirect_to settings_path(@user.email.split('@')[0]), notice: 'Settings could not be changed. Please contact the Prestissmo managers!'
     end
   end
 
@@ -92,7 +81,7 @@ class UsersController < ApplicationController
   #
   # *Permissions* current_user
   def edit
-    @user = User.find_by_email(params[:email] + "@oberlin.edu")
+    @user = User.find_by_email(params[:email] + '@oberlin.edu')
     redirect_to root_path unless @user
     redirect_to edit_professor_path(current_professor.fname, current_professor.lname) if faculty_user?(@user)
     @handle = Handle.find_by_handlekey(@user.handlekey)
@@ -110,47 +99,46 @@ class UsersController < ApplicationController
     @obie_id = params[:user][:email]
     logger.debug params[:user][:email]
     return redirect_to error_404_path unless @obie_id
+
     # connect to the LDAP
     if ldap.bind
       # where to look in the ldap sorta
       treebase = 'ou=people,dc=ad,dc=oberlin,dc=edu'
       # find the user who's  uid is the one we want
-      filter = Net::LDAP::Filter.eq('cn', "#{params[:user][:email].split('@')[0]}")
+      filter = Net::LDAP::Filter.eq('cn', (params[:user][:email].split('@')[0]).to_s)
       # search the ldap!
-      result = ldap.search(:base => treebase, :filter => filter)
+      result = ldap.search(base: treebase, filter: filter)
       if result.!empty?
-        if authenticate(params[:user][:email].split("@")[0], params[:user][:password])
+        if authenticate(params[:user][:email].split('@')[0], params[:user][:password])
           params[:user].delete(:password)
           @user = User.new(params_user)
           # find the first LDAP entry for the given flast (we ignore any extra entries that also match, there should really not be any...)
           result = result.first
-          @user.email = @user.email.split("@")[0] + "@oberlin.edu"
+          @user.email = @user.email.split('@')[0] + '@oberlin.edu'
           # assign the parameters, chopping off leading and trailing quotes, brackets, and backslashes
           @user.fname = result.givenname.to_s.slice!(2..-3)
           @user.lname = result.sn.to_s.slice!(2..-3)
           @user.role = result.employeenumber.to_s.slice!(2..-3)
-          @user.status = "active"
+          @user.status = 'active'
 
           @user.create_cart
 
           # If user is faculty, match them to their id
           if @user.role == 'Faculty' || @user.role == 'FACULTY'
             # Find by ObieID
-            profUser = Professor.find_by_userid(@user.email.split('@')[0])
-            if profUser
-              @user.prof_id = profUser.id
+            prof_user = Professor.find_by_userid(@user.email.split('@')[0])
+            if prof_user
+              @user.prof_id = prof_user.id
             else
               # Find by first and last name
-              profUser = Professor.where(fname: @user.fname, lname: @user.lname)[0]
-              if profUser
-                @user.prof_id = profUser.id
-              end
+              prof_user = Professor.where(fname: @user.fname, lname: @user.lname)[0]
+              @user.prof_id = prof_user.id if prof_user
             end
           end
 
           # save the user to the db
           if @user.save!
-            flash[:success] = "Welcome to OPrestissimo!"
+            flash[:success] = 'Welcome to OPrestissimo!'
             sign_in @user
             ahoy.authenticate(@user)
             # check for existing handle
@@ -165,34 +153,34 @@ class UsersController < ApplicationController
               # initially has no username
               prng = Random.new
               n = prng.rand(1..5640)
-              @handle.username = get_adj(n) + "Obie"
+              @handle.username = get_adj(n) + 'Obie'
               ctr = 0
-              while (Handle.find_by_username(@handle.username) && ctr < 10)
+              while Handle.find_by_username(@handle.username) && ctr < 10
                 n = prng.rand(1..5640)
-                @handle.username = get_adj(n) + "Obie"
+                @handle.username = get_adj(n) + 'Obie'
                 ctr += 1
               end
               # save the handle
               if @handle.save
                 redirect_to guidelines_path
               else # the handle was not saved
-                flash[:failure] = "Something went wrong, contact the oprestissimo team"
-                redirect_to user_path(@user.email.split("@")[0]) # they do not have a handle!
+                flash[:failure] = 'Something went wrong, contact the oprestissimo team'
+                redirect_to user_path(@user.email.split('@')[0]) # they do not have a handle!
               end
             else
-              redirect_to user_path(@user.email.split("@")[0])
+              redirect_to user_path(@user.email.split('@')[0])
             end
           else # the user could not be saved to the db
-            flash[:failure] = "Something went wrong, contact the oprestissimo team"
+            flash[:failure] = 'Something went wrong, contact the oprestissimo team'
             redirect_to signin_path
           end
         else # user did not authenticate correctly, but was found in the ldap
-          flash[:failure] = "Invalid email/password combination: Please use your <strong>ObieID</strong> (flast format) username and <strong>OCPass password</strong>."
+          flash[:failure] = 'Invalid email/password combination: Please use your <strong>ObieID</strong> (flast format) username and <strong>OCPass password</strong>.'
           redirect_to signin_path
         end
       else # no user found in LDAP to match the flast given
-        flash[:failure] = "Please use your <strong>ObieID</strong> (flast format) username and <strong>OCPass password</strong>."
-        #session[:wrong_email_singup] = params[:user][:email]
+        flash[:failure] = 'Please use your <strong>ObieID</strong> (flast format) username and <strong>OCPass password</strong>.'
+        # session[:wrong_email_singup] = params[:user][:email]
         redirect_to signin_path
       end
     else # LDAP connection failure
@@ -204,7 +192,7 @@ class UsersController < ApplicationController
   # activates the user with the given nonce
   #
   # *Permissions* any browser
-  #def activate
+  # def activate
   #  # takes in a :nonce from the url (specified in routes)
   #  @user = User.find_by_nonce(params[:nonce])
   #  if @user
@@ -229,21 +217,21 @@ class UsersController < ApplicationController
   #    flash[:failure] = "Not a valid activation code, or your code has expired. If you cannot sign in to your account, it has been deleted and you must create a new one."
   #    redirect_to 'new'
   #  end
-  #end
+  # end
 
   # actions associated with the forgot password process
 
   # no specific user associated with password reset process
   #
   # *Permissions* any browser
-  #def forgot_pass_page
+  # def forgot_pass_page
   #  @user = User.new
-  #end
+  # end
 
   # sends a link to reset password of the account with the given email (if such an account exits)
   #
   # *Permissions* any browser
-  #def send_forgot_mail
+  # def send_forgot_mail
   #  @user = User.find_by_email(params[:email])
   #  @user ||= User.find_by_email(params[:email] + '@gmail.com')
   #  # if the user exists
@@ -269,12 +257,12 @@ class UsersController < ApplicationController
   #    flash[:failure] = "Not a user email"
   #    redirect_to signin_path
   #  end
-  #end
+  # end
 
   # loads the page if there is a user with passed nonce and it is nonexpired
   #
   # *Permissions* any browser
-  #def edit_pass
+  # def edit_pass
   #  if @user = User.find_by_nonce(params[:nonce])
   #    # if the nonce is not expired
   #    if @user.nonce_active?
@@ -286,12 +274,12 @@ class UsersController < ApplicationController
   #    flash[:failure] = "Password reset link expired"
   #    redirect_to root_path
   #  end
-  #end
+  # end
 
   # submits a new password for the user
   #
   # *Permissions* any browser
-  #def reset_pass
+  # def reset_pass
   #  # know the nonce is in the db and unexpired from the edit_pass method
   #  @user = User.find_by_nonce(params[:nonce])
   #  # save the new password to the user
@@ -306,7 +294,7 @@ class UsersController < ApplicationController
   #    flash[:failure] = "Could not update password. Not sure why..."
   #    render 'edit_pass'
   #  end
-  #end
+  # end
 
   # renders the new view (signup)
   #
@@ -319,7 +307,7 @@ class UsersController < ApplicationController
   #
   # *Permissions* current_user
   def confirm_destroy
-    @user = User.find_by_email(params[:email] + "@oberlin.edu")
+    @user = User.find_by_email(params[:email] + '@oberlin.edu')
     unless @user
       flash[:failure] = 'Could not find user by email'
       redirect_to root_path
@@ -351,7 +339,7 @@ class UsersController < ApplicationController
     # destroy the user and its handle
     @user.destroy
     @handle.mute.save
-    flash[:success] = "User destroyed"
+    flash[:success] = 'User destroyed'
     redirect_to users_path
   end
 
@@ -369,12 +357,12 @@ class UsersController < ApplicationController
   # Permissions any user
   def search
     # build a query string
-    usrqs = ""
-    prfqs = ""
-    handqs = ""
+    usrqs = ''
+    prfqs = ''
+    handqs = ''
     # if :finduser has a value
     person = params[:person].strip
-    if !(person.blank? || person.gsub(/\W+/, "").empty?)
+    if !(person.blank? || person.gsub(/\W+/, '').empty?)
       ##### USER SEARCH BIT #####
       # uses function defined in application helper to construct a mysql query string
       usrqs = make_query_string(person.gsub(/['"]/, ""), ["fname", "lname", "email"], false)
@@ -414,7 +402,8 @@ class UsersController < ApplicationController
   def schedule
     @user = User.find_by_email(params[:email] + '@oberlin.edu')
     return redirect_to root_path unless @user
-    if !@user.cart.get_courses.empty?
+
+    unless @user.cart.get_courses.empty?
       @semester = params[:sem] ? translate_semester(params[:sem]) : @user.cart.get_courses.min.semester
       @semester_long = expand_semester(@semester)
     end

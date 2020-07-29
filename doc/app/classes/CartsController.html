@@ -270,18 +270,18 @@
                 
               </p>
               <div id="method-i-create_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 4</span>
+                <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 3</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
   <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">new</span>
-  <span class="ruby-identifier">courses</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">courses</span> = <span class="ruby-string">&#39;&#39;</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:courses</span>]
     <span class="ruby-identifier">params</span>[<span class="ruby-value">:courses</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">courses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>
+      <span class="ruby-identifier">courses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39; &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">strip!</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">set_courses</span>(<span class="ruby-identifier">courses</span>)
-  <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@cart_courses</span> = []
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">save</span>
     <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">permanent</span>[<span class="ruby-value">:cart</span>] = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">cartid</span>
     <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">get_courses</span>
@@ -325,7 +325,7 @@
                 
               </p>
               <div id="method-i-destroy_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 27</span>
+                <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">destroy</span>
   <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value">:cart</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">cookies</span>[<span class="ruby-value">:cart</span>]
@@ -368,7 +368,7 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mail_to</span>
   <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">get_courses</span>
   <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">inspect</span>
-  <span class="ruby-comment">#if the user is signed in, use default e-mail address, or email address provided</span>
+  <span class="ruby-comment"># if the user is signed in, use default e-mail address, or email address provided</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">nil?</span>
     <span class="ruby-ivar">@email</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">email</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>]
   <span class="ruby-keyword">else</span>
@@ -378,9 +378,9 @@
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">verify_email</span> <span class="ruby-ivar">@email</span>
     <span class="ruby-ivar">@sender</span> = <span class="ruby-identifier">current_user</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
     <span class="ruby-constant">Interact</span>.<span class="ruby-identifier">mail_cart</span>(<span class="ruby-identifier">request</span>.<span class="ruby-identifier">remote_ip</span>, <span class="ruby-ivar">@cart</span>, <span class="ruby-ivar">@email</span>, <span class="ruby-ivar">@sender</span>).<span class="ruby-identifier">deliver</span>
-    <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;Email Sent&quot;</span>
+    <span class="ruby-ivar">@message</span> = <span class="ruby-string">&#39;Email Sent&#39;</span>
   <span class="ruby-keyword">else</span>
-    <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;Please use a valid email&quot;</span>
+    <span class="ruby-ivar">@message</span> = <span class="ruby-string">&#39;Please use a valid email&#39;</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -423,10 +423,10 @@
     <span class="ruby-comment"># put word boundaries around params[:semcrn]</span>
     <span class="ruby-identifier">parts</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">split</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:semcrn</span>])
     <span class="ruby-identifier">params</span>[<span class="ruby-value">:cart</span>] = {}
-    <span class="ruby-identifier">params</span>[<span class="ruby-value">:cart</span>][<span class="ruby-value">:courses</span>] = <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-identifier">params</span>[<span class="ruby-value">:cart</span>][<span class="ruby-value">:courses</span>] = <span class="ruby-string">&#39;&#39;</span>
     <span class="ruby-identifier">params</span>[<span class="ruby-value">:cart</span>][<span class="ruby-value">:courses</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">parts</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">strip</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">parts</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">blank?</span>
-    <span class="ruby-identifier">params</span>[<span class="ruby-value">:cart</span>][<span class="ruby-value">:courses</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">parts</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">strip</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">parts</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">blank?</span>
-    <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">params</span>[<span class="ruby-value">:cart</span>][<span class="ruby-value">:courses</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39; &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">parts</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">strip</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">parts</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">blank?</span>
+    <span class="ruby-ivar">@cart_courses</span> = []
     <span class="ruby-ivar">@hours</span> = <span class="ruby-value">0</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">cart_params</span>)
       <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">get_courses</span>
@@ -488,13 +488,13 @@
               <div id="method-i-search_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 236</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">search</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:value</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;notremote&quot;</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:value</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;notremote&#39;</span>
     <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>(<span class="ruby-value">value:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@courses</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">get_courses</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span> }
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;courses/search&quot;</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;courses/search&#39;</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -530,10 +530,11 @@
                 
               </p>
               <div id="method-i-show_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 34</span>
+                <pre><span class="ruby-comment"># File app/controllers/carts_controller.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">show</span>
   <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">error_404_path</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@cart</span>
+
   <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">get_courses</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span> }
@@ -601,17 +602,17 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add</span>
   <span class="ruby-ivar">@cart</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">find_by_cartid</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">courses</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">clone</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">courses</span>
-  <span class="ruby-identifier">courses</span> <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">courses</span> <span class="ruby-operator">||=</span> <span class="ruby-string">&#39;&#39;</span>
   <span class="ruby-identifier">courses_before_add</span> = <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">clone</span>
-  <span class="ruby-identifier">courses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:semcrn</span>] <span class="ruby-keyword">unless</span> <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:semcrn</span>]
+  <span class="ruby-identifier">courses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39; &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:semcrn</span>] <span class="ruby-keyword">unless</span> <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:semcrn</span>]
   <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">strip!</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-keyword">nil</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">16777214</span>
-    <span class="ruby-comment">#chop off the class that was just added</span>
-    <span class="ruby-comment">#courses.gsub!(/ .{7,10}$/, &#39;&#39;)</span>
+    <span class="ruby-comment"># chop off the class that was just added</span>
+    <span class="ruby-comment"># courses.gsub!(/ .{7,10}$/, &#39;&#39;)</span>
 
-    <span class="ruby-comment">#message to pass to add.js</span>
-    <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;Too many courses in your cart!&quot;</span>
+    <span class="ruby-comment"># message to pass to add.js</span>
+    <span class="ruby-ivar">@message</span> = <span class="ruby-string">&#39;Too many courses in your cart!&#39;</span>
     <span class="ruby-identifier">courses</span> = <span class="ruby-identifier">courses_before_add</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@hours</span> = <span class="ruby-value">0</span>
@@ -629,7 +630,7 @@
   <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">total_credits</span> = <span class="ruby-identifier">total_credits</span>
   <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">update!</span>(<span class="ruby-value">total_credits:</span> <span class="ruby-identifier">total_credits</span>)
   <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">set_courses</span>(<span class="ruby-identifier">courses</span>)
-  <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@cart_courses</span> = []
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">save</span>
     <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">get_courses</span>
   <span class="ruby-keyword">else</span>
@@ -681,21 +682,21 @@
     <span class="ruby-ivar">@hours</span> = <span class="ruby-value">0</span>
     <span class="ruby-identifier">courses</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">clone</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">courses</span>
     <span class="ruby-identifier">courses_before_add</span> = <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">clone</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">courses</span>
-    <span class="ruby-identifier">courses_before_add</span> <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-identifier">courses_before_add</span> <span class="ruby-operator">||=</span> <span class="ruby-string">&#39;&#39;</span>
     <span class="ruby-identifier">params</span>[<span class="ruby-value">:courses</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">nil?</span>
         <span class="ruby-identifier">courses</span> = <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">dup</span>
         <span class="ruby-identifier">sem</span> = <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">dup</span>
       <span class="ruby-keyword">else</span>
-        <span class="ruby-identifier">error</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> (<span class="ruby-identifier">courses</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>)
-        <span class="ruby-identifier">courses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>
+        <span class="ruby-identifier">error</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>
+        <span class="ruby-identifier">courses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39; &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>
         <span class="ruby-identifier">sem</span> = <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">dup</span>
       <span class="ruby-keyword">end</span>
       <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">strip!</span>
       <span class="ruby-ivar">@message</span> = <span class="ruby-keyword">nil</span>
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">16777214</span>
-        <span class="ruby-comment">#message to pass to update.js</span>
-        <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;Add failed: too many courses in your cart!&quot;</span>
+        <span class="ruby-comment"># message to pass to update.js</span>
+        <span class="ruby-ivar">@message</span> = <span class="ruby-string">&#39;Add failed: too many courses in your cart!&#39;</span>
         <span class="ruby-identifier">courses</span> = <span class="ruby-identifier">courses_before_add</span>.<span class="ruby-identifier">clone</span>
         <span class="ruby-identifier">exceed</span> = <span class="ruby-keyword">true</span>
         <span class="ruby-keyword">break</span>
@@ -717,7 +718,7 @@
       <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">total_credits</span> = <span class="ruby-identifier">total_credits</span>
       <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">update!</span>(<span class="ruby-value">total_credits:</span> <span class="ruby-identifier">total_credits</span>)
       <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">set_courses</span>(<span class="ruby-identifier">courses</span>)
-      <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-ivar">@cart_courses</span> = []
       <span class="ruby-keyword">if</span> <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">save</span>
         <span class="ruby-ivar">@cart_courses</span> = <span class="ruby-ivar">@cart</span>.<span class="ruby-identifier">get_courses</span>
       <span class="ruby-keyword">else</span>

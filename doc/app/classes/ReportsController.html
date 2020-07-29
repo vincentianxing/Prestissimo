@@ -175,33 +175,31 @@
               <div id="method-i-create_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
-        <span class="ruby-ivar">@report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">build_report</span>(<span class="ruby-ivar">@reportable</span>,<span class="ruby-ivar">@user</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:report</span>][<span class="ruby-value">:title</span>],<span class="ruby-identifier">params</span>[<span class="ruby-value">:report</span>][<span class="ruby-value">:body</span>])
-        <span class="ruby-comment"># send email</span>
-        <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;&quot;</span>
-        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">duplicate?</span>
-                <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;Cannot file a report more than once&quot;</span>
-        <span class="ruby-keyword">else</span>
-                <span class="ruby-keyword">if</span> <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">save</span>
-                        <span class="ruby-keyword">case</span> <span class="ruby-ivar">@reportable</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">underscore</span>
-                        <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;handle&quot;</span>
-                                <span class="ruby-ivar">@message</span> = <span class="ruby-node">&quot;You have filed a report against #{@reportable.username}&quot;</span>
-                        <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;user&quot;</span>
-                                <span class="ruby-ivar">@message</span> = <span class="ruby-node">&quot;You have filed a report against #{@reportable.fname} #{@reportable.lname}&quot;</span>
-                        <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;comment&quot;</span>
-                                <span class="ruby-ivar">@message</span> = <span class="ruby-node">&quot;You have filed a report against a comment by #{@reportable.handle}&quot;</span>
-                        <span class="ruby-keyword">else</span>
-                                <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;You have filed a report&quot;</span>
-                        <span class="ruby-keyword">end</span>
-                        <span class="ruby-constant">Interact</span>.<span class="ruby-identifier">report_confirmation</span>(<span class="ruby-ivar">@user</span>, <span class="ruby-ivar">@report</span>).<span class="ruby-identifier">deliver</span>
-                        <span class="ruby-constant">Interact</span>.<span class="ruby-identifier">admin_report_notice</span>(<span class="ruby-ivar">@user</span>, <span class="ruby-ivar">@report</span>).<span class="ruby-identifier">deliver</span>
-                <span class="ruby-keyword">else</span>
-                        <span class="ruby-ivar">@message</span> = <span class="ruby-string">&quot;Something went wrong&quot;</span>
-                <span class="ruby-keyword">end</span>
-        <span class="ruby-keyword">end</span>
-        <span class="ruby-ivar">@message</span>
-        <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-                <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
-        <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">build_report</span>(<span class="ruby-ivar">@reportable</span>, <span class="ruby-ivar">@user</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:report</span>][<span class="ruby-value">:title</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:report</span>][<span class="ruby-value">:body</span>])
+  <span class="ruby-comment"># send email</span>
+  <span class="ruby-ivar">@message</span> = <span class="ruby-string">&#39;&#39;</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">duplicate?</span>
+    <span class="ruby-ivar">@message</span> = <span class="ruby-string">&#39;Cannot file a report more than once&#39;</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-ivar">@message</span> = <span class="ruby-keyword">case</span> <span class="ruby-ivar">@reportable</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">underscore</span>
+               <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;handle&#39;</span>
+                 <span class="ruby-node">&quot;You have filed a report against #{@reportable.username}&quot;</span>
+               <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;user&#39;</span>
+                 <span class="ruby-node">&quot;You have filed a report against #{@reportable.fname} #{@reportable.lname}&quot;</span>
+               <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;comment&#39;</span>
+                 <span class="ruby-node">&quot;You have filed a report against a comment by #{@reportable.handle}&quot;</span>
+               <span class="ruby-keyword">else</span>
+                 <span class="ruby-string">&#39;You have filed a report&#39;</span>
+               <span class="ruby-keyword">end</span>
+    <span class="ruby-constant">Interact</span>.<span class="ruby-identifier">report_confirmation</span>(<span class="ruby-ivar">@user</span>, <span class="ruby-ivar">@report</span>).<span class="ruby-identifier">deliver</span>
+    <span class="ruby-constant">Interact</span>.<span class="ruby-identifier">admin_report_notice</span>(<span class="ruby-ivar">@user</span>, <span class="ruby-ivar">@report</span>).<span class="ruby-identifier">deliver</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@message</span> = <span class="ruby-string">&#39;Something went wrong&#39;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@message</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -236,17 +234,17 @@
                 
               </p>
               <div id="method-i-edit_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 48</span>
+                <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">edit</span>
-        <span class="ruby-ivar">@report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-        <span class="ruby-ivar">@reportable_changed</span> = <span class="ruby-ivar">@reportable</span>.<span class="ruby-identifier">updated_at</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">created_at</span>
-        <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">lock</span>(<span class="ruby-node">&quot;#{@user.fname} #{@user.lname}&quot;</span>)
-        <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">save</span>
-        <span class="ruby-ivar">@to_comp</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_comp</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_comp</span>] 
-        <span class="ruby-ivar">@to_viol</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_viol</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_viol</span>]
-        <span class="ruby-ivar">@response</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:response</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:response</span>]
-        <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:message</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:message</span>]
-        <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-ivar">@message</span>
+  <span class="ruby-ivar">@report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@reportable_changed</span> = <span class="ruby-ivar">@reportable</span>.<span class="ruby-identifier">updated_at</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">created_at</span>
+  <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">lock</span>(<span class="ruby-node">&quot;#{@user.fname} #{@user.lname}&quot;</span>)
+  <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-ivar">@to_comp</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_comp</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_comp</span>]
+  <span class="ruby-ivar">@to_viol</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_viol</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_viol</span>]
+  <span class="ruby-ivar">@response</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:response</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:response</span>]
+  <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:message</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:message</span>]
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-ivar">@message</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -283,15 +281,15 @@
               <div id="method-i-index_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 6</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">index</span>
-        <span class="ruby-ivar">@resolved</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
-        <span class="ruby-ivar">@unresolved</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
-        <span class="ruby-constant">Report</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">report</span><span class="ruby-operator">|</span>
-                <span class="ruby-keyword">if</span> <span class="ruby-identifier">report</span>.<span class="ruby-identifier">resolved</span>
-                        <span class="ruby-ivar">@resolved</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">report</span>
-                <span class="ruby-keyword">else</span>
-                        <span class="ruby-ivar">@unresolved</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">report</span>
-                <span class="ruby-keyword">end</span>
-        <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@resolved</span> = []
+  <span class="ruby-ivar">@unresolved</span> = []
+  <span class="ruby-constant">Report</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">report</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">report</span>.<span class="ruby-identifier">resolved</span>
+      <span class="ruby-ivar">@resolved</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">report</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@unresolved</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">report</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -328,9 +326,9 @@
               <div id="method-i-new_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">new</span>
-        <span class="ruby-ivar">@report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">new</span>
-        <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reportable_id</span> = <span class="ruby-ivar">@reportable</span>.<span class="ruby-identifier">id</span>
-        <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reportable_type</span> = <span class="ruby-ivar">@reportable</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">base_class</span>.<span class="ruby-identifier">name</span>
+  <span class="ruby-ivar">@report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reportable_id</span> = <span class="ruby-ivar">@reportable</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reportable_type</span> = <span class="ruby-ivar">@reportable</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">base_class</span>.<span class="ruby-identifier">name</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -365,27 +363,29 @@
                 
               </p>
               <div id="method-i-update_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 60</span>
+                <pre><span class="ruby-comment"># File app/controllers/reports_controller.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
-        <span class="ruby-ivar">@report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-        <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">edit_report_path</span>(<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reportable_type</span>.<span class="ruby-identifier">underscore</span>,<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reportable_id</span>,<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">user_id</span>,<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">response:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:response</span>], <span class="ruby-value">to_viol:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_viol</span>], <span class="ruby-value">message:</span> <span class="ruby-string">&quot;Cannot resolve report without informing reporter.&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:resolved</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_comp</span>].<span class="ruby-identifier">blank?</span>
+  <span class="ruby-ivar">@report</span> = <span class="ruby-constant">Report</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:resolved</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_comp</span>].<span class="ruby-identifier">blank?</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">edit_report_path</span>(<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reportable_type</span>.<span class="ruby-identifier">underscore</span>, <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reportable_id</span>, <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">user_id</span>, <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">response:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:response</span>], <span class="ruby-value">to_viol:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_viol</span>], <span class="ruby-value">message:</span> <span class="ruby-string">&#39;Cannot resolve report without informing reporter.&#39;</span>)
+  <span class="ruby-keyword">end</span>
 
-        <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">unlock</span>
-        <span class="ruby-identifier">response</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:response</span>]
-        <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_comp</span>]
-                <span class="ruby-identifier">response</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\n\nMessage to Complainant:\n#{params[:to_comp]}&quot;</span>        
-                <span class="ruby-constant">Interact</span>.<span class="ruby-identifier">to_reporter</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">user_id</span>), <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_comp</span>], <span class="ruby-ivar">@report</span>).<span class="ruby-identifier">deliver</span>
-        <span class="ruby-keyword">end</span>
-        <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_viol</span>]
-                <span class="ruby-identifier">response</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\n\nMessage to Violator:\n#{params[:to_viol]}&quot;</span>
-                <span class="ruby-constant">Interact</span>.<span class="ruby-identifier">to_reported</span>(<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reported</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_viol</span>], <span class="ruby-ivar">@report</span>).<span class="ruby-identifier">deliver</span>
-        <span class="ruby-keyword">end</span>
-        <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:resolved</span>]
-                <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">resolve</span>(<span class="ruby-identifier">current_user</span>, <span class="ruby-identifier">response</span>)
-        <span class="ruby-keyword">else</span>
-                <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">unresolve</span>(<span class="ruby-identifier">current_user</span>, <span class="ruby-identifier">response</span>)
-        <span class="ruby-keyword">end</span>
-        <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">unlock</span>
+  <span class="ruby-identifier">response</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:response</span>]
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_comp</span>]
+    <span class="ruby-identifier">response</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\n\nMessage to Complainant:\n#{params[:to_comp]}&quot;</span>
+    <span class="ruby-constant">Interact</span>.<span class="ruby-identifier">to_reporter</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">user_id</span>), <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_comp</span>], <span class="ruby-ivar">@report</span>).<span class="ruby-identifier">deliver</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_viol</span>]
+    <span class="ruby-identifier">response</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\n\nMessage to Violator:\n#{params[:to_viol]}&quot;</span>
+    <span class="ruby-constant">Interact</span>.<span class="ruby-identifier">to_reported</span>(<span class="ruby-ivar">@report</span>.<span class="ruby-identifier">reported</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:to_viol</span>], <span class="ruby-ivar">@report</span>).<span class="ruby-identifier">deliver</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:resolved</span>]
+    <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">resolve</span>(<span class="ruby-identifier">current_user</span>, <span class="ruby-identifier">response</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">unresolve</span>(<span class="ruby-identifier">current_user</span>, <span class="ruby-identifier">response</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">save</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

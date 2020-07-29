@@ -15,8 +15,8 @@
 
   
     
-    <meta name="description" content="Schema Information  Table name: settings  id         :integer(4)      not null, primary key key        :string(255) value      :string(255) created_at :datetime        not null updated_at :datetime   .">
-    <meta property="og:description" content="Schema Information  Table name: settings  id         :integer(4)      not null, primary key key        :string(255) value      :string(255) created_at :datetime        not null updated_at :datetime   .">
+    <meta name="description" content="Schema Information  Table name: settings  id         :integer          not null, primary key key        :string(255) value      :text(65535) created_at :datetime         not null updated_at :datetime .">
+    <meta property="og:description" content="Schema Information  Table name: settings  id         :integer          not null, primary key key        :string(255) value      :text(65535) created_at :datetime         not null updated_at :datetime .">
   
 
     <meta name="keywords" content="Setting class">
@@ -54,11 +54,11 @@
 
 <p>Table name: settings</p>
 
-<pre><code>id         :integer(4)      not null, primary key
+<pre><code>id         :integer          not null, primary key
 key        :string(255)
-value      :string(255)
-created_at :datetime        not null
-updated_at :datetime        not null
+value      :text(65535)
+created_at :datetime         not null
+updated_at :datetime         not null
 </code></pre>
 
     </div>
@@ -157,7 +157,7 @@ updated_at :datetime        not null
               <div id="method-c-get_val_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/setting.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">get_val</span>(<span class="ruby-identifier">key</span>)
-        <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">find_by_key</span>(<span class="ruby-identifier">key</span>).<span class="ruby-identifier">value</span>
+  <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">find_by_key</span>(<span class="ruby-identifier">key</span>).<span class="ruby-identifier">value</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -167,7 +167,7 @@ updated_at :datetime        not null
         <div class="method">
           <div class="title method-title" id="method-c-set">
             
-              <b>set</b>(key,value)
+              <b>set</b>(key, value)
             
             <a href="../classes/Setting.html#method-c-set" name="method-c-set" class="permalink">Link</a>
           </div>
@@ -193,11 +193,11 @@ updated_at :datetime        not null
               </p>
               <div id="method-c-set_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/setting.rb, line 17</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">set</span>(<span class="ruby-identifier">key</span>,<span class="ruby-identifier">value</span>)
-        <span class="ruby-identifier">s</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">find_by_key</span>(<span class="ruby-identifier">key</span>)
-        <span class="ruby-identifier">s</span>.<span class="ruby-identifier">value</span> = <span class="ruby-identifier">value</span>
-        <span class="ruby-identifier">s</span>.<span class="ruby-identifier">save</span>
-        <span class="ruby-identifier">s</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">set</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>)
+  <span class="ruby-identifier">s</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">find_by_key</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">s</span>.<span class="ruby-identifier">value</span> = <span class="ruby-identifier">value</span>
+  <span class="ruby-identifier">s</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-identifier">s</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
