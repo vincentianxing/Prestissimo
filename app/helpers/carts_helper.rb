@@ -35,6 +35,6 @@ module CartsHelper
     else
 	    courses = nil
     end
-    courses.sort unless courses.empty?
+    courses.sort unless courses.blank?
   end
 end
