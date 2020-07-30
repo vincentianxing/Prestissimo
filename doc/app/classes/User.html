@@ -15,8 +15,8 @@
 
   
     
-    <meta name="description" content="Schema Information  Table name: users  id              :integer(4)      not null, primary key fname           :string(255) email           :string(255) password_digest :string(255) created_at      :da.">
-    <meta property="og:description" content="Schema Information  Table name: users  id              :integer(4)      not null, primary key fname           :string(255) email           :string(255) password_digest :string(255) created_at      :da.">
+    <meta name="description" content="Schema Information  Table name: users  id             :integer          not null, primary key fname          :string(255) email          :string(255) created_at     :datetime         not null updated_.">
+    <meta property="og:description" content="Schema Information  Table name: users  id             :integer          not null, primary key fname          :string(255) email          :string(255) created_at     :datetime         not null updated_.">
   
 
     <meta name="keywords" content="User class">
@@ -54,25 +54,25 @@
 
 <p>Table name: users</p>
 
-<pre><code>id              :integer(4)      not null, primary key
-fname           :string(255)
-email           :string(255)
-password_digest :string(255)
-created_at      :datetime        not null
-updated_at      :datetime        not null
-remember_token  :string(255)
-status          :string(255)     default(&quot;pending&quot;)
-lname           :string(255)
-role            :string(255)
-nickname        :string(255)
-admin           :boolean(1)      default(FALSE)
-year            :string(255)
-privacy_prefs   :text
-major           :string(255)
-notes           :text
-cart_id         :integer(4)
-credits_done    :integer(4)
-double_major    :string(255)
+<pre><code>id             :integer          not null, primary key
+fname          :string(255)
+email          :string(255)
+created_at     :datetime         not null
+updated_at     :datetime         not null
+remember_token :string(255)
+status         :string(255)      default(&quot;pending&quot;)
+lname          :string(255)
+role           :string(255)
+nickname       :string(255)
+admin          :boolean          default(&quot;0&quot;)
+year           :string(255)
+notes          :text(65535)
+privacy_prefs  :text(65535)
+cart_id        :integer
+second_major   :string(255)
+double_major   :string(255)
+major          :string(255)
+prof_id        :integer
 </code></pre>
 
     </div>
@@ -212,7 +212,7 @@ double_major    :string(255)
                 
               </p>
               <div id="method-i-create_cart_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 103</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 104</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_cart</span>
   <span class="ruby-identifier">c</span> = <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-identifier">c</span>.<span class="ruby-identifier">courses</span> = <span class="ruby-string">&quot;&quot;</span>
@@ -252,7 +252,7 @@ double_major    :string(255)
                 
               </p>
               <div id="method-i-handlekey_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 89</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 90</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">handlekey</span>
   <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">email</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -289,7 +289,7 @@ double_major    :string(255)
                 
               </p>
               <div id="method-i-make_admin_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 93</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 94</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">make_admin</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">admin</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save</span>
@@ -327,7 +327,7 @@ double_major    :string(255)
                 
               </p>
               <div id="method-i-unmake_admin_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/user.rb, line 98</span>
+                <pre><span class="ruby-comment"># File app/models/user.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unmake_admin</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">admin</span> = <span class="ruby-keyword">false</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save</span>

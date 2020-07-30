@@ -15,8 +15,8 @@
 
   
     
-    <meta name="description" content="Schema Information  Table name: courses  id               :integer(4)      not null, primary key dept             :string(255) professor        :string(255) proficiencies    :string(255) building     .">
-    <meta property="og:description" content="Schema Information  Table name: courses  id               :integer(4)      not null, primary key dept             :string(255) professor        :string(255) proficiencies    :string(255) building     .">
+    <meta name="description" content="Schema Information  Table name: courses  id                :integer          not null, primary key dept              :string(255) professor         :string(255) proficiencies     :string(255) building.">
+    <meta property="og:description" content="Schema Information  Table name: courses  id                :integer          not null, primary key dept              :string(255) professor         :string(255) proficiencies     :string(255) building.">
   
 
     <meta name="keywords" content="Course class">
@@ -54,49 +54,59 @@
 
 <p>Table name: courses</p>
 
-<pre><code>id               :integer(4)      not null, primary key
-dept             :string(255)
-professor        :string(255)
-proficiencies    :string(255)
-building         :string(255)
-room             :string(255)
-cnum             :string(255)     default(&quot;&quot;)
-crn              :integer(4)
-created_at       :datetime        not null
-updated_at       :datetime        not null
-csize            :integer(4)
-semester         :string(255)
-mods             :integer(1)
-crmax            :float
-crmin            :float
-start_time       :time
-end_time         :time
-descrip          :text
-semcrn           :string(255)
-hubcourse_id     :integer(4)
-prereqs          :text
-short_title      :string(255)
-last_changed     :datetime
-enroll           :integer(4)
-dean_consent     :boolean(1)
-instruct_consent :boolean(1)
-section          :string(255)
-format           :string(255)
-std_letter       :boolean(1)
-p_np             :boolean(1)
-full_course      :string(255)
-cr_ne            :boolean(1)
-audit            :boolean(1)
-days             :string(255)
-xlist1           :string(255)
-xlist2           :string(255)
-xlist3           :string(255)
-title            :string(255)
-status           :string(255)     default(&quot;&quot;)
-distributions    :string(255)
-dept_long        :string(255)     default(&quot;&quot;)
-page             :integer(4)      default(0)
-remote           :string(255)     default(&quot;INPRS&quot;)
+<pre><code>id                :integer          not null, primary key
+dept              :string(255)
+professor         :string(255)
+proficiencies     :string(255)
+building          :string(255)
+room              :string(255)
+cnum              :string(255)      default(&quot;&quot;)
+crn               :integer
+created_at        :datetime         not null
+updated_at        :datetime         not null
+csize             :integer
+semester          :string(255)
+mods              :integer
+crmax             :float(24)
+crmin             :float(24)
+start_time        :time
+end_time          :time
+descrip           :text(65535)
+semcrn            :string(255)
+hubcourse_id      :integer
+prereqs           :text(65535)
+short_title       :string(255)
+last_changed      :datetime
+enroll            :integer
+dean_consent      :boolean
+instruct_consent  :boolean
+section           :string(255)
+format            :string(255)
+std_letter        :boolean
+p_np              :boolean
+cr_ne             :boolean
+audit             :boolean
+days              :string(255)
+xlist1            :string(255)
+xlist2            :string(255)
+xlist3            :string(255)
+title             :string(255)
+status            :string(255)      default(&quot;&quot;)
+distributions     :string(255)
+dept_long         :string(255)      default(&quot;&quot;)
+full_course       :string(255)
+xlist1_semcrn     :string(255)
+xlist2_semcrn     :string(255)
+xlist3_semcrn     :string(255)
+prof_desc         :text(65535)
+which_desc        :string(255)
+new_desc_action   :string(255)
+prof_note         :text(65535)
+display_prof_note :boolean          default(&quot;1&quot;)
+notify_profs      :string(255)
+recent_edit       :string(255)
+changed_fields    :string(255)
+remote            :string(255)
 </code></pre>
 
     </div>
@@ -309,7 +319,7 @@ remote           :string(255)     default(&quot;INPRS&quot;)
                 
               </p>
               <div id="method-c-build_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 78</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 88</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">build</span>(<span class="ruby-identifier">course_arr</span>)
   <span class="ruby-identifier">c</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">new</span>
 
@@ -599,7 +609,7 @@ remote           :string(255)     default(&quot;INPRS&quot;)
                 
               </p>
               <div id="method-c-csv_headers_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 475</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 485</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">csv_headers</span>
   [<span class="ruby-string">&quot;CRN&quot;</span>, <span class="ruby-string">&quot;No.&quot;</span>, <span class="ruby-string">&quot;Dept.&quot;</span>, <span class="ruby-string">&quot;Semester&quot;</span>, <span class="ruby-string">&quot;Course Name&quot;</span>, <span class="ruby-string">&quot;Instructor&quot;</span>, <span class="ruby-string">&quot;Days&quot;</span>, <span class="ruby-string">&quot;Start Time&quot;</span>, <span class="ruby-string">&quot;End Time&quot;</span>, <span class="ruby-string">&quot;Room&quot;</span>, <span class="ruby-string">&quot;Enroll.&quot;</span>, <span class="ruby-string">&quot;Size&quot;</span>, <span class="ruby-string">&quot;Profic.&quot;</span>, <span class="ruby-string">&quot;Section&quot;</span>, <span class="ruby-string">&quot;Format&quot;</span>, <span class="ruby-string">&quot;Module&quot;</span>, <span class="ruby-string">&quot;Credits&quot;</span>, <span class="ruby-string">&quot;Distributions&quot;</span>, <span class="ruby-string">&quot;Full/Half&quot;</span>, <span class="ruby-string">&quot;P/NP&quot;</span>, <span class="ruby-string">&quot;X-Listings&quot;</span>, <span class="ruby-string">&quot;Instruction Status&quot;</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -636,7 +646,7 @@ remote           :string(255)     default(&quot;INPRS&quot;)
                 
               </p>
               <div id="method-c-text_semester_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 451</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 461</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">text_semester</span>(<span class="ruby-identifier">semester</span>)
   <span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;Fall&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">semester</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;f&quot;</span>
   <span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;Spring&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">semester</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;s&quot;</span>
@@ -676,7 +686,7 @@ remote           :string(255)     default(&quot;INPRS&quot;)
                 
               </p>
               <div id="method-c-to_csv_row_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 479</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 489</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">to_csv_row</span>(<span class="ruby-identifier">c</span>)
   <span class="ruby-identifier">row</span> = [<span class="ruby-identifier">c</span>.<span class="ruby-identifier">crn</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">cnum</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">dept</span>]
   <span class="ruby-identifier">row</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">text_semester</span>(<span class="ruby-identifier">c</span>.<span class="ruby-identifier">semester</span>)
@@ -785,7 +795,7 @@ remote           :string(255)     default(&quot;INPRS&quot;)
                 
               </p>
               <div id="method-c-translate_semester_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 459</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 469</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">translate_semester</span>(<span class="ruby-identifier">year_month</span>)
   <span class="ruby-identifier">year</span> = <span class="ruby-identifier">year_month</span>[<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>]
   <span class="ruby-identifier">month</span> = <span class="ruby-identifier">year_month</span>[<span class="ruby-value">4</span><span class="ruby-operator">..</span><span class="ruby-value">5</span>]
@@ -838,7 +848,11 @@ remote           :string(255)     default(&quot;INPRS&quot;)
                 
               </p>
               <div id="method-i-3C-3D-3E_source" class="dyn-source">
+<<<<<<< HEAD
                 <pre><span class="ruby-comment"># File app/models/course.rb, line 558</span>
+=======
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 568</span>
+>>>>>>> Update schema comments and rdoc
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">&lt;=&gt;</span>(<span class="ruby-identifier">other</span>)
 
   <span class="ruby-keyword">case</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">semester</span>.<span class="ruby-identifier">at</span>(<span class="ruby-value">0</span>)
@@ -904,7 +918,7 @@ remote           :string(255)     default(&quot;INPRS&quot;)
                 
               </p>
               <div id="method-i-cancel_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 418</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 428</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">cancel</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&quot;cancelled&quot;</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">changed_fields</span> <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;&quot;</span>
@@ -949,7 +963,7 @@ end
                 
               </p>
               <div id="method-i-fix_gaps_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 72</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">fix_gaps</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">short_title</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span>.<span class="ruby-identifier">blank?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">short_title</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">short_title</span>.<span class="ruby-identifier">blank?</span>
@@ -988,7 +1002,7 @@ end
                 
               </p>
               <div id="method-i-generate_relationships_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 347</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 357</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">generate_relationships</span>(<span class="ruby-identifier">prim_instructor</span> = <span class="ruby-string">&quot;&quot;</span>, <span class="ruby-identifier">prim_userid</span> = <span class="ruby-string">&quot;&quot;</span>, <span class="ruby-identifier">prim_email</span> = <span class="ruby-string">&quot;&quot;</span>)
   <span class="ruby-identifier">hubid</span> = <span class="ruby-node">&quot;#{self.dept} #{self.cnum}&quot;</span>
   <span class="ruby-identifier">hc</span> = <span class="ruby-constant">Hubcourse</span>.<span class="ruby-identifier">find_by_hub_id</span>(<span class="ruby-identifier">hubid</span>)
@@ -1092,7 +1106,7 @@ end
                 
               </p>
               <div id="method-i-get_module_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 436</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 446</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_module</span>
   <span class="ruby-identifier">ret</span> = <span class="ruby-string">&quot;&quot;</span>
   <span class="ruby-keyword">case</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">mods</span>
@@ -1140,7 +1154,7 @@ end
                 
               </p>
               <div id="method-i-notify_prof_set_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 425</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 435</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">notify_prof_set</span>(<span class="ruby-identifier">profemail</span>)
   <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;premodel change: #{self.notify_profs}&quot;</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">notify_profs</span> <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;&quot;</span>
@@ -1184,7 +1198,7 @@ end
                 
               </p>
               <div id="method-i-sever_relationships_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 341</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 351</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sever_relationships</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">professors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-comment">#self.syllabus.clear</span>
@@ -1223,7 +1237,7 @@ end
                 
               </p>
               <div id="method-i-update_size_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 335</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 345</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update_size</span>(<span class="ruby-identifier">csize</span>, <span class="ruby-identifier">enroll</span>)
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">csize</span> = <span class="ruby-identifier">csize</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">enroll</span> = <span class="ruby-identifier">enroll</span>

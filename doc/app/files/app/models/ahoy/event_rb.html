@@ -24,7 +24,11 @@
                 app/models/ahoy/event.rb
                 
             </li>
+<<<<<<< HEAD
             <li>Last modified: 2020-07-30 12:00:01 -0400</li>
+=======
+            <li>Last modified: 2020-07-30 11:47:54 -0400</li>
+>>>>>>> Update schema comments and rdoc
         </ul>
     </div>
 
@@ -33,7 +37,18 @@
   
     <div class="description">
       
-<pre><code>Table desc
+<pre><code>== Schema Information
+
+Table name: ahoy_events
+
+ id         :bigint           not null, primary key
+ visit_id   :bigint
+ user_id    :bigint
+ name       :string(255)
+ properties :json
+ time       :datetime
+
+Table desc
 </code></pre>
 
 <p>| Field      | Type         | Null | Key | Default | Extra          | <code>------------</code>————–<code>------</code>—–<code>---------</code>—————-+ | id         | bigint       | NO   | PRI | NULL    | auto_increment | | visit_id   | bigint       | YES  | MUL | NULL    |                | | user_id    | bigint       | YES  | MUL | NULL    |                | | name       | varchar(255) | YES  | MUL | NULL    |                | | properties | json         | YES  |     | NULL    |                | | time       | timestamp    | YES  |     | NULL    |                |</p>

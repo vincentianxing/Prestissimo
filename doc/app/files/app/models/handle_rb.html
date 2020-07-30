@@ -24,7 +24,11 @@
                 app/models/handle.rb
                 
             </li>
+<<<<<<< HEAD
             <li>Last modified: 2020-07-30 12:00:01 -0400</li>
+=======
+            <li>Last modified: 2020-07-30 11:47:54 -0400</li>
+>>>>>>> Update schema comments and rdoc
         </ul>
     </div>
 
@@ -37,11 +41,11 @@
 
 <p>Table name: handles</p>
 
-<pre><code>id         :integer(4)      not null, primary key
+<pre><code>id         :integer          not null, primary key
 username   :string(255)
-is_mute    :boolean(1)      default(FALSE)
-created_at :datetime        not null
-updated_at :datetime        not null
+is_mute    :boolean          default(&quot;0&quot;)
+created_at :datetime         not null
+updated_at :datetime         not null
 handlekey  :string(255)
 </code></pre>
 

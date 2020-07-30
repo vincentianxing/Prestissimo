@@ -15,8 +15,8 @@
 
   
     
-    <meta name="description" content="Schema Information  Table name: carts  id         :integer(4)      not null, primary key courses    :string(255) created_at :datetime        not null updated_at :datetime        not null cartid     :s.">
-    <meta property="og:description" content="Schema Information  Table name: carts  id         :integer(4)      not null, primary key courses    :string(255) created_at :datetime        not null updated_at :datetime        not null cartid     :s.">
+    <meta name="description" content="Schema Information  Table name: carts  id            :integer          not null, primary key courses       :text(16777215) created_at    :datetime         not null updated_at    :datetime         not .">
+    <meta property="og:description" content="Schema Information  Table name: carts  id            :integer          not null, primary key courses       :text(16777215) created_at    :datetime         not null updated_at    :datetime         not .">
   
 
     <meta name="keywords" content="Cart class">
@@ -54,11 +54,12 @@
 
 <p>Table name: carts</p>
 
-<pre><code>id         :integer(4)      not null, primary key
-courses    :string(255)
-created_at :datetime        not null
-updated_at :datetime        not null
-cartid     :string(255)
+<pre><code>id            :integer          not null, primary key
+courses       :text(16777215)
+created_at    :datetime         not null
+updated_at    :datetime         not null
+cartid        :string(255)
+total_credits :float(53)
 </code></pre>
 
     </div>
@@ -180,7 +181,7 @@ cartid     :string(255)
                 
               </p>
               <div id="method-i-create_cartid_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/cart.rb, line 38</span>
+                <pre><span class="ruby-comment"># File app/models/cart.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_cartid</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">cartid</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-string">&#39;cart&#39;</span><span class="ruby-operator">+</span><span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -217,7 +218,7 @@ cartid     :string(255)
                 
               </p>
               <div id="method-i-get_courses_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/cart.rb, line 26</span>
+                <pre><span class="ruby-comment"># File app/models/cart.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_courses</span>
   <span class="ruby-identifier">course_array</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">courses</span>.<span class="ruby-identifier">nil?</span>
@@ -262,7 +263,7 @@ cartid     :string(255)
                 
               </p>
               <div id="method-i-set_courses_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/cart.rb, line 22</span>
+                <pre><span class="ruby-comment"># File app/models/cart.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_courses</span>(<span class="ruby-identifier">course_string</span>)
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">courses</span> = <span class="ruby-identifier">course_string</span>
 <span class="ruby-keyword">end</span></pre>
@@ -299,7 +300,7 @@ cartid     :string(255)
                 
               </p>
               <div id="method-i-to_csv_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/cart.rb, line 42</span>
+                <pre><span class="ruby-comment"># File app/models/cart.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_csv</span>
   <span class="ruby-identifier">courses</span> = <span class="ruby-identifier">get_courses</span>
   <span class="ruby-constant">CSV</span>.<span class="ruby-identifier">generate</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">csv</span><span class="ruby-operator">|</span>

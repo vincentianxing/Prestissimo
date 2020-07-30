@@ -15,8 +15,8 @@
 
   
     
-    <meta name="description" content="Schema Information  Table name: professors  id         :integer(4)      not null, primary key created_at :datetime        not null updated_at :datetime        not null email      :string(255) fname   .">
-    <meta property="og:description" content="Schema Information  Table name: professors  id         :integer(4)      not null, primary key created_at :datetime        not null updated_at :datetime        not null email      :string(255) fname   .">
+    <meta name="description" content="Schema Information  Table name: professors  id         :integer          not null, primary key created_at :datetime         not null updated_at :datetime         not null email      :string(255) fname.">
+    <meta property="og:description" content="Schema Information  Table name: professors  id         :integer          not null, primary key created_at :datetime         not null updated_at :datetime         not null email      :string(255) fname.">
   
 
     <meta name="keywords" content="Professor class">
@@ -54,19 +54,22 @@
 
 <p>Table name: professors</p>
 
-<pre><code>id         :integer(4)      not null, primary key
-created_at :datetime        not null
-updated_at :datetime        not null
+<pre><code>id         :integer          not null, primary key
+created_at :datetime         not null
+updated_at :datetime         not null
 email      :string(255)
 fname      :string(255)
 lname      :string(255)
 nickname   :string(255)
-status     :string(255)     default(&quot;active&quot;)
+status     :string(255)      default(&quot;active&quot;)
 office     :string(255)
 phone      :string(255)
 contact    :string(255)
 url        :string(255)
-content    :text
+content    :text(65535)
+userid     :string(255)
+can_edit   :boolean          default(&quot;1&quot;)
+my_classes :string(255)
 </code></pre>
 
     </div>
@@ -157,7 +160,7 @@ content    :text
                 
               </p>
               <div id="method-i-to_csv_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/professor.rb, line 35</span>
+                <pre><span class="ruby-comment"># File app/models/professor.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_csv</span>(<span class="ruby-identifier">enroll</span>)
   <span class="ruby-constant">CSV</span>.<span class="ruby-identifier">generate</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">csv</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Course</span>.<span class="ruby-identifier">csv_headers</span> 
@@ -199,7 +202,7 @@ content    :text
                 
               </p>
               <div id="method-i-toggle_status_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/professor.rb, line 27</span>
+                <pre><span class="ruby-comment"># File app/models/professor.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">toggle_status</span>
   <span class="ruby-keyword">if</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;dark&quot;</span>)
     <span class="ruby-keyword">self</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&quot;active&quot;</span>

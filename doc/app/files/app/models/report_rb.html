@@ -24,7 +24,11 @@
                 app/models/report.rb
                 
             </li>
+<<<<<<< HEAD
             <li>Last modified: 2020-07-30 12:00:01 -0400</li>
+=======
+            <li>Last modified: 2020-07-30 11:47:54 -0400</li>
+>>>>>>> Update schema comments and rdoc
         </ul>
     </div>
 
@@ -37,20 +41,20 @@
 
 <p>Table name: reports</p>
 
-<pre><code>id                 :integer(4)      not null, primary key
+<pre><code>id                 :integer          not null, primary key
 title              :string(255)
-body               :text
-reportable_id      :integer(4)
+body               :text(65535)
+reportable_id      :integer
 reportable_type    :string(255)
-created_at         :datetime        not null
-updated_at         :datetime        not null
-response           :text
+created_at         :datetime         not null
+updated_at         :datetime         not null
+response           :text(65535)
 admin_email        :string(255)
-resolved           :boolean(1)      default(FALSE)
-user_id            :integer(4)
-reportable_content :text
+resolved           :boolean          default(&quot;0&quot;)
+user_id            :integer
+reportable_content :text(65535)
 locked_by          :string(255)
-reported_id        :integer(4)
+reported_id        :integer
 </code></pre>
 
     </div>
