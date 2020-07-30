@@ -1,0 +1,17 @@
+AllCops:
+  NewCops: enable
+  Exclude:
+  - 'db/schema.rb'
+  #Re-enable spec when we start actually working on tests
+  - spec/**/*
+  - script/**/*
+  - node_modules/**/*
+
+Layout/LineLength:
+  Max: 120
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
