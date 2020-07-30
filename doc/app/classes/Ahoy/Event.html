@@ -15,8 +15,8 @@
 
   
     
-    <meta name="description" content="Table desc   | Field      | Type         | Null | Key | Default | Extra          | ------------————–------—–---------—————-+ | id         | bigint       | NO   | PRI | NULL    | auto_increment | | vis.">
-    <meta property="og:description" content="Table desc   | Field      | Type         | Null | Key | Default | Extra          | ------------————–------—–---------—————-+ | id         | bigint       | NO   | PRI | NULL    | auto_increment | | vis.">
+    <meta name="description" content="== Schema Information  Table name: ahoy_events   id         :bigint           not null, primary key  visit_id   :bigint  user_id    :bigint  name       :string(255)  properties :json  time       :date.">
+    <meta property="og:description" content="== Schema Information  Table name: ahoy_events   id         :bigint           not null, primary key  visit_id   :bigint  user_id    :bigint  name       :string(255)  properties :json  time       :date.">
   
 
     <meta name="keywords" content="Ahoy::Event class">
@@ -48,7 +48,18 @@
   
     <div class="description">
       
-<pre><code>Table desc
+<pre><code>== Schema Information
+
+Table name: ahoy_events
+
+ id         :bigint           not null, primary key
+ visit_id   :bigint
+ user_id    :bigint
+ name       :string(255)
+ properties :json
+ time       :datetime
+
+Table desc
 </code></pre>
 
 <p>| Field      | Type         | Null | Key | Default | Extra          | <code>------------</code>————–<code>------</code>—–<code>---------</code>—————-+ | id         | bigint       | NO   | PRI | NULL    | auto_increment | | visit_id   | bigint       | YES  | MUL | NULL    |                | | user_id    | bigint       | YES  | MUL | NULL    |                | | name       | varchar(255) | YES  | MUL | NULL    |                | | properties | json         | YES  |     | NULL    |                | | time       | timestamp    | YES  |     | NULL    |                |</p>

@@ -24,7 +24,7 @@
                 app/models/course.rb
                 
             </li>
-            <li>Last modified: 2020-07-24 16:31:46 -0400</li>
+            <li>Last modified: 2020-07-30 11:47:54 -0400</li>
         </ul>
     </div>
 
@@ -37,49 +37,59 @@
 
 <p>Table name: courses</p>
 
-<pre><code>id               :integer(4)      not null, primary key
-dept             :string(255)
-professor        :string(255)
-proficiencies    :string(255)
-building         :string(255)
-room             :string(255)
-cnum             :string(255)     default(&quot;&quot;)
-crn              :integer(4)
-created_at       :datetime        not null
-updated_at       :datetime        not null
-csize            :integer(4)
-semester         :string(255)
-mods             :integer(1)
-crmax            :float
-crmin            :float
-start_time       :time
-end_time         :time
-descrip          :text
-semcrn           :string(255)
-hubcourse_id     :integer(4)
-prereqs          :text
-short_title      :string(255)
-last_changed     :datetime
-enroll           :integer(4)
-dean_consent     :boolean(1)
-instruct_consent :boolean(1)
-section          :string(255)
-format           :string(255)
-std_letter       :boolean(1)
-p_np             :boolean(1)
-full_course      :string(255)
-cr_ne            :boolean(1)
-audit            :boolean(1)
-days             :string(255)
-xlist1           :string(255)
-xlist2           :string(255)
-xlist3           :string(255)
-title            :string(255)
-status           :string(255)     default(&quot;&quot;)
-distributions    :string(255)
-dept_long        :string(255)     default(&quot;&quot;)
-page             :integer(4)      default(0)
-remote           :string(255)     default(&quot;INPRS&quot;)
+<pre><code>id                :integer          not null, primary key
+dept              :string(255)
+professor         :string(255)
+proficiencies     :string(255)
+building          :string(255)
+room              :string(255)
+cnum              :string(255)      default(&quot;&quot;)
+crn               :integer
+created_at        :datetime         not null
+updated_at        :datetime         not null
+csize             :integer
+semester          :string(255)
+mods              :integer
+crmax             :float(24)
+crmin             :float(24)
+start_time        :time
+end_time          :time
+descrip           :text(65535)
+semcrn            :string(255)
+hubcourse_id      :integer
+prereqs           :text(65535)
+short_title       :string(255)
+last_changed      :datetime
+enroll            :integer
+dean_consent      :boolean
+instruct_consent  :boolean
+section           :string(255)
+format            :string(255)
+std_letter        :boolean
+p_np              :boolean
+cr_ne             :boolean
+audit             :boolean
+days              :string(255)
+xlist1            :string(255)
+xlist2            :string(255)
+xlist3            :string(255)
+title             :string(255)
+status            :string(255)      default(&quot;&quot;)
+distributions     :string(255)
+dept_long         :string(255)      default(&quot;&quot;)
+full_course       :string(255)
+xlist1_semcrn     :string(255)
+xlist2_semcrn     :string(255)
+xlist3_semcrn     :string(255)
+prof_desc         :text(65535)
+which_desc        :string(255)
+new_desc_action   :string(255)
+prof_note         :text(65535)
+display_prof_note :boolean          default(&quot;1&quot;)
+notify_profs      :string(255)
+recent_edit       :string(255)
+changed_fields    :string(255)
+remote            :string(255)
 </code></pre>
 
     </div>

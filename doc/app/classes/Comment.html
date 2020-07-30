@@ -15,8 +15,8 @@
 
   
     
-    <meta name="description" content="Schema Information  Table name: comments  id                 :integer(4)      not null, primary key commentable_id     :integer(4)      default(0) commentable_type   :string(255)     default(&quot;&qu.">
-    <meta property="og:description" content="Schema Information  Table name: comments  id                 :integer(4)      not null, primary key commentable_id     :integer(4)      default(0) commentable_type   :string(255)     default(&quot;&qu.">
+    <meta name="description" content="Schema Information  Table name: comments  id                 :integer          not null, primary key commentable_id     :integer          default(&quot;0&quot;) commentable_type   :string(255)      de.">
+    <meta property="og:description" content="Schema Information  Table name: comments  id                 :integer          not null, primary key commentable_id     :integer          default(&quot;0&quot;) commentable_type   :string(255)      de.">
   
 
     <meta name="keywords" content="Comment class">
@@ -54,24 +54,24 @@
 
 <p>Table name: comments</p>
 
-<pre><code>id                 :integer(4)      not null, primary key
-commentable_id     :integer(4)      default(0)
-commentable_type   :string(255)     default(&quot;&quot;)
-title              :string(255)     default(&quot;&quot;)
-body               :text
-subject            :string(255)     default(&quot;&quot;)
-user_id            :integer(4)      default(0), not null
-parent_id          :integer(4)
-lft                :integer(4)
-rgt                :integer(4)
-created_at         :datetime        not null
-updated_at         :datetime        not null
-status             :string(255)     default(&quot;active&quot;)
-prev               :integer(4)
-cached_votes_total :integer(4)      default(0)
-cached_votes_up    :integer(4)      default(0)
-cached_votes_down  :integer(4)      default(0)
-old                :boolean(1)      default(FALSE)
+<pre><code>id                 :integer          not null, primary key
+commentable_id     :integer          default(&quot;0&quot;)
+commentable_type   :string(255)      default(&quot;&quot;)
+title              :string(255)      default(&quot;&quot;)
+body               :text(65535)
+subject            :string(255)      default(&quot;&quot;)
+user_id            :integer          default(&quot;0&quot;), not null
+parent_id          :integer
+lft                :integer
+rgt                :integer
+created_at         :datetime         not null
+updated_at         :datetime         not null
+status             :string(255)      default(&quot;active&quot;)
+prev               :integer
+cached_votes_total :integer          default(&quot;0&quot;)
+cached_votes_up    :integer          default(&quot;0&quot;)
+cached_votes_down  :integer          default(&quot;0&quot;)
+old                :boolean          default(&quot;0&quot;)
 </code></pre>
 
     </div>
