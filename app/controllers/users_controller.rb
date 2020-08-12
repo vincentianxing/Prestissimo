@@ -96,6 +96,7 @@ class UsersController < ApplicationController
     redirect_to root_path unless @user
     redirect_to edit_professor_path(current_professor.fname, current_professor.lname) if faculty_user?(@user)
     @handle = Handle.find_by_handlekey(@user.handlekey)
+    generate_handle if @handle.nil?
     # the user and its handle are passed in a hash
     @vals = Hash[:user, @user, :handle, @handle]
   end
@@ -156,32 +157,8 @@ class UsersController < ApplicationController
             # check for existing handle
             @handle = Handle.find_by_handlekey(@user.handlekey)
             # create the handle if there isn't one
-            if @handle.nil?
-              @handle = Handle.new
-              # calls the handlekey generation method in the user model and assigns the result to the handle
-              @handle.handlekey = @user.handlekey
-              logger.debug @handle.handlekey
-
-              # initially has no username
-              prng = Random.new
-              n = prng.rand(1..5640)
-              @handle.username = get_adj(n) + "Obie"
-              ctr = 0
-              while (Handle.find_by_username(@handle.username) && ctr < 10)
-                n = prng.rand(1..5640)
-                @handle.username = get_adj(n) + "Obie"
-                ctr += 1
-              end
-              # save the handle
-              if @handle.save
-                redirect_to guidelines_path
-              else # the handle was not saved
-                flash[:failure] = "Something went wrong, contact the oprestissimo team"
-                redirect_to user_path(@user.email.split("@")[0]) # they do not have a handle!
-              end
-            else
-              redirect_to user_path(@user.email.split("@")[0])
-            end
+            generate_handle if @handle.nil?
+            redirect_to guidelines_path
           else # the user could not be saved to the db
             flash[:failure] = "Something went wrong, contact the oprestissimo team"
             redirect_to signin_path
@@ -478,5 +455,34 @@ class UsersController < ApplicationController
     s = "Spring" if semester[0] == "s"
     s = "Summer" if semester[0] == "u"
     s << " 20#{semester[1..2]}"
+  end
+
+  def generate_handle
+    if @handle.nil?
+      @handle = Handle.new
+      # calls the handlekey generation method in the user model and assigns the result to the handle
+      @handle.handlekey = @user.handlekey
+      logger.debug @handle.handlekey
+
+      # initially has no username
+      prng = Random.new
+      n = prng.rand(1..5640)
+      @handle.username = get_adj(n) + "Obie"
+      ctr = 0
+      while (Handle.find_by_username(@handle.username) && ctr < 10)
+        n = prng.rand(1..5640)
+        @handle.username = get_adj(n) + "Obie"
+        ctr += 1
+      end
+      # save the handle
+      if @handle.save
+        logger.debug "Successfully generated handle"
+      else # the handle was not saved
+        flash[:failure] = "Something went wrong, contact the oprestissimo team"
+        redirect_to user_path(@user.email.split("@")[0]) # they do not have a handle!
+      end
+    else
+      redirect_to user_path(@user.email.split("@")[0])
+    end
   end
 end
