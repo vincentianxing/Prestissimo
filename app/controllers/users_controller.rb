@@ -469,7 +469,7 @@ class UsersController < ApplicationController
       n = prng.rand(1..5640)
       @handle.username = get_adj(n) + "Obie"
       ctr = 0
-      while (Handle.find_by_username(@handle.username) && ctr < 10)
+      while (Handle.find_by_username(@handle.username) && ctr < 20)
         n = prng.rand(1..5640)
         @handle.username = get_adj(n) + "Obie"
         ctr += 1
