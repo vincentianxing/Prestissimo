@@ -466,11 +466,11 @@ class UsersController < ApplicationController
 
       # initially has no username
       prng = Random.new
-      n = prng.rand(1..5640)
+      n = prng.rand(1..6446)
       @handle.username = get_adj(n) + "Obie"
       ctr = 0
       while (Handle.find_by_username(@handle.username) && ctr < 20)
-        n = prng.rand(1..5640)
+        n = prng.rand(1..6446)
         @handle.username = get_adj(n) + "Obie"
         ctr += 1
       end
