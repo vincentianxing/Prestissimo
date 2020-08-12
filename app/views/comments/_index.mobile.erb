@@ -39,7 +39,7 @@
 
 	    <!-- If current user is the commenter,
 	    show edit link -->
-	  <% elsif current_handle.username == c.handle && !current_handle.is_mute %>
+	  <% elsif current_handle && current_handle.username == c.handle && !current_handle.is_mute %>
 
 	    <%= link_to "edit", edit_comment_path(c.commentable_type.underscore, c.commentable_id.to_s, c.id), remote: true %>
 	  <% end %>
