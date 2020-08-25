@@ -119,7 +119,7 @@ class UsersController < ApplicationController
       filter = Net::LDAP::Filter.eq("cn", "#{params[:user][:email].split("@")[0]}")
       # search the ldap!
       result = ldap.search(:base => treebase, :filter => filter)
-      if result.size > 0
+      if result.!empty?
         if authenticate(params[:user][:email].split("@")[0], params[:user][:password])
           params[:user].delete(:password)
           @user = User.new(params_user)

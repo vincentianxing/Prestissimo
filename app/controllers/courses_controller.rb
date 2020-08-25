@@ -597,7 +597,11 @@ class CoursesController < ApplicationController
     redirect_to(root_path) unless faculty_user?(current_user)
   end
 
+  # Convets the full name of a semester into the database schema
+  #  semester: the full name of the semester, such as "Fall 2021"
+  # Returns a string such as "f21"
   def translate_semester(semester)
+    ret = ""
     sem = semester.split(" ")
     ret = "f" if sem[0] == "Fall"
     ret = "s" if sem[0] == "Spring"

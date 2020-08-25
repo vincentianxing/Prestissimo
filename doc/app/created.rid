@@ -1,10 +1,10 @@
-Tue, 25 Aug 2020 12:03:40 -0400
+Tue, 25 Aug 2020 12:26:33 -0400
 app/controllers/admins_controller.rb	Thu, 30 Jul 2020 11:17:39 -0400
 app/controllers/application_controller.rb	Thu, 30 Jul 2020 11:17:39 -0400
 app/controllers/carts_controller.rb	Thu, 30 Jul 2020 11:17:39 -0400
 app/controllers/charts_controller.rb	Wed, 24 Jun 2020 22:32:03 -0400
 app/controllers/comments_controller.rb	Wed, 24 Jun 2020 22:32:03 -0400
-app/controllers/courses_controller.rb	Fri, 24 Jul 2020 22:30:30 -0400
+app/controllers/courses_controller.rb	Tue, 25 Aug 2020 12:25:23 -0400
 app/controllers/departments_controller.rb	Wed, 24 Jun 2020 22:32:03 -0400
 app/controllers/errors_controller.rb	Thu, 30 Jul 2020 11:17:39 -0400
 app/controllers/handles_controller.rb	Wed, 24 Jun 2020 22:32:03 -0400
@@ -16,7 +16,7 @@ app/controllers/sessions_controller.rb	Wed, 24 Jun 2020 22:32:03 -0400
 app/controllers/settings_controller.rb	Wed, 24 Jun 2020 22:32:03 -0400
 app/controllers/static_pages_controller.rb	Wed, 24 Jun 2020 22:32:03 -0400
 app/controllers/syllabus_controller.rb	Wed, 24 Jun 2020 22:32:03 -0400
-app/controllers/users_controller.rb	Tue, 25 Aug 2020 12:02:24 -0400
+app/controllers/users_controller.rb	Tue, 25 Aug 2020 12:10:33 -0400
 app/controllers/votes_controller.rb	Wed, 29 Jul 2020 13:03:35 -0400
 app/helpers/admins_helper.rb	Wed, 29 Jul 2020 13:26:02 -0400
 app/helpers/application_helper.rb	Thu, 30 Jul 2020 11:17:39 -0400

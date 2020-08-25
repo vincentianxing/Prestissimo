@@ -297,7 +297,7 @@ val2: the larger/second of the two values used for comparison
                 
               </p>
               <div id="method-i-highlight_keywords_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 670</span>
+                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 674</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">highlight_keywords</span>(<span class="ruby-identifier">courses</span>, <span class="ruby-identifier">keywords</span>)
   <span class="ruby-identifier">keywords</span>.<span class="ruby-identifier">strip!</span>
   <span class="ruby-identifier">keys</span> = <span class="ruby-identifier">keywords</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/&#39;.+?&#39;|&quot;.+?&quot;|[^ ]+/</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">gsub</span> <span class="ruby-regexp">/^[&#39;&quot;]|[&#39;&quot;]$/</span>, <span class="ruby-string">&quot;&quot;</span> }.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">k</span>) }
@@ -511,7 +511,7 @@ value: value used for comparion, can be any type
                 
               </p>
               <div id="method-i-tag_conflicts_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 609</span>
+                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 613</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">tag_conflicts</span>(<span class="ruby-identifier">courses</span>, <span class="ruby-identifier">cart_courses</span>)
   <span class="ruby-comment"># compare each course and cart entry for conflicts</span>
 
@@ -586,7 +586,12 @@ value: value used for comparion, can be any type
 
           
             <div class="description">
-              
+              <p>Convets the full name of a semester into the database schema</p>
+
+<pre><code>semester: the full name of the semester, such as &quot;Fall 2021&quot;
+</code></pre>
+
+<p>Returns a string such as “f21”</p>
             </div>
           
 
@@ -604,8 +609,9 @@ value: value used for comparion, can be any type
                 
               </p>
               <div id="method-i-translate_semester_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 600</span>
+                <pre><span class="ruby-comment"># File app/controllers/courses_controller.rb, line 603</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">translate_semester</span>(<span class="ruby-identifier">semester</span>)
+  <span class="ruby-identifier">ret</span> = <span class="ruby-string">&quot;&quot;</span>
   <span class="ruby-identifier">sem</span> = <span class="ruby-identifier">semester</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot; &quot;</span>)
   <span class="ruby-identifier">ret</span> = <span class="ruby-string">&quot;f&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">sem</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Fall&quot;</span>
   <span class="ruby-identifier">ret</span> = <span class="ruby-string">&quot;s&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">sem</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Spring&quot;</span>
