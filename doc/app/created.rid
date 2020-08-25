@@ -1,40 +1,28 @@
-<<<<<<< HEAD
-Tue, 25 Aug 2020 12:26:33 -0400
-=======
-Thu, 30 Jul 2020 11:52:13 -0400
->>>>>>> Update schema comments and rdoc
-app/controllers/admins_controller.rb	Thu, 30 Jul 2020 11:17:39 -0400
-app/controllers/application_controller.rb	Thu, 30 Jul 2020 11:17:39 -0400
-app/controllers/carts_controller.rb	Thu, 30 Jul 2020 11:17:39 -0400
+Tue, 25 Aug 2020 12:48:45 -0400
+app/controllers/admins_controller.rb	Tue, 25 Aug 2020 12:40:20 -0400
+app/controllers/application_controller.rb	Tue, 25 Aug 2020 12:40:20 -0400
+app/controllers/carts_controller.rb	Tue, 25 Aug 2020 12:40:20 -0400
 app/controllers/charts_controller.rb	Wed, 24 Jun 2020 22:32:03 -0400
 app/controllers/comments_controller.rb	Wed, 24 Jun 2020 22:32:03 -0400
-<<<<<<< HEAD
-app/controllers/courses_controller.rb	Tue, 25 Aug 2020 12:25:23 -0400
-=======
-app/controllers/courses_controller.rb	Fri, 24 Jul 2020 22:30:30 -0400
->>>>>>> Update schema comments and rdoc
+app/controllers/courses_controller.rb	Tue, 25 Aug 2020 12:43:04 -0400
 app/controllers/departments_controller.rb	Wed, 24 Jun 2020 22:32:03 -0400
-app/controllers/errors_controller.rb	Thu, 30 Jul 2020 11:17:39 -0400
+app/controllers/errors_controller.rb	Tue, 25 Aug 2020 12:40:20 -0400
 app/controllers/handles_controller.rb	Wed, 24 Jun 2020 22:32:03 -0400
 app/controllers/hubcourses_controller.rb	Wed, 24 Jun 2020 22:32:03 -0400
 app/controllers/my_classes_controller.rb	Wed, 24 Jun 2020 22:32:03 -0400
 app/controllers/professors_controller.rb	Wed, 24 Jun 2020 22:32:03 -0400
-app/controllers/reports_controller.rb	Thu, 30 Jul 2020 11:17:39 -0400
+app/controllers/reports_controller.rb	Tue, 25 Aug 2020 12:40:20 -0400
 app/controllers/sessions_controller.rb	Wed, 24 Jun 2020 22:32:03 -0400
 app/controllers/settings_controller.rb	Wed, 24 Jun 2020 22:32:03 -0400
 app/controllers/static_pages_controller.rb	Wed, 24 Jun 2020 22:32:03 -0400
 app/controllers/syllabus_controller.rb	Wed, 24 Jun 2020 22:32:03 -0400
-<<<<<<< HEAD
-app/controllers/users_controller.rb	Tue, 25 Aug 2020 12:10:33 -0400
-=======
-app/controllers/users_controller.rb	Thu, 30 Jul 2020 11:17:39 -0400
->>>>>>> Update schema comments and rdoc
+app/controllers/users_controller.rb	Tue, 25 Aug 2020 12:48:39 -0400
 app/controllers/votes_controller.rb	Wed, 29 Jul 2020 13:03:35 -0400
 app/helpers/admins_helper.rb	Wed, 29 Jul 2020 13:26:02 -0400
-app/helpers/application_helper.rb	Thu, 30 Jul 2020 11:17:39 -0400
-app/helpers/carts_helper.rb	Thu, 30 Jul 2020 11:17:39 -0400
-app/helpers/comments_helper.rb	Thu, 30 Jul 2020 11:17:39 -0400
-app/helpers/courses_helper.rb	Thu, 30 Jul 2020 11:17:39 -0400
+app/helpers/application_helper.rb	Tue, 25 Aug 2020 12:40:20 -0400
+app/helpers/carts_helper.rb	Tue, 25 Aug 2020 12:40:20 -0400
+app/helpers/comments_helper.rb	Tue, 25 Aug 2020 12:40:20 -0400
+app/helpers/courses_helper.rb	Tue, 25 Aug 2020 12:40:20 -0400
 app/helpers/departments_helper.rb	Wed, 24 Jun 2020 22:32:03 -0400
 app/helpers/handles_helper.rb	Wed, 24 Jun 2020 22:32:03 -0400
 app/helpers/hubcourses_helper.rb	Wed, 24 Jun 2020 22:32:03 -0400
@@ -42,44 +30,27 @@ app/helpers/majors_helper.rb	Wed, 24 Jun 2020 22:32:03 -0400
 app/helpers/my_classes_helper.rb	Wed, 24 Jun 2020 22:32:03 -0400
 app/helpers/professors_helper.rb	Wed, 24 Jun 2020 22:32:03 -0400
 app/helpers/reports_helper.rb	Wed, 24 Jun 2020 22:32:03 -0400
-app/helpers/sessions_helper.rb	Thu, 30 Jul 2020 11:17:39 -0400
-app/helpers/settings_helper.rb	Thu, 30 Jul 2020 11:17:39 -0400
+app/helpers/sessions_helper.rb	Tue, 25 Aug 2020 12:40:20 -0400
+app/helpers/settings_helper.rb	Tue, 25 Aug 2020 12:40:20 -0400
 app/helpers/static_pages_helper.rb	Wed, 24 Jun 2020 22:32:03 -0400
 app/helpers/syllabus_helper.rb	Wed, 24 Jun 2020 22:32:03 -0400
-app/helpers/users_helper.rb	Thu, 30 Jul 2020 11:17:39 -0400
+app/helpers/users_helper.rb	Tue, 25 Aug 2020 12:40:20 -0400
 app/helpers/votes_helper.rb	Wed, 24 Jun 2020 22:32:03 -0400
-app/mailers/interact.rb	Thu, 30 Jul 2020 11:17:39 -0400
-<<<<<<< HEAD
-app/models/ahoy/event.rb	Thu, 30 Jul 2020 12:00:01 -0400
-app/models/ahoy/visit.rb	Thu, 30 Jul 2020 12:00:01 -0400
-app/models/application_record.rb	Thu, 30 Jul 2020 11:17:39 -0400
-app/models/cart.rb	Thu, 30 Jul 2020 12:00:01 -0400
-app/models/comment.rb	Thu, 30 Jul 2020 12:00:01 -0400
-app/models/course.rb	Thu, 30 Jul 2020 12:00:01 -0400
-app/models/department.rb	Thu, 30 Jul 2020 12:00:01 -0400
-app/models/handle.rb	Thu, 30 Jul 2020 12:00:01 -0400
-app/models/hubcourse.rb	Thu, 30 Jul 2020 12:00:01 -0400
-app/models/professor.rb	Thu, 30 Jul 2020 12:00:01 -0400
-app/models/report.rb	Thu, 30 Jul 2020 12:00:01 -0400
-app/models/setting.rb	Thu, 30 Jul 2020 12:00:01 -0400
-app/models/syllabus.rb	Thu, 30 Jul 2020 12:00:01 -0400
-app/models/user.rb	Thu, 30 Jul 2020 12:00:01 -0400
-=======
-app/models/ahoy/event.rb	Thu, 30 Jul 2020 11:47:54 -0400
-app/models/ahoy/visit.rb	Thu, 30 Jul 2020 11:47:54 -0400
-app/models/application_record.rb	Thu, 30 Jul 2020 11:17:39 -0400
-app/models/cart.rb	Thu, 30 Jul 2020 11:47:54 -0400
-app/models/comment.rb	Thu, 30 Jul 2020 11:47:54 -0400
-app/models/course.rb	Thu, 30 Jul 2020 11:47:54 -0400
-app/models/department.rb	Thu, 30 Jul 2020 11:47:54 -0400
-app/models/handle.rb	Thu, 30 Jul 2020 11:47:54 -0400
-app/models/hubcourse.rb	Thu, 30 Jul 2020 11:47:54 -0400
-app/models/professor.rb	Thu, 30 Jul 2020 11:47:54 -0400
-app/models/report.rb	Thu, 30 Jul 2020 11:47:54 -0400
-app/models/setting.rb	Thu, 30 Jul 2020 11:47:54 -0400
-app/models/syllabus.rb	Thu, 30 Jul 2020 11:47:54 -0400
-app/models/user.rb	Thu, 30 Jul 2020 11:47:54 -0400
->>>>>>> Update schema comments and rdoc
+app/mailers/interact.rb	Tue, 25 Aug 2020 12:40:20 -0400
+app/models/ahoy/event.rb	Tue, 25 Aug 2020 12:43:04 -0400
+app/models/ahoy/visit.rb	Tue, 25 Aug 2020 12:43:04 -0400
+app/models/application_record.rb	Tue, 25 Aug 2020 12:40:20 -0400
+app/models/cart.rb	Tue, 25 Aug 2020 12:43:04 -0400
+app/models/comment.rb	Tue, 25 Aug 2020 12:43:04 -0400
+app/models/course.rb	Tue, 25 Aug 2020 12:43:04 -0400
+app/models/department.rb	Tue, 25 Aug 2020 12:43:04 -0400
+app/models/handle.rb	Tue, 25 Aug 2020 12:43:04 -0400
+app/models/hubcourse.rb	Tue, 25 Aug 2020 12:43:04 -0400
+app/models/professor.rb	Tue, 25 Aug 2020 12:43:04 -0400
+app/models/report.rb	Tue, 25 Aug 2020 12:43:04 -0400
+app/models/setting.rb	Tue, 25 Aug 2020 12:43:04 -0400
+app/models/syllabus.rb	Tue, 25 Aug 2020 12:43:04 -0400
+app/models/user.rb	Tue, 25 Aug 2020 12:43:04 -0400
 lib/jquery-week-calendar.rb	Wed, 24 Jun 2020 22:32:03 -0400
 lib/jquery-week-calendar/engine.rb	Wed, 24 Jun 2020 22:32:03 -0400
 lib/jquery-week-calendar/generators.rb	Wed, 24 Jun 2020 22:32:03 -0400
