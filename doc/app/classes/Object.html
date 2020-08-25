@@ -17,7 +17,7 @@
 
     <meta name="keywords" content="Object class">
   
-    <meta name="keywords" content="likeAppend, likeAppendMulti, orAppend, numAppend, betweenAppend, correct_prof_user, translate_semester, tag_conflicts, highlight_keywords">
+    <meta name="keywords" content="likeAppend, likeAppendMulti, orAppend, numAppend, betweenAppend, correct_prof_user, translate_semester, tag_conflicts, highlight_keywords, translate_status">
   
 </head>
 
@@ -38,6 +38,8 @@
         <ul class="files">
             
             <li><a href="../files/app/controllers/courses_controller_rb.html">app/controllers/courses_controller.rb</a></li>
+            
+            <li><a href="../files/app/models/course_rb.html">app/models/course.rb</a></li>
             
         </ul>
     </div>
@@ -149,7 +151,12 @@
             
               
               <li>
-                <a href="#method-i-translate_semester">translate_semester</a>
+                <a href="#method-i-translate_semester">translate_semester</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-translate_status">translate_status</a>
               </li>
             
           </ul>
@@ -604,6 +611,46 @@ value: value used for comparion, can be any type
   <span class="ruby-identifier">ret</span> = <span class="ruby-string">&quot;s&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">sem</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Spring&quot;</span>
   <span class="ruby-identifier">ret</span> = <span class="ruby-string">&quot;u&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">sem</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Summer&quot;</span>
   <span class="ruby-identifier">ret</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sem</span>[<span class="ruby-value">1</span>][<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-translate_status">
+            
+              <b>translate_status</b>(status)
+            
+            <a href="../classes/Object.html#method-i-translate_status" name="method-i-translate_status" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-translate_status_source')" id="l_method-i-translate_status_source">show</a>
+                
+              </p>
+              <div id="method-i-translate_status_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 593</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">translate_status</span>(<span class="ruby-identifier">status</span>)
+  <span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;In Person&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;INPRS&quot;</span>
+  <span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;Hybrid&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;HYBRD&quot;</span>
+  <span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;Remote Only&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;RMOTE&quot;</span>
+  <span class="ruby-identifier">s</span> <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;Not Specified&quot;</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>

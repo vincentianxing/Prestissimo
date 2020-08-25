@@ -601,7 +601,7 @@ remote           :string(255)     default(&quot;INPRS&quot;)
               <div id="method-c-csv_headers_source" class="dyn-source">
                 <pre><span class="ruby-comment"># File app/models/course.rb, line 475</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">csv_headers</span>
-  [<span class="ruby-string">&quot;CRN&quot;</span>, <span class="ruby-string">&quot;No.&quot;</span>, <span class="ruby-string">&quot;Dept.&quot;</span>, <span class="ruby-string">&quot;Semester&quot;</span>, <span class="ruby-string">&quot;Course Name&quot;</span>, <span class="ruby-string">&quot;Instructor&quot;</span>, <span class="ruby-string">&quot;Days&quot;</span>, <span class="ruby-string">&quot;Start Time&quot;</span>, <span class="ruby-string">&quot;End Time&quot;</span>, <span class="ruby-string">&quot;Room&quot;</span>, <span class="ruby-string">&quot;Enroll.&quot;</span>, <span class="ruby-string">&quot;Size&quot;</span>, <span class="ruby-string">&quot;Profic.&quot;</span>, <span class="ruby-string">&quot;Section&quot;</span>, <span class="ruby-string">&quot;Format&quot;</span>, <span class="ruby-string">&quot;Module&quot;</span>, <span class="ruby-string">&quot;Credits&quot;</span>, <span class="ruby-string">&quot;Distributions&quot;</span>, <span class="ruby-string">&quot;Full/Half&quot;</span>, <span class="ruby-string">&quot;P/NP&quot;</span>, <span class="ruby-string">&quot;X-Listings&quot;</span>]
+  [<span class="ruby-string">&quot;CRN&quot;</span>, <span class="ruby-string">&quot;No.&quot;</span>, <span class="ruby-string">&quot;Dept.&quot;</span>, <span class="ruby-string">&quot;Semester&quot;</span>, <span class="ruby-string">&quot;Course Name&quot;</span>, <span class="ruby-string">&quot;Instructor&quot;</span>, <span class="ruby-string">&quot;Days&quot;</span>, <span class="ruby-string">&quot;Start Time&quot;</span>, <span class="ruby-string">&quot;End Time&quot;</span>, <span class="ruby-string">&quot;Room&quot;</span>, <span class="ruby-string">&quot;Enroll.&quot;</span>, <span class="ruby-string">&quot;Size&quot;</span>, <span class="ruby-string">&quot;Profic.&quot;</span>, <span class="ruby-string">&quot;Section&quot;</span>, <span class="ruby-string">&quot;Format&quot;</span>, <span class="ruby-string">&quot;Module&quot;</span>, <span class="ruby-string">&quot;Credits&quot;</span>, <span class="ruby-string">&quot;Distributions&quot;</span>, <span class="ruby-string">&quot;Full/Half&quot;</span>, <span class="ruby-string">&quot;P/NP&quot;</span>, <span class="ruby-string">&quot;X-Listings&quot;</span>, <span class="ruby-string">&quot;Instruction Status&quot;</span>]
 <span class="ruby-keyword">end</span></pre>
               </div>
             </div>
@@ -749,6 +749,7 @@ remote           :string(255)     default(&quot;INPRS&quot;)
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">row</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;&quot;</span>
   <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">row</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">translate_status</span>(<span class="ruby-identifier">c</span>.<span class="ruby-identifier">remote</span>)
   <span class="ruby-identifier">row</span>
 <span class="ruby-keyword">end</span></pre>
               </div>
@@ -837,7 +838,7 @@ remote           :string(255)     default(&quot;INPRS&quot;)
                 
               </p>
               <div id="method-i-3C-3D-3E_source" class="dyn-source">
-                <pre><span class="ruby-comment"># File app/models/course.rb, line 557</span>
+                <pre><span class="ruby-comment"># File app/models/course.rb, line 558</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">&lt;=&gt;</span>(<span class="ruby-identifier">other</span>)
 
   <span class="ruby-keyword">case</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">semester</span>.<span class="ruby-identifier">at</span>(<span class="ruby-value">0</span>)
