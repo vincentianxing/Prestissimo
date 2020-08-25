@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: ahoy_events
+#
+#  id         :bigint           not null, primary key
+#  visit_id   :bigint
+#  user_id    :bigint
+#  name       :string(255)
+#  properties :json
+#  time       :datetime
+#
 # Table desc
 #
 #| Field      | Type         | Null | Key | Default | Extra          |

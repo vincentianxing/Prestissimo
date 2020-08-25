@@ -2,11 +2,12 @@
 #
 # Table name: carts
 #
-#  id         :integer(4)      not null, primary key
-#  courses    :string(255)
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#  cartid     :string(255)
+#  id            :integer          not null, primary key
+#  courses       :text(16777215)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  cartid        :string(255)
+#  total_credits :float(53)
 #
 
 

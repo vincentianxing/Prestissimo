@@ -2,12 +2,12 @@
 #
 # Table name: hubcourses
 #
-#  id            :integer(4)      not null, primary key
+#  id            :integer          not null, primary key
 #  hub_id        :string(255)
-#  created_at    :datetime        not null
-#  updated_at    :datetime        not null
-#  department_id :integer(4)
-#  cnum          :integer(4)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  department_id :integer
+#  cnum          :integer
 #  cname         :string(255)
 #
 
