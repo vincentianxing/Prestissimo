@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Static Pages" do
 
@@ -7,7 +7,7 @@ describe "Static Pages" do
 	describe "About page" do
 		before { visit about_path }
 		it { should have_selector('h1', text: 'About Us') }
-		it { should have_selector('title', text: full_title('About Us')) }
+		it { should have_title full_title('About Us') }
 		it { should have_link('Help') }
 		it "clicks on the help link" do
 			click_link('Help')
@@ -18,7 +18,7 @@ describe "Static Pages" do
 		before { visit help_path }
 
 		it { should have_selector('h1', text: 'Help') }
-		it { should have_selector('title', text: full_title('Help')) }
+		it { should have_title full_title('Help') }
 		it { should have_link('About') }
 		it "clicks on the about link" do
 			click_link('About')

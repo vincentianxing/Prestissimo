@@ -57,13 +57,15 @@
 #  remote            :string(255)
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe Course do
-	before { @course = Course.new(dept: "CSCI", title: "Principles of Computer Science",
+	before { 
+		@hubcourse = Hubcourse.new(id: 1)
+		@course = @hubcourse.courses.new(dept: "CSCI", title: "Principles of Computer Science",
 				      professor: "Geitz, Bob", proficiencies: "CD",
 				      building: "King", room: "221", cnum: "214", crn: "532",
-              semcrn: "532") }
+              		  semcrn: "532", hubcourse_id: "1") }
 
 	subject { @course }
 
