@@ -1,7 +1,7 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
-guard 'rspec', version: 2 do
+guard 'rspec', cmd: 'bundle exec rspec' do
   directories %w[app bin config db lib script spec]
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
@@ -16,7 +16,7 @@ guard 'rspec', version: 2 do
   watch('app/controllers/application_controller.rb')  { 'spec/controllers' }
 
   # Capybara request specs
-  watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_spec.rb" }
+  watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/features/#{m[1]}_spec.rb" }
 
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})
